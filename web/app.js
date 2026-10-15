@@ -18,6 +18,7 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
+  function rich(s) { return esc(s).replace(/`([^`]+)`/g, "<code>$1</code>"); }
   function safeUrl(u) { return /^https?:\/\//i.test(u || "") ? esc(u) : "#"; }
   function link(text, url) { return '<a href="' + safeUrl(url) + '" target="_blank" rel="noopener">' + esc(text) + "</a>"; }
   function store(k, v) {
@@ -129,7 +130,7 @@
       return '<article class="card"><div class="card-top"><span class="id">' + esc(t.id) + '</span><h3 class="repo">' + link(t.repo, t.url) + '</h3></div><div class="stats">' +
         (t.stars_today != null ? '<span class="up">▲ ' + num(t.stars_today) + " 今日</span>" : "") + "<span>★ " + num(t.stars_total) + "</span><span>" + esc(t.license || "许可证未知") + "</span>" + safetyLight(t.safety) + "</div>" +
         '<div class="acts">' + (t.tags || []).map(function (g) { return '<span class="tag">' + esc(g) + "</span>"; }).join("") + "</div>" +
-        '<dl class="kv"><dt>做什么</dt><dd>' + esc(t.what) + "</dd><dt>对我有用</dt><dd>" + esc(t.use_for_me) + "</dd><dt>上手</dt><dd>" + esc(t.setup) + "</dd></dl>" +
+        '<dl class="kv"><dt>做什么</dt><dd>' + rich(t.what) + "</dd><dt>对我有用</dt><dd>" + rich(t.use_for_me) + "</dd><dt>上手</dt><dd>" + rich(t.setup) + "</dd>" + (t.safety_note ? "<dt>安全</dt><dd>" + rich(t.safety_note) + "</dd>" : "") + "</dl>" +
         actBtns(d.date + "-" + t.id, true) + "</article>";
     }).join("") + "</div>";
   }
@@ -137,7 +138,7 @@
     if (!d.skills.length) return '<p class="empty">今日无</p>';
     return '<div class="cards">' + d.skills.map(function (s) {
       return '<article class="card"><div class="card-top"><span class="id">' + esc(s.id) + "</span><h3>" + link(s.name, s.url) + '</h3></div><div class="stats"><span>' + esc(s.works_with) + "</span>" + safetyLight(s.safety) + "</div>" +
-        '<dl class="kv"><dt>有什么用</dt><dd>' + esc(s.what) + "</dd><dt>我怎么用</dt><dd>" + esc(s.how_i_use) + "</dd><dt>安全检查</dt><dd>" + esc(s.safety_note) + "</dd><dt>安装</dt><dd><span class=\"cmd\">" + esc(s.install) + "</span></dd></dl>" +
+        '<dl class="kv"><dt>有什么用</dt><dd>' + rich(s.what) + "</dd><dt>我怎么用</dt><dd>" + rich(s.how_i_use) + "</dd><dt>安全检查</dt><dd>" + rich(s.safety_note) + "</dd><dt>安装</dt><dd>" + rich(s.install) + "</dd></dl>" +
         actBtns(d.date + "-" + s.id, true) + "</article>";
     }).join("") + "</div>";
   }

@@ -14,7 +14,7 @@
 
 **news（AI 资讯，10–20 条）**：新模型和新版本（含开源权重）；已有模型的新能力；API 价格、速率、条款变化；Claude Code、Codex、MCP、Skills 工具链更新；有数据支撑的行业动态（重要产品、大额融资或收购、监管）。不收观点文章、榜单炒作、没出处的传闻。按重要程度排序。有官方原文时 url 用官方原文。X 上热议的 AI 话题可以收 1–3 条，`source_type` 写 `X`。中国厂商的消息要覆盖到。summary 写 2–3 句：发布了什么、关键数字、和上一版相比变了什么。
 
-**tools（GitHub 工具，5–8 个）**：不限行业，标准是一个人拿来能省时间、能做产品或能赚钱。全部满足：能在 VPS 或本机跑或有托管版；最近 30 天有提交；能说清替他省掉哪一步或能拿它做什么产品；许可证允许商用（AGPL 要在 license 里写明）。`tags` 从这些里选：外贸、SEO、自媒体、电商、开发建站、Agent 与自动化、数据与研究、设计与视频、个人效率、其他。会拿到权限的项目（浏览器自动化、MCP、要账号凭证）要认真判断 safety。
+**tools（GitHub 工具，5–8 个）**：不限行业，标准是一个人拿来能省时间、能做产品或能赚钱。全部满足：能在 VPS 或本机跑或有托管版；最近 30 天有提交；能说清替他省掉哪一步或能拿它做什么产品；许可证允许商用（AGPL 要在 license 里写明）。`tags` 从这些里选：外贸、SEO、自媒体、电商、开发建站、Agent 与自动化、数据与研究、设计与视频、个人效率、其他。会拿到权限的项目（浏览器自动化、MCP、要账号凭证）要认真判断 safety，黄和红要在 `safety_note` 写原因。`stars_today` 只填榜单上明确标注「今日」的数字，取不到就写 null，不要拿周榜数字顶替。
 
 **skills（Skills，2–4 个）**：带 SKILL.md 的能力包，Claude Code 和 Codex 通用。只选对个人工作或一人公司有具体用处的。安全检查是硬要求：用 WebFetch 打开 SKILL.md 和附带脚本（raw.githubusercontent.com），看会不会执行 shell、读写本地文件、把数据发到外部服务器、有没有编码混淆的命令、要不要 API Key，据此给 绿/黄/红 并写 `safety_note`。读不到 SKILL.md 的不选。`how_i_use` 写一个他真实会遇到的场景。
 
@@ -30,6 +30,7 @@
 - 每条都要有原文链接，而且你必须确认过它存在、日期对得上。搜索摘要不算来源。
 - 星数、价格、收入、搜索量、融资额只写素材或页面上有的，不估算。推断要写明「推断」。
 - 不写科普背景，不写「具有重要意义」一类空话。
+- 命令、包名、文件路径用反引号包起来，网站会显示成代码样式。
 
 ## 输出
 
@@ -42,7 +43,7 @@
  "headline": ["…", "…", "…"],
  "stats": {"scanned": 0},
  "news": [{"title": "", "url": "", "source": "OpenAI", "source_type": "官方|媒体|社区|X", "published": "2026-10-14", "summary": ""}],
- "tools": [{"repo": "owner/name", "url": "", "stars_today": 0, "stars_total": 0, "license": "MIT", "tags": ["SEO"], "what": "", "use_for_me": "", "setup": "部署难度 低/中/高，需要什么", "safety": "绿|黄|红"}],
+ "tools": [{"repo": "owner/name", "url": "", "stars_today": 0, "stars_total": 0, "license": "MIT", "tags": ["SEO"], "what": "", "use_for_me": "", "setup": "部署难度 低/中/高，需要什么", "safety": "绿|黄|红", "safety_note": "黄、红必须写原因"}],
  "skills": [{"name": "", "url": "", "works_with": "Claude Code / Codex / 两者", "safety": "绿|黄|红", "safety_note": "", "what": "", "how_i_use": "", "install": ""}],
  "opportunities": [{"name": "", "category": "", "one_liner": "", "source": {"title": "", "url": ""},
    "automation": {"acquisition": "", "production": "", "payment_support": "", "manual": "", "weekly_hours": 2},
