@@ -14,10 +14,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-ID = re.compile(r"^(\d{4}-\d{2}-\d{2})-([NGSB])(\d{2})$")
-KEYS = {"N": "news", "G": "tools", "S": "skills", "B": "opportunities"}
-LIBRARY = {"N": "资讯库", "G": "工具库", "S": "工具库", "B": "机会库"}
-DEFAULT_STATUS = {"N": "已存", "G": "待试", "S": "待试", "B": "观察"}
+ID = re.compile(r"^(\d{4}-\d{2}-\d{2})-([NGSBP])(\d{2})$")
+KEYS = {"N": "news", "G": "tools", "S": "skills", "B": "opportunities", "P": "trends"}
+LIBRARY = {"N": "资讯库", "G": "工具库", "S": "工具库", "B": "机会库", "P": "机会库"}
+DEFAULT_STATUS = {"N": "已存", "G": "待试", "S": "待试", "B": "观察", "P": "观察"}
 
 
 def now():
@@ -50,7 +50,7 @@ def main():
     daily = ROOT / "data/daily" / f"{date}.json"
     doc = json.loads(daily.read_text("utf-8"))
     item_id = a.id[len(date) + 1:]
-    item = next((x for x in doc.get(KEYS[prefix], []) if x.get("id") == item_id), None)
+    item = next((x for x in doc.get(KEYS[prefix]) or [] if x.get("id") == item_id), None)
     if item is None:
         print(f"{date} 的日报里没有 {item_id}")
         return 2

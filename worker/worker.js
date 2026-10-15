@@ -15,7 +15,7 @@
 
 const DEFAULT_REPO = "markywan/ai-radar";
 const DEFAULT_SITE = "https://markywan.github.io/ai-radar/";
-const ID = /^\d{4}-\d{2}-\d{2}-[NGSB]\d{2}$/;
+const ID = /^\d{4}-\d{2}-\d{2}-[NGSBP]\d{2}$/;
 const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",

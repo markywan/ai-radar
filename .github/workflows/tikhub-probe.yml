@@ -1,0 +1,32 @@
+name: TikHub 试抓
+
+# 手动运行：只抓 TikHub 那部分（约 30 次请求，约 0.03 美元），在日志里打印每个接口返回的结构，
+# 用来核对解析有没有认对字段。结果文件也会作为附件留在这次运行里。
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: 试抓
+        env:
+          TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
+        run: |
+          if [ -z "$TIKHUB_API_KEY" ]; then echo "::error::还没配置 TIKHUB_API_KEY"; exit 1; fi
+          python3 scripts/fetch.py --probe --date "$(TZ=Asia/Shanghai date +%F)"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: tikhub-probe
+          path: data/raw/*-tikhub.json
+          if-no-files-found: ignore
+          retention-days: 7

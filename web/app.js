@@ -10,7 +10,8 @@
     { key: "news", title: "AI 资讯", short: "资讯" },
     { key: "tools", title: "GitHub 工具", short: "工具" },
     { key: "skills", title: "Skills", short: "Skills" },
-    { key: "opportunities", title: "一人公司机会", short: "机会" }
+    { key: "opportunities", title: "一人公司机会", short: "机会" },
+    { key: "trends", title: "平台风向", short: "风向" }
   ];
   var LEAD_KEYS = ["news", "tools", "opportunities"];
 
@@ -330,19 +331,49 @@
         actBtns(d.date + "-" + b.id, true) + "</article>";
     }).join("") + "</div>";
   }
+  /* 平台风向：抖音、小红书、TikTok 等平台上的爆款形式和需求原话，证据带数字和链接 */
+  function renderTrends(d) {
+    var list = d.trends || [];
+    if (!list.length) return '<p class="empty">今天平台上没有像样的信号，不凑数。</p>';
+    return '<ul class="list">' + list.map(function (it) {
+      var gid = d.date + "-" + it.id, bid = "b-" + it.id, ev = it.evidence || [], qs = it.quotes || [];
+      var plats = (it.platforms && it.platforms.length ? it.platforms : ev.map(function (e) { return e.platform; }))
+        .filter(function (x, i, a) { return x && a.indexOf(x) === i; });
+      var meta = (it.signal ? '<span class="hot">' + esc(it.signal) + "</span>" : "") + (plats.length ? "<span>" + esc(plats.join(" · ")) + "</span>" : "");
+      var head = '<button class="row-h" aria-expanded="false" aria-controls="' + bid + '">' +
+        '<span class="t">' + esc(it.topic) + "</span>" +
+        '<span class="brief">' + esc(plain(briefOf(it))) + "</span>" +
+        '<span class="m">' + meta + "</span>" +
+        '<span class="areas"><span class="a">证据 ' + ev.length + " 条" + (qs.length ? " · 用户原话 " + qs.length + " 条" : "") + '</span><span class="more-l">详情</span></span></button>';
+      var evHtml = ev.length ? '<div><p class="label">证据</p><ul class="ev">' + ev.map(function (e) {
+        return '<li><span class="pf">' + esc(e.platform || "") + '</span><span class="et">' + link(e.title || e.url, e.url) +
+          (e.metrics ? "<small>" + esc(e.metrics) + "</small>" : "") + "</span></li>";
+      }).join("") + "</ul></div>" : "";
+      var qHtml = qs.length ? '<div><p class="label">用户原话</p><ul class="quotes">' + qs.map(function (q) {
+        return "<li><p>" + esc(q.text) + "</p><small>" + esc([q.platform, q.likes != null ? wan(q.likes) + " 赞" : ""].filter(Boolean).join(" · ")) + "</small></li>";
+      }).join("") + "</ul></div>" : "";
+      var how = it.how ? '<div><p class="label">一人公司怎么接</p><p class="how">' + rich(it.how) + "</p></div>" : "";
+      var risk = it.risk ? '<dl class="facts"><dt>风险</dt><dd>' + rich(it.risk) + "</dd></dl>" : "";
+      var body = '<div class="row-b" id="' + bid + '" hidden>' + (it.why ? '<p class="what">' + rich(it.why) + "</p>" : "") +
+        evHtml + qHtml + how + risk + actBtns(gid, true) + "</div>";
+      return '<li class="row item trend">' + head + body + "</li>";
+    }).join("") + "</ul>";
+  }
   function renderToday(d) {
     state.gallery = {};
     var isLatest = d.date === latest(), no = issueNo(d.date), st = d.stats || {};
     var lead = (d.headline || []).map(function (h, i) {
       return '<li data-k="' + (LEAD_KEYS[i] || "news") + '"><span class="n">' + (i + 1) + "</span><p>" + rich(h) + "</p></li>";
     }).join("");
-    var toc = SEC.map(function (s) {
+    /* 没接平台数据的旧日报不显示「平台风向」 */
+    var secs = SEC.filter(function (s) { return s.key !== "trends" || Array.isArray(d.trends); });
+    var toc = secs.map(function (s) {
       return '<a href="#sec-' + s.key + '" data-k="' + s.key + '"><b>' + (d[s.key] || []).length + "</b><small>" + s.short + "</small></a>";
     }).join("");
     var back = isLatest ? unreadPast() : [];
     var backlog = back.length ? '<div class="backlog"><span>还有 ' + back.length + " 期没看</span>" + back.slice(0, 6).map(function (x) { return '<button data-date="' + esc(x.date) + '">' + shortDate(x.date) + "</button>"; }).join("") + "</div>" : "";
-    var fns = { news: renderNews, tools: renderItems("tools"), skills: renderItems("skills"), opportunities: renderOpps };
-    var body = SEC.map(function (s) {
+    var fns = { news: renderNews, tools: renderItems("tools"), skills: renderItems("skills"), opportunities: renderOpps, trends: renderTrends };
+    var body = secs.map(function (s) {
       var n = (d[s.key] || []).length;
       var tool = s.key !== "opportunities" && n ? expandTool(s.key) : "";
       return '<section class="sec" id="sec-' + s.key + '" data-k="' + s.key + '">' + secHead(s, n, tool) + fns[s.key](d) + "</section>";
@@ -353,7 +384,7 @@
       '<div class="kicker"><span>' + (no ? "第 " + no + " 期 · " : "") + "扫描 " + num(st.scanned) + " 条，入选 " + num(st.selected) + ' 条</span><span class="rs" id="read-' + esc(d.date) + '">' + readStateHtml(d.date) + "</span></div>" +
       "<h1>" + longDate(d.date) + "</h1>" +
       '<p class="lead-l">' + (isLatest ? "今天先看这三件" : "这一期的三件事") + '</p><ol class="lead">' + lead + "</ol>" + backlog +
-      '<nav class="toc" aria-label="栏目">' + toc + "</nav></div>" + body + todo +
+      '<nav class="toc" aria-label="栏目" style="--cols:' + secs.length + '">' + toc + "</nav></div>" + body + todo +
       '<div class="foot" id="foot"><span>生成于 ' + esc((d.generated_at || "").replace("T", " ").slice(0, 16)) + "。</span><span>看到这里，这一期就算看过了。</span></div>";
     watchFoot(d.date);
   }
@@ -364,7 +395,7 @@
     return '<li class="row day ' + (r ? "read" : "unread") + '"><button class="row-h" data-date="' + esc(x.date) + '">' +
       '<span class="t">' + longDate(x.date) + (r ? "" : '<span class="tag">未读</span>') + "</span>" +
       '<span class="brief">' + esc(plain(x.headline)) + "</span>" +
-      '<span class="m"><span>资讯 ' + (c.news || 0) + "</span><span>工具 " + (c.tools || 0) + "</span><span>Skills " + (c.skills || 0) + "</span><span>机会 " + (c.opportunities || 0) + "</span></span></button></li>";
+      '<span class="m"><span>资讯 ' + (c.news || 0) + "</span><span>工具 " + (c.tools || 0) + "</span><span>Skills " + (c.skills || 0) + "</span><span>机会 " + (c.opportunities || 0) + "</span>" + (c.trends ? "<span>风向 " + c.trends + "</span>" : "") + "</span></button></li>";
   }
   function renderHistory() {
     var past = dates().slice(1);
@@ -377,7 +408,7 @@
   }
 
   /* ---------- 收藏 ---------- */
-  function favName(f) { var it = f.item || {}; return it.name || it.repo || it.title || f.id; }
+  function favName(f) { var it = f.item || {}; return it.name || it.repo || it.title || it.topic || f.id; }
   function renderFav() {
     var favs = state.index.favorites || [];
     var head = '<div class="page-h"><h1>收藏</h1><p>点「收藏并深挖」的条目，Claude 写完报告后放在这里。</p></div>';

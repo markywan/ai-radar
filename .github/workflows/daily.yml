@@ -32,6 +32,7 @@ jobs:
         env:
           HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' || secrets.ANTHROPIC_API_KEY != '' }}
           HAS_X: ${{ secrets.TWITTERAPI_IO_KEY != '' }}
+          HAS_TIKHUB: ${{ secrets.TIKHUB_API_KEY != '' }}
           HAS_FEISHU: ${{ secrets.FEISHU_WEBHOOK != '' }}
           HAS_KEY: ${{ secrets.ACTION_KEY != '' }}
         run: |
@@ -40,6 +41,7 @@ jobs:
             echo "### 配置检查"
             ok "$HAS_CLAUDE" "Claude 令牌" "缺少 CLAUDE_CODE_OAUTH_TOKEN：日报写不出来"
             ok "$HAS_X" "X 抓取密钥" "缺少 TWITTERAPI_IO_KEY：今天不抓 X，其他来源照常"
+            ok "$HAS_TIKHUB" "TikHub 抓取密钥" "缺少 TIKHUB_API_KEY：今天不抓抖音、小红书等平台，其他来源照常"
             ok "$HAS_FEISHU" "飞书机器人" "缺少 FEISHU_WEBHOOK：不推送飞书"
             ok "$HAS_KEY" "收藏口令" "缺少 ACTION_KEY：飞书卡片上没有收藏按钮"
           } >> "$GITHUB_STEP_SUMMARY"
@@ -53,6 +55,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TWITTERAPI_IO_KEY: ${{ secrets.TWITTERAPI_IO_KEY }}
+          TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
 
       - name: Claude 写日报
         uses: anthropics/claude-code-action@v1

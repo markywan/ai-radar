@@ -5,6 +5,9 @@
 环境变量：
   GITHUB_TOKEN       可选，提高 GitHub 搜索 API 的额度（Actions 里自动有）
   TWITTERAPI_IO_KEY  可选，有它才抓 X
+  TIKHUB_API_KEY     可选，有它才抓抖音、小红书、TikTok、YouTube、B站、微博、知乎（见 platforms.py）
+
+试抓 TikHub：python3 scripts/fetch.py --probe，只抓平台部分，并打印每个接口返回的结构。
 """
 import argparse
 import datetime as dt
@@ -17,6 +20,8 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
+
+from platforms import fetch_platforms
 
 ROOT = Path(__file__).resolve().parent.parent
 UA = "Mozilla/5.0 (compatible; ai-radar/1.0; +https://github.com)"
@@ -208,7 +213,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", default=dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d"))
     ap.add_argument("--hours", type=int, default=48, help="RSS 只保留最近多少小时")
+    ap.add_argument("--probe", action="store_true", help="只抓 TikHub，并打印每个接口返回的结构")
     args = ap.parse_args()
+    if args.probe:
+        return probe(args.date)
 
     cfg = json.loads((ROOT / "config/sources.json").read_text("utf-8"))
     since = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=args.hours)
@@ -270,13 +278,45 @@ def main():
         raw["x"] = None
         errors.append("没有配置 TWITTERAPI_IO_KEY，跳过 X")
 
+    tk = os.environ.get("TIKHUB_API_KEY")
+    if tk:
+        raw["platforms"] = fetch_platforms(cfg["tikhub"], tk, args.date, errors)
+    else:
+        raw["platforms"] = None
+        errors.append("没有配置 TIKHUB_API_KEY，跳过抖音、小红书等平台")
+
     raw["errors"] = errors
     raw["counts"] = {k: len(v) for k, v in raw.items() if isinstance(v, list)}
     out = ROOT / "data/raw" / f"{args.date}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(raw, ensure_ascii=False, indent=1), "utf-8")
     print(json.dumps({"out": str(out.relative_to(ROOT)), "counts": raw["counts"],
-                      "x_tweets": (raw["x"] or {}).get("tweets_used"), "errors": errors}, ensure_ascii=False, indent=1))
+                      "x_tweets": (raw["x"] or {}).get("tweets_used"),
+                      "tikhub_requests": (raw["platforms"] or {}).get("requests_used"), "errors": errors},
+                     ensure_ascii=False, indent=1))
+
+
+def probe(date):
+    """试抓：只跑 TikHub，打印每个请求认出了几条、返回的结构，原始结果写到 data/raw/<日期>-tikhub.json。"""
+    key = os.environ.get("TIKHUB_API_KEY")
+    if not key:
+        print("没有配置 TIKHUB_API_KEY")
+        return 1
+    cfg = json.loads((ROOT / "config/sources.json").read_text("utf-8"))
+    shapes = []
+    res = fetch_platforms(cfg["tikhub"], key, date, errors, probe=shapes)
+    for s in shapes:
+        print(f"\n===== {s['request']}：认出 {s['found']} 条")
+        print(json.dumps(s["shape"], ensure_ascii=False)[:3000])
+    out = ROOT / "data/raw" / f"{date}-tikhub.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(res, ensure_ascii=False, indent=1), "utf-8")
+    print("\n===== 汇总")
+    print(json.dumps({"requests_used": res["requests_used"], "hot_lists": {k: len(v) for k, v in res["hot_lists"].items()},
+                      "searches": [f"{x['platform']}「{x['keyword']}」{x['found']}" for x in res["searches"]],
+                      "comments": [f"{x['platform']} {len(x['comments'])}" for x in res["comments"]],
+                      "notes": res.get("notes"), "errors": errors}, ensure_ascii=False, indent=1))
+    return 0
 
 
 if __name__ == "__main__":

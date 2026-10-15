@@ -21,7 +21,7 @@ def load():
     dates = [{
         "date": d,
         "headline": (doc.get("headline") or [""])[0],
-        "counts": {k: len(doc.get(k) or []) for k in ("news", "tools", "skills", "opportunities")},
+        "counts": {k: len(doc.get(k) or []) for k in ("news", "tools", "skills", "opportunities", "trends")},
     } for d, doc in daily.items()]
     favs = [json.loads(p.read_text("utf-8")) for p in (ROOT / "data/favorites").glob("*.json")]
     favs.sort(key=lambda f: f.get("saved_at", ""), reverse=True)

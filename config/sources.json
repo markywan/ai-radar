@@ -59,5 +59,50 @@
       {"name": "一人公司（中文）", "query": "(一人公司 OR 独立开发 OR 副业 OR 出海 OR 被动收入 OR 月入) min_faves:100 lang:zh -filter:replies within_time:48h", "type": "Top"},
       {"name": "AI 自媒体矩阵", "query": "(faceless OR \"AI UGC\" OR \"AI influencer\" OR \"content automation\" OR 矩阵号 OR AI自媒体 OR 自动化运营) min_faves:200 -filter:replies within_time:48h", "type": "Top"}
     ]
+  },
+  "tikhub": {
+    "_说明": "用 TikHub 抓抖音、小红书、TikTok、YouTube、B站、微博、知乎。没配置 TIKHUB_API_KEY 时自动跳过。按每次请求约 0.001 美元算，max_requests 是每天上限（失败的请求不收费，也不计数）。keywords 是关键词池，每天按顺序轮换取 per_day 个，几天下来把池子轮一遍。params 里 {week_ago}、{now} 会换成时间戳；relax 列出的参数在请求被拒时去掉再试一次。",
+    "max_requests": 40,
+    "keep_per_search": 10,
+    "hot_lists": [
+      {"name": "抖音热搜", "platform": "抖音", "path": "/api/v1/douyin/app/v3/fetch_hot_search_list"},
+      {"name": "微博热搜", "platform": "微博", "path": "/api/v1/weibo/web_v2/fetch_hot_search"},
+      {"name": "知乎热榜", "platform": "知乎", "path": "/api/v1/zhihu/web/fetch_hot_list", "params": {"limit": "50"}},
+      {"name": "B站热搜", "platform": "B站", "path": "/api/v1/bilibili/web/fetch_hot_search", "params": {"limit": "50"}},
+      {"name": "TikTok 趋势搜索词", "platform": "TikTok", "path": "/api/v1/tiktok/web/fetch_trending_searchwords"}
+    ],
+    "searches": [
+      {"platform": "小红书", "path": "/api/v1/xiaohongshu/app_v2/search_notes", "keyword_param": "keyword",
+       "params": {"page": 1, "sort_type": "popularity_descending", "time_filter": "一周内", "note_type": "不限"},
+       "relax": ["time_filter", "note_type"], "per_day": 4,
+       "keywords": ["AI副业", "AI自媒体", "AI工具", "Claude Code", "外贸获客", "一人公司", "AI写作变现", "独立站", "AI做小红书", "知识付费", "跨境电商 AI", "AI接单"]},
+      {"platform": "抖音", "path": "/api/v1/douyin/search/fetch_video_search_v2", "method": "POST", "keyword_param": "keyword",
+       "params": {"cursor": 0, "sort_type": "1", "publish_time": "7", "filter_duration": "0", "content_type": "0", "search_id": ""},
+       "relax": ["publish_time", "content_type"], "per_day": 4,
+       "keywords": ["AI副业", "AI数字人", "AI工具推荐", "AI短视频", "AI漫剧", "AI带货", "跨境电商", "AI智能体", "一人公司", "AI自媒体"]},
+      {"platform": "TikTok", "path": "/api/v1/tiktok/app/v3/fetch_video_search_result", "keyword_param": "keyword",
+       "params": {"offset": 0, "count": 20, "sort_type": 1, "publish_time": 7, "region": "US"},
+       "relax": ["publish_time", "region"], "per_day": 3,
+       "keywords": ["AI side hustle", "faceless channel", "AI tools", "AI automation", "AI UGC", "AI influencer", "make money online AI"]},
+      {"platform": "YouTube", "path": "/api/v1/youtube/web/search_video", "keyword_param": "search_query",
+       "params": {"language_code": "en", "country_code": "us"}, "per_day": 3,
+       "keywords": ["AI automation agency", "faceless youtube channel AI", "Claude Code", "one person business AI", "n8n automation", "AI SEO", "AI agents make money"]},
+      {"platform": "B站", "path": "/api/v1/bilibili/web/fetch_general_search", "keyword_param": "keyword",
+       "params": {"order": "click", "page": 1, "page_size": 20, "pubtime_begin_s": "{week_ago}", "pubtime_end_s": "{now}"},
+       "relax": ["pubtime_begin_s", "pubtime_end_s"], "per_day": 2,
+       "keywords": ["Claude Code", "AI 副业", "AI 编程", "AI 工作流", "n8n", "AI 自媒体"]}
+    ],
+    "comments": {
+      "_说明": "每个平台挑评论最多的 per_platform 条，抓第一页评论，找求助、问价、要教程这类需求原话。",
+      "per_platform": 2,
+      "keep": 20,
+      "endpoints": {
+        "抖音": {"path": "/api/v1/douyin/app/v3/fetch_video_comments", "id_param": "aweme_id", "params": {"cursor": 0, "count": 20}},
+        "TikTok": {"path": "/api/v1/tiktok/app/v3/fetch_video_comments", "id_param": "aweme_id", "params": {"cursor": 0, "count": 20}},
+        "小红书": {"path": "/api/v1/xiaohongshu/app_v2/get_note_comments", "id_param": "note_id"},
+        "B站": {"path": "/api/v1/bilibili/web/fetch_video_comments", "id_param": "bv_id"},
+        "YouTube": {"path": "/api/v1/youtube/web_v2/get_video_comments", "id_param": "video_id"}
+      }
+    }
   }
 }

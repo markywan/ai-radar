@@ -14,12 +14,13 @@
   --bad: #c2362b;
   --dot: #e5484d;
   --on-c: #ffffff;
-  /* 栏目主色：资讯蓝、工具绿、Skills 紫、机会赭、行动区金 */
+  /* 栏目主色：资讯蓝、工具绿、Skills 紫、机会赭、平台风向玫红、行动区金 */
   --n: #2c6496; --n-soft: #e5edf6;
   --g: #12775a; --g-soft: #e1efe9;
   --s: #6a4ea4; --s-soft: #ece7f6;
   --b: #b1532a; --b-soft: #f8e9df;
   --t: #86690f; --t-soft: #f3eed9;
+  --p: #a33d6e; --p-soft: #f6e6ee;
   --font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", system-ui, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --gl: max(16px, env(safe-area-inset-left, 0px));
@@ -30,7 +31,7 @@
     --bg: #101312; --surface: #171b19; --sunk: #1e2321; --ink: #e7ece9; --ink-2: #c3cbc7; --muted: #929c97;
     --line: #262c29; --line-2: #333b37; --good: #6cc58f; --warn: #e2a94a; --bad: #f07a6e; --dot: #ff6369; --on-c: #101312;
     --n: #8ab8e8; --n-soft: #1a2634; --g: #5ec7a6; --g-soft: #15302a; --s: #b9a5ee; --s-soft: #251f36;
-    --b: #f0a072; --b-soft: #33241b; --t: #dcc46c; --t-soft: #2b2716;
+    --b: #f0a072; --b-soft: #33241b; --t: #dcc46c; --t-soft: #2b2716; --p: #ee93bd; --p-soft: #341d29;
     color-scheme: dark;
   }
 }
@@ -38,7 +39,7 @@
   --bg: #101312; --surface: #171b19; --sunk: #1e2321; --ink: #e7ece9; --ink-2: #c3cbc7; --muted: #929c97;
   --line: #262c29; --line-2: #333b37; --good: #6cc58f; --warn: #e2a94a; --bad: #f07a6e; --dot: #ff6369; --on-c: #101312;
   --n: #8ab8e8; --n-soft: #1a2634; --g: #5ec7a6; --g-soft: #15302a; --s: #b9a5ee; --s-soft: #251f36;
-  --b: #f0a072; --b-soft: #33241b; --t: #dcc46c; --t-soft: #2b2716;
+  --b: #f0a072; --b-soft: #33241b; --t: #dcc46c; --t-soft: #2b2716; --p: #ee93bd; --p-soft: #341d29;
   color-scheme: dark;
 }
 
@@ -59,6 +60,7 @@ p { margin: 0; }
 [data-k="tools"] { --c: var(--g); --c-soft: var(--g-soft); }
 [data-k="skills"] { --c: var(--s); --c-soft: var(--s-soft); }
 [data-k="opportunities"] { --c: var(--b); --c-soft: var(--b-soft); }
+[data-k="trends"] { --c: var(--p); --c-soft: var(--p-soft); }
 [data-k="todo"] { --c: var(--t); --c-soft: var(--t-soft); }
 
 /* 重点：加粗加栏目色，不加底色 */
@@ -88,7 +90,7 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
 .lead { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .lead li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 8px; align-items: baseline; }
 .lead .n { font-weight: 750; color: var(--c); font-variant-numeric: tabular-nums; }
-.toc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding-top: 4px; }
+.toc { display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); gap: 8px; padding-top: 4px; }
 .toc a { display: grid; padding: 8px 10px; border-radius: 12px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); color: var(--ink); text-decoration: none; }
 .toc b { font-size: 21px; line-height: 1.25; font-weight: 700; color: var(--c); font-variant-numeric: tabular-nums; }
 .toc small { font-size: 12.5px; color: var(--muted); }
@@ -246,6 +248,15 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
 .opp .src { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
 .evidence { margin: 0; padding-left: 18px; font-size: 13.5px; }
 
+/* 平台风向：证据一行一条（平台 + 标题 + 数字），用户原话用引用样式 */
+.ev, .quotes { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.ev li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; align-items: baseline; font-size: 14.5px; line-height: 1.55; }
+.ev .pf { min-width: 4.4em; text-align: center; font-size: 11.5px; font-weight: 650; color: var(--c); background: var(--c-soft); border-radius: 5px; padding: 0 6px; line-height: 19px; white-space: nowrap; }
+.ev .et { min-width: 0; overflow-wrap: anywhere; }
+.ev small, .quotes small { display: block; margin-top: 1px; font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.quotes li { border-left: 3px solid var(--c-soft); padding-left: 10px; font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
+.how { font-size: 15px; color: var(--ink); }
+
 /* 今天做什么 */
 .todo { list-style: none; margin: 0; padding: 12px 0 0; display: grid; gap: 12px; }
 .todo li { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 12px; align-items: baseline; }
@@ -302,7 +313,9 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
   .uses, .facts { grid-template-columns: 5.4em minmax(0, 1fr); }
 }
 @media (max-width: 380px) {
-  .toc { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .toc { gap: 6px; }
+  .toc a { padding: 7px 8px; }
+  .toc b { font-size: 19px; }
   .tabs button { padding: 6px 9px; }
 }
 @media (prefers-reduced-motion: no-preference) {

@@ -15,9 +15,12 @@ SECTIONS = {
     "tools": ("G", ["repo", "url", "what", "safety"], (3, 10)),
     "skills": ("S", ["name", "url", "what", "safety"], (0, 6)),
     "opportunities": ("B", ["name", "one_liner", "automation", "market", "fit", "verdict"], (0, 3)),
+    "trends": ("P", ["topic", "brief", "evidence", "how"], (0, 5)),
 }
 SAFETY = {"绿", "黄", "红"}
 VERDICTS = {"值得验证", "放进观察", "只是灵感"}
+SIGNALS = {"爆款形式", "需求信号", "新玩法", "热点"}
+SOURCE_TYPES = {"官方", "媒体", "社区", "X", "平台"}
 URL = re.compile(r"^https?://[^\s<>\"']+$")
 
 
@@ -69,6 +72,29 @@ def check_card(key, it, problems):
             it["images"] = imgs[:6]
 
 
+def check_trend(it, problems):
+    i = it["id"]
+    brief = it.get("brief") or ""
+    if brief and (width(brief) > 26 or "**" in brief):
+        problems.append(f"{i} 的 brief 要在 26 个字以内，不加粗：{brief}")
+    if it.get("signal") not in SIGNALS:
+        problems.append(f"{i} 的 signal 只能是 {'/'.join(sorted(SIGNALS))}")
+    ev = it.get("evidence")
+    if not isinstance(ev, list) or not ev:
+        problems.append(f"{i} 的 evidence 要写成数组，至少 1 条")
+        return
+    for e in ev:
+        if not isinstance(e, dict) or not e.get("platform") or not e.get("title") or not URL.match(str(e.get("url", ""))):
+            problems.append(f"{i} 的每条证据都要有 platform、title 和合法的 url：{e}")
+        elif not e.get("metrics"):
+            problems.append(f"{i} 的证据「{e['title'][:20]}」缺少 metrics（点赞、收藏、播放等数字）")
+    if len(ev) < 2 and not it.get("quotes"):
+        problems.append(f"{i} 证据太少：至少 2 条帖子或热榜词，或者 1 条加用户原话")
+    for q in it.get("quotes") or []:
+        if not isinstance(q, dict) or not q.get("text"):
+            problems.append(f"{i} 的 quotes 每条都要有 text（评论原话）")
+
+
 def main(path):
     p = Path(path)
     doc = json.loads(p.read_text("utf-8"))
@@ -80,6 +106,8 @@ def main(path):
 
     total = 0
     for key, (prefix, required, (lo, hi)) in SECTIONS.items():
+        if key == "trends" and doc.get("trends") is None:
+            continue  # 没抓平台数据的那天可以不写这个栏目
         items = doc.get(key) or []
         doc[key] = items
         if not (lo <= len(items) <= hi):
@@ -96,6 +124,10 @@ def main(path):
                 problems.append(f"{it['id']} 的 safety 只能是 绿/黄/红")
             if key in ("tools", "skills"):
                 check_card(key, it, problems)
+            if key == "news" and it.get("source_type") not in SOURCE_TYPES:
+                problems.append(f"{it['id']} 的 source_type 只能是 {'/'.join(sorted(SOURCE_TYPES))}")
+            if key == "trends":
+                check_trend(it, problems)
             if key == "opportunities":
                 if it.get("verdict") not in VERDICTS:
                     problems.append(f"{it['id']} 的 verdict 只能是 {'/'.join(VERDICTS)}")
@@ -126,7 +158,7 @@ def main(path):
         print("需要修改：\n- " + "\n- ".join(problems))
         return 1
     print(f"通过：共 {total} 条（资讯 {len(doc['news'])}，工具 {len(doc['tools'])}，"
-          f"Skills {len(doc['skills'])}，机会 {len(doc['opportunities'])}）")
+          f"Skills {len(doc['skills'])}，机会 {len(doc['opportunities'])}，平台风向 {len(doc.get('trends') or [])}）")
     return 0
 
 

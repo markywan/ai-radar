@@ -31,7 +31,7 @@ jobs:
           RAW_ID: ${{ github.event.client_payload.id || inputs.id }}
           IS_DEEP: ${{ github.event.action == 'deepdive' || inputs.deep == true }}
         run: |
-          if ! [[ "$RAW_ID" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}-[NGSB][0-9]{2}$ ]]; then
+          if ! [[ "$RAW_ID" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}-[NGSBP][0-9]{2}$ ]]; then
             echo "编号不合法：$RAW_ID"; exit 1
           fi
           echo "id=$RAW_ID" >> "$GITHUB_OUTPUT"

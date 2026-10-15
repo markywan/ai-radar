@@ -87,7 +87,7 @@ def daily_card(date):
     m, d = int(date[5:7]), int(date[8:10])
     els = [md("\n".join(f"**{i}.** {h}" for i, h in enumerate(doc.get("headline", []), 1))),
            md(f"资讯 {len(doc['news'])} · 工具 {len(doc['tools'])} · Skills {len(doc['skills'])} · "
-              f"机会 {len(doc['opportunities'])}"),
+              f"机会 {len(doc['opportunities'])}" + (f" · 平台风向 {len(doc['trends'])}" if doc.get("trends") else "")),
            {"tag": "hr"}]
     for n in doc["news"][:3]:
         els.append(md(f"**{n['id']}** [{n['title']}]({n['url']})"))
@@ -95,6 +95,10 @@ def daily_card(date):
         for it in doc[key][:1]:
             name = it.get("repo") or it.get("name")
             els.append(md(f"**{it['id']}** [{name}]({it['url']})：{it['what']}"))
+    for t in (doc.get("trends") or [])[:2]:
+        ev = (t.get("evidence") or [{}])[0]
+        els.append(md(f"**{t['id']}** {t['topic']}（{t.get('signal', '')}）：{t.get('brief', '')}"
+                      + (f"\n[{ev.get('platform', '')}：{ev.get('title', '')[:30]}]({ev['url']}) {ev.get('metrics', '')}" if ev.get("url") else "")))
     for b in doc["opportunities"]:
         fid = f"{date}-{b['id']}"
         els.append({"tag": "hr"})
