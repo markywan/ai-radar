@@ -3,7 +3,7 @@
 
   python3 scripts/build_site.py                 # 输出到 site/，给 GitHub Pages 用
   python3 scripts/build_site.py --single x.html # 输出一个内嵌全部数据的单页（预览用）
-环境变量 WORKER_URL：收藏接口地址，会写进 site/config.json。
+收藏接口地址取环境变量 WORKER_URL，没有就用 config/site.json 里的 worker_url，写进 site/config.json。
 """
 import argparse
 import json
@@ -12,8 +12,6 @@ import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-FONTS = ("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600"
-         "&family=Noto+Serif+SC:wght@700&display=swap")
 TITLE = "AI 机会雷达"
 
 
@@ -40,8 +38,6 @@ def full_page(head_extra, body_extra):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{TITLE}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="{FONTS}">
 {head_extra}
 </head>
 <body>
@@ -62,7 +58,12 @@ def build_pages(out):
         shutil.copy(ROOT / "web" / name, out / name)
     (out / "index.html").write_text(full_page('<link rel="stylesheet" href="style.css">',
                                               '<script src="app.js"></script>'), "utf-8")
-    (out / "config.json").write_text(json.dumps({"worker_url": os.environ.get("WORKER_URL", "")}), "utf-8")
+    try:
+        conf = json.loads((ROOT / "config/site.json").read_text("utf-8"))
+    except (OSError, ValueError):
+        conf = {}
+    worker = os.environ.get("WORKER_URL") or conf.get("worker_url") or ""
+    (out / "config.json").write_text(json.dumps({"worker_url": worker}), "utf-8")
     (out / "data/index.json").write_text(json.dumps(index, ensure_ascii=False), "utf-8")
     for d, doc in daily.items():
         (out / "data/daily" / f"{d}.json").write_text(json.dumps(doc, ensure_ascii=False), "utf-8")
@@ -90,7 +91,7 @@ def inline_image(url, cache={}):
                 data = "data:image/gif;base64," + base64.b64encode(raw).decode()
             else:
                 im = im.convert("RGB")
-                im.thumbnail((1400, 1400))
+                im.thumbnail((1100, 1100))
                 buf = io.BytesIO()
                 im.save(buf, "JPEG", quality=78, optimize=True)
                 data = "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
@@ -118,7 +119,7 @@ def build_single(path, preview, inline_images=False):
     js = (ROOT / "web/app.js").read_text("utf-8")
     body = (ROOT / "web/body.html").read_text("utf-8")
     page = (f'<title>{TITLE}</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n'
-            f'<link rel="stylesheet" href="{FONTS}">\n<style>\n{css}\n</style>\n{body}\n'
+            f'<style>\n{css}\n</style>\n{body}\n'
             f"<script>window.__RADAR__ = {blob};</script>\n<script>\n{js}\n</script>\n")
     Path(path).write_text(page, "utf-8")
     print(f"单页已生成：{path}")

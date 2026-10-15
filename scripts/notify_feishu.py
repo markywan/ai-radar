@@ -7,6 +7,7 @@
 
 环境变量：FEISHU_WEBHOOK（必填）、FEISHU_SECRET（开了签名校验才要）、
 SITE_URL（网站地址）、WORKER_URL 与 ACTION_KEY（卡片上的收藏按钮要用）、RUN_URL（失败时附上运行记录）。
+网站地址和收藏接口地址没给环境变量时，从 config/site.json 读。
 """
 import base64
 import hashlib
@@ -20,8 +21,19 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = os.environ.get("SITE_URL", "").rstrip("/") + "/"
-WORKER = os.environ.get("WORKER_URL", "").rstrip("/")
+try:
+    CONF = json.loads((ROOT / "config/site.json").read_text("utf-8"))
+except (OSError, ValueError):
+    CONF = {}
+
+
+def default_site():
+    owner, _, name = os.environ.get("GITHUB_REPOSITORY", "").partition("/")
+    return f"https://{owner.lower()}.github.io/{name}/" if name else ""
+
+
+SITE = (os.environ.get("SITE_URL") or CONF.get("site_url") or default_site()).rstrip("/") + "/"
+WORKER = (os.environ.get("WORKER_URL") or CONF.get("worker_url") or "").rstrip("/")
 KEY = os.environ.get("ACTION_KEY", "")
 
 

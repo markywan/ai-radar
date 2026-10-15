@@ -11,7 +11,7 @@
 
 每条都能「收藏」；机会、工具和 Skill 还能「收藏并深挖」：Claude 在云端研究这个项目怎么做、用在哪些场景、能实现什么、客户画像和未来走势，写好后放进网站的收藏页，飞书通知你。
 
-网站按栏目配色，栏目标题滚动时吸在顶部；资讯默认只显示标题，点开看总结；工具和 Skill 卡片右侧配 README 里的截图，点开看大图。今天这期没看会在「今日」上亮红点，往期在「历史」里分成没看的和看过的。
+网站每条先只露出能做判断的一行：资讯是标题和来源，工具和 Skill 是名字、一句话简介、星数、安全等级和能用在哪些方向，右侧一张 README 截图；点开才看详细说明、全部配图、一人公司的用法和风险说明。红色条目不点开也会显示一行风险提示。栏目标题左侧有色条，滚动时停在顶部。今天这期没看会在「今日」上亮红点，往期在「历史」里分成没看的和看过的。
 
 ## 怎么运转
 
@@ -59,16 +59,13 @@
 | `FEISHU_SECRET` | 同一个机器人勾选「签名校验」后给的密钥 |
 | `ACTION_KEY` | 自己编一串 30 位以上的随机字符，Worker 里填同一串 |
 
-**同一页的 Variables**
-
-| 名字 | 例子 |
-|---|---|
-| `SITE_URL` | `https://你的用户名.github.io/ai-radar/` |
-| `WORKER_URL` | `https://ai-radar-act.你的子域.workers.dev` |
-| `DAILY_MODEL`（可选） | 默认 `sonnet` |
-| `DEEPDIVE_MODEL`（可选） | 默认 `opus` |
+**不是密码的设置写在 `config/site.json`**：网站地址 `site_url`（已填 `https://markywan.github.io/ai-radar/`）和收藏接口地址 `worker_url`（部署好 Worker 后填上）。也可以在同一页的 Variables 里填同名的 `SITE_URL`、`WORKER_URL`，仓库变量优先。可选变量 `DAILY_MODEL`（默认 `sonnet`）、`DEEPDIVE_MODEL`（默认 `opus`）。
 
 **Settings → Pages → Source** 选 GitHub Actions。
+
+**Cloudflare Worker** 只要填两个密钥：`GITHUB_TOKEN`（细粒度令牌，只授权这个仓库，Contents 读写）和 `ACTION_KEY`。仓库名和网站地址在 `worker.js` 里有默认值。
+
+每天运行时第一步会检查配置，结果写在那次运行的摘要页；缺 Claude 令牌会直接停下并说明原因，缺 X 或飞书只跳过对应部分。
 
 ## 手动运行
 

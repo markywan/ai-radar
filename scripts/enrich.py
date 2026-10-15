@@ -4,10 +4,12 @@
   python3 scripts/enrich.py data/daily/2026-10-15.json [--no-check]
 
 已经有 images 的条目不动。徽章、Logo、头像、Star 曲线这类图会被过滤掉，
-每个条目最多留 4 张，并逐张确认链接能打开、确实是图片（--no-check 跳过确认）。
+每个条目最多留 4 张，并逐张确认链接能打开、确实是图片、尺寸像截图（--no-check 跳过确认）。
+排序：静态截图在前（网站拿第一张当封面），动图和横幅、标题图放后面。
 """
 import json
 import re
+import struct
 import sys
 import urllib.parse
 import urllib.request
@@ -22,6 +24,7 @@ SKIP = re.compile(
     r"producthunt\.com/widgets|trendshift\.io|vercel\.com/button|deploy|\.svg(\?|$)",
     re.I,
 )
+SOFT = re.compile(r"banner|header|cover|title|social|og[-_]?image|wordmark|poster", re.I)  # 能用，但别当封面
 IMG_EXT = re.compile(r"\.(png|jpe?g|gif|webp)(\?|$)", re.I)
 ATTACH = re.compile(r"github\.com/(user-attachments/assets|[^/]+/[^/]+/assets)/", re.I)
 
@@ -101,16 +104,58 @@ def candidates(repo, text):
     return out
 
 
-def is_image(url):
+def image_size(head):
+    """从文件开头读出宽高（PNG、GIF、WebP、JPEG），认不出返回 None。"""
+    if head[:8] == b"\x89PNG\r\n\x1a\n" and head[12:16] == b"IHDR":
+        return struct.unpack(">II", head[16:24])
+    if head[:6] in (b"GIF87a", b"GIF89a"):
+        return struct.unpack("<HH", head[6:10])
+    if head[:4] == b"RIFF" and head[8:12] == b"WEBP":
+        kind = head[12:16]
+        if kind == b"VP8X":
+            return 1 + int.from_bytes(head[24:27], "little"), 1 + int.from_bytes(head[27:30], "little")
+        if kind == b"VP8 ":
+            w, h = struct.unpack("<HH", head[26:30])
+            return w & 0x3FFF, h & 0x3FFF
+        if kind == b"VP8L":
+            bits = int.from_bytes(head[21:25], "little")
+            return (bits & 0x3FFF) + 1, ((bits >> 14) & 0x3FFF) + 1
+    if head[:2] == b"\xff\xd8":
+        i = 2
+        while i + 9 < len(head):
+            if head[i] != 0xFF:
+                i += 1
+                continue
+            marker = head[i + 1]
+            if marker in (0xD8, 0x01, 0xFF) or 0xD0 <= marker <= 0xD7:
+                i += 1 if marker == 0xFF else 2
+                continue
+            if marker in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):
+                h, w = struct.unpack(">HH", head[i + 5:i + 9])
+                return w, h
+            i += 2 + struct.unpack(">H", head[i + 2:i + 4])[0]
+    return None
+
+
+def probe(url):
+    """只下载开头 64KB：确认是图片，顺便读出尺寸。打不开或不是图片返回 None。"""
     try:
-        with get(url, method="HEAD") as r:
-            return r.status == 200 and r.headers.get("Content-Type", "").startswith("image/")
+        req = urllib.request.Request(url, headers={**UA, "Range": "bytes=0-65535"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            ctype = r.headers.get("Content-Type", "").split(";")[0].strip()
+            if not ctype.startswith("image/"):
+                return None
+            return ctype, image_size(r.read(65536))
     except Exception:
-        try:
-            with get(url) as r:
-                return r.headers.get("Content-Type", "").startswith("image/")
-        except Exception:
-            return False
+        return None
+
+
+def looks_like_screenshot(size):
+    """太小的多半是图标，太扁的是横幅或分隔条。读不出尺寸就不按尺寸筛。"""
+    if not size:
+        return True
+    w, h = size
+    return w >= 320 and h >= 160 and 0.4 <= w / h <= 3.2
 
 
 def repo_of(item):
@@ -130,12 +175,19 @@ def main(path, check=True):
             repo = repo_of(item)
             if not repo:
                 continue
-            keep = []
-            for u in candidates(repo, readme(repo))[: MAX_IMAGES * 3]:
-                if not check or is_image(u):
-                    keep.append(u)
-                if len(keep) >= MAX_IMAGES:
+            ranked = []
+            for idx, u in enumerate(candidates(repo, readme(repo))[: MAX_IMAGES * 4]):
+                if check:
+                    info = probe(u)
+                    if not info or not looks_like_screenshot(info[1]):
+                        continue
+                    gif = info[0] == "image/gif"
+                else:
+                    gif = bool(re.search(r"\.gif(\?|$)", u, re.I))
+                ranked.append((gif, bool(SOFT.search(u)), idx, u))
+                if len(ranked) >= MAX_IMAGES * 2:
                     break
+            keep = [r[-1] for r in sorted(ranked)][:MAX_IMAGES]
             if keep:
                 item["images"] = keep
             print(f"{repo}: {len(keep)} 张图")

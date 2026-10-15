@@ -27,8 +27,24 @@ def popular(it):
             or (it.get("installs") or 0) >= 5000)
 
 
+def width(s):
+    """按字数算长度：中文算 1，英文和数字算半个。"""
+    return sum(1 if ord(c) > 0x2E7F else 0.5 for c in str(s))
+
+
 def check_card(key, it, problems):
     i = it["id"]
+    brief = it.get("brief") or ""
+    if not brief:
+        problems.append(f"{i} 缺少 brief（一句话说清是什么，网站折叠时只显示这句）")
+    elif width(brief) > 26 or "**" in brief:
+        problems.append(f"{i} 的 brief 要在 26 个字以内，不加粗：{brief}")
+    if it.get("safety") in ("黄", "红"):
+        rb = it.get("risk_brief") or ""
+        if not rb:
+            problems.append(f"{i} 安全是{it['safety']}，要写 risk_brief（一句话最大风险）")
+        elif width(rb) > 30 or "**" in rb:
+            problems.append(f"{i} 的 risk_brief 要在 30 个字以内，不加粗：{rb}")
     uses = it.get("uses")
     if uses is None and not it.get("use_for_me" if key == "tools" else "how_i_use"):
         problems.append(f"{i} 缺少 uses（一人公司能怎么用）")
@@ -90,6 +106,14 @@ def main(path):
                     if not URL.match(link.get("url", "")):
                         problems.append(f"{it['id']} 的证据链接不合法: {link}")
         total += len(items)
+
+    repos = {}
+    for key in ("tools", "skills"):
+        for it in doc[key]:
+            r = str(it.get("repo") or it.get("url") or "").lower().rstrip("/")
+            if r and r in repos:
+                problems.append(f"{it['id']} 和 {repos[r]} 是同一个项目，只留一条")
+            repos[r] = it["id"]
 
     actions = doc.get("actions") or []
     if len(actions) > 3:

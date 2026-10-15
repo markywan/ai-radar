@@ -28,6 +28,26 @@ jobs:
       - id: day
         run: echo "date=$(TZ=Asia/Shanghai date +%F)" >> "$GITHUB_OUTPUT"
 
+      - name: 检查配置
+        env:
+          HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' || secrets.ANTHROPIC_API_KEY != '' }}
+          HAS_X: ${{ secrets.TWITTERAPI_IO_KEY != '' }}
+          HAS_FEISHU: ${{ secrets.FEISHU_WEBHOOK != '' }}
+          HAS_KEY: ${{ secrets.ACTION_KEY != '' }}
+        run: |
+          ok() { [ "$1" = "true" ] && echo "- ✅ $2" || echo "- ⚠️ $3"; }
+          {
+            echo "### 配置检查"
+            ok "$HAS_CLAUDE" "Claude 令牌" "缺少 CLAUDE_CODE_OAUTH_TOKEN：日报写不出来"
+            ok "$HAS_X" "X 抓取密钥" "缺少 TWITTERAPI_IO_KEY：今天不抓 X，其他来源照常"
+            ok "$HAS_FEISHU" "飞书机器人" "缺少 FEISHU_WEBHOOK：不推送飞书"
+            ok "$HAS_KEY" "收藏口令" "缺少 ACTION_KEY：飞书卡片上没有收藏按钮"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "$HAS_CLAUDE" != "true" ]; then
+            echo "::error::还没配置 CLAUDE_CODE_OAUTH_TOKEN，按配置指南把它加到仓库的 Actions secrets 里。"
+            exit 1
+          fi
+
       - name: 抓取原始素材
         run: python3 scripts/fetch.py --date "${{ steps.day.outputs.date }}"
         env:
@@ -94,6 +114,7 @@ jobs:
           OK: ${{ needs.generate.result == 'success' && needs.publish.result == 'success' }}
           DAY: ${{ needs.generate.outputs.date }}
         run: |
+          if [ -z "$FEISHU_WEBHOOK" ]; then echo "没配置飞书机器人，跳过推送"; exit 0; fi
           if [ "$OK" = "true" ]; then
             python3 scripts/notify_feishu.py daily "$DAY"
           else

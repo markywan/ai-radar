@@ -4,16 +4,17 @@
 //   GET  /act?op=fav|deep&id=2026-10-15-B01&k=口令   打开一个确认页，页面自动提交（防止链接预览误触发）
 //   POST /act?op=fav|deep&id=...&k=...               真正触发 GitHub 上的「收藏与深挖」任务
 //
-// 需要在 Worker 的 Settings → Variables and Secrets 里配置：
+// 需要在 Worker 的 Settings → Variables and Secrets 里配置两个密钥：
 //   GITHUB_TOKEN  细粒度令牌，只授权雷达仓库，Contents: Read and write
-//   GITHUB_REPO   例如 mark/ai-radar
 //   ACTION_KEY    和 GitHub 仓库 secrets 里的 ACTION_KEY 一样
-//   SITE_URL      网站地址，例如 https://mark.github.io/ai-radar/
+// 仓库和网站地址已有默认值，换仓库时再配置 GITHUB_REPO、SITE_URL 覆盖。
 //
 // 可选：绑定一个 KV 命名空间，变量名 RADAR_KV，已读状态就能在手机和电脑之间同步：
 //   GET  /state?k=口令                  返回 {read: {日期: {v, t}}}
 //   POST /read?date=2026-10-15&v=1&k=口令  标记已读（v=0 为未读）
 
+const DEFAULT_REPO = "markywan/ai-radar";
+const DEFAULT_SITE = "https://markywan.github.io/ai-radar/";
 const ID = /^\d{4}-\d{2}-\d{2}-[NGSB]\d{2}$/;
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -61,7 +62,7 @@ main{max-width:420px}h1{font-size:22px;margin:0 0 8px}p{color:var(--muted);margi
 }
 
 async function dispatch(env, op, id) {
-  const r = await fetch(`https://api.github.com/repos/${env.GITHUB_REPO}/dispatches`, {
+  const r = await fetch(`https://api.github.com/repos/${env.GITHUB_REPO || DEFAULT_REPO}/dispatches`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${env.GITHUB_TOKEN}`,
@@ -90,7 +91,8 @@ async function readState(request, env, url) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, rawEnv) {
+    const env = { ...rawEnv, SITE_URL: rawEnv.SITE_URL || DEFAULT_SITE };
     const url = new URL(request.url);
     if (request.method === "OPTIONS") return new Response(null, { headers: CORS });
     if (url.pathname === "/state" || url.pathname === "/read") return readState(request, env, url);

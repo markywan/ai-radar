@@ -3,12 +3,12 @@
  "generated_at": "2026-10-15T21:30:00+08:00",
  "headline": [
   "Gemini 4 Argon 全面开放，API 推广价每百万 token 输入 2 美元、输出 10 美元，**11 月 30 日后涨到 4/20 美元**。",
-  "最值得装：HeyGen 开源的 HyperFrames，**Claude Code 写 HTML 就能渲染成 MP4**，短视频生产可以全交给它。",
+  "最值得装：HeyGen 开源的 HyperFrames，**Claude Code 写 HTML 就能渲染成 MP4**；它标了红，装前先关遥测、放进独立用户里跑。",
   "今天的机会：Faceless 短视频代生产订阅，同类产品经 Stripe 验证 **MRR 约 7.2 万美元**，起步 100 美元左右。"
  ],
  "stats": {
   "scanned": 881,
-  "selected": 34
+  "selected": 33
  },
  "news": [
   {
@@ -192,7 +192,6 @@
    "safety": "绿",
    "safety_note": "**本地运行**，远程服务可选，使用统计**要你同意才开**；模型按需下载。安装是 curl|sh，**建议先看脚本**。",
    "stars_today_note": "github.com/trending 无法实时抓取，取自 gittrend.io 10 月 14 日“今日”榜 +3.0k（trendshift.io 当日显示 3.1k）",
-   "id": "G01",
    "uses": [
     {
      "area": "在线培训",
@@ -211,11 +210,13 @@
      "how": "用悬浮听写组件**说话代替打字**写邮件和文档，会议、访谈录音用转写加说话人分离直接整理成纪要。"
     }
    ],
+   "brief": "开源本地配音工作室，可替代 ElevenLabs",
+   "id": "G01",
    "images": [
-    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/voicestudio.gif",
     "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/voice-cloning.png",
     "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/dubbing.png",
-    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/voice-design.png"
+    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/voice-design.png",
+    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/models.png"
    ]
   },
   {
@@ -235,7 +236,6 @@
    "safety": "黄",
    "safety_note": "浏览器自动化：`moli serve` 打开的 CDP 端口**不要暴露到公网**；安装方式是 curl|sh 管道脚本，建议先下载看一眼；带 cookie 缓存，**别拿主账号登录**。",
    "stars_today_note": "未取到当日数；gittrend.io 周榜（10/5–10/11）+8.9k，8 月 10 日新建",
-   "id": "G02",
    "uses": [
     {
      "area": "SEO",
@@ -254,54 +254,14 @@
      "how": "给自己的“网址转摘要”“网页转 PDF”这类小工具当底层抓取引擎，**内存占用低，便宜 VPS 就能跑**，双许可可商用。"
     }
    ],
+   "brief": "专给 AI Agent 用的轻量无头浏览器",
+   "risk_brief": "CDP 端口别暴露到公网，别用主账号登录",
+   "id": "G02",
    "images": [
-    "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/moli-browser-banner.jpg",
     "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/moli-game.jpg",
     "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/moli-devtools-rust-lang.jpg",
-    "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/lexbench-five-engine-caliber-b-light.jpg"
-   ]
-  },
-  {
-   "repo": "heygen-com/hyperframes",
-   "url": "https://github.com/heygen-com/hyperframes",
-   "stars_today": null,
-   "stars_total": 62700,
-   "license": "Apache-2.0（可商用）",
-   "tags": [
-    "网站推广",
-    "在线培训",
-    "电商",
-    "自媒体"
-   ],
-   "what": "“写 HTML，渲染视频”：AI Agent 用 HTML/CSS/动画写画面，再由无头 Chrome 加 FFmpeg **渲染成 MP4**，自带 21 个 skill（如 `/product-launch-video`）。Apache-2.0 许可，**不按渲染次数收费**。",
-   "setup": "低到中。需要 Node 22+ 和 FFmpeg；`npx hyperframes init my-video` 后 `npx hyperframes render`；Claude Code 插件：`claude plugin marketplace add heygen-com/hyperframes` 再 `claude plugin install hyperframes@hyperframes`；本地渲染不要 Key，配音、生图等素材生成可能需要各家 Key；另有 HeyGen 云渲染和 hyperframes.dev 在线版。",
-   "safety": "绿",
-   "safety_note": "**本地渲染**；云渲染是**可选项**。",
-   "stars_today_note": "未取到当日数；gittrend.io 周榜（10/5–10/11）+4.2k，10 月月榜 +8.1k；npm 今天（10/15）仍在发新版",
-   "id": "G03",
-   "uses": [
-    {
-     "area": "网站推广",
-     "how": "给 `/product-launch-video` 一个网址，就能生成 **30–90 秒的网站宣传片**，放在落地页首屏、产品发布页和社媒置顶。"
-    },
-    {
-     "area": "在线培训",
-     "how": "把讲义、PDF 或一篇长文交给 `/faceless-explainer`，做成**不露脸的知识讲解视频**，当付费小课的试看片或章节导读。"
-    },
-    {
-     "area": "电商",
-     "how": "按商品参数表批量出产品展示短视频和数据动画，**按条收费给外贸工厂和电商店铺代做**，用在独立站产品页和 TikTok。"
-    },
-    {
-     "area": "自媒体",
-     "how": "已有的口播视频用 `/embedded-captions` 加字幕、用 `/talking-head-recut` 加标题条和数据卡片，**不开剪辑软件**也能日更。"
-    }
-   ],
-   "images": [
-    "https://github.com/user-attachments/assets/f6ff9fae-f33d-4f68-bd54-f3ed4ba6473b",
-    "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/biennale-yellow.png",
-    "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/blockframe.png",
-    "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/blue-professional.png"
+    "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/lexbench-five-engine-caliber-b-light.jpg",
+    "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/lexbench-efficiency-map-light.jpg"
    ]
   },
   {
@@ -321,7 +281,6 @@
    "safety": "黄",
    "safety_note": "需要平台登录 cookie（存在本地 ~/.agent-reach/config.yaml，权限 600），有**封号风险**，官方建议**用小号**；读网页会把网址发给 Jina，搜索走 Exa；README 提醒 **PyPI 上的同名包不是这个项目**，别装错。",
    "stars_today_note": "未取到当日数；gittrend.io 周榜（10/5–10/11）+5.1k",
-   "id": "G04",
    "uses": [
     {
      "area": "截流获客",
@@ -339,7 +298,10 @@
      "area": "生活便利",
      "how": "买东西前让它去小红书、Reddit 搜真实口碑，**直接拿到一份优缺点汇总**；雪球渠道还能顺手查股票行情和热帖。"
     }
-   ]
+   ],
+   "brief": "让 Agent 免 API 费读、搜 X、小红书等平台",
+   "risk_brief": "要用平台登录 cookie，有封号风险，用小号",
+   "id": "G03"
   },
   {
    "repo": "KKKKhazix/AIHOT",
@@ -358,7 +320,6 @@
    "safety": "绿",
    "safety_note": "**自托管**，只抓公开信源；后台密码在 .env 的 ADMIN_PASSWORD 里设置，**上线前改掉**。",
    "stars_today_note": "未取到当日数；gittrend.io 10 月月榜 +3.4k；9 月 28 日新建。总星数取自 GitHub API（经 api.ossinsight.io），因为 GitHub 页面快照过旧",
-   "id": "G05",
    "uses": [
     {
      "area": "在线培训",
@@ -377,11 +338,13 @@
      "how": "给亚马逊或独立站卖家群做“平台政策和物流变动”日报，免费版引流，**再卖付费周报或广告位**。"
     }
    ],
+   "brief": "自托管热点站：自动抓源、打分、出日报",
+   "id": "G04",
    "images": [
-    "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/banner-light.png",
     "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/how-light.png",
     "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/cluster-light.png",
-    "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/perf-light.png"
+    "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/perf-light.png",
+    "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/shots-light.png"
    ]
   },
   {
@@ -401,7 +364,6 @@
    "safety": "黄",
    "safety_note": "内置绕过 Cloudflare 等反爬的隐身抓取，**可能违反目标网站条款**；MCP 让 Agent 能访问任意网址，**别用它抓登录后的私人数据**。",
    "stars_today_note": "未取到可靠的当日数；只在 githubrepo.cloud 趋势页上出现过“+428”，周期没有标注",
-   "id": "G06",
    "uses": [
     {
      "area": "电商",
@@ -419,7 +381,10 @@
      "area": "生活便利",
      "how": "让 Claude Code 写个定时任务盯想买的商品页或二手平台关键词，**降价或上新就推送给你**。"
     }
-   ]
+   ],
+   "brief": "网站改版后能自己找回元素的抓取框架",
+   "risk_brief": "隐身绕过反爬，可能违反目标网站条款",
+   "id": "G05"
   },
   {
    "repo": "oblien/openship",
@@ -438,7 +403,6 @@
    "safety": "黄",
    "safety_note": "Compose 模式会挂载 Docker socket，**等于拿到宿主机 root 权限**，只装在专用、可信的 VPS 上；安装是 curl|sh；会持有 GitHub 和域名相关凭证；**README 没说明有没有遥测**。",
    "stars_today_note": "未取到可靠的当日数；只在 githubrepo.cloud 趋势页上出现过“+372”，周期没有标注；npm 10 月 13 日发布 0.9.1",
-   "id": "G07",
    "uses": [
     {
      "area": "做产品",
@@ -457,6 +421,9 @@
      "how": "用桌面版通过 SSH 往家用服务器或 VPS 部署记账、导航页这类自用小工具，数据库和数据卷**定时备份、一键还原**。"
     }
    ],
+   "brief": "可自托管的 Vercel：推送即部署",
+   "risk_brief": "会挂载 Docker socket，等于拿到宿主机 root",
+   "id": "G06",
    "images": [
     "https://raw.githubusercontent.com/oblien/openship/HEAD/docs/screenshots/screen.png"
    ]
@@ -478,7 +445,6 @@
    "safety": "绿",
    "safety_note": "官方说 **100% 本地、不上传**；安装包**没有签名**，Windows/macOS 会弹安全提示，只从官方 Releases 下载。",
    "stars_today_note": "未取到可靠的当日数；trendshift.io 今日榜显示“480”，没有标注单位；8 月 25 日新建，10 月 14 日仍有提交",
-   "id": "G08",
    "uses": [
     {
      "area": "自媒体",
@@ -499,7 +465,9 @@
    ],
    "images": [
     "https://cdn.jsdelivr.net/gh/jub0t/Concat@main/assets/editor.png"
-   ]
+   ],
+   "brief": "免费开源的剪映替代，本地字幕和配音",
+   "id": "G07"
   }
  ],
  "skills": [
@@ -535,6 +503,8 @@
     "网站推广",
     "自媒体"
    ],
+   "brief": "把抽象原理画成一台会动的等距小机器",
+   "risk_brief": "本机跑脚本和无头 Chrome；「发布」会带上会话统计",
    "id": "S01",
    "images": [
     "https://raw.githubusercontent.com/wheresryan22/anatomy/HEAD/.github/assets/raptor-engine-firing.webp",
@@ -580,6 +550,8 @@
     "在线培训",
     "外贸"
    ],
+   "brief": "把复杂问题的回答排成一页离线网页",
+   "risk_brief": "环境里有 ElevenLabs 密钥时会自动拿来用并计费",
    "id": "S02",
    "images": [
     "https://raw.githubusercontent.com/QingYunA/answer-me-with-html/HEAD/docs/images/text-vs-page.png",
@@ -631,6 +603,8 @@
     "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/blockframe.png",
     "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/blue-professional.png"
    ],
+   "brief": "用 HTML 写画面，本机渲染成 MP4 视频",
+   "risk_brief": "会读本机 Claude/Codex 登录令牌，遥测默认开",
    "id": "S03"
   },
   {
@@ -670,6 +644,8 @@
     "在线培训",
     "网站推广"
    ],
+   "brief": "50 个营销技能，没有营销团队也能用",
+   "risk_brief": "接广告和统计账号时，令牌只给最小权限",
    "id": "S04"
   },
   {
@@ -704,6 +680,7 @@
     "写作",
     "在线培训"
    ],
+   "brief": "去掉文字里的 AI 腔，改得像人写的",
    "id": "S05"
   }
  ],
@@ -948,7 +925,7 @@
   },
   {
    "minutes": 30,
-   "text": "用 Claude Code 跑 npx hyperframes init，做一条 30 秒的 faceless 讲解短视频样片，配音用免费的 Kokoro 或 Piper，记下耗时和成本。再参照 White Glove Content 的 $54 / $124 / $284 三档价格，写一个三档价格的落地页草稿。这条样片和这个落地页就是机会 1 MVP 的起点。"
+   "text": "先按 Skills 里 HyperFrames 的风险提示，在独立用户下安装并关掉遥测，再用 Claude Code 跑 `npx hyperframes init`，做一条 30 秒的 faceless 讲解短视频样片，配音用免费的 Kokoro 或 Piper，记下耗时和成本。再参照 White Glove Content 的 $54 / $124 / $284 三档价格，写一个三档价格的落地页草稿。这条样片和这个落地页就是机会 1 MVP 的起点。"
   }
  ]
 }

@@ -129,6 +129,7 @@ jobs:
           OK: ${{ needs.deep.result == 'success' && needs.publish.result == 'success' }}
           FID: ${{ needs.save.outputs.id }}
         run: |
+          if [ -z "$FEISHU_WEBHOOK" ]; then echo "没配置飞书机器人，跳过推送"; exit 0; fi
           if [ "$OK" = "true" ]; then
             python3 scripts/notify_feishu.py deepdive "$FID"
           else
