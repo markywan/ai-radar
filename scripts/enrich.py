@@ -88,7 +88,7 @@ def candidates(repo, text):
         if u.startswith("//"):
             u = "https:" + u
         elif not re.match(r"https?://", u):
-            u = f"https://raw.githubusercontent.com/{repo}/HEAD/" + u.lstrip("./")
+            u = f"https://raw.githubusercontent.com/{repo}/HEAD/" + re.sub(r"^(\./|/)+", "", u)
         m = re.match(r"https://github\.com/([^/]+/[^/]+)/(?:blob|raw)/([^?#]+)", u)
         if m:
             u = f"https://raw.githubusercontent.com/{m.group(1)}/{m.group(2)}"
