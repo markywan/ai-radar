@@ -92,6 +92,7 @@ section.sec { padding-block: 22px 6px; scroll-margin-top: 64px; }
 /* 卡片 */
 .cards { display: grid; gap: 12px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 8px; min-width: 0; }
+.card > *, details { min-width: 0; }
 .card-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
 .card .id { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
 .card h3 { margin: 0; font-size: 16px; line-height: 1.45; overflow-wrap: anywhere; }
@@ -149,11 +150,11 @@ details .kv { margin-top: 8px; }
 .list li { padding: 12px 0; border-bottom: 1px solid var(--line); display: grid; gap: 4px; }
 .list button.link { font: inherit; background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; text-align: left; font-family: var(--font-mono); }
 .group-h { font-family: var(--font-display); font-size: 18px; margin: 22px 0 10px; }
-.deep { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 4px 14px; font-size: 14.5px; overflow-x: auto; }
+.deep { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 4px 14px; font-size: 14.5px; overflow-wrap: anywhere; min-width: 0; }
 .deep h2, .deep h3, .deep h4 { font-family: var(--font-display); line-height: 1.4; }
 .deep h2 { font-size: 18px; } .deep h3 { font-size: 16px; } .deep h4 { font-size: 15px; }
 .deep table { border-collapse: collapse; font-size: 13.5px; }
-.deep th, .deep td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; vertical-align: top; }
+.deep th, .deep td { border: 1px solid var(--line); padding: 4px 8px; text-align: left; vertical-align: top; min-width: 6em; overflow-wrap: normal; }
 
 .foot { color: var(--muted); font-size: 12.5px; padding-block: 28px 40px; border-top: 1px solid var(--line); margin-top: 28px; }
 .toast {
