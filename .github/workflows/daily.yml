@@ -1,0 +1,98 @@
+name: 每日日报
+
+on:
+  schedule:
+    - cron: "13 23 * * *" # UTC 23:13 = 北京时间 07:13 开始，8 点前推送
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: radar-daily
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    outputs:
+      date: ${{ steps.day.outputs.date }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - id: day
+        run: echo "date=$(TZ=Asia/Shanghai date +%F)" >> "$GITHUB_OUTPUT"
+
+      - name: 抓取原始素材
+        run: python3 scripts/fetch.py --date "${{ steps.day.outputs.date }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TWITTERAPI_IO_KEY: ${{ secrets.TWITTERAPI_IO_KEY }}
+
+      - name: Claude 写日报
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            今天是 ${{ steps.day.outputs.date }}（北京时间）。请严格按 prompts/daily.md 写今天的日报。
+            原始素材：data/raw/${{ steps.day.outputs.date }}.json
+            输出文件：data/daily/${{ steps.day.outputs.date }}.json
+          claude_args: >-
+            --model ${{ vars.DAILY_MODEL || 'sonnet' }}
+            --max-turns 120
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch,Bash(python3 scripts/validate.py:*)"
+
+      - name: 校验
+        run: python3 scripts/validate.py "data/daily/${{ steps.day.outputs.date }}.json"
+
+      - name: 提交
+        run: |
+          git config user.name "ai-radar-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/daily
+          git commit -m "日报 ${{ steps.day.outputs.date }}" || exit 0
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
+
+  publish:
+    needs: generate
+    uses: ./.github/workflows/publish.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+  notify:
+    needs: [generate, publish]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - name: 推送飞书
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+          ACTION_KEY: ${{ secrets.ACTION_KEY }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          WORKER_URL: ${{ vars.WORKER_URL }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          OK: ${{ needs.generate.result == 'success' && needs.publish.result == 'success' }}
+          DAY: ${{ needs.generate.outputs.date }}
+        run: |
+          if [ "$OK" = "true" ]; then
+            python3 scripts/notify_feishu.py daily "$DAY"
+          else
+            python3 scripts/notify_feishu.py error "今天的日报没有生成成功，点下面的按钮看运行记录。"
+          fi

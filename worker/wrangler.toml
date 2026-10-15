@@ -1,0 +1,4 @@
+# 用命令行部署时用到；在 Cloudflare 网页后台直接粘贴 worker.js 的话可以忽略这个文件。
+name = "ai-radar-act"
+main = "worker.js"
+compatibility_date = "2026-09-01"
