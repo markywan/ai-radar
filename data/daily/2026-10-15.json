@@ -2,9 +2,9 @@
  "date": "2026-10-15",
  "generated_at": "2026-10-15T21:30:00+08:00",
  "headline": [
-  "Gemini 4 Argon 全面开放，API 推广价每百万 token 输入 2 美元、输出 10 美元，11 月 30 日后涨到 4/20 美元。",
-  "最值得装：HeyGen 开源的 HyperFrames，Claude Code 写 HTML 就能渲染成 MP4，短视频生产可以全交给它。",
-  "今天的机会：Faceless 短视频代生产订阅，同类产品经 Stripe 验证 MRR 约 7.2 万美元，起步 100 美元左右。"
+  "Gemini 4 Argon 全面开放，API 推广价每百万 token 输入 2 美元、输出 10 美元，**11 月 30 日后涨到 4/20 美元**。",
+  "最值得装：HeyGen 开源的 HyperFrames，**Claude Code 写 HTML 就能渲染成 MP4**，短视频生产可以全交给它。",
+  "今天的机会：Faceless 短视频代生产订阅，同类产品经 Stripe 验证 **MRR 约 7.2 万美元**，起步 100 美元左右。"
  ],
  "stats": {
   "scanned": 881,
@@ -17,7 +17,7 @@
    "source": "Google",
    "source_type": "官方",
    "published": "2026-10-13",
-   "summary": "谷歌宣布 Gemini 4 Argon（gemini-4-argon）全球正式可用：开发者可在 AI Studio 和 Android Studio 通过 Gemini API 付费层调用，AI Pro 和 Ultra 订阅用户可在 Gemini App 和搜索 AI 模式中使用，Ultra 用户还可在 Antigravity 中使用。推广期价格为每百万输入/输出 token 2/10 美元，缓存输入减免 95%，2026 年 11 月 30 日后涨到 4/20 美元；API 输入和输出共用 100 万 token 上限。官方称 ERQA 具身推理得分 87%、Vals Index 排名第一，编码评测中走捷径的比例为 2%，是历代 Gemini 中最低的。",
+   "summary": "谷歌宣布 Gemini 4 Argon（gemini-4-argon）全球正式可用：开发者可在 AI Studio 和 Android Studio 通过 Gemini API 付费层调用，AI Pro 和 Ultra 订阅用户可在 Gemini App 和搜索 AI 模式中使用，Ultra 用户还可在 Antigravity 中使用。推广期价格为每百万输入/输出 token **2/10 美元**，缓存输入减免 95%，**2026 年 11 月 30 日后涨到 4/20 美元**；API 输入和输出共用 100 万 token 上限。官方称 ERQA 具身推理得分 87%、Vals Index 排名第一，编码评测中**走捷径的比例为 2%**，是历代 Gemini 中最低的。",
    "id": "N01"
   },
   {
@@ -26,7 +26,7 @@
    "source": "Meta",
    "source_type": "官方",
    "published": "2026-10-12",
-   "summary": "Meta 发布 Muse Wonder 和 Muse Wonder Full，称其为公司迄今最强的模型，是在 9 月推出的 Muse Spark 基础上构建的。两者主打 Active Memory（跨对话记忆）和 Active Focus（长任务中换思路、从错误中恢复、重要操作前先确认）。Muse Wonder 已通过 Meta Model API 和 Muse Code 开放，Wonder Full 只对 Muse Code 订阅用户开放。官方没有在正文公布基准分数；TechCrunch 报道 API 价格为每百万输入/输出 token 4/20 美元。",
+   "summary": "Meta 发布 Muse Wonder 和 Muse Wonder Full，称其为**公司迄今最强的模型**，是在 4 月推出的 Muse Spark 基础上构建的，主打 Active Memory（跨对话记忆）和 Active Focus（长任务中换思路、从错误中恢复、重要操作前先确认）。Muse Wonder 已通过 Meta Model API 和 Muse Code 开放，Wonder Full **只对 Muse Code 订阅用户开放**。官方没有在正文公布基准分数；TechCrunch 报道 API 价格为每百万输入/输出 token **4/20 美元**。",
    "id": "N02"
   },
   {
@@ -35,7 +35,7 @@
    "source": "xAI",
    "source_type": "官方",
    "published": "2026-10-14",
-   "summary": "xAI 发布实时语音到语音模型 Grok Voice 3.0。它在 Artificial Analysis Speech-to-Speech Index 上得到 86.9 分（Grok Voice 2.0 为 81.3），τ-Voice 从 56.5% 提升到 71.6%，Full Duplex Bench 达 97.0%，列出的各项基准均高于上一版。Voice Agent API 仍为每分钟 0.08 美元，使用 grok-voice-latest 的应用已自动切换到新版。",
+   "summary": "xAI 发布实时语音到语音模型 Grok Voice 3.0，它在 Artificial Analysis Speech-to-Speech Index 上得到 **86.9 分**（Grok Voice 2.0 为 81.3），τ-Voice 从 56.5% **提升到 71.6%**，Full Duplex Bench 达 97.0%，列出的各项基准均高于上一版。Voice Agent API **仍为每分钟 0.08 美元**，使用 grok-voice-latest 的应用已自动切换到新版。",
    "id": "N03"
   },
   {
@@ -44,7 +44,7 @@
    "source": "Anthropic",
    "source_type": "官方",
    "published": "2026-10-12",
-   "summary": "Anthropic 公布新一轮防蒸馏措施，核心是让 Claude 的推理过程更难被套取：8 月 31 日及之后创建的 API 账号启用“保留思考”，上线两阶段分类器识别套取隐藏推理的请求，并对反复尝试的账号限流或封禁。官方称蒸馏者能拿到的数据减少约 90%–99%，分类器上线后被提取的推理 token 降低 10–100 倍，误报率低于 0.1%，已封禁数万个相关账号。文中还点名了智谱 GLM-5.3 和月之暗面 Kimi 的相关案例。",
+   "summary": "Anthropic 公布新一轮防蒸馏措施，核心是**让 Claude 的推理过程更难被套取**：8 月 31 日及之后创建的 API 账号启用“保留思考”，上线两阶段分类器识别套取隐藏推理的请求，并对反复尝试的账号限流或封禁。官方称蒸馏者能拿到的数据**减少约 90%–99%**，分类器上线后被提取的推理 token **降低 10–100 倍**，误报率低于 0.1%，已封禁数万个相关账号。文中还点名了智谱 GLM-5.3 和月之暗面 Kimi 的相关案例。",
    "id": "N04"
   },
   {
@@ -53,7 +53,7 @@
    "source": "OpenAI",
    "source_type": "官方",
    "published": "2026-10-14",
-   "summary": "OpenAI 通知开发者，GPT-4o（gpt-4o-2024-08-06、gpt-4o-2024-11-20）、GPT-4o mini、GPT-4.1 和 GPT-4.1 mini 将于 2027 年 1 月 14 日从 API 下线，官方统一推荐迁移到 gpt-6-luna。基于这些模型的微调版本按同一时间表关停。",
+   "summary": "OpenAI 通知开发者，GPT-4o（gpt-4o-2024-08-06、gpt-4o-2024-11-20）、GPT-4o mini、GPT-4.1 和 GPT-4.1 mini 将于 **2027 年 1 月 14 日从 API 下线**，官方统一推荐**迁移到 gpt-6-luna**。基于这些模型的**微调版本按同一时间表关停**。",
    "id": "N05"
   },
   {
@@ -62,7 +62,7 @@
    "source": "Character.ai",
    "source_type": "官方",
    "published": "2026-10-13",
-   "summary": "Character.ai 宣布启动自愿 Chapter 11 破产程序，在法院监督下出售全部或绝大部分资产，预计 11 月底到 12 月初完成。如果没有能让平台继续运营的报价，平台将关闭；目前服务和付费订阅照常。据 TechCrunch 援引法庭文件，公司资产和负债都在 5000 万到 1 亿美元之间，并已同意以 2000 万美元向迪士尼出售部分资产。",
+   "summary": "Character.ai 宣布启动**自愿 Chapter 11 破产程序**，在法院监督下出售全部或绝大部分资产，预计 11 月底到 12 月初完成；如果没有能让平台继续运营的报价，**平台将关闭**，目前服务和付费订阅照常。据 TechCrunch 援引法庭文件，公司资产和负债都在 5000 万到 1 亿美元之间，并已同意以 **2000 万美元**向迪士尼出售部分资产。",
    "id": "N06"
   },
   {
@@ -71,7 +71,7 @@
    "source": "OpenBMB（面壁智能）",
    "source_type": "官方",
    "published": "2026-10-12",
-   "summary": "OpenBMB 开源多模态模型 MiniCPM-V 4.7，有 35B-A3B 和 1B 两个规格，代码和权重采用 Apache-2.0 协议。35B-A3B 是该系列第一个 MoE 模型，官方称在 Instruct 模式下用更短的推理时间取得了高于 Qwen3.6 35B-A3B 的综合分，在 iPhone 17 Pro Max 上只占约 3GB 内存，解码速度在每秒 13 token 以上。1B 版本在综合分和推理效率上都超过 Qwen3.5 0.8B。",
+   "summary": "OpenBMB 开源多模态模型 MiniCPM-V 4.7，有 35B-A3B 和 1B 两个规格，代码和权重采用 **Apache-2.0** 协议。35B-A3B 是**该系列第一个 MoE 模型**，官方称在 Instruct 模式下用更短的推理时间取得了高于 Qwen3.6 35B-A3B 的综合分，在 iPhone 17 Pro Max 上**只占约 3GB 内存**，解码速度在每秒 13 token 以上。1B 版本在综合分和推理效率上都超过 Qwen3.5 0.8B。",
    "id": "N07"
   },
   {
@@ -80,7 +80,7 @@
    "source": "AI Weekly",
    "source_type": "媒体",
    "published": "2026-10-12",
-   "summary": "智谱（Z.ai）发布法律领域模型 GLM-Legal，基座是 GLM-5.3-Flash（320B 总参数、每 token 激活 18B、100 万 token 上下文），并经过法律领域强化学习训练。它在 Harvey 的 LAB 法律智能体基准上覆盖 24 个执业领域，全通过率 19.2%，比基座高 12.5 个百分点。目前没有公开 API，需要提交咨询申请才能接入，模型也已内置在智谱的桌面智能体 AutoClaw 中。",
+   "summary": "智谱（Z.ai）发布法律领域模型 GLM-Legal，基座是 GLM-5.3-Flash（320B 总参数、每 token 激活 18B、100 万 token 上下文）。它在 Harvey 的 LAB 法律智能体基准上覆盖 24 个执业领域，**全通过率 19.2%**，**比基座高 12.5 个百分点**。目前**只能通过设计合作伙伴申请表**和智谱的桌面智能体 AutoClaw 使用。",
    "id": "N08"
   },
   {
@@ -89,7 +89,7 @@
    "source": "Anthropic（GitHub Releases）",
    "source_type": "官方",
    "published": "2026-10-14",
-   "summary": "Claude Code 在 10 月 14 日连发两个版本。v2.1.299 新增空闲压缩：超过 20 万 token 的会话闲置约 54 分钟后，会在 1 小时提示缓存过期前自动压缩，下次发消息时就不用整段重新处理；同时新增 CLAUDE_CODE_DISABLE_FILE_MENTIONS 等选项。v2.1.300 让 /advisor 可在 Claude Platform on AWS 上使用，给 OpenTelemetry 追踪加了 GenAI 属性，大请求改为默认 gzip 压缩。",
+   "summary": "Claude Code 在 10 月 14 日连发两个版本。v2.1.299 新增**空闲压缩**：超过 20 万 token 的会话闲置约 54 分钟后，会在 1 小时提示缓存过期前自动压缩，**下次发消息时就不用整段重新处理**；同时新增 `CLAUDE_CODE_DISABLE_FILE_MENTIONS` 等选项。v2.1.300 让 `/advisor` 可在 Claude Platform on AWS 上使用，给 OpenTelemetry 追踪加了 GenAI 属性，发往 api.anthropic.com 的大请求**关掉遥测时也默认 gzip 压缩**。",
    "id": "N09"
   },
   {
@@ -98,7 +98,7 @@
    "source": "TechCrunch",
    "source_type": "媒体",
    "published": "2026-10-13",
-   "summary": "SpaceXSI（SpaceX Super Intelligence）推出统一订阅 The X Subscription，把 Grok（聊天、语音、图像、视频和 API）、Grok Bot 智能体、Cursor 编码工具和 X Premium 权益打包在一起。订阅分五档：免费、Plus 8 美元、Premium 30 美元、Super 100 美元、Ultra 200 美元/月，AI 用量上限随档位提高。现有 X 用户可以在订阅设置中升级，选项正在逐步上线。",
+   "summary": "SpaceXSI（SpaceX Super Intelligence）推出统一订阅 The X Subscription，把 Grok（聊天、语音、图像、视频和 API）、Grok Bot 智能体、**Cursor 编码工具**和 X Premium 权益打包在一起。订阅分五档：免费、Plus **8 美元**、Premium 30 美元、Super 100 美元、Ultra **200 美元/月**，AI 用量上限随档位提高。现有 X Premium+ 订阅用户可以在订阅设置中升级，选项正在逐步上线。",
    "id": "N10"
   },
   {
@@ -107,7 +107,7 @@
    "source": "Liquid AI",
    "source_type": "官方",
    "published": "2026-10-13",
-   "summary": "Liquid AI 发布开放权重模型 LFM2.5-24B-A2B：总参数 24B，每 token 激活 2B，只以推理模式运行（先输出思维链再作答）。和上一代 LFM2-24B-A2B 相比，上下文从 32,768 扩展到 131,072 token，预训练数据从 17T 增加到 33T token；在 Apple M5 Max 上解码速度为每秒 184 token。在 8 项对比基准中，它有 5 项领先 Qwen3.6-35B-A3B（如 AutomationBench 27.69 对 8.72），但 GPQA Diamond 和 SWE-Bench Verified 落后。",
+   "summary": "Liquid AI 发布开放权重模型 LFM2.5-24B-A2B：总参数 24B，每 token **只激活 2B**，只以推理模式运行（先输出思维链再作答）。和上一代 LFM2-24B-A2B 相比，上下文从 32,768 **扩展到 131,072 token**，预训练数据从 17T 增加到 33T token，在 Apple M5 Max 上解码速度为每秒 184 token。在 8 项工具调用和智能体基准中，它有 **5 项领先 Qwen3.6-35B-A3B**（如 AutomationBench 27.69 对 8.72），但 GPQA Diamond 和 SWE-Bench Verified 落后。",
    "id": "N11"
   },
   {
@@ -116,7 +116,7 @@
    "source": "量子位",
    "source_type": "媒体",
    "published": "2026-10-13",
-   "summary": "据量子位援引彭博社 10 月 12 日的报道，DeepSeek 计划领投机器人 AI 初创公司 Winverse AI 的种子轮，金额为数千万美元，美团龙珠资本也已承诺参投，投后估值约 4 亿美元（约 28 亿元人民币）。Winverse AI 今年成立，创始人胡瀚曾任腾讯混元杰出科学家，也是 Swin Transformer 论文作者之一；公司做的是机器人感知、理解和决策的基础模型。",
+   "summary": "据量子位援引彭博社 10 月 12 日的报道，DeepSeek 计划**领投**机器人 AI 初创公司 Winverse AI 的种子轮，金额为**数千万美元**，美团龙珠资本也已承诺参投，投后估值**约 4 亿美元**（约 28 亿元人民币）。Winverse AI 今年成立，创始人胡瀚曾任腾讯混元杰出科学家，也是 Swin Transformer 论文作者之一；公司做的是机器人感知、理解和决策的基础模型。",
    "id": "N12"
   },
   {
@@ -125,7 +125,7 @@
    "source": "OpenCode（Anomaly）",
    "source_type": "官方",
    "published": "2026-10-12",
-   "summary": "OpenCode 2.0 把服务端改为常驻后台的单个进程，TUI、Web 和桌面端都连接到它；API 从头重写，智能体也可以调用自己的 API（比如创建 git worktree）。新增的 Code Mode 让智能体用 JS 脚本在一次往返中串联多个工具调用，MCP 服务器和 OpenAPI 端点都能当函数直接调用；子智能体和 shell 命令可以转到后台运行。内置功能拆成了 80 多个插件，1.x 的插件和服务端 API 都不兼容。",
+   "summary": "OpenCode 2.0 把服务端改为**常驻后台的单个进程**，TUI、Web 和桌面端都连接到它；API 从头重写，智能体也可以调用自己的 API（比如创建 git worktree）。新增的 **Code Mode** 让智能体用 JS 脚本在一次往返中串联多个工具调用，MCP 服务器和 OpenAPI 端点都能当函数直接调用，子智能体和 shell 命令可以转到后台运行。内置功能拆成了 80 多个插件，**1.x 的插件和服务端 API 都不兼容**。",
    "id": "N13"
   },
   {
@@ -134,7 +134,7 @@
    "source": "虎嗅",
    "source_type": "媒体",
    "published": "2026-10-15",
-   "summary": "阿里千问 10 月 13 日发布并开售 AI 眼镜 N1、N1 Pro 和与 Bose 合作的 AI 耳夹式耳机，定位为 Personal Agent 的硬件入口。N1 到手价 2218 元起（含国补和限时优惠），N1 Pro 2600 元起；眼镜重约 40 克，N1 续航 9 小时，N1 Pro 增加了心率、血氧和皮肤温度监测。耳机首销价 1099 元，支持 89 种语言实时翻译。",
+   "summary": "阿里千问 10 月 13 日发布并开售 AI 眼镜 N1、N1 Pro 和与 Bose 合作的 AI 耳夹式耳机，定位为 **Personal Agent 的硬件入口**。N1 到手价 **2218 元起**（含国补和限时优惠），N1 Pro 2600 元起；眼镜重约 40 克，N1 续航 9 小时，N1 Pro 增加了心率、血氧和皮肤温度监测。耳机首销价 **1099 元**，支持 89 种语言实时翻译。",
    "id": "N14"
   },
   {
@@ -143,7 +143,7 @@
    "source": "Apple",
    "source_type": "官方",
    "published": "2026-10-13",
-   "summary": "苹果发布智能家居显示屏 HomeView，桌面版和壁挂版在美国都是 299 美元，主打 Siri AI：能回答广泛的知识问题，有屏幕感知能力，多轮对话更自然；与支持 Apple Intelligence 的 iPhone 或 iPad 配对后，还能调用日历、信息等个人上下文并跨应用操作。Siri AI 在 HomeView 上目前是英文测试版；产品 11 月 13 日发货，因为欧盟的 iOS 不提供 Siri AI，暂不在欧盟销售。同一天苹果还发布了支持 Siri AI 的新款 HomePod mini 和 Apple TV 4K。",
+   "summary": "苹果发布智能家居显示屏 HomeView，台式版和壁挂版在美国都是 **299 美元**，主打 Siri AI：能回答广泛的知识问题，有屏幕感知能力，多轮对话更自然；与支持 Apple Intelligence 的 iPhone 或 iPad 配对后，还能**调用日历、信息等个人上下文并跨应用操作**。Siri AI 在 HomeView 上目前是英文测试版，产品 **11 月 13 日发货**，因为欧盟的 iOS 不提供 Siri AI，暂不在欧盟销售。同一天苹果还发布了支持 Siri AI 的新款 HomePod mini 和 Apple TV 4K。",
    "id": "N15"
   },
   {
@@ -152,7 +152,7 @@
    "source": "X（OpenAI Newsroom 发帖）/ San Francisco Standard",
    "source_type": "X",
    "published": "2026-10-13",
-   "summary": "OpenAI 官方账号在 X 上确认一名员工被 FBI 逮捕，成为当周被大量讨论的话题。据旧金山标准报援引联邦检察官，35 岁工程师 Abdulrahman Alfozan 被指控在高管会议室电视后藏了一个基于 Seeed XIAO ESP32-S3 Sense 开发板的录音设备，如果定罪最高面临 5 年监禁和 25 万美元罚款。OpenAI 称员工用公司自己的模型查出了设备及来源，目前没有迹象表明模型权重、源代码或客户数据被不当访问。",
+   "summary": "OpenAI 官方账号在 X 上确认一名员工**被 FBI 逮捕**，成为当周被大量讨论的话题。据旧金山标准报援引联邦检察官，35 岁工程师 Abdulrahman Alfozan 被指控在高管会议室电视后藏了一个基于 Seeed XIAO ESP32-S3 Sense 开发板的录音设备，如果定罪**最高面临 5 年监禁和 25 万美元罚款**。OpenAI 称员工用公司自己的模型查出了设备及来源，目前**没有迹象**表明模型权重、源代码或客户数据被不当访问。",
    "id": "N16"
   },
   {
@@ -161,7 +161,7 @@
    "source": "Anthropic",
    "source_type": "官方",
    "published": "2026-10-14",
-   "summary": "Anthropic 在新加坡开设亚太区第五个办公室，并与新加坡数码发展及新闻部签署谅解备忘录，合作范围包括 AI 安全、安保和模型评估，AI 采用研究，以及公共和私营部门的负责任使用。官方称，按人口计算，新加坡的 Claude.ai 使用量在 121 个国家中排第二；新加坡政府科技局（GovTech）已有超过 1500 名工程和技术人员使用 Claude Code。",
+   "summary": "Anthropic 在新加坡开设**亚太区第五个办公室**，并与新加坡数码发展及新闻部签署谅解备忘录，合作范围包括 AI 安全、安保和模型评估，AI 采用研究，以及公共和私营部门的负责任使用。官方称，按人口计算，新加坡的 Claude.ai 使用量在 121 个国家中**排第二**；新加坡政府科技局（GovTech）已有**超过 1500 名**工程和技术人员使用 Claude Code。",
    "id": "N17"
   },
   {
@@ -170,7 +170,7 @@
    "source": "量子位",
    "source_type": "媒体",
    "published": "2026-10-14",
-   "summary": "阶跃终端发布首款 Agent 手机 STEPX Neo，售价 3999 元，软硬件打包，附带一年期 STEPX Token Plan（连续 12 个月，每月百亿 Token 额度）。手机运行智能体原生系统 Step AOS，内置个人智能体“阿仔”（Amoo），系统层支持循环执行，可以自主调用 Skill 和 MCP 工具；遇到需要确认的步骤会弹窗请示，高风险操作需要二次确认。",
+   "summary": "阶跃终端发布首款 Agent 手机 STEPX Neo，售价 **3999 元**，软硬件打包，附带一年期 STEPX Token Plan（连续 12 个月，**每月百亿 Token 额度**）。手机运行智能体原生系统 Step AOS，内置个人智能体阶跃 Amoo，系统层支持循环执行，可以自主调用 Skill 和 MCP 工具；遇到需要确认的步骤会弹窗请示，**高风险操作需要二次确认**。",
    "id": "N18"
   }
  ],
@@ -182,17 +182,41 @@
    "stars_total": 67000,
    "license": "AGPL-3.0（需标注：改了代码再对外提供服务就要开源；模型权重、音色另有各自许可，商用前要逐个核对）",
    "tags": [
+    "在线培训",
+    "写作",
     "自媒体",
-    "设计与视频",
-    "外贸"
+    "个人办公"
    ],
-   "what": "完全本地运行的 ElevenLabs 替代品：声音克隆、音色设计、视频配音、听写转写、有声书，支持 646 种语言。",
-   "use_for_me": "中文口播或产品讲解视频可以直接配成英语、西语、阿语等版本，外贸独立站和多语种 YouTube/TikTok 频道不用再按字数付配音订阅费；转写功能能把播客、直播变成文章素材。也可以拿它接“多语种视频本地化”的代工单。只克隆自己或已获授权的声音。",
+   "what": "开源的本地配音工作室，可以当 ElevenLabs 的本地替代：声音克隆、音色设计、视频配音、听写转写、有声书都能做，支持 **646 种语言**。自带本地 API 和 MCP，**Claude Code 能直接调用它批量出音频**。",
    "setup": "低到中。macOS/Linux 一行安装：curl -fsSL https://voicestudio.sh/install | sh，Windows 用 PowerShell 版；有 NVIDIA 显卡或 Apple Silicon 会快很多，纯 CPU 也能跑（约 5GB 磁盘）；不需要 API Key；仓库有 Docker 部署文档，可放 GPU VPS。",
    "safety": "绿",
-   "safety_note": "本地运行，远程服务可选，使用统计要你同意才开；模型按需下载。安装是 curl|sh，建议先看脚本。",
+   "safety_note": "**本地运行**，远程服务可选，使用统计**要你同意才开**；模型按需下载。安装是 curl|sh，**建议先看脚本**。",
    "stars_today_note": "github.com/trending 无法实时抓取，取自 gittrend.io 10 月 14 日“今日”榜 +3.0k（trendshift.io 当日显示 3.1k）",
-   "id": "G01"
+   "id": "G01",
+   "uses": [
+    {
+     "area": "在线培训",
+     "how": "把录好的中文课程逐节配成英语、西语等版本，**同一套课多开几个语种市场**，省掉请外语讲师重录。"
+    },
+    {
+     "area": "写作",
+     "how": "用克隆的自己的声音把电子书或长文批量转成**有声书**，当电子书的加价套餐或会员福利，不用进录音棚。"
+    },
+    {
+     "area": "自媒体",
+     "how": "中文口播和产品讲解视频直接配成多语种版本，多语种 YouTube/TikTok 频道和外贸独立站**共用一套素材**，也能接“多语种视频本地化”代工单。"
+    },
+    {
+     "area": "个人办公",
+     "how": "用悬浮听写组件**说话代替打字**写邮件和文档，会议、访谈录音用转写加说话人分离直接整理成纪要。"
+    }
+   ],
+   "images": [
+    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/voicestudio.gif",
+    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/voice-cloning.png",
+    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/dubbing.png",
+    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/voice-design.png"
+   ]
   },
   {
    "repo": "lexmount/moli",
@@ -201,17 +225,41 @@
    "stars_total": 17500,
    "license": "Apache-2.0 或 MIT 双许可（可商用）",
    "tags": [
-    "Agent 与自动化",
     "SEO",
-    "数据与研究"
+    "网站推广",
+    "个人办公",
+    "做产品"
    ],
-   "what": "用 Rust 写的轻量无头浏览器，专门给 AI Agent 用：网页可以直接导出成 Markdown，也能起 CDP/WebDriver 服务给 Playwright 连接。",
-   "use_for_me": "在小内存 VPS 上代替整套 Chrome：让 Claude Code/Codex 批量抓竞品页面、把 SERP 排名页转成 Markdown 做内容差距分析，或者跑定时巡检。`moli fetch --dump markdown <网址>` 一条命令就省掉了“复制网页再清洗格式”这一步。",
+   "what": "用 Rust 写的**轻量无头浏览器**，专门给 AI Agent 用：网页可以直接导出成 Markdown、截图或 PDF，也能起 CDP/WebDriver 服务给 Playwright 连接。官方抓取测试里中位内存 **73 MiB**，Chrome Headless 是 **773 MiB**。",
    "setup": "低。一行安装脚本；`moli serve` 起服务后 Playwright 用 connectOverCDP 连 127.0.0.1:9222；不需要 API Key；另有官方托管版 Lexmount Browser。",
    "safety": "黄",
-   "safety_note": "浏览器自动化：`moli serve` 打开的 CDP 端口不要暴露到公网；安装方式是 curl|sh 管道脚本，建议先下载看一眼；带 cookie 缓存，别拿主账号登录。",
+   "safety_note": "浏览器自动化：`moli serve` 打开的 CDP 端口**不要暴露到公网**；安装方式是 curl|sh 管道脚本，建议先下载看一眼；带 cookie 缓存，**别拿主账号登录**。",
    "stars_today_note": "未取到当日数；gittrend.io 周榜（10/5–10/11）+8.9k，8 月 10 日新建",
-   "id": "G02"
+   "id": "G02",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "在小内存 VPS 上把 SERP 排名页和竞品文章批量转成 Markdown，交给 Claude Code 做**内容差距分析**，省掉“复制网页再清洗格式”这一步。"
+    },
+    {
+     "area": "网站推广",
+     "how": "用 `moli fetch --layout --dump screenshot_full` 定时给自己的落地页和竞品首页截整页图，**改版前后一眼对比**，也能直接当客户周报的配图。"
+    },
+    {
+     "area": "个人办公",
+     "how": "把要读的长文和文档页批量存成 Markdown 或 PDF，**喂给 Claude 做摘要和个人知识库**，不用一页页手动保存。"
+    },
+    {
+     "area": "做产品",
+     "how": "给自己的“网址转摘要”“网页转 PDF”这类小工具当底层抓取引擎，**内存占用低，便宜 VPS 就能跑**，双许可可商用。"
+    }
+   ],
+   "images": [
+    "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/moli-browser-banner.jpg",
+    "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/moli-game.jpg",
+    "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/moli-devtools-rust-lang.jpg",
+    "https://raw.githubusercontent.com/lexmount/moli/HEAD/assets/lexbench-five-engine-caliber-b-light.jpg"
+   ]
   },
   {
    "repo": "heygen-com/hyperframes",
@@ -220,17 +268,41 @@
    "stars_total": 62700,
    "license": "Apache-2.0（可商用）",
    "tags": [
-    "设计与视频",
-    "自媒体",
-    "Agent 与自动化"
+    "网站推广",
+    "在线培训",
+    "电商",
+    "自媒体"
    ],
-   "what": "“写 HTML，渲染视频”：AI Agent 用 HTML/CSS/动画写画面，再由无头 Chrome 加 FFmpeg 渲染成 MP4，自带 21 个 skill（如 /product-launch-video）。",
-   "use_for_me": "Claude Code 可以直接产出产品介绍短视频、数据动画、字幕卡片，用在独立站产品页、TikTok 和视频号上，不用开剪辑软件。可以做“给外贸工厂批量出产品展示视频”的服务。",
+   "what": "“写 HTML，渲染视频”：AI Agent 用 HTML/CSS/动画写画面，再由无头 Chrome 加 FFmpeg **渲染成 MP4**，自带 21 个 skill（如 `/product-launch-video`）。Apache-2.0 许可，**不按渲染次数收费**。",
    "setup": "低到中。需要 Node 22+ 和 FFmpeg；`npx hyperframes init my-video` 后 `npx hyperframes render`；Claude Code 插件：`claude plugin marketplace add heygen-com/hyperframes` 再 `claude plugin install hyperframes@hyperframes`；本地渲染不要 Key，配音、生图等素材生成可能需要各家 Key；另有 HeyGen 云渲染和 hyperframes.dev 在线版。",
    "safety": "绿",
-   "safety_note": "本地渲染；云渲染是可选项。",
+   "safety_note": "**本地渲染**；云渲染是**可选项**。",
    "stars_today_note": "未取到当日数；gittrend.io 周榜（10/5–10/11）+4.2k，10 月月榜 +8.1k；npm 今天（10/15）仍在发新版",
-   "id": "G03"
+   "id": "G03",
+   "uses": [
+    {
+     "area": "网站推广",
+     "how": "给 `/product-launch-video` 一个网址，就能生成 **30–90 秒的网站宣传片**，放在落地页首屏、产品发布页和社媒置顶。"
+    },
+    {
+     "area": "在线培训",
+     "how": "把讲义、PDF 或一篇长文交给 `/faceless-explainer`，做成**不露脸的知识讲解视频**，当付费小课的试看片或章节导读。"
+    },
+    {
+     "area": "电商",
+     "how": "按商品参数表批量出产品展示短视频和数据动画，**按条收费给外贸工厂和电商店铺代做**，用在独立站产品页和 TikTok。"
+    },
+    {
+     "area": "自媒体",
+     "how": "已有的口播视频用 `/embedded-captions` 加字幕、用 `/talking-head-recut` 加标题条和数据卡片，**不开剪辑软件**也能日更。"
+    }
+   ],
+   "images": [
+    "https://github.com/user-attachments/assets/f6ff9fae-f33d-4f68-bd54-f3ed4ba6473b",
+    "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/biennale-yellow.png",
+    "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/blockframe.png",
+    "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/blue-professional.png"
+   ]
   },
   {
    "repo": "Panniantong/Agent-Reach",
@@ -239,18 +311,35 @@
    "stars_total": 97500,
    "license": "MIT（可商用）",
    "tags": [
-    "数据与研究",
-    "自媒体",
-    "销售获客",
-    "Agent 与自动化"
+    "截流获客",
+    "写作",
+    "外贸",
+    "生活便利"
    ],
-   "what": "一个 CLI，让 AI Agent 能读、能搜 Twitter/X、Reddit、YouTube、GitHub、B站、小红书、LinkedIn 等平台，不用付各平台 API 费。",
-   "use_for_me": "做选题或竞品调研时，让 Claude Code 一次去 Reddit、YouTube 字幕、小红书、X 上收集讨论再汇总；外贸可以用它查 LinkedIn 上采购商的背景。省掉的是每个平台手动刷、复制粘贴的时间。",
+   "what": "一个 CLI，让 AI Agent 能读、能搜 Twitter/X、Reddit、YouTube、GitHub、B站、小红书、LinkedIn 等平台，**不用付各平台 API 费**。网页、YouTube 字幕、RSS 等 **6 个渠道装好即用**，要登录的平台点名才装。",
    "setup": "中。给 Agent 一句“帮我安装 Agent Reach”加上官方 install.md 链接；`agent-reach install --env=auto` 默认只做检查，加 `--system` 才会装依赖、改配置；X、小红书、Reddit、Facebook、Instagram 要导出 cookie；放在服务器上，部分平台要配代理（README 说约 1 美元/月）。",
    "safety": "黄",
-   "safety_note": "需要平台登录 cookie（存在本地 ~/.agent-reach/config.yaml，权限 600），有封号风险，官方建议用小号；读网页会把网址发给 Jina，搜索走 Exa；README 提醒 PyPI 上的同名包不是这个项目，别装错。",
+   "safety_note": "需要平台登录 cookie（存在本地 ~/.agent-reach/config.yaml，权限 600），有**封号风险**，官方建议**用小号**；读网页会把网址发给 Jina，搜索走 Exa；README 提醒 **PyPI 上的同名包不是这个项目**，别装错。",
    "stars_today_note": "未取到当日数；gittrend.io 周榜（10/5–10/11）+5.1k",
-   "id": "G04"
+   "id": "G04",
+   "uses": [
+    {
+     "area": "截流获客",
+     "how": "每天让 Claude Code 搜小红书、Reddit、X 上“求推荐”“怎么选”这类帖子，整理成**带链接的潜在客户清单**，再由你本人去回复，不要用脚本自动评论。"
+    },
+    {
+     "area": "写作",
+     "how": "写长文或做课前，把 YouTube、B站同主题教程的字幕和小宇宙播客的转写一次拉下来，让 Claude 归纳**大家反复卡住的问题**，直接当文章或课程大纲。"
+    },
+    {
+     "area": "外贸",
+     "how": "配好 LinkedIn 后查采购商的个人主页和公司页，**写开发信前先摸清对方背景**，省掉一个个手动翻。"
+    },
+    {
+     "area": "生活便利",
+     "how": "买东西前让它去小红书、Reddit 搜真实口碑，**直接拿到一份优缺点汇总**；雪球渠道还能顺手查股票行情和热帖。"
+    }
+   ]
   },
   {
    "repo": "KKKKhazix/AIHOT",
@@ -259,17 +348,41 @@
    "stars_total": 7763,
    "license": "MIT（AIHOT 名称和 logo 不在授权范围内）",
    "tags": [
-    "自媒体",
+    "在线培训",
     "SEO",
-    "数据与研究"
+    "个人办公",
+    "电商"
    ],
-   "what": "自托管的“热点发现加自动写日报”框架：从 RSS、网页、X、公众号等来源抓内容，大模型打两次分筛选，把同一事件的报道聚在一起，写中文标题和摘要，自动出日报、周报、月报。",
-   "use_for_me": "把信源和筛选标准换成你的行业（比如跨境电商、某个外贸品类），它就成了自动更新的行业资讯站，自带 RSS、API 和 llms.txt，可以做 SEO 流量站、付费 newsletter 或社群内容源。省掉的是每天刷信息、写摘要的人工。作者的 aihot.news 跑的就是这套代码。",
+   "what": "自托管的“热点发现加自动写日报”框架：从 RSS、网页、X、公众号等来源抓内容，大模型**打两次分**筛选，把同一事件的报道聚在一起，**自动出日报、周报、月报**。换掉信源和评分提示词，它就是你自己行业的热点站。",
    "setup": "中。Docker Compose 一键起（Node 24、TypeScript、PostgreSQL）；需要一个 OpenAI 兼容的模型 API Key（README 举例 DeepSeek、通义、智谱）；上线要 VPS 加域名，docs/deploy.md 里有国内服务器的说明。作者自称是设计师不是专业开发，代码是生产站的快照，不保证每次同步更新。",
    "safety": "绿",
-   "safety_note": "自托管，只抓公开信源；后台密码在 .env 的 ADMIN_PASSWORD 里设置，上线前改掉。",
+   "safety_note": "**自托管**，只抓公开信源；后台密码在 .env 的 ADMIN_PASSWORD 里设置，**上线前改掉**。",
    "stars_today_note": "未取到当日数；gittrend.io 10 月月榜 +3.4k；9 月 28 日新建。总星数取自 GitHub API（经 api.ossinsight.io），因为 GitHub 页面快照过旧",
-   "id": "G05"
+   "id": "G05",
+   "uses": [
+    {
+     "area": "在线培训",
+     "how": "给付费社群或知识星球做“行业早报”，每天 8 点自动出刊，**省掉每天找料写摘要的人工**，拿来提高续费。"
+    },
+    {
+     "area": "SEO",
+     "how": "把信源换成跨境电商或某个外贸品类，上线成**自动更新的行业资讯站**，每个事件一个页面吃长尾词，自带 RSS、API 和 `llms.txt`。"
+    },
+    {
+     "area": "个人办公",
+     "how": "只部署给自己看：盯竞品官网、平台规则公告和几个行业公众号，**每天只读一份聚好类的简报**，不用再挨个刷。"
+    },
+    {
+     "area": "电商",
+     "how": "给亚马逊或独立站卖家群做“平台政策和物流变动”日报，免费版引流，**再卖付费周报或广告位**。"
+    }
+   ],
+   "images": [
+    "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/banner-light.png",
+    "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/how-light.png",
+    "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/cluster-light.png",
+    "https://raw.githubusercontent.com/KKKKhazix/AIHOT/HEAD/docs/assets/perf-light.png"
+   ]
   },
   {
    "repo": "D4Vinci/Scrapling",
@@ -278,18 +391,35 @@
    "stars_total": 86500,
    "license": "BSD-3-Clause（可商用）",
    "tags": [
-    "数据与研究",
-    "SEO",
+    "电商",
+    "做产品",
     "外贸",
-    "电商"
+    "生活便利"
    ],
-   "what": "自适应网页抓取框架，从单个请求到整站爬取都能做；网站改版后能自动重新找到元素；自带 MCP 服务器和官方 Agent Skill。",
-   "use_for_me": "监控竞品价格和上新、抓 B2B 平台和行业目录整理询盘线索表、批量抓排名页做内容分析；接上 MCP 后，在 Claude Code 里说一句“抓这 50 个页面的标题和价格”就能拿到结果。可以包装成“数据抓取加整理”的小服务。",
+   "what": "自适应网页抓取框架，从单个请求到整站爬取都能做，**网站改版后能自动重新找到元素**。自带 MCP 服务器和官方 Agent Skill，还能**把整站转成干净的 Markdown**。",
    "setup": "低。`pip install \"scrapling[fetchers]\"` 后运行 `scrapling install` 下载浏览器；要 MCP 就装 `scrapling[ai]`；也有 Docker 镜像；不需要 API Key。",
    "safety": "黄",
-   "safety_note": "内置绕过 Cloudflare 等反爬的隐身抓取，可能违反目标网站条款；MCP 让 Agent 能访问任意网址，别用它抓登录后的私人数据。",
+   "safety_note": "内置绕过 Cloudflare 等反爬的隐身抓取，**可能违反目标网站条款**；MCP 让 Agent 能访问任意网址，**别用它抓登录后的私人数据**。",
    "stars_today_note": "未取到可靠的当日数；只在 githubrepo.cloud 趋势页上出现过“+428”，周期没有标注",
-   "id": "G06"
+   "id": "G06",
+   "uses": [
+    {
+     "area": "电商",
+     "how": "用自带的 `ShopifySpider` 把竞品 Shopify 店铺的**全部商品和变体价格**拉成表格，做选品和定价参考，或包装成“竞品店铺监控”小服务。"
+    },
+    {
+     "area": "做产品",
+     "how": "用 `SiteToMarkdownSpider` 把客户官网和帮助文档整站转成 Markdown，**喂给 AI 客服或知识库机器人**，按站点收搭建费。"
+    },
+    {
+     "area": "外贸",
+     "how": "抓 B2B 平台和行业目录整理询盘线索表；接上 MCP 后，在 Claude Code 里说一句“抓这 50 个页面的标题和价格”就**直接出表**。"
+    },
+    {
+     "area": "生活便利",
+     "how": "让 Claude Code 写个定时任务盯想买的商品页或二手平台关键词，**降价或上新就推送给你**。"
+    }
+   ]
   },
   {
    "repo": "oblien/openship",
@@ -298,17 +428,38 @@
    "stars_total": 14500,
    "license": "Apache-2.0（内置的 iRedMail 邮件组件是 GPL）",
    "tags": [
-    "开发建站",
-    "Agent 与自动化",
-    "个人效率"
+    "做产品",
+    "在线培训",
+    "个人办公",
+    "生活便利"
    ],
-   "what": "开源、可自托管的部署平台（类似 Vercel/Coolify）：自带 CI/CD、推送即部署、预览环境、数据库、自动 SSL、备份和监控，还有 MCP 端点。",
-   "use_for_me": "在自己的 VPS 上部署 Claude Code 写出来的网站和小工具：推送到 GitHub 就上线，HTTPS 和数据库自动配好，省掉手动配 Nginx、证书、PM2，也省 Vercel 的按量费用。适合同时跑好几个独立站、落地页和小 SaaS。",
+   "what": "开源、可自托管的部署平台（类似 Vercel/Coolify）：**推送即部署**，自带 CI/CD、预览环境、数据库、自动 SSL、备份和监控，还有 MCP 端点。自托管**免费**，一个人用可以只装桌面版，通过 SSH 管服务器。",
    "setup": "中。VPS 上运行 `curl -fsSL https://get.openship.io | sh`，再运行 `openship` 按向导配置；也可以 `npm i -g openship`（Node 22+）；Compose 模式需要 Linux 加 Docker；另有托管版 Openship Cloud；推送部署要连 GitHub。",
    "safety": "黄",
-   "safety_note": "Compose 模式会挂载 Docker socket，等于拿到宿主机 root 权限，只装在专用、可信的 VPS 上；安装是 curl|sh；会持有 GitHub 和域名相关凭证；README 没说明有没有遥测。",
+   "safety_note": "Compose 模式会挂载 Docker socket，**等于拿到宿主机 root 权限**，只装在专用、可信的 VPS 上；安装是 curl|sh；会持有 GitHub 和域名相关凭证；**README 没说明有没有遥测**。",
    "stars_today_note": "未取到可靠的当日数；只在 githubrepo.cloud 趋势页上出现过“+372”，周期没有标注；npm 10 月 13 日发布 0.9.1",
-   "id": "G07"
+   "id": "G07",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "一台 VPS 同时跑多个独立站、落地页和小 SaaS，推送到 GitHub 就上线，**HTTPS 和数据库自动配好**，省掉手动配 Nginx、证书和 PM2。"
+    },
+    {
+     "area": "在线培训",
+     "how": "把开源课程站或会员站的 docker-compose 文件**原样部署**到自己服务器，报名页和课程页都在自己手里，不交平台抽成。"
+    },
+    {
+     "area": "个人办公",
+     "how": "用内置的 SMTP 邮件服务（带 DKIM/SPF/DMARC）给自己的域名发通知邮件和表单回执，**少订一个 Mailgun 或 SES**；先确认 VPS 商家没封发信端口。"
+    },
+    {
+     "area": "生活便利",
+     "how": "用桌面版通过 SSH 往家用服务器或 VPS 部署记账、导航页这类自用小工具，数据库和数据卷**定时备份、一键还原**。"
+    }
+   ],
+   "images": [
+    "https://raw.githubusercontent.com/oblien/openship/HEAD/docs/screenshots/screen.png"
+   ]
   },
   {
    "repo": "jub0t/concat",
@@ -318,15 +469,37 @@
    "license": "AGPL-3.0（需标注：拿来剪片子商用没问题，改了代码再分发就要开源）",
    "tags": [
     "自媒体",
-    "设计与视频"
+    "在线培训",
+    "电商",
+    "生活便利"
    ],
-   "what": "免费开源、跨平台的剪映（CapCut）替代品：Rust 引擎，本地 Whisper 自动字幕、TTS 和声音克隆、抠像、170 多种特效，最高导出 4K60，带 MCP、API 和 CLI。",
-   "use_for_me": "剪短视频不用再买剪映会员，字幕和抠像都在本地跑；因为有 MCP 和 CLI，可以让 Claude Code 帮你批量加字幕、套模板出片。适合日更短视频的一人团队。",
+   "what": "免费开源、跨平台的**剪映（CapCut）替代品**：Rust 引擎，本地 Whisper 自动字幕、TTS 和声音克隆、抠像、170 多种特效，**最高导出 4K60**。带 MCP、API 和 CLI，**无水印、不用账号**。",
    "setup": "低。从官网或 GitHub Releases 下载安装包（Windows/macOS/Linux/Android/iOS）；不要账号和 API Key；AI 模型在设置里下载一次，之后可离线用；目前是 beta，是桌面软件，不适合放 VPS。",
    "safety": "绿",
-   "safety_note": "官方说 100% 本地、不上传；安装包没有签名，Windows/macOS 会弹安全提示，只从官方 Releases 下载。",
+   "safety_note": "官方说 **100% 本地、不上传**；安装包**没有签名**，Windows/macOS 会弹安全提示，只从官方 Releases 下载。",
    "stars_today_note": "未取到可靠的当日数；trendshift.io 今日榜显示“480”，没有标注单位；8 月 25 日新建，10 月 14 日仍有提交",
-   "id": "G08"
+   "id": "G08",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "日更短视频不用再买剪映会员，让 Claude Code 通过 MCP 或 CLI **批量加字幕、套模板出片**。"
+    },
+    {
+     "area": "在线培训",
+     "how": "录屏课程用本地 Whisper 自动出字幕，再一键降噪、统一响度，**课程素材全程不出本机**。"
+    },
+    {
+     "area": "电商",
+     "how": "商品视频用抠像换背景、加标题和转场，**批量出主图视频和详情页短视频**，素材不用传到云端剪辑工具。"
+    },
+    {
+     "area": "生活便利",
+     "how": "剪家庭旅行 vlog 和孩子的视频，Android 手机上也能装，**没有水印、不用登录**。"
+    }
+   ],
+   "images": [
+    "https://cdn.jsdelivr.net/gh/jub0t/Concat@main/assets/editor.png"
+   ]
   }
  ],
  "skills": [
@@ -361,7 +534,13 @@
    "what": "把文档或一个主题做成真正可编辑的原生 PowerPoint（原生形状、图表、表格、动画、备注配音），也能套你自己的 .pptx 模板。",
    "how_i_use": "外贸参展前，把工厂介绍 Word 和产品参数表丢给 Claude Code，说“用 ppt-master 做一份 15 页英文公司介绍，套我们的品牌模板”；导出的 PPTX 里的图表还能在 PowerPoint 里改数字，同一份材料再出一版西语给拉美客户。",
    "install": "Claude Code：`/plugin marketplace add hugohe3/ppt-master`，然后 `/plugin install ppt-master@ppt-master`；通用（含 Codex）：`npx skills add hugohe3/ppt-master`。需要 Python 3.10+，并安装仓库里 requirements.txt 的依赖",
-   "id": "S03"
+   "id": "S03",
+   "images": [
+    "https://raw.githubusercontent.com/hugohe3/ppt-master/HEAD/docs/assets/screenshots/preview_pixel_breakfast_atlas.webp",
+    "https://raw.githubusercontent.com/hugohe3/ppt-master/HEAD/docs/assets/screenshots/preview_attention_is_all_you_need.webp",
+    "https://raw.githubusercontent.com/hugohe3/ppt-master/HEAD/docs/assets/screenshots/preview_china_telecom_2025.webp",
+    "https://raw.githubusercontent.com/ai-nuts/Storage/main/ResearchStudio/ResearchStudio-Reel/docs/figures/reel_demo.gif"
+   ]
   },
   {
    "name": "frontend-design（anthropics/skills）",
@@ -379,22 +558,22 @@
   {
    "name": "Faceless 短视频代生产订阅（自助下单 + 自动发布）",
    "category": "矩阵 AI 自媒体 / 新媒体 AI 代运营（产品化服务）",
-   "one_liner": "卖给想做 faceless 频道的个人创作者，以及想要短视频曝光的小品牌和外贸工厂。按月交付固定数量的 AI 成片，包括选题、脚本、配音、剪辑、封面，并自动发布到 YouTube / TikTok / Instagram。月费分 $49、$99、$199 三档，不接单独定制。",
+   "one_liner": "卖给想做 faceless 频道的个人创作者，以及想要短视频曝光的小品牌和外贸工厂。按月交付**固定数量的 AI 成片**，包括选题、脚本、配音、剪辑、封面，并自动发布到 YouTube / TikTok / Instagram。月费分 **$49、$99、$199** 三档，**不接单独定制**。",
    "source": {
     "title": "TrustMRR：White Glove Content（done-for-you faceless 视频订阅）",
     "url": "https://trustmrr.com/startup/white-glove-content"
    },
    "automation": {
-    "acquisition": "获客分四路。① 先自己跑 2–3 个 faceless 演示号：既是样板间，也是他自己的小矩阵，每条视频简介都挂服务链接。② 做 programmatic SEO：按 niche 批量生成「faceless [niche] channel done for you」落地页，每页嵌一条样片，吃长尾词。③ 在 X 和 Reddit 创作者版块发制作过程帖，需要手动发，并遵守版规。④ 中文侧在小红书和公众号做「海外 faceless 频道代生产」，吸引出海创作者（推断：这群人存在，但没有量化数据）。能自动化的是三步：落地页生成、样片生成、留资后自动发样片邮件。",
-    "production": "客户在表单里选 niche、语言、声音和发布频率，并授权账号，然后由 VPS 上的流水线处理：\n1. 选题和脚本：Claude 或 DeepSeek API。\n2. 出片：HyperFrames（Apache-2.0，HTML 转 MP4，用 headless Chrome + FFmpeg 渲染），或 OpenMontage（AGPL-3.0，自带 Animated Explainer、Clip Factory 等流水线；README 称接图像/视频 API 时每条约 $0.15–1.5，也能零 API 免费跑）。\n3. 配音：ElevenLabs API，或免费的 Kokoro / Piper。\n4. 素材：Pexels / Pixabay 免费库，或用 fal.ai 生图。\n5. 发布：用 Postiz（开源，可自托管）的 API 定时发到客户账号。Larry 案例就是用 Postiz API 把图文推成 TikTok 草稿的。\n整套跑在一台 4–8GB 的 VPS 上；渲染吃 CPU，客户多了再加机器（推断）。",
-    "payment_support": "用 Stripe、Lemon Squeezy 或 Creem 收订阅，月付，随时可取消。客服靠邮件 + FAQ，再加一个由 Claude 起草、人工点发送的收件箱。每位客户每月只有 1 次「整批重做」额度，防止滑向定制。",
-    "manual": "仍要人做的事：抽检每批视频（错字、事实错误、AI 标签有没有勾），处理少量退款和账号授权失效，每月更新各 niche 的选题提示词，起步阶段手动发帖获客。稳定后在 20 个客户以内，每周约 3 小时（推断）。",
+    "acquisition": "获客分四路。① 先自己跑 **2–3 个 faceless 演示号**：既是样板间，也是他自己的小矩阵，每条视频简介都挂服务链接。② 做 **programmatic SEO**：按 niche 批量生成「faceless [niche] channel done for you」落地页，每页嵌一条样片，吃长尾词。③ 在 X 和 Reddit 创作者版块发制作过程帖，需要手动发，并遵守版规。④ 中文侧在小红书和公众号做「海外 faceless 频道代生产」，吸引出海创作者（推断：这群人存在，但没有量化数据）。能自动化的是三步：**落地页生成、样片生成、留资后自动发样片邮件**。",
+    "production": "客户在表单里选 niche、语言、声音和发布频率，并授权账号，然后由 **VPS 上的流水线**处理：\n1. 选题和脚本：Claude 或 DeepSeek API。\n2. 出片：HyperFrames（Apache-2.0，HTML 转 MP4，用 headless Chrome + FFmpeg 渲染），或 OpenMontage（AGPL-3.0，自带 Animated Explainer、Clip Factory 等流水线；README 称接图像/视频 API 时**每条约 $0.15–1.5**，也能零 API 免费跑）。\n3. 配音：ElevenLabs API，或免费的 Kokoro / Piper。\n4. 素材：Pexels / Pixabay 免费库，或用 fal.ai 生图。\n5. 发布：用 Postiz（开源，可自托管）的 API 定时发到客户账号。Larry 案例就是用 Postiz API 把图文推成 TikTok 草稿的。\n整套跑在一台 **4–8GB 的 VPS** 上；渲染吃 CPU，客户多了再加机器（推断）。",
+    "payment_support": "用 Stripe、Lemon Squeezy 或 Creem 收订阅，**月付，随时可取消**。客服靠邮件 + FAQ，再加一个由 Claude 起草、人工点发送的收件箱。每位客户每月只有 **1 次「整批重做」额度**，防止滑向定制。",
+    "manual": "仍要人做的事：**抽检每批视频**（错字、事实错误、AI 标签有没有勾），处理少量退款和账号授权失效，每月更新各 niche 的选题提示词，起步阶段手动发帖获客。稳定后在 20 个客户以内，**每周约 3 小时**（推断）。",
     "weekly_hours": 3
    },
    "market": {
-    "demand": "【有数据】同类自助工具 faceless.so 在 TrustMRR 经 Stripe 验证的 MRR 为 $41,541，近 30 天收入约 $50k。【有数据】ShortsFast 的数据集（2026-10-03 更新）列了 17 个 faceless 视频工具，起步价约 $18–49/月，说明一直有人付钱做 faceless 内容。【推断】需求主要来自两类人：想赚 YouTube/TikTok 收入但不会剪辑的人，和没时间做短视频的小商家。",
-    "revenue_evidence": "【有数据】White Glove Content 2026 年 4 月成立，做 done-for-you faceless 视频订阅。在 TrustMRR 经 Stripe 验证：MRR $71,992，611 个活跃订阅，近 30 天收入 $77,097。定价 $54 / $124 / $284 每月，挂牌要价 $2.5M。【有数据】反例：Reddit 故事类竖版视频工具 StoryTok 近 30 天收入只有 $405，挂牌要价 $10,000。【有数据】基准：bigideasdb 用 TrustMRR 数据统计，服务型项目（代做、agency）里有收入的只占 36.9%，有收入的 MRR 中位数是 $227，到 $10k 以上的只有 4.5%。",
-    "competition": "【有数据】自助 SaaS 至少有 17 家（ShortsFast 数据集），像 GoFaceless 这类工具 $29/月起。代做服务的头部是 White Glove Content。【推断】Fiverr 上也有不少个人卖家。【推断】可以钻的缝隙有三个：① 把白手套模式做成全自动交付，价格低于 White Glove；② 做不靠 AdSense 的小品牌和外贸 B2B 工厂，他们要的是曝光和询盘，受 YouTube 变现政策影响小；③ 中文出海创作者市场：中文客服，英文成片。",
+    "demand": "【有数据】同类自助工具 faceless.so 在 TrustMRR 经 Stripe 验证的 **MRR 为 $41,541**，近 30 天收入约 $50k。【有数据】ShortsFast 的数据集（2026-10-03 更新）列了 **17 个 faceless 视频工具**，起步价约 $18–49/月，说明一直有人付钱做 faceless 内容。【推断】需求主要来自两类人：想赚 YouTube/TikTok 收入但不会剪辑的人，和**没时间做短视频的小商家**。",
+    "revenue_evidence": "【有数据】White Glove Content 2026 年 4 月成立，做 done-for-you faceless 视频订阅。在 TrustMRR 经 Stripe 验证：**MRR $71,992**，611 个活跃订阅，近 30 天收入 $77,097。定价 $54 / $124 / $284 每月，挂牌要价 $2.5M。【有数据】反例：Reddit 故事类竖版视频工具 StoryTok **近 30 天收入只有 $405**，挂牌要价 $10,000。【有数据】基准：bigideasdb 用 TrustMRR 数据统计，服务型项目（代做、agency）里有收入的只占 36.9%，有收入的 **MRR 中位数是 $227**，到 $10k 以上的只有 4.5%。",
+    "competition": "【有数据】自助 SaaS **至少有 17 家**（ShortsFast 数据集），像 GoFaceless 这类工具 $29/月起。代做服务的头部是 White Glove Content。【推断】Fiverr 上也有不少个人卖家。【推断】可以钻的缝隙有三个：① 把白手套模式做成全自动交付，**价格低于 White Glove**；② 做**不靠 AdSense 的小品牌和外贸 B2B 工厂**，他们要的是曝光和询盘，受 YouTube 变现政策影响小；③ 中文出海创作者市场：中文客服，英文成片。",
     "evidence_links": [
      {
       "title": "TrustMRR：White Glove Content",
@@ -453,9 +632,9 @@
    "fit": {
     "startup_cost_usd": 100,
     "mvp_days": 7,
-    "services": "VPS（Hetzner、Vultr 一类，约 $10/月）、HyperFrames 或 OpenMontage、Claude / DeepSeek API、ElevenLabs 或 Kokoro / Piper、Pexels API、Postiz（自托管免费，云版 $29/月起）、Stripe / Lemon Squeezy、Cloudflare + 落地页",
-    "match": "这类服务最难自动化的是选题、钩子和封面能不能打，正好靠他的自媒体经验来把关。SEO 经验用在 niche 落地页和 YouTube 标题、描述上。外贸经验能打开一个不靠 AdSense 的客户群：B2B 工厂的产品讲解短视频。",
-    "biggest_risk": "最大风险是平台政策。\n- YouTube：2026 年 1 月按「inauthentic content」政策集中清理了一批 AI 批量频道，16 个大号累计约 4.7B 播放。变现政策要求套路化频道「每个视频的实质内容要有明显差异」。\n- YouTube YPP 改版：2026-08-10 宣布、2027-02-01 生效，Shorts 要 90 天 1000 万次合格播放才能分广告池，新申请门槛也翻倍。\n- TikTok：逼真的 AI 人物或声音必须在画面里打标。\n客户频道拿不到变现，就会流失、退款，甚至拒付。另外，卖「被动收入」容易被支付平台风控盯上，宣传里不能承诺收益。"
+    "services": "VPS（Hetzner、Vultr 一类，**约 $10/月**）、HyperFrames 或 OpenMontage、Claude / DeepSeek API、ElevenLabs 或 Kokoro / Piper、Pexels API、Postiz（**自托管免费**，云版 $29/月起）、Stripe / Lemon Squeezy、Cloudflare + 落地页",
+    "match": "这类服务最难自动化的是**选题、钩子和封面能不能打**，正好靠他的自媒体经验来把关。SEO 经验用在 niche 落地页和 YouTube 标题、描述上。外贸经验能打开一个**不靠 AdSense 的客户群**：B2B 工厂的产品讲解短视频。",
+    "biggest_risk": "最大风险是**平台政策**。\n- YouTube：2026 年 1 月按「inauthentic content」政策**集中清理了一批 AI 批量频道**，16 个大号累计约 4.7B 播放。变现政策要求套路化频道「每个视频的实质内容要有明显差异」。\n- YouTube YPP 改版：2026-08-10 宣布、2027-02-01 生效，**Shorts 要 90 天 1000 万次合格播放**才能分广告池，新申请门槛也翻倍。\n- TikTok：逼真的 AI 人物或声音**必须在画面里打标**。\n客户频道拿不到变现，就会流失、退款，甚至拒付。另外，卖「被动收入」容易被支付平台风控盯上，**宣传里不能承诺收益**。"
    },
    "verdict": "值得验证",
    "id": "B01"
@@ -463,22 +642,22 @@
   {
    "name": "外贸 B2B「AI 推荐」多语种监测周报（NiubiGEO 托管版）",
    "category": "开源托管版 / GEO（AI 搜索优化）micro-SaaS",
-   "one_liner": "卖给外贸独立站和 B2B 工厂的自动周报，$19–49/月订阅。每周用英、德、西、法等买家语言，在 ChatGPT、Gemini、Perplexity 等模型里问「某品类可靠的中国供应商」。报告写清三件事：有没有推荐他们、推荐了哪些竞品、引用了哪些网页。",
+   "one_liner": "卖给外贸独立站和 B2B 工厂的自动周报，**$19–49/月订阅**。每周用英、德、西、法等买家语言，在 ChatGPT、Gemini、Perplexity 等模型里问「某品类可靠的中国供应商」。报告写清三件事：**有没有推荐他们、推荐了哪些竞品、引用了哪些网页**。",
    "source": {
     "title": "Trendshift：Albert-Weasker/niubigeo（开源 AI 品牌可见度工具）",
     "url": "https://trendshift.io/repositories/212064"
    },
    "automation": {
-    "acquisition": "获客分三步，基本可以全自动。① 免费检测页：用户输入网址和品类，系统自动用 3 个模型 × 2 种语言跑一次小测试，生成可分享的报告页。同时按品类自动生成「AI 推荐的 [品类] 中国供应商」公开榜单页，每周自动刷新，用 programmatic SEO 吃长尾流量，也能引外链。② 报告页收邮箱，自动发 3 封邮件引导订阅。③ 在他自己的公众号、小红书、LinkedIn 发数据类内容（比如「问了 ChatGPT 50 个品类，谁被推荐了」），素材由系统自动产出。",
-    "production": "NiubiGEO 跑在 VPS 上：Apache-2.0，TypeScript，Docker 部署，需要 OPENROUTER_API_KEY，支持定时关键词监测和 Diff 视图，界面有简体中文。外面用 Claude Code 包一层多租户，包括：账号、按语种分的品类提问库、定时任务、PDF / 邮件周报（用 Resend 发）。模型调用走 OpenRouter，按套餐限制每周提问数来控制成本。",
-    "payment_support": "海外卡用 Stripe、Creem 或 Lemon Squeezy 收订阅。国内客户用支持个人收款的第三方平台（推断，具体能不能用要自己核实）。客服以邮件 + 文档为主；「为什么这周分数掉了」这类常见问题，直接在报告里自动解释。",
-    "manual": "仍要人做的事：每月维护各行业、各语种的买家提问库，抽查异常报告，回复邮件，起步时去外贸圈子手动发帖。稳定后每周约 2 小时（推断）。",
+    "acquisition": "获客分三步，**基本可以全自动**。① **免费检测页**：用户输入网址和品类，系统自动用 3 个模型 × 2 种语言跑一次小测试，生成可分享的报告页。同时按品类自动生成「AI 推荐的 [品类] 中国供应商」**公开榜单页**，每周自动刷新，用 programmatic SEO 吃长尾流量，也能引外链。② 报告页收邮箱，自动发 3 封邮件引导订阅。③ 在他自己的公众号、小红书、LinkedIn 发数据类内容（比如「问了 ChatGPT 50 个品类，谁被推荐了」），素材由系统自动产出。",
+    "production": "NiubiGEO 跑在 VPS 上：Apache-2.0，TypeScript，Docker 部署，需要 OPENROUTER_API_KEY，支持定时关键词监测和 Diff 视图，界面有简体中文。外面用 Claude Code 包一层**多租户**，包括：账号、按语种分的品类提问库、定时任务、PDF / 邮件周报（用 Resend 发）。模型调用走 OpenRouter，**按套餐限制每周提问数**来控制成本。",
+    "payment_support": "海外卡用 Stripe、Creem 或 Lemon Squeezy 收订阅。国内客户用支持个人收款的第三方平台（**推断，具体能不能用要自己核实**）。客服以邮件 + 文档为主；「为什么这周分数掉了」这类常见问题，**直接在报告里自动解释**。",
+    "manual": "仍要人做的事：每月维护**各行业、各语种的买家提问库**，抽查异常报告，回复邮件，起步时去外贸圈子手动发帖。稳定后**每周约 2 小时**（推断）。",
     "weekly_hours": 2
    },
    "market": {
-    "demand": "【有数据】NiubiGEO 在 2026-09-03 到 10-15 之间新增 7,514 星（总计 7.8k），9 月 8 日进入 Trendshift 总榜第 4。【有数据】Product Hunt 仅 2026 年 10 月上旬就上线了几款同类产品：ReSO AI（10-05 当周周榜，502 票）、MentionBird（「Ahrefs for AI Search」，10-13）、Oogwai Beacon（AEO 审计，10-05）。【有数据】凤凰网 2026-09-18 的出海 GEO 文章（推广性质）引用了 Adobe 数据：2024 年 7 月到 2025 年 5 月，美国零售网站来自生成式 AI 的流量增长 3500%；文中也显示服务商在向外贸和 DTC 卖 GEO 全托管。【推断】外贸老板已经在问「ChatGPT 推不推荐我」，但大多数还没有趁手的工具。",
-    "revenue_evidence": "【有数据】Rank Prompt（AI 搜索可见度 SaaS，2025 年 5 月成立）在 TrustMRR 的 MRR 为 $43,672，近 30 天增长 29.8%，累计收入 $289,459。【有数据】AEO Engine（AI SEO 代运营）MRR $157,959，55 个订阅，月费 $1,597 起。【有数据】长尾产品收入很低：My AI visibility 累计 $6，Trackee（2026 年 9 月成立）累计 $36。说明这个市场赚钱靠分发和细分，不靠工具本身。",
-    "competition": "【有数据】dupple 2026 年 9 月的对比表：Otterly.ai $29/月（15 个 prompt）、HubSpot AEO $50、Peec AI $95、SE Ranking $129、Semrush $199、AthenaHQ $295、Profound 定制价，没有一家主打多语种。NiubiGEO 团队自己卖的是人工检测、内容这类服务，没提托管 SaaS。Railway 上第三方做的 NiubiGEO 部署模板（2026-09-25 创建）只有 1 个项目。【推断】缝隙是「B2B 工业品类 × 非英语买家提问 × 中文界面 × $19–49 低价」这个组合，头部工具没有专门做。",
+    "demand": "【有数据】NiubiGEO 在 2026-09-03 到 10-15 之间**新增 7,514 星**（总计 7.8k），9 月 8 日进入 Trendshift 总榜第 4。【有数据】Product Hunt **仅 2026 年 10 月上旬就上线了几款同类产品**：ReSO AI（10-05 当周周榜，502 票）、MentionBird（「Ahrefs for AI Search」，10-13）、Oogwai Beacon（AEO 审计，10-05）。【有数据】凤凰网 2026-09-18 的出海 GEO 文章（推广性质）引用了 Adobe 数据：2024 年 7 月到 2025 年 5 月，美国零售网站来自生成式 AI 的流量**增长 3500%**；文中也显示服务商在向外贸和 DTC 卖 GEO 全托管。【推断】外贸老板已经在问「ChatGPT 推不推荐我」，但大多数还没有趁手的工具。",
+    "revenue_evidence": "【有数据】Rank Prompt（AI 搜索可见度 SaaS，2025 年 5 月成立）在 TrustMRR 的 **MRR 为 $43,672**，近 30 天增长 29.8%，累计收入 $289,459。【有数据】AEO Engine（AI SEO 代运营）MRR $157,959，55 个订阅，月费 $1,597 起。【有数据】长尾产品收入很低：**My AI visibility 累计 $6**，Trackee（2026 年 9 月成立）累计 $36。说明这个市场**赚钱靠分发和细分**，不靠工具本身。",
+    "competition": "【有数据】dupple 2026 年 9 月的对比表：Otterly.ai $29/月（15 个 prompt）、HubSpot AEO $50、Peec AI $95、SE Ranking $129、Semrush $199、AthenaHQ $295、Profound 定制价，**没有一家主打多语种**。NiubiGEO 团队自己卖的是人工检测、内容这类服务，没提托管 SaaS。Railway 上第三方做的 NiubiGEO 部署模板（2026-09-25 创建）**只有 1 个项目**。【推断】缝隙是「B2B 工业品类 × 非英语买家提问 × 中文界面 × $19–49 低价」这个组合，**头部工具没有专门做**。",
     "evidence_links": [
      {
       "title": "Trendshift：NiubiGEO 星数与上榜记录",
@@ -537,9 +716,9 @@
    "fit": {
     "startup_cost_usd": 80,
     "mvp_days": 6,
-    "services": "VPS + Docker、NiubiGEO、OpenRouter（预充 $30–50 API 额度）、Resend 邮件、Stripe / Creem、Cloudflare、Claude Code（写多租户外壳）",
-    "match": "SEO 经验可以直接迁移到 GEO：关键词变成买家提问，外链变成被引用的来源。外贸经验让他知道海外买家实际会怎么问、哪些品类值钱，现成的外贸圈子也能当第一批用户。自媒体用来发榜单类数据内容获客。",
-    "biggest_risk": "① 同类产品太多，Semrush、HubSpot 已经捆绑销售，长尾产品普遍收入很低。② NiubiGEO 团队随时可能推出官方托管版。③ 测的是模型 API，不是用户在 ChatGPT 界面里实际看到的结果（NiubiGEO 自己也注明了），而且答案每次都不一样，客户会质疑准确性。④ 国内工厂老板更习惯买人工服务，产品容易被拖成咨询。⑤ API 成本随提问数线性增长，必须严格限额。平台政策风险较低，主要是各家模型 API 条款可能限制批量自动查询（推断）。"
+    "services": "VPS + Docker、NiubiGEO、OpenRouter（**预充 $30–50 API 额度**）、Resend 邮件、Stripe / Creem、Cloudflare、Claude Code（写多租户外壳）",
+    "match": "SEO 经验可以**直接迁移到 GEO**：关键词变成买家提问，外链变成被引用的来源。外贸经验让他**知道海外买家实际会怎么问**、哪些品类值钱，现成的外贸圈子也能当第一批用户。自媒体用来发榜单类数据内容获客。",
+    "biggest_risk": "① **同类产品太多**，Semrush、HubSpot 已经捆绑销售，长尾产品普遍收入很低。② NiubiGEO 团队**随时可能推出官方托管版**。③ 测的是模型 API，**不是用户在 ChatGPT 界面里实际看到的结果**（NiubiGEO 自己也注明了），而且答案每次都不一样，客户会质疑准确性。④ 国内工厂老板更习惯买人工服务，产品容易被拖成咨询。⑤ API 成本随提问数线性增长，必须严格限额。平台政策风险较低，主要是各家模型 API 条款可能限制批量自动查询（推断）。"
    },
    "verdict": "值得验证",
    "id": "B02"
@@ -547,22 +726,22 @@
   {
    "name": "英文「中国制造与出口」AI 日报站 + Newsletter（基于 AIHOT）",
    "category": "AI 资讯站 / 开源项目二次部署 + SEO + Newsletter",
-   "one_liner": "用 AIHOT 自动抓中文一手信源（商务部和海关公告、行业公众号、展会、原材料价格），每天生成英文简报和事件页。免费订阅，用来积累海外进口商、亚马逊卖家和采购人员；变现靠验货、货代、采购代理的赞助，以及 $9/月的付费周报。",
+   "one_liner": "用 AIHOT 自动抓中文一手信源（商务部和海关公告、行业公众号、展会、原材料价格），每天生成**英文简报和事件页**。免费订阅，用来积累**海外进口商、亚马逊卖家和采购人员**；变现靠验货、货代、采购代理的赞助，以及 **$9/月的付费周报**。",
    "source": {
     "title": "Trendshift：KKKKhazix/AIHOT（自动找热点、写日报的资讯站框架）",
     "url": "https://trendshift.io/repositories/268236"
    },
    "automation": {
-    "acquisition": "获客全部可以定时自动跑。① SEO：AIHOT 自带专题页、搜索、RSS 和 llms.txt，每个事件一个页面，再用他的 SEO 经验补结构化数据和内链。② 每天用 Postiz 定时把日报里的 3 条要点发到 X 和 LinkedIn。③ 和其他 newsletter 互推，比如 beehiiv Boosts。",
-    "production": "AIHOT 部署在 VPS 上：MIT 许可，Node.js + PostgreSQL + Docker Compose。信源支持 RSS、网页列表、JSON API、X 账号和微信公众号。用 DeepSeek、Qwen 这类便宜的 OpenAI 兼容 API 做两轮打分、聚类和英文摘要。每天 8 点自动出日报，另有周报和月报。注意要关掉全文翻译，只发摘要 + 原文链接。",
-    "payment_support": "Newsletter 用 beehiiv（免费档起步，自带付费订阅）或 Stripe。赞助用固定价目表 + 付款链接，少来回谈判。基本没有客服工作量。",
-    "manual": "仍要人做的事：每周检查信源和打分阈值（AIHOT 后台有评测脚本），写一段人工「本周观点」提高原创度，回复赞助商邮件。稳定后每周约 2 小时（推断）。",
+    "acquisition": "获客**全部可以定时自动跑**。① SEO：AIHOT 自带专题页、搜索、RSS 和 llms.txt，**每个事件一个页面**，再用他的 SEO 经验补结构化数据和内链。② 每天用 Postiz 定时把日报里的 3 条要点发到 X 和 LinkedIn。③ 和其他 newsletter 互推，比如 beehiiv Boosts。",
+    "production": "AIHOT 部署在 VPS 上：MIT 许可，Node.js + PostgreSQL + Docker Compose。信源支持 RSS、网页列表、JSON API、X 账号和微信公众号。用 DeepSeek、Qwen 这类**便宜的 OpenAI 兼容 API** 做两轮打分、聚类和英文摘要。**每天 8 点自动出日报**，另有周报和月报。注意要**关掉全文翻译**，只发摘要 + 原文链接。",
+    "payment_support": "Newsletter 用 beehiiv（**免费档起步**，自带付费订阅）或 Stripe。赞助用**固定价目表 + 付款链接**，少来回谈判。**基本没有客服工作量**。",
+    "manual": "仍要人做的事：每周检查信源和打分阈值（AIHOT 后台有评测脚本），写一段**人工「本周观点」**提高原创度，回复赞助商邮件。稳定后**每周约 2 小时**（推断）。",
     "weekly_hours": 2
    },
    "market": {
-    "demand": "【有数据】Freightos 2025 年 5 月调查了 100 多家美国中小进口商：42% 把关税影响打到 10/10；30% 在考虑换采购地，但只有 6% 真的换了。这群人很需要及时的政策和供应链信息。【有数据】AIHOT 在 2026-09-29 登上 Trendshift 总榜第 1，9-28 到 10-15 新增 7,345 星。这说明「行业 AI 日报站」这种形态在开发者里很火，但不代表读者端有需求。【推断】英文世界里能直接读中文一手信源的人很少，这就是信息差。",
-    "revenue_evidence": "【有数据】Sinocism 是英文的中国新闻简报。Press Gazette 2021 年采访、2022 年更新的数据：订阅超过 9 万，付费比例是个位数百分比，$15/月；迁到 Substack 的第一天，年收入就已超过 $100k。【有数据】The Pure Procurement 是一个人运营的采购行业 newsletter（beehiiv 2025 年 4 月案例）：订阅超过 1 万，靠品牌合作、广告、Boosts 和付费订阅变现，没公开金额。【推断】订阅要到 3–5k 才卖得动赞助，前 3–6 个月基本没有收入。",
-    "competition": "【推断】综合类对手有 Sinocism、China Briefing（Dezan Shira）、Caixin Global、SCMP 等，行业类有 Sourcing Journal 等。它们要么偏宏观，要么只盯一个行业，而且都靠人工编辑。缝隙是「工厂和产业带一级的中文一手消息，每天自动整理成英文」，面向中小进口商和亚马逊卖家。AIHOT 开源后，同类 AI 自动日报站会变多，真正的护城河是品牌和信源质量。",
+    "demand": "【有数据】Freightos 2025 年 5 月调查了 100 多家美国中小进口商：**42% 把关税影响打到 10/10**；30% 在考虑换采购地，但**只有 6% 真的换了**。这群人很需要及时的政策和供应链信息。【有数据】AIHOT 在 2026-09-29 登上 Trendshift 总榜第 1，9-28 到 10-15 新增 7,345 星。这说明「行业 AI 日报站」这种形态在开发者里很火，但**不代表读者端有需求**。【推断】英文世界里能直接读中文一手信源的人很少，这就是信息差。",
+    "revenue_evidence": "【有数据】Sinocism 是英文的中国新闻简报。Press Gazette 2021 年采访、2022 年更新的数据：**订阅超过 9 万**，付费比例是个位数百分比，$15/月；迁到 Substack 的第一天，**年收入就已超过 $100k**。【有数据】The Pure Procurement 是一个人运营的采购行业 newsletter（beehiiv 2025 年 4 月案例）：订阅超过 1 万，靠品牌合作、广告、Boosts 和付费订阅变现，没公开金额。【推断】订阅要到 3–5k 才卖得动赞助，**前 3–6 个月基本没有收入**。",
+    "competition": "【推断】综合类对手有 Sinocism、China Briefing（Dezan Shira）、Caixin Global、SCMP 等，行业类有 Sourcing Journal 等。它们要么偏宏观，要么只盯一个行业，而且**都靠人工编辑**。缝隙是「**工厂和产业带一级的中文一手消息**，每天自动整理成英文」，面向中小进口商和亚马逊卖家。AIHOT 开源后，同类 AI 自动日报站会变多，**真正的护城河是品牌和信源质量**。",
     "evidence_links": [
      {
       "title": "Trendshift：AIHOT 星数与上榜记录",
@@ -597,9 +776,9 @@
    "fit": {
     "startup_cost_usd": 40,
     "mvp_days": 3,
-    "services": "VPS（4GB 以上，跑 Postgres + Node）、AIHOT、DeepSeek / Qwen API、beehiiv、Cloudflare、Postiz（可选）",
-    "match": "外贸经验决定选哪些中文信源、哪些消息对海外买家有用；SEO 经验用来给事件页和专题页拿长尾流量；自媒体经验用在社媒分发和 newsletter 增长。站点还能顺带给他手里的外贸资源（货代、验货）导流。",
-    "biggest_risk": "① 变现慢：赞助和付费都得先攒读者。② Google 的「scaled content abuse」垃圾政策专门针对批量 AI 生成页面，纯自动资讯站可能拿不到排名（推断；需要加人工点评和原创数据）。③ 版权：翻译转载公众号和媒体全文有侵权风险，只能发摘要 + 链接；公众号抓取也不稳定。④ 中美贸易、出口管制这类敏感话题，自动摘要一旦出错就伤信誉。"
+    "services": "VPS（**4GB 以上**，跑 Postgres + Node）、AIHOT、DeepSeek / Qwen API、beehiiv、Cloudflare、Postiz（可选）",
+    "match": "**外贸经验决定选哪些中文信源**、哪些消息对海外买家有用；SEO 经验用来给事件页和专题页拿长尾流量；自媒体经验用在社媒分发和 newsletter 增长。站点还能顺带**给他手里的外贸资源（货代、验货）导流**。",
+    "biggest_risk": "① **变现慢**：赞助和付费都得先攒读者。② Google 的「scaled content abuse」垃圾政策专门针对批量 AI 生成页面，**纯自动资讯站可能拿不到排名**（推断；需要加人工点评和原创数据）。③ 版权：翻译转载公众号和媒体全文有侵权风险，**只能发摘要 + 链接**；公众号抓取也不稳定。④ 中美贸易、出口管制这类敏感话题，自动摘要一旦出错就伤信誉。"
    },
    "verdict": "放进观察",
    "id": "B03"

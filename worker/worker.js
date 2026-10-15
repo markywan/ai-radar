@@ -9,6 +9,10 @@
 //   GITHUB_REPO   例如 mark/ai-radar
 //   ACTION_KEY    和 GitHub 仓库 secrets 里的 ACTION_KEY 一样
 //   SITE_URL      网站地址，例如 https://mark.github.io/ai-radar/
+//
+// 可选：绑定一个 KV 命名空间，变量名 RADAR_KV，已读状态就能在手机和电脑之间同步：
+//   GET  /state?k=口令                  返回 {read: {日期: {v, t}}}
+//   POST /read?date=2026-10-15&v=1&k=口令  标记已读（v=0 为未读）
 
 const ID = /^\d{4}-\d{2}-\d{2}-[NGSB]\d{2}$/;
 const CORS = {
@@ -70,10 +74,26 @@ async function dispatch(env, op, id) {
   return r.status === 204;
 }
 
+async function readState(request, env, url) {
+  if (!env.ACTION_KEY || !same(url.searchParams.get("k") || "", env.ACTION_KEY)) return json({ ok: false, message: "口令不对。" }, 403);
+  if (!env.RADAR_KV) return json({ ok: true, kv: false, read: {} });
+  const read = JSON.parse((await env.RADAR_KV.get("read")) || "{}");
+  if (url.pathname === "/state") return json({ ok: true, kv: true, read });
+  if (request.method !== "POST") return json({ ok: false, message: "要用 POST。" }, 405);
+  const date = url.searchParams.get("date") || "";
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return json({ ok: false, message: "日期不对。" }, 400);
+  read[date] = { v: url.searchParams.get("v") === "0" ? 0 : 1, t: Date.now() };
+  const keep = Object.keys(read).sort().slice(-120); // 只留最近 120 天
+  const trimmed = Object.fromEntries(keep.map((d) => [d, read[d]]));
+  await env.RADAR_KV.put("read", JSON.stringify(trimmed));
+  return json({ ok: true, kv: true });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (request.method === "OPTIONS") return new Response(null, { headers: CORS });
+    if (url.pathname === "/state" || url.pathname === "/read") return readState(request, env, url);
     if (url.pathname !== "/act") return new Response("AI 机会雷达收藏接口", { headers: CORS });
 
     const op = url.searchParams.get("op");

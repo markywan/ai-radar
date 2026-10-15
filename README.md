@@ -11,11 +11,13 @@
 
 每条都能「收藏」；机会、工具和 Skill 还能「收藏并深挖」：Claude 在云端研究这个项目怎么做、用在哪些场景、能实现什么、客户画像和未来走势，写好后放进网站的收藏页，飞书通知你。
 
+网站按栏目配色，栏目标题滚动时吸在顶部；资讯默认只显示标题，点开看总结；工具和 Skill 卡片右侧配 README 里的截图，点开看大图。今天这期没看会在「今日」上亮红点，往期在「历史」里分成没看的和看过的。
+
 ## 怎么运转
 
 ```
 每天 07:13 ─ daily.yml ─ fetch.py 抓素材（RSS、GitHub、HN、Hugging Face、X）
-                         └ Claude 按 prompts/daily.md 写日报 → validate.py 校验
+                         └ Claude 按 prompts/daily.md 写日报 → enrich.py 从 README 配图 → validate.py 校验
                          └ 提交 data/daily/日期.json → publish.yml 发布网站 → 飞书卡片
 
 点「收藏 / 收藏并深挖」─ Cloudflare Worker 核对口令 ─ 触发 favorite.yml
@@ -31,7 +33,7 @@
 | `prompts/deepdive.md` | 深挖报告的结构 |
 | `scripts/` | 抓取、校验、收藏、建站、飞书推送，只用 Python 标准库 |
 | `web/` | 网站页面（手机优先，深浅色自动切换） |
-| `worker/worker.js` | 收藏按钮的中转服务，部署到 Cloudflare Workers |
+| `worker/worker.js` | 收藏按钮的中转服务，部署到 Cloudflare Workers；绑定 KV（变量名 `RADAR_KV`）后还能多设备同步已读状态 |
 
 ## 每月花费
 

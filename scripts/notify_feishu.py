@@ -54,6 +54,22 @@ def card(title, template, elements):
         "elements": [e for e in elements if e]}}
 
 
+def unread_before(date):
+    """配了 Worker 存储时，查出最近 7 期里还没看的（不含今天这期）。"""
+    if not (WORKER and KEY):
+        return []
+    try:
+        with urllib.request.urlopen(f"{WORKER}/state?" + urllib.parse.urlencode({"k": KEY}), timeout=10) as r:
+            state = json.loads(r.read().decode())
+    except Exception:
+        return []
+    if not state.get("kv"):
+        return []
+    read = state.get("read") or {}
+    past = sorted((p.stem for p in (ROOT / "data/daily").glob("*.json") if p.stem < date), reverse=True)[:7]
+    return [d for d in past if not (read.get(d) or {}).get("v")]
+
+
 def daily_card(date):
     doc = json.loads((ROOT / "data/daily" / f"{date}.json").read_text("utf-8"))
     m, d = int(date[5:7]), int(date[8:10])
@@ -76,7 +92,12 @@ def daily_card(date):
         els.append(buttons(("收藏", action_link("fav", fid), "default"),
                            ("收藏并深挖", action_link("deep", fid), "primary")))
     els.append({"tag": "hr"})
-    els.append(buttons(("打开今日日报", site_link(), "primary")))
+    backlog = unread_before(date)
+    if backlog:
+        days = "、".join(f"{int(x[5:7])}月{int(x[8:10])}日" for x in backlog)
+        els.append(md(f"🔴 还有 {len(backlog)} 期没看：{days}"))
+    els.append(buttons(("打开今日日报", site_link(), "primary"),
+                       ("看没看的往期", site_link(tab="history") if backlog else None, "default")))
     return card(f"AI 机会雷达 · {m}月{d}日", "turquoise", els)
 
 

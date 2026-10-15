@@ -49,6 +49,9 @@ jobs:
             --max-turns 120
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch,Bash(python3 scripts/validate.py:*)"
 
+      - name: 从 README 配图
+        run: python3 scripts/enrich.py "data/daily/${{ steps.day.outputs.date }}.json" || echo "配图失败，跳过"
+
       - name: 校验
         run: python3 scripts/validate.py "data/daily/${{ steps.day.outputs.date }}.json"
 

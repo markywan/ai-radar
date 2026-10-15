@@ -12,13 +12,45 @@ from pathlib import Path
 SECTIONS = {
     # 栏目键: (编号前缀, 必填字段, 数量范围)
     "news": ("N", ["title", "url", "source_type", "summary"], (5, 25)),
-    "tools": ("G", ["repo", "url", "what", "use_for_me", "safety"], (3, 10)),
-    "skills": ("S", ["name", "url", "what", "how_i_use", "safety"], (0, 6)),
+    "tools": ("G", ["repo", "url", "what", "safety"], (3, 10)),
+    "skills": ("S", ["name", "url", "what", "safety"], (0, 6)),
     "opportunities": ("B", ["name", "one_liner", "automation", "market", "fit", "verdict"], (0, 3)),
 }
 SAFETY = {"绿", "黄", "红"}
 VERDICTS = {"值得验证", "放进观察", "只是灵感"}
 URL = re.compile(r"^https?://[^\s<>\"']+$")
+
+
+def popular(it):
+    """红色条目只收热度很高的。"""
+    return ((it.get("stars_total") or 0) >= 5000 or (it.get("stars_today") or 0) >= 500
+            or (it.get("installs") or 0) >= 5000)
+
+
+def check_card(key, it, problems):
+    i = it["id"]
+    uses = it.get("uses")
+    if uses is None and not it.get("use_for_me" if key == "tools" else "how_i_use"):
+        problems.append(f"{i} 缺少 uses（一人公司能怎么用）")
+    if uses is not None:
+        if not isinstance(uses, list) or not 2 <= len(uses) <= 5:
+            problems.append(f"{i} 的 uses 要写 2–5 条")
+        elif any(not (isinstance(u, dict) and u.get("area") and u.get("how")) for u in uses):
+            problems.append(f"{i} 的 uses 每条都要有 area 和 how")
+    if it.get("safety") in ("黄", "红") and not it.get("safety_note"):
+        problems.append(f"{i} 安全是{it['safety']}，必须在 safety_note 写清风险")
+    if it.get("safety") == "红" and not popular(it):
+        problems.append(f"{i} 安全是红，但热度不够（要 5000 星以上、今日 500 星以上或安装 5000 以上），换掉")
+    if key == "skills" and it.get("stars_total") is None and it.get("installs") is None and not it.get("popularity_note"):
+        problems.append(f"{i} 要写出热度：stars_total、installs 或 popularity_note 至少一个")
+    if key == "skills" and it.get("hot") not in (None, "新晋热门", "长期热门"):
+        problems.append(f"{i} 的 hot 只能是 新晋热门 / 长期热门")
+    imgs = it.get("images")
+    if imgs is not None:
+        if not isinstance(imgs, list) or any(not URL.match(str(u)) for u in imgs):
+            problems.append(f"{i} 的 images 必须是图片链接数组")
+        else:
+            it["images"] = imgs[:6]
 
 
 def main(path):
@@ -46,6 +78,8 @@ def main(path):
                     problems.append(f"{it['id']} 的 {f} 不是合法链接: {it[f]}")
             if "safety" in required and it.get("safety") not in SAFETY:
                 problems.append(f"{it['id']} 的 safety 只能是 绿/黄/红")
+            if key in ("tools", "skills"):
+                check_card(key, it, problems)
             if key == "opportunities":
                 if it.get("verdict") not in VERDICTS:
                     problems.append(f"{it['id']} 的 verdict 只能是 {'/'.join(VERDICTS)}")
