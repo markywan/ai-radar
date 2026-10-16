@@ -1,0 +1,27 @@
+name: 飞书推送测试
+
+# 手动运行：把最近一份日报的卡片推到飞书，用来确认机器人和签名配置对不对。
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: 推送最近一份日报
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+          ACTION_KEY: ${{ secrets.ACTION_KEY }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          WORKER_URL: ${{ vars.WORKER_URL }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [ -z "$FEISHU_WEBHOOK" ]; then echo "::error::没读到 FEISHU_WEBHOOK，检查仓库 Secrets 里的名字"; exit 1; fi
+          day=$(ls data/daily/*.json | sort | tail -1 | xargs basename | sed 's/\.json$//')
+          echo "推送 $day 的日报"
+          python3 scripts/notify_feishu.py daily "$day"
