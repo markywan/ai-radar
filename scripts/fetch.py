@@ -293,14 +293,14 @@ def main():
         raw["hf_trending"] = []
         errors.append(f"Hugging Face: {e}")
 
-    key = os.environ.get("TWITTERAPI_IO_KEY")
+    key = "".join(os.environ.get("TWITTERAPI_IO_KEY", "").split())  # 复制时折行、多出的空格都去掉
     if key:
         raw["x"] = fetch_x(cfg["x"], key)
     else:
         raw["x"] = None
         errors.append("没有配置 TWITTERAPI_IO_KEY，跳过 X")
 
-    tk = os.environ.get("TIKHUB_API_KEY")
+    tk = "".join(os.environ.get("TIKHUB_API_KEY", "").split())
     if tk:
         raw["platforms"] = fetch_platforms(cfg["tikhub"], tk, args.date, errors)
     else:
@@ -320,7 +320,7 @@ def main():
 
 def probe(date):
     """试抓：只跑 TikHub，打印每个请求认出了几条、返回的结构，原始结果写到 data/raw/<日期>-tikhub.json。"""
-    key = os.environ.get("TIKHUB_API_KEY")
+    key = "".join(os.environ.get("TIKHUB_API_KEY", "").split())
     if not key:
         print("没有配置 TIKHUB_API_KEY")
         return 1

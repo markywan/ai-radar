@@ -34,7 +34,7 @@ def default_site():
 
 SITE = (os.environ.get("SITE_URL") or CONF.get("site_url") or default_site()).rstrip("/") + "/"
 WORKER = (os.environ.get("WORKER_URL") or CONF.get("worker_url") or "").rstrip("/")
-KEY = os.environ.get("ACTION_KEY", "")
+KEY = "".join(os.environ.get("ACTION_KEY", "").split())
 
 
 def site_link(**params):
@@ -140,8 +140,8 @@ def error_card(msg):
 
 
 def send(payload):
-    url = os.environ["FEISHU_WEBHOOK"]
-    secret = os.environ.get("FEISHU_SECRET")
+    url = "".join(os.environ["FEISHU_WEBHOOK"].split())  # 复制时折行、多出的空格都去掉
+    secret = "".join(os.environ.get("FEISHU_SECRET", "").split())
     if secret:
         ts = str(int(time.time()))
         sign = base64.b64encode(hmac.new(f"{ts}\n{secret}".encode(), digestmod=hashlib.sha256).digest()).decode()
@@ -158,7 +158,7 @@ def send(payload):
 def main():
     kind, arg = sys.argv[1], sys.argv[2]
     payload = {"daily": daily_card, "deepdive": deepdive_card, "error": error_card}[kind](arg)
-    if not os.environ.get("FEISHU_WEBHOOK"):
+    if not os.environ.get("FEISHU_WEBHOOK", "").strip():
         print("没有配置 FEISHU_WEBHOOK，只打印卡片：")
         print(json.dumps(payload, ensure_ascii=False, indent=1))
         return 0

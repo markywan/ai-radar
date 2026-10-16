@@ -36,7 +36,14 @@ jobs:
           HAS_TIKHUB: ${{ secrets.TIKHUB_API_KEY != '' }}
           HAS_FEISHU: ${{ secrets.FEISHU_WEBHOOK != '' }}
           HAS_KEY: ${{ secrets.ACTION_KEY != '' }}
+          T_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
+          if [ -n "$T_CLAUDE" ]; then
+            # 从终端复制的令牌常被折成两行，去掉空白再交给 Claude
+            t=$(printf '%s' "$T_CLAUDE" | tr -d '[:space:]')
+            echo "::add-mask::$t"
+            echo "CLAUDE_TOKEN=$t" >> "$GITHUB_ENV"
+          fi
           ok() { [ "$1" = "true" ] && echo "- ✅ $2" || echo "- ⚠️ $3"; }
           {
             echo "### 配置检查"
@@ -67,7 +74,7 @@ jobs:
         id: claude
         uses: anthropics/claude-code-action@v1
         with:
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_code_oauth_token: ${{ env.CLAUDE_TOKEN }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY || (env.ANTHROPIC_BASE_URL != '' && secrets.OPENROUTER_API_KEY) || '' }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
