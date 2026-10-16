@@ -307,7 +307,10 @@ def probe(date):
     res = fetch_platforms(cfg["tikhub"], key, date, errors, probe=shapes)
     for s in shapes:
         print(f"\n===== {s['request']}：认出 {s['found']} 条")
-        print(json.dumps(s["shape"], ensure_ascii=False)[:3000])
+        print("列表：", "  ".join(s["lists"]))
+        for item in s["parsed"]:
+            print("认出：", json.dumps(item, ensure_ascii=False)[:600])
+        print("结构：", json.dumps(s["shape"], ensure_ascii=False)[:1500])
     out = ROOT / "data/raw" / f"{date}-tikhub.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(res, ensure_ascii=False, indent=1), "utf-8")

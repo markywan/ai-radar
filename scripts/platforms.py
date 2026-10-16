@@ -31,7 +31,7 @@ AUTHOR_NAME = ("nickname", "unique_id", "uname", "name", "nick_name", "channel_n
 STAT_OBJ = ("statistics", "stats", "interact_info", "stat", "counts")
 COUNT_KEYS = LIKE_KEYS + COMMENT_KEYS + SHARE_KEYS + COLLECT_KEYS + PLAY_KEYS
 
-WORD_KEYS = ("word", "keyword", "show_name", "query", "sentence", "hot_word", "title", "name", "note", "text")
+WORD_KEYS = ("word", "keyword", "trendingSearchWord", "show_name", "query", "sentence", "hot_word", "title", "name", "note", "text")
 HOT_KEYS = ("hot_value", "num", "heat_score", "hot_score", "raw_hot", "score", "heat", "search_volume", "detail_text", "hot")
 
 # 热榜里和他相关的词：AI、赚钱、创业、出海、自媒体
@@ -327,6 +327,22 @@ def shape(node, depth=0):
     return node
 
 
+def lists(node, path="", out=None, depth=0):
+    """试抓用：列出返回里每个列表的位置和长度，看帖子是不是只认出了一部分。"""
+    out = [] if out is None else out
+    if depth > 9:
+        return out
+    if isinstance(node, dict):
+        for k, v in node.items():
+            lists(v, f"{path}.{k}" if path else k, out, depth + 1)
+    elif isinstance(node, list):
+        if len(node) >= 2:
+            out.append(f"{path}[{len(node)}]")
+        if node:
+            lists(node[0], f"{path}[0]", out, depth + 1)
+    return out
+
+
 # ---------- 主流程 ----------
 
 def todays_keywords(spec, day):
@@ -348,9 +364,9 @@ def fetch_platforms(cfg, key, date, errors, probe=None):
     keep = cfg.get("keep_per_search", 10)
     out = {"hot_lists": {}, "searches": [], "comments": [], "samples": [], "notes": []}
 
-    def record(label, data, n):
+    def record(label, data, n, items=()):
         if probe is not None:
-            probe.append({"request": label, "found": n, "shape": shape(data)})
+            probe.append({"request": label, "found": n, "shape": shape(data), "lists": lists(data)[:12], "parsed": list(items)[:3]})
         if n == 0:
             out["samples"].append({"request": label, "raw": sample(data)})
 
@@ -360,7 +376,7 @@ def fetch_platforms(cfg, key, date, errors, probe=None):
         try:
             data = call(key, h["path"], h.get("params"), "GET", budget)
             words = find_words(data)
-            record(h["name"], data, len(words))
+            record(h["name"], data, len(words), words)
             out["hot_lists"][h["name"]] = [w for w in words if w["rank"] <= 10 or w.get("match")][:40]
         except Exception as e:  # noqa: BLE001
             errors.append(f"TikHub {h['name']}: {e}")
@@ -377,7 +393,7 @@ def fetch_platforms(cfg, key, date, errors, probe=None):
                 if note:
                     out["notes"].append(f"{label}：{note}")
                 posts = find_posts(spec["platform"], data)
-                record(label, data, len(posts))
+                record(label, data, len(posts), posts)
                 posts.sort(key=lambda p: (p.get("likes") or 0, p.get("plays") or 0), reverse=True)
                 out["searches"].append({"platform": spec["platform"], "keyword": kw, "found": len(posts), "items": posts[:keep]})
             except Exception as e:  # noqa: BLE001
@@ -394,7 +410,7 @@ def fetch_platforms(cfg, key, date, errors, probe=None):
             try:
                 data = call(key, ep["path"], dict(ep.get("params", {}), **{ep["id_param"]: p["id"]}), ep.get("method", "GET"), budget)
                 found = find_comments(data)
-                record(label, data, len(found))
+                record(label, data, len(found), found)
                 out["comments"].append({"platform": platform, "post_title": p["title"], "post_url": p.get("url"),
                                         "post_likes": p.get("likes"), "comments": found[:cc.get("keep", 20)]})
             except Exception as e:  # noqa: BLE001
