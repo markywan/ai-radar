@@ -64,6 +64,7 @@ jobs:
           TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
 
       - name: Claude 写日报
+        id: claude
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -77,6 +78,10 @@ jobs:
             --model ${{ vars.DAILY_MODEL || 'sonnet' }}
             --max-turns 120
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch,Bash(python3 scripts/validate.py:*)"
+
+      - name: 查 Claude 出错原因
+        if: failure() && steps.claude.outcome == 'failure'
+        run: python3 scripts/claude_error.py "${{ steps.claude.outputs.execution_file }}"
 
       - name: 从 README 配图
         run: python3 scripts/enrich.py "data/daily/${{ steps.day.outputs.date }}.json" || echo "配图失败，跳过"

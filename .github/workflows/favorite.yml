@@ -83,6 +83,7 @@ jobs:
             echo "Claude 经 OpenRouter 调用"
           fi
       - name: Claude 深挖
+        id: claude
         if: steps.chk.outputs.skip != 'true'
         uses: anthropics/claude-code-action@v1
         with:
@@ -96,6 +97,9 @@ jobs:
             --model ${{ vars.DEEPDIVE_MODEL || 'opus' }}
             --max-turns 80
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
+      - name: 查 Claude 出错原因
+        if: failure() && steps.claude.outcome == 'failure'
+        run: python3 scripts/claude_error.py "${{ steps.claude.outputs.execution_file }}"
       - name: 提交
         if: steps.chk.outputs.skip != 'true'
         run: |

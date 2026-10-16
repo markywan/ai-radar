@@ -39,8 +39,9 @@
   "huggingface_trending_limit": 15,
   "hackernews": {"front_page_limit": 30, "show_hn_min_points": 40},
   "x": {
-    "_说明": "用 twitterapi.io 抓。没配置 TWITTERAPI_IO_KEY 时自动跳过。max_tweets 是每天的上限，按每千条约 0.15 美元算，600 条约 0.09 美元。",
+    "_说明": "用 twitterapi.io 抓。没配置 TWITTERAPI_IO_KEY 时自动跳过。max_tweets 是每天的上限，按每千条约 0.15 美元算，600 条约 0.09 美元。min_interval_s 是两次请求的最小间隔（免费额度约 5 秒一次，充值后可以调小）。",
     "max_tweets": 600,
+    "min_interval_s": 5.2,
     "account_window": "within_time:24h",
     "accounts": [
       "OpenAI", "OpenAIDevs", "AnthropicAI", "claudeai", "GoogleDeepMind", "GoogleAI", "AIatMeta", "xai",

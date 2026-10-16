@@ -16,6 +16,8 @@ import json
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -160,8 +162,23 @@ def fetch_hf(limit):
 
 
 class XBudget:
-    def __init__(self, limit):
-        self.left = limit
+    def __init__(self, limit, interval=5.2):
+        self.left, self.interval, self.last = limit, interval, 0.0
+
+
+def x_get(url, key, budget):
+    """twitterapi.io 有每秒请求数上限（免费额度大约 5 秒一次），超了返回 429：两次请求之间留间隔，429 时等一会儿再试。"""
+    for wait in (8, 16, 32, None):
+        gap = budget.interval - (time.time() - budget.last)
+        if gap > 0:
+            time.sleep(gap)
+        budget.last = time.time()
+        try:
+            return get_json(url, {"X-API-Key": key})
+        except urllib.error.HTTPError as e:
+            if e.code != 429 or wait is None:
+                raise
+            time.sleep(wait)
 
 
 def x_search(query, qtype, key, budget, pages=1):
@@ -172,7 +189,12 @@ def x_search(query, qtype, key, budget, pages=1):
             break
         url = "https://api.twitterapi.io/twitter/tweet/advanced_search?" + urllib.parse.urlencode(
             {"query": query, "queryType": qtype, "cursor": cursor})
-        data = get_json(url, {"X-API-Key": key})
+        try:
+            data = x_get(url, key, budget)
+        except Exception:  # noqa: BLE001
+            if out:  # 第二页失败时保留第一页
+                break
+            raise
         for t in data.get("tweets", []):
             a = t.get("author") or {}
             out.append({
@@ -190,7 +212,7 @@ def x_search(query, qtype, key, budget, pages=1):
 
 
 def fetch_x(cfg, key):
-    budget = XBudget(cfg["max_tweets"])
+    budget = XBudget(cfg["max_tweets"], cfg.get("min_interval_s", 5.2))
     accounts, hot = [], {}
     names = cfg["accounts"]
     n = cfg["accounts_per_query"]
