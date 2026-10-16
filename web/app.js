@@ -11,7 +11,7 @@
     { key: "tools", title: "GitHub 工具", short: "工具" },
     { key: "skills", title: "Skills", short: "Skills" },
     { key: "opportunities", title: "一人公司机会", short: "机会" },
-    { key: "trends", title: "平台风向", short: "风向" }
+    { key: "trends", title: "玩法风向", short: "玩法" }
   ];
   var LEAD_KEYS = ["news", "tools", "opportunities"];
 
@@ -259,14 +259,14 @@
     return '<div class="sec-h"><h2>' + esc(s.title) + '</h2><span class="cnt">' + count + "</span>" + (tool || "") + "</div>";
   }
   function expandTool(key) { return '<button class="tool" data-expand="' + key + '">全部展开</button>'; }
+  var FOLD = '<button class="fold" data-fold>收起</button>';
   function renderNews(d) {
     if (!d.news.length) return '<p class="empty">今天没有入选的资讯。</p>';
     return '<ul class="list">' + d.news.map(function (n) {
       var fid = d.date + "-" + n.id, bid = "b-" + n.id;
-      var meta = (n.source_type === "X" ? '<span class="x">X</span>' : "") + "<span>" + esc(n.source || n.source_type || "") + "</span>" + (n.published ? "<span>" + esc(n.published.slice(5)) + "</span>" : "");
       return '<li class="row news-row"><button class="row-h" aria-expanded="false" aria-controls="' + bid + '">' +
-        '<span class="main"><span class="t">' + rich(n.title) + '</span><span class="m">' + meta + '</span></span><span class="chev" aria-hidden="true"></span></button>' +
-        '<div class="row-b" id="' + bid + '" hidden><p class="sum">' + rich(n.summary) + "</p>" + actBtns(fid, false, link("看原文 ↗", n.url, "btn")) + "</div></li>";
+        '<span class="t">' + rich(n.title) + '</span><span class="chev" aria-hidden="true"></span></button>' +
+        '<div class="row-b" id="' + bid + '" hidden><p class="sum">' + rich(n.summary) + "</p>" + actBtns(fid, false, link("看原文 ↗", n.url, "btn")) + FOLD + "</div></li>";
     }).join("") + "</ul>";
   }
   function itemRow(kind, d, it) {
@@ -304,7 +304,7 @@
     var factsHtml = facts.length ? '<dl class="facts">' + facts.map(function (f) { return "<dt>" + f[0] + "</dt><dd>" + f[1] + "</dd>"; }).join("") + "</dl>" : "";
     var red = it.safety === "红";  /* 红色条目点开后先看风险 */
     var body = '<div class="row-b" id="' + bid + '" hidden>' + (red ? riskBox(it) : "") + '<p class="what">' + rich(it.what) + "</p>" + strip(gid, imgs) + uses + factsHtml + (red ? "" : riskBox(it)) +
-      actBtns(gid, true, link(kind === "tools" ? "GitHub ↗" : "看仓库 ↗", it.url, "btn")) + "</div>";
+      actBtns(gid, true, link(kind === "tools" ? "GitHub ↗" : "看仓库 ↗", it.url, "btn")) + FOLD + "</div>";
     return '<li class="row item' + (imgs.length ? " has-img" : "") + '">' + head + risk + body + "</li>";
   }
   function renderItems(kind) {
@@ -324,14 +324,14 @@
         "<h3>" + esc(nm[0]) + (nm[1] ? '<span class="sub">' + esc(nm[1]) + "</span>" : "") + "</h3>" +
         '<p class="one">' + rich(b.one_liner) + "</p>" +
         '<div class="metrics"><div><b>$' + num(f.startup_cost_usd) + "</b><small>起步资金</small></div><div><b>" + num(f.mvp_days) + " 天</b><small>做出 MVP</small></div><div><b>" + num(a.weekly_hours) + " 小时</b><small>稳定后每周</small></div></div>" +
-        "<div><details><summary>怎么自动化运营</summary>" + dl([["获客", a.acquisition], ["生产交付", a.production], ["收款客服", a.payment_support], ["仍要我做", a.manual]]) + "</details>" +
+        '<div class="fold-g"><details><summary>怎么自动化运营</summary>' + dl([["获客", a.acquisition], ["生产交付", a.production], ["收款客服", a.payment_support], ["仍要我做", a.manual]]) + "</details>" +
         "<details><summary>市场与机会</summary>" + dl([["需求", m.demand], ["收入证据", m.revenue_evidence], ["竞争", m.competition]]) + (ev ? '<ul class="evidence">' + ev + "</ul>" : "") + "</details>" +
         "<details><summary>适不适合我</summary>" + dl([["要用的服务", f.services], ["匹配度", f.match], ["最大风险", f.biggest_risk]]) + "</details></div>" +
         (b.source && b.source.url ? '<p class="src">灵感来源：' + link(b.source.title || b.source.url, b.source.url) + "</p>" : "") +
         actBtns(d.date + "-" + b.id, true) + "</article>";
     }).join("") + "</div>";
   }
-  /* 平台风向：抖音、小红书、TikTok 等平台上的爆款形式和需求原话，证据带数字和链接 */
+  /* 玩法风向：X、小红书、抖音、TikTok 等平台上的新玩法、使用技巧、爆款形式和需求原话，证据带数字和链接 */
   function renderTrends(d) {
     var list = d.trends || [];
     if (!list.length) return '<p class="empty">今天平台上没有像样的信号，不凑数。</p>';
@@ -355,7 +355,7 @@
       var how = it.how ? '<div><p class="label">一人公司怎么接</p><p class="how">' + rich(it.how) + "</p></div>" : "";
       var risk = it.risk ? '<dl class="facts"><dt>风险</dt><dd>' + rich(it.risk) + "</dd></dl>" : "";
       var body = '<div class="row-b" id="' + bid + '" hidden>' + (it.why ? '<p class="what">' + rich(it.why) + "</p>" : "") +
-        evHtml + qHtml + how + risk + actBtns(gid, true) + "</div>";
+        evHtml + qHtml + how + risk + actBtns(gid, true) + FOLD + "</div>";
       return '<li class="row item trend">' + head + body + "</li>";
     }).join("") + "</ul>";
   }
@@ -365,7 +365,7 @@
     var lead = (d.headline || []).map(function (h, i) {
       return '<li data-k="' + (LEAD_KEYS[i] || "news") + '"><span class="n">' + (i + 1) + "</span><p>" + rich(h) + "</p></li>";
     }).join("");
-    /* 没接平台数据的旧日报不显示「平台风向」 */
+    /* 没接平台数据的旧日报不显示「玩法风向」 */
     var secs = SEC.filter(function (s) { return s.key !== "trends" || Array.isArray(d.trends); });
     var toc = secs.map(function (s) {
       return '<a href="#sec-' + s.key + '" data-k="' + s.key + '"><b>' + (d[s.key] || []).length + "</b><small>" + s.short + "</small></a>";
@@ -488,6 +488,16 @@
       var anyClosed = Array.prototype.some.call(all, function (b) { return b.getAttribute("aria-expanded") !== "true"; });
       Array.prototype.forEach.call(all, function (b) { toggleRow(b, anyClosed); });
       t.textContent = anyClosed ? "全部收起" : "全部展开";
+    }
+    else if (t.hasAttribute("data-fold")) {
+      /* 面板底部的「收起」：收起后如果标题已经滚出屏幕，把它拉回来 */
+      var row = t.closest(".row"), head = row && row.querySelector(".row-h");
+      if (!head) return;
+      toggleRow(head, false);
+      var sh = row.closest(".sec") && row.closest(".sec").querySelector(".sec-h");
+      var top = (document.querySelector(".bar") || {}).offsetHeight + (sh ? sh.offsetHeight : 0);
+      var y = head.getBoundingClientRect().top;
+      if (y < top) { var de = document.documentElement; de.style.scrollBehavior = "auto"; window.scrollTo(0, window.scrollY + y - top - 6); de.style.scrollBehavior = ""; }
     }
     else if (t.hasAttribute("aria-controls")) toggleRow(t);
   });

@@ -15,13 +15,22 @@ SECTIONS = {
     "tools": ("G", ["repo", "url", "what", "safety"], (3, 10)),
     "skills": ("S", ["name", "url", "what", "safety"], (0, 6)),
     "opportunities": ("B", ["name", "one_liner", "automation", "market", "fit", "verdict"], (0, 3)),
-    "trends": ("P", ["topic", "brief", "evidence", "how"], (0, 5)),
+    "trends": ("P", ["topic", "brief", "evidence", "how"], (0, 6)),
 }
 SAFETY = {"绿", "黄", "红"}
 VERDICTS = {"值得验证", "放进观察", "只是灵感"}
-SIGNALS = {"爆款形式", "需求信号", "新玩法", "热点"}
-SOURCE_TYPES = {"官方", "媒体", "社区", "X", "平台"}
+SIGNALS = {"爆款形式", "需求信号", "新玩法", "使用技巧"}
+# 资讯只取官方网站和大媒体；社交和自媒体平台上的内容只用于玩法风向和机会
+SOURCE_TYPES = {"官方", "媒体"}
+SOCIAL = ("x.com", "twitter.com", "xiaohongshu.com", "xhslink.com", "douyin.com", "iesdouyin.com", "tiktok.com",
+          "youtube.com", "youtu.be", "bilibili.com", "b23.tv", "weibo.com", "weibo.cn", "zhihu.com", "reddit.com",
+          "v2ex.com", "news.ycombinator.com", "threads.net", "mp.weixin.qq.com", "medium.com", "substack.com")
 URL = re.compile(r"^https?://[^\s<>\"']+$")
+
+
+def social(url):
+    host = re.sub(r"^https?://", "", str(url)).split("/")[0].split(":")[0].lower()
+    return any(host == d or host.endswith("." + d) for d in SOCIAL)
 
 
 def popular(it):
@@ -125,7 +134,9 @@ def main(path):
             if key in ("tools", "skills"):
                 check_card(key, it, problems)
             if key == "news" and it.get("source_type") not in SOURCE_TYPES:
-                problems.append(f"{it['id']} 的 source_type 只能是 {'/'.join(sorted(SOURCE_TYPES))}")
+                problems.append(f"{it['id']} 的 source_type 只能是 {'/'.join(sorted(SOURCE_TYPES))}（资讯只取官方网站和大媒体）")
+            if key == "news" and social(it.get("url")):
+                problems.append(f"{it['id']} 的链接是社交或自媒体平台：{it['url']}。资讯要换成官方原文或大媒体报道，找不到就删掉这条")
             if key == "trends":
                 check_trend(it, problems)
             if key == "opportunities":
@@ -158,7 +169,7 @@ def main(path):
         print("需要修改：\n- " + "\n- ".join(problems))
         return 1
     print(f"通过：共 {total} 条（资讯 {len(doc['news'])}，工具 {len(doc['tools'])}，"
-          f"Skills {len(doc['skills'])}，机会 {len(doc['opportunities'])}，平台风向 {len(doc.get('trends') or [])}）")
+          f"Skills {len(doc['skills'])}，机会 {len(doc['opportunities'])}，玩法风向 {len(doc.get('trends') or [])}）")
     return 0
 
 

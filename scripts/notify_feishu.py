@@ -88,7 +88,7 @@ def daily_card(date):
     m, d = int(date[5:7]), int(date[8:10])
     els = [md("\n".join(f"**{i}.** {h}" for i, h in enumerate(doc.get("headline", []), 1))),
            md(f"资讯 {len(doc['news'])} · 工具 {len(doc['tools'])} · Skills {len(doc['skills'])} · "
-              f"机会 {len(doc['opportunities'])}" + (f" · 平台风向 {len(doc['trends'])}" if doc.get("trends") else "")),
+              f"机会 {len(doc['opportunities'])}" + (f" · 玩法风向 {len(doc['trends'])}" if doc.get("trends") else "")),
            {"tag": "hr"}]
     for n in doc["news"][:3]:
         els.append(md(f"**{n['id']}** [{n['title']}]({n['url']})"))
