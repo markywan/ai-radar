@@ -205,6 +205,8 @@ def as_post(platform, d):
         "comments": pick_num(stats, COMMENT_KEYS), "collects": pick_num(stats, COLLECT_KEYS),
         "shares": pick_num(stats, SHARE_KEYS), "published": when(next((d[k] for k in TIME_KEYS if d.get(k)), None)),
     }
+    if p["plays"] == 0 and p["likes"]:
+        p["plays"] = None  # 抖音不公开播放数，返回 0，不能当真
     likes = p["likes"] or 0
     if likes >= 50:
         if p["collects"] is not None:
@@ -345,6 +347,13 @@ def lists(node, path="", out=None, depth=0):
 
 # ---------- 主流程 ----------
 
+def on_topic(post, keyword):
+    """帖子标题或正文里有没有搜索词的每一段（中英文分开算），用来挑抓评论的帖子，避开搜索带出来的无关热门。"""
+    text = re.sub(r"\s+", "", f"{post.get('title', '')}{post.get('desc', '')}").lower()
+    parts = re.findall(r"[a-z0-9]+|[\u4e00-\u9fff]+", keyword.lower())
+    return bool(parts) and all(x in text for x in parts)
+
+
 def todays_keywords(spec, day):
     pool, k = spec["keywords"], spec.get("per_day", len(spec["keywords"]))
     start = (day * k) % len(pool)
@@ -401,9 +410,9 @@ def fetch_platforms(cfg, key, date, errors, probe=None):
 
     cc = cfg.get("comments") or {}
     for platform, ep in (cc.get("endpoints") or {}).items():
-        posts = list({p["id"]: p for s in out["searches"] if s["platform"] == platform for p in s["items"]}.values())
-        posts.sort(key=lambda p: (p.get("comments") or 0, p.get("likes") or 0), reverse=True)
-        for p in posts[:cc.get("per_platform", 2)]:
+        posts = list({p["id"]: (on_topic(p, s["keyword"]), p) for s in out["searches"] if s["platform"] == platform for p in s["items"]}.values())
+        posts.sort(key=lambda t: (t[0], t[1].get("comments") or 0, t[1].get("likes") or 0), reverse=True)  # 切题的优先
+        for _, p in posts[:cc.get("per_platform", 2)]:
             if not budget.ok():
                 break
             label = f"{platform} 评论：{p['title'][:20]}"

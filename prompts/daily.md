@@ -34,7 +34,7 @@
 
 素材在 `platforms` 里：
 - `hot_lists`：抖音热搜、微博热搜、知乎热榜、B站热搜、TikTok 趋势搜索词。每个榜保留前 10 名和与 AI、赚钱、创业、出海、自媒体相关的词（`match: true`），`hot` 是热度值，`rank` 是名次。
-- `searches`：用关键词在小红书、抖音、TikTok、YouTube、B站 搜最近一周点赞最多的内容（关键词每天轮换），每条有 `plays` 播放、`likes` 点赞、`collects` 收藏、`comments` 评论、`shares` 转发、`followers` 作者粉丝数、`url`。脚本已算好 `collect_rate`（收藏÷点赞）、`comment_rate`（评论÷点赞）；`small_account_hit` 表示作者粉丝不到 1 万却点赞过千。
+- `searches`：用关键词在小红书、抖音、TikTok、YouTube、B站 搜最近一周的热门内容，已按点赞从高到低排好（关键词每天轮换），每条有 `plays` 播放（抖音不公开播放数，所以抖音没有这项）、`likes` 点赞、`collects` 收藏、`comments` 评论、`shares` 转发、`followers` 作者粉丝数、`url`。脚本已算好 `collect_rate`（收藏÷点赞）、`comment_rate`（评论÷点赞）；`small_account_hit` 表示作者粉丝不到 1 万却点赞过千。
 - `comments`：每个平台评论最多的两条内容的热门评论，`demand: true` 是求助、问价、要教程、问工具名这类原话。
 - `samples`：脚本没认出结构的接口返回，自己读里面的内容。
 
