@@ -40,7 +40,7 @@
 
 | 项目 | 花费 |
 |---|---|
-| Claude | 用你的 Claude 订阅额度（Pro / Max），或者 Anthropic API 按量付费 |
+| Claude | 用你的 Claude 订阅额度（Pro / Max），或者 Anthropic API / OpenRouter 按量付费 |
 | X 抓取（twitterapi.io） | 每天最多 600 条推文，约 1–3 美元/月 |
 | 平台抓取（TikHub） | 每天约 31 次请求、上限 40 次，按每次 0.001 美元约 1 美元/月 |
 | GitHub Actions、Pages | 公开仓库免费 |
@@ -55,7 +55,7 @@
 
 | 名字 | 从哪来 |
 |---|---|
-| `CLAUDE_CODE_OAUTH_TOKEN` | 本机运行 `claude setup-token` 得到（用订阅额度）；或者改填 `ANTHROPIC_API_KEY` |
+| `CLAUDE_CODE_OAUTH_TOKEN` | 本机运行 `claude setup-token` 得到（用订阅额度）；或者改填 `ANTHROPIC_API_KEY`，或者 OpenRouter 的 Key 填成 `OPENROUTER_API_KEY`（前两个都没有时才用，按量计费） |
 | `TWITTERAPI_IO_KEY` | twitterapi.io 后台的 API Key |
 | `TIKHUB_API_KEY` | TikHub 用户后台创建的 API Token |
 | `FEISHU_WEBHOOK` | 飞书群 → 设置 → 群机器人 → 自定义机器人 的 Webhook 地址 |

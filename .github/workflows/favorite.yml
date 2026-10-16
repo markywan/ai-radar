@@ -72,12 +72,22 @@ jobs:
         if: steps.chk.outputs.skip != 'true'
         with:
           python-version: "3.12"
+      - name: 没有 Claude 令牌时改走 OpenRouter
+        if: steps.chk.outputs.skip != 'true'
+        env:
+          HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' || secrets.ANTHROPIC_API_KEY != '' }}
+          OR_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: |
+          if [ "$HAS_CLAUDE" != "true" ] && [ -n "$OR_KEY" ]; then
+            { echo "ANTHROPIC_BASE_URL=https://openrouter.ai/api"; echo "ANTHROPIC_AUTH_TOKEN=$OR_KEY"; } >> "$GITHUB_ENV"
+            echo "Claude 经 OpenRouter 调用"
+          fi
       - name: Claude 深挖
         if: steps.chk.outputs.skip != 'true'
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY || (env.ANTHROPIC_BASE_URL != '' && secrets.OPENROUTER_API_KEY) || '' }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             请按 prompts/deepdive.md 深挖收藏条目 ${{ needs.save.outputs.id }}。

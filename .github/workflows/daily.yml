@@ -31,6 +31,7 @@ jobs:
       - name: 检查配置
         env:
           HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' || secrets.ANTHROPIC_API_KEY != '' }}
+          OR_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           HAS_X: ${{ secrets.TWITTERAPI_IO_KEY != '' }}
           HAS_TIKHUB: ${{ secrets.TIKHUB_API_KEY != '' }}
           HAS_FEISHU: ${{ secrets.FEISHU_WEBHOOK != '' }}
@@ -39,14 +40,19 @@ jobs:
           ok() { [ "$1" = "true" ] && echo "- ✅ $2" || echo "- ⚠️ $3"; }
           {
             echo "### 配置检查"
-            ok "$HAS_CLAUDE" "Claude 令牌" "缺少 CLAUDE_CODE_OAUTH_TOKEN：日报写不出来"
+            if [ "$HAS_CLAUDE" = "true" ]; then echo "- ✅ Claude 令牌"
+            elif [ -n "$OR_KEY" ]; then echo "- ✅ Claude 经 OpenRouter 调用（按量计费）"
+            else echo "- ⚠️ 缺少 CLAUDE_CODE_OAUTH_TOKEN（或 ANTHROPIC_API_KEY、OPENROUTER_API_KEY）：日报写不出来"; fi
             ok "$HAS_X" "X 抓取密钥" "缺少 TWITTERAPI_IO_KEY：今天不抓 X，其他来源照常"
             ok "$HAS_TIKHUB" "TikHub 抓取密钥" "缺少 TIKHUB_API_KEY：今天不抓抖音、小红书等平台，其他来源照常"
             ok "$HAS_FEISHU" "飞书机器人" "缺少 FEISHU_WEBHOOK：不推送飞书"
             ok "$HAS_KEY" "收藏口令" "缺少 ACTION_KEY：飞书卡片上没有收藏按钮"
           } >> "$GITHUB_STEP_SUMMARY"
-          if [ "$HAS_CLAUDE" != "true" ]; then
-            echo "::error::还没配置 CLAUDE_CODE_OAUTH_TOKEN，按配置指南把它加到仓库的 Actions secrets 里。"
+          if [ "$HAS_CLAUDE" != "true" ] && [ -n "$OR_KEY" ]; then
+            # 没有 Claude 令牌时改走 OpenRouter 的 Anthropic 兼容接口（OpenRouter 官方的 Claude Code 接法）
+            { echo "ANTHROPIC_BASE_URL=https://openrouter.ai/api"; echo "ANTHROPIC_AUTH_TOKEN=$OR_KEY"; } >> "$GITHUB_ENV"
+          elif [ "$HAS_CLAUDE" != "true" ]; then
+            echo "::error::还没配置 CLAUDE_CODE_OAUTH_TOKEN（或 ANTHROPIC_API_KEY、OPENROUTER_API_KEY），按配置指南加到仓库的 Actions secrets 里。"
             exit 1
           fi
 
@@ -61,7 +67,7 @@ jobs:
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY || (env.ANTHROPIC_BASE_URL != '' && secrets.OPENROUTER_API_KEY) || '' }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             今天是 ${{ steps.day.outputs.date }}（北京时间）。请严格按 prompts/daily.md 写今天的日报。
