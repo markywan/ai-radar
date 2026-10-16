@@ -4,7 +4,7 @@
 
 | 栏目 | 每天 | 内容 |
 |---|---|---|
-| AI 资讯 | 10–20 条 | 新模型、新能力、价格变化、Claude Code / Codex / MCP / Skills 更新，只取官方网站和大媒体，标题加两三句总结 |
+| AI 资讯 | 10–20 条 | 新模型、新能力、价格变化、Claude Code / Codex / MCP / Skills 更新，只取官方网站、大媒体和 X，标题加两三句总结 |
 | GitHub 工具 | 5–8 个 | 一个人拿来能省时间、能做产品或能赚钱的开源项目 |
 | Skills | 2–4 个 | 有实际用处的 SKILL.md 能力包，附安全检查 |
 | 一人公司机会 | 1–2 个 | 能全自动运营、起步 100 美元左右的项目，含矩阵 AI 自媒体 / 新媒体 AI 运营 |
@@ -81,4 +81,4 @@
 
 - 公开仓库的网站和数据所有人都能看到，包括收藏夹。收藏和深挖按钮要口令，别人点不了。
 - X 抓取的上限在 `config/sources.json` 的 `x.max_tweets`，想更省就调小；不填 `TWITTERAPI_IO_KEY` 时自动跳过 X，其他来源照常。
-- TikHub 的上限在 `tikhub.max_requests`；关键词在 `tikhub.searches[].keywords`，每天按顺序轮换取 `per_day` 个，加词不加钱。不填 `TIKHUB_API_KEY` 时自动跳过。X 和 TikHub 只用来找玩法、技巧和机会，不当新闻源；各平台热搜榜已停用，配置留在 `tikhub._停用的热搜榜`。
+- TikHub 的上限在 `tikhub.max_requests`；关键词在 `tikhub.searches[].keywords`，每天按顺序轮换取 `per_day` 个，加词不加钱。不填 `TIKHUB_API_KEY` 时自动跳过。X 既抓 AI 公司和媒体号的新闻，也抓玩法、技巧和机会；TikHub 只用来找玩法、技巧和机会，不当新闻源，各平台热搜榜已停用，配置留在 `tikhub._停用的热搜榜`。

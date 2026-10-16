@@ -20,9 +20,9 @@ SECTIONS = {
 SAFETY = {"绿", "黄", "红"}
 VERDICTS = {"值得验证", "放进观察", "只是灵感"}
 SIGNALS = {"爆款形式", "需求信号", "新玩法", "使用技巧"}
-# 资讯只取官方网站和大媒体；社交和自媒体平台上的内容只用于玩法风向和机会
-SOURCE_TYPES = {"官方", "媒体"}
-SOCIAL = ("x.com", "twitter.com", "xiaohongshu.com", "xhslink.com", "douyin.com", "iesdouyin.com", "tiktok.com",
+# 资讯只取官方网站、大媒体和 X；其他社交和自媒体平台上的内容只用于玩法风向和机会
+SOURCE_TYPES = {"官方", "媒体", "X"}
+SOCIAL = ("xiaohongshu.com", "xhslink.com", "douyin.com", "iesdouyin.com", "tiktok.com",
           "youtube.com", "youtu.be", "bilibili.com", "b23.tv", "weibo.com", "weibo.cn", "zhihu.com", "reddit.com",
           "v2ex.com", "news.ycombinator.com", "threads.net", "mp.weixin.qq.com", "medium.com", "substack.com")
 URL = re.compile(r"^https?://[^\s<>\"']+$")
@@ -134,9 +134,9 @@ def main(path):
             if key in ("tools", "skills"):
                 check_card(key, it, problems)
             if key == "news" and it.get("source_type") not in SOURCE_TYPES:
-                problems.append(f"{it['id']} 的 source_type 只能是 {'/'.join(sorted(SOURCE_TYPES))}（资讯只取官方网站和大媒体）")
+                problems.append(f"{it['id']} 的 source_type 只能是 {'/'.join(sorted(SOURCE_TYPES))}（资讯只取官方网站、大媒体和 X）")
             if key == "news" and social(it.get("url")):
-                problems.append(f"{it['id']} 的链接是社交或自媒体平台：{it['url']}。资讯要换成官方原文或大媒体报道，找不到就删掉这条")
+                problems.append(f"{it['id']} 的链接是 X 以外的社交或自媒体平台：{it['url']}。资讯要换成官方原文、大媒体报道或 X 帖子，找不到就删掉这条")
             if key == "trends":
                 check_trend(it, problems)
             if key == "opportunities":

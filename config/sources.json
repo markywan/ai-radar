@@ -39,18 +39,24 @@
   "huggingface_trending_limit": 15,
   "hackernews": {"front_page_limit": 30, "show_hn_min_points": 40},
   "x": {
-    "_说明": "用 twitterapi.io 抓。没配置 TWITTERAPI_IO_KEY 时自动跳过。X 只用来找 AI 新玩法、使用技巧和一人公司机会，不当新闻源（新闻只取官方网站和大媒体），所以账号里没有 AI 公司和媒体号。max_tweets 是每天的上限，按每千条约 0.15 美元算，600 条约 0.09 美元。min_interval_s 是两次请求的最小间隔（免费额度约 5 秒一次，充值后可以调小）。",
+    "_说明": "用 twitterapi.io 抓。没配置 TWITTERAPI_IO_KEY 时自动跳过。X 有两个用处：AI 公司、媒体号和业内人的帖子是最及时的新闻；实践者和独立开发者的帖子用来找 AI 玩法、使用技巧和一人公司机会。max_tweets 是每天的上限，按每千条约 0.15 美元算，600 条约 0.09 美元。min_interval_s 是两次请求的最小间隔（免费额度约 5 秒一次，充值后可以调小）。",
     "max_tweets": 600,
     "min_interval_s": 5.2,
     "account_window": "within_time:24h",
     "accounts": [
+      "OpenAI", "OpenAIDevs", "AnthropicAI", "claudeai", "ClaudeDevs", "GoogleDeepMind", "GoogleAI", "AIatMeta", "xai",
+      "MistralAI", "deepseek_ai", "Alibaba_Qwen", "Kimi_Moonshot", "Zai_org", "MiniMax__AI", "huggingface", "NVIDIAAI", "cursor_ai",
+      "TechCrunch", "verge", "TheRundownAI", "rowancheung", "testingcatalog",
+      "sama", "_akhaliq", "OfficialLoganK", "alexalbert__", "thsottiaux", "rauchg",
       "karpathy", "simonw", "bcherny", "swyx", "mckaywrigley", "minchoi", "rileybrown_ai", "LinusEkenstam", "heyBarsee",
       "levelsio", "marc_louvion", "dannypostmaa", "tdinh_me", "arvidkahl", "thepatwalls", "gregisenberg",
       "IndieHackers", "ProductHunt", "dvassallo", "tibo_maker", "jackfriks",
       "dotey", "op7418", "vista8", "lijigang", "Gorden_Sun", "oran_ge"
     ],
-    "accounts_per_query": 9,
+    "accounts_per_query": 10,
     "hot_queries": [
+      {"name": "AI 热议（英文）", "query": "(AI OR LLM OR GPT OR Claude OR Gemini OR \"AI agent\") min_faves:2000 lang:en -filter:replies within_time:24h", "type": "Top"},
+      {"name": "AI 热议（中文）", "query": "(AI OR 大模型 OR 智能体 OR Claude OR Cursor OR Codex) min_faves:300 lang:zh -filter:replies within_time:24h", "type": "Top"},
       {"name": "AI 玩法与技巧（英文）", "query": "(\"Claude Code\" OR Cursor OR Codex OR ChatGPT OR Claude OR Gemini OR \"AI agent\" OR n8n) (tips OR workflow OR \"how I\" OR \"here's how\" OR prompt OR \"use case\" OR hack) min_faves:500 lang:en -filter:replies within_time:48h", "type": "Top"},
       {"name": "AI 玩法与技巧（中文）", "query": "(AI OR Claude OR Cursor OR Codex OR ChatGPT OR 智能体 OR 提示词) (技巧 OR 教程 OR 玩法 OR 工作流 OR 用法 OR 实测) min_faves:200 lang:zh -filter:replies within_time:48h", "type": "Top"},
       {"name": "Claude Code / Codex / Skills", "query": "(\"Claude Code\" OR Codex OR \"agent skills\" OR \"SKILL.md\" OR MCP) min_faves:500 -filter:replies within_time:24h", "type": "Top"},
@@ -60,7 +66,7 @@
     ]
   },
   "tikhub": {
-    "_说明": "用 TikHub 抓小红书、抖音、TikTok、YouTube、B站。只找 AI 新玩法、使用技巧、爆款形式和一人公司需求，不当新闻源，所以不再抓各平台热搜榜（原来的配置放在 _停用的热搜榜 里，想恢复就挪回 hot_lists）。没配置 TIKHUB_API_KEY 时自动跳过。按每次请求约 0.001 美元算，max_requests 是每天上限（失败的请求不收费，也不计数）。keywords 是关键词池，每天按顺序轮换取 per_day 个，几天下来把池子轮一遍。params 里 {week_ago}、{now} 会换成时间戳；relax 列出的参数在请求被拒时去掉再试一次。",
+    "_说明": "用 TikHub 抓小红书、抖音、TikTok、YouTube、B站。只找 AI 新玩法、使用技巧、爆款形式和一人公司需求，不当新闻源（新闻只取官方网站、大媒体和 X），所以不再抓各平台热搜榜（原来的配置放在 _停用的热搜榜 里，想恢复就挪回 hot_lists）。没配置 TIKHUB_API_KEY 时自动跳过。按每次请求约 0.001 美元算，max_requests 是每天上限（失败的请求不收费，也不计数）。keywords 是关键词池，每天按顺序轮换取 per_day 个，几天下来把池子轮一遍。params 里 {week_ago}、{now} 会换成时间戳；relax 列出的参数在请求被拒时去掉再试一次。",
     "max_requests": 40,
     "keep_per_search": 10,
     "hot_lists": [],
