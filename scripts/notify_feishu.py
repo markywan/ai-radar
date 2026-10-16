@@ -14,6 +14,7 @@ import hashlib
 import hmac
 import json
 import os
+import re
 import sys
 import time
 import urllib.parse
@@ -139,9 +140,36 @@ def error_card(msg):
         md(msg), buttons(("查看运行记录", run, "default"))])
 
 
-def send(payload):
-    url = "".join(os.environ["FEISHU_WEBHOOK"].split())  # 复制时折行、多出的空格都去掉
+HOOK = re.compile(r"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}")
+
+
+def describe(v):
+    """不泄露内容地说明一个值长什么样，方便对照飞书后台检查。"""
+    if not v:
+        return "是空的"
+    head = "以 https:// 开头" if v.startswith("https://") else ("以 http 开头" if v.startswith("http") else "不是网址")
+    return f"{len(v)} 个字符，{head}" + ("，里面有机器人编号" if HOOK.search(v) else "")
+
+
+def webhook_and_secret():
+    """取出飞书机器人地址和签名密钥（复制时折行、多出的空格都去掉），并纠正几种常见填法。"""
+    url = "".join(os.environ.get("FEISHU_WEBHOOK", "").split())
     secret = "".join(os.environ.get("FEISHU_SECRET", "").split())
+    if not url.startswith("http") and secret.startswith("http"):
+        url, secret = secret, url  # 两个值填反了
+        print("FEISHU_WEBHOOK 和 FEISHU_SECRET 好像填反了，已按调换后的值推送。")
+    if not url.startswith("http") and HOOK.fullmatch(url):
+        url = f"https://open.feishu.cn/open-apis/bot/v2/hook/{url}"  # 只填了地址最后那段编号
+        print("FEISHU_WEBHOOK 只填了机器人编号，已补成完整地址。")
+    if not url.startswith("https://"):
+        raise SystemExit(
+            "FEISHU_WEBHOOK 应该是飞书群机器人的完整地址，形如 https://open.feishu.cn/open-apis/bot/v2/hook/…；"
+            f"现在它{describe(url)}；FEISHU_SECRET {describe(secret)}。")
+    return url, secret
+
+
+def send(payload):
+    url, secret = webhook_and_secret()
     if secret:
         ts = str(int(time.time()))
         sign = base64.b64encode(hmac.new(f"{ts}\n{secret}".encode(), digestmod=hashlib.sha256).digest()).decode()
