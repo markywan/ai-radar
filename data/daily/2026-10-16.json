@@ -1,0 +1,714 @@
+{
+ "date": "2026-10-16",
+ "generated_at": "2026-10-16T07:30:00+08:00",
+ "headline": [
+  "Anthropic 披露 Q3 营收 **168 亿美元**、增速放缓，投资人讨论的 IPO 估值从约 2 万亿降到约 **1.5 万亿**；同日 Meta 放出开源权重 Muse Spark Open，能在 Mac 上跑。",
+  "最值得装的是 `MoneyPrinterTurbo`（MIT，今日 +604 星）：给关键词就出带字幕、配乐的短视频，适合直接接到内容矩阵流水线。",
+  "今天的机会是小红书「AI 工具/副业」收藏型笔记矩阵：同类笔记**收藏率 1.4–1.96**，照着做的需求明显，可以用 AI 批量产清单再卖资料包。"
+ ],
+ "stats": {
+  "scanned": 420,
+  "selected": 29
+ },
+ "news": [
+  {
+   "title": "Anthropic 披露 Q3 营收 168 亿美元，增速放缓；IPO 估值预期传降至约 1.5 万亿",
+   "url": "https://the-decoder.com/anthropics-q3-revenue-hits-16-8b-but-growth-slows-ahead-of-planned-november-ipo/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-15",
+   "summary": "Anthropic 向投资人披露 Q3 营收 **168 亿美元**，环比增近 50%，但增速放缓，公司计划 11 月 IPO。Reuters 称部分投资人讨论的 IPO 估值约 1.5 万亿美元，低于此前预期的约 2 万亿。",
+   "id": "N01"
+  },
+  {
+   "title": "Meta 放出开源权重 Muse Spark Open：816B 总参数、42B 激活，可在 Mac 上运行",
+   "url": "https://huggingface.co/blog/meta-muse-spark-open",
+   "source": "Hugging Face Blog",
+   "source_type": "官方",
+   "published": "2026-10-15",
+   "summary": "Meta 发布多模态 MoE 开源权重模型，Hugging Face 上的型号为 `Muse-Spark-Open-816B-A42B`。Meta 与苹果合作优化了 MLX，让它能在新款 Mac 上本地运行；Hacker News 上 659 分。",
+   "id": "N02"
+  },
+  {
+   "title": "Opus 5.5 快速模式结束研究预览：最高快 2.5 倍，每百万 token 8/40 美元",
+   "url": "https://x.com/ClaudeDevs/status/2110825294655562048",
+   "source": "ClaudeDevs",
+   "source_type": "X",
+   "published": "2026-10-15",
+   "summary": "Claude 平台上的 Opus 5.5 快速模式取消等候名单，模型相同、速度最高 **2.5 倍**，价格 **8/40 美元**每百万 token。同时上线 Microsoft Foundry，Google Cloud 即将支持；Claude Code 里的快速模式不变，仍消耗额外用量额度。",
+   "id": "N03"
+  },
+  {
+   "title": "Claude Code Review 对 Team 和 Enterprise 正式可用，新增快速/标准/深度三档",
+   "url": "https://x.com/ClaudeDevs/status/2110866210573386065",
+   "source": "ClaudeDevs",
+   "source_type": "X",
+   "published": "2026-10-15",
+   "summary": "Code Review 转为正式版，管理员可按仓库选择 Quick、Standard、Deep 三档审查强度。官方称审查更快，且能抓到更多真正要紧的 bug。",
+   "id": "N04"
+  },
+  {
+   "title": "Microsoft 发布 MAI-Base-2：2.8T 总参数、80B 激活的 MoE 基座",
+   "url": "https://www.techmeme.com/261015/p59#a261015p59",
+   "source": "Techmeme",
+   "source_type": "媒体",
+   "published": "2026-10-15",
+   "summary": "微软 AI 称 MAI-Base-2 的预训练 FLOPs 效率比 DeepSeek-V4-Pro-Base 高 **4–12 倍**。这是厂商自己的对比说法，尚无独立复现。",
+   "id": "N05"
+  },
+  {
+   "title": "NVIDIA 发布开源 Nemotron 3.5 Super VL：120B 总参数、12B 激活，面向长时间运行的智能体",
+   "url": "https://x.com/NVIDIAAI/status/2110749836450713896",
+   "source": "NVIDIA AI",
+   "source_type": "X",
+   "published": "2026-10-15",
+   "summary": "新模型把推理、工具调用与文本、图像、文档、视频理解合在一起，定位是企业里 7×24 运行的智能体。总参数 120B、激活 12B。",
+   "id": "N06"
+  },
+  {
+   "title": "OpenAI 发布 GPT-Live-1.1：语音新增法、德、印地、墨西哥西语、韩、日六种语言音色",
+   "url": "https://x.com/OpenAI/status/2110797830361436604",
+   "source": "OpenAI",
+   "source_type": "X",
+   "published": "2026-10-15",
+   "summary": "ChatGPT、Codex 的语音今日向所有用户推送，口音更自然、“checking...”等待语更少。API 版本“即将”提供，暂无日期。",
+   "id": "N07"
+  },
+  {
+   "title": "GPT-6-Astra 在 50 道物理研究题中解出 49 道，每题成本 2.40 美元",
+   "url": "https://the-decoder.com/gpt-6-astra-solves-49-of-50-physics-research-problems-at-2-40-apiece/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-15",
+   "summary": "OpenAI 的 GPT-6-Astra 在一组物理研究级题目上拿到 **49/50**，平均每题 **2.40 美元**。同日 OpenAI 还推出面向学术实验室的 Rosalind 学术计划。",
+   "id": "N08"
+  },
+  {
+   "title": "Black Forest Labs 开源 FLUX.3 Image Klein：8GB 显存的消费级显卡可跑",
+   "url": "https://huggingface.co/blog/flux-3",
+   "source": "Hugging Face Blog",
+   "source_type": "官方",
+   "published": "2026-10-15",
+   "summary": "FLUX.3 Image Klein 为开放权重图像模型，已接入 Diffusers，最低约 **8GB 显存**即可运行，适合本地批量出图。",
+   "id": "N09"
+  },
+  {
+   "title": "Claude Code 发布 v2.1.301，Codex CLI 发布 0.163.0",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.301",
+   "source": "Claude Code Releases",
+   "source_type": "官方",
+   "published": "2026-10-15",
+   "summary": "Claude Code 一天内连发 v2.1.300 和 v2.1.301；OpenAI 的 Codex CLI 经过多个 alpha 后发布稳定版 0.163.0（`rust-v0.163.0`）。具体改动见各自 release 页面。",
+   "id": "N10"
+  },
+  {
+   "title": "苹果智能接入阿里千问，10 月底在中国推出测试版",
+   "url": "https://www.qbitai.com/2026/10/503640.html",
+   "source": "量子位",
+   "source_type": "媒体",
+   "published": "2026-10-15",
+   "summary": "库克在财报电话会上表示苹果智能将接入阿里千问大模型，**10 月底**在中国发布测试版本。量子位另一篇报道称百度也出现在合作名单里。",
+   "id": "N11"
+  },
+  {
+   "title": "Perplexity 开源智能体沙箱 SPACE，CoreWeave、Akamai、Crusoe 将向客户提供",
+   "url": "https://www.techmeme.com/261015/p47#a261015p47",
+   "source": "Techmeme",
+   "source_type": "媒体",
+   "published": "2026-10-15",
+   "summary": "Perplexity 把运行 AI 智能体的沙箱 SPACE 开源，并称 CoreWeave、Akamai、Crusoe 等合作方同意向客户提供。可用于需要隔离执行的智能体产品。",
+   "id": "N12"
+  },
+  {
+   "title": "Accenture 员工的 Claude 用量报销封顶每月 29 美元",
+   "url": "https://x.com/josephfcox/status/2110774735252435435",
+   "source": "Joseph Cox",
+   "source_type": "X",
+   "published": "2026-10-15",
+   "summary": "据 Joseph Cox 报道，Accenture 只愿为每位员工资助每月 **29 美元**的 Claude 用量，而重度用户每月可花到约 1000 美元，员工正在找办法保住访问。X 上点赞 6057。",
+   "id": "N13"
+  },
+  {
+   "title": "Meta 新商业条款：10 月 30 日起，商业账号关联网站可被 Meta 抓取，且无法退出",
+   "url": "https://www.niemanlab.org/2026/10/metas-new-commercial-terms-will-allow-the-scraping-of-news-sites-legal-experts-say/",
+   "source": "Nieman Lab",
+   "source_type": "媒体",
+   "published": "2026-10-15",
+   "summary": "法律专家称，Meta 的新条款会让与商业账号“相关联”的网站被抓取，包括新闻站，且没有退出选项，**10 月 30 日**生效。有自己网站并在 Meta 平台投放的人要留意。",
+   "id": "N14"
+  },
+  {
+   "title": "Google「Universal Cart」购物工具在美国上线",
+   "url": "https://techcrunch.com/2026/10/15/googles-universal-cart-shopping-tool-launches-in-the-us/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-15",
+   "summary": "Google 的跨商家购物车工具 Universal Cart 今日在美国上线。做电商或联盟评测的人需要观察它对商品导流的影响。",
+   "id": "N15"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "harry0703/MoneyPrinterTurbo",
+   "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+   "stars_today": 604,
+   "stars_total": 131705,
+   "license": "MIT",
+   "tags": [
+    "自媒体",
+    "设计与视频",
+    "Agent 与自动化"
+   ],
+   "brief": "给关键词就出成片的开源短视频流水线",
+   "what": "输入主题或关键词，自动写文案、配无版权素材、加字幕和配乐、渲染成片。提供 WebUI、API、CLI，支持 Docker 部署。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "把选题表接到 API，每天批量出 10–20 条**知识类/清单类短视频**，人只做抽检和发布，适合矩阵号冷启动。"
+    },
+    {
+     "area": "在线培训",
+     "how": "把课程大纲每一节拆成 60 秒预告片，自动生成后发到平台为训练营引流。"
+    },
+    {
+     "area": "电商",
+     "how": "为选品站或联盟评测站的每个商品批量生成讲解短视频，挂链接导流。"
+    },
+    {
+     "area": "网站推广",
+     "how": "把博客文章作为输入生成配套视频，嵌回文章页，提升停留时长。"
+    }
+   ],
+   "setup": "部署难度 低：`docker compose -f docker-compose.release.yml up`；需要自己的 LLM Key，Edge TTS 免费不需要 Key",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/harry0703/MoneyPrinterTurbo/HEAD/docs/webui.jpg",
+    "https://raw.githubusercontent.com/harry0703/MoneyPrinterTurbo/HEAD/docs/api.jpg",
+    "https://assets.mangodisk.app/images/screenshots/zh/light-01-deep-cleanup.jpg?ver=1.1.0"
+   ]
+  },
+  {
+   "repo": "marclou/mailcheap",
+   "url": "https://github.com/marclou/mailcheap",
+   "stars_today": null,
+   "stars_total": 1061,
+   "license": "AGPL-3.0",
+   "tags": [
+    "自媒体",
+    "网站推广",
+    "开发建站"
+   ],
+   "brief": "按发送量计费的开源 Newsletter，可替代 beehiiv",
+   "what": "写邮件、发给订阅者、发布到网页，一站完成；能从 beehiiv、Substack、Mailchimp 导入名单。所有功能同时开放给 MCP 和 REST API，发送动作需人工确认。官方托管版 19 美元/月起。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "用 Claude Code 通过 MCP 起草并排期周刊，自己只审稿点发送，省掉 beehiiv 按订阅者数收费的部分。"
+    },
+    {
+     "area": "数据与研究",
+     "how": "做垂直行业情报周报，用脚本抓数据、AI 写摘要，卖付费订阅。"
+    },
+    {
+     "area": "外贸",
+     "how": "给老客户做多语种产品更新简报，用 SES 发送，成本约每千封 0.10–0.16 美元。"
+    },
+    {
+     "area": "在线培训",
+     "how": "把训练营的每日任务做成邮件课程，自动排期发送。"
+    }
+   ],
+   "setup": "部署难度 中：需要 Node.js 22+、MongoDB、Amazon SES、Upstash QStash；新 SES 账号先限制每天 200 封，需申请提额",
+   "safety": "黄",
+   "safety_note": "结论：能碰到订阅者名单和发信权限，风险中等。\n\n依据：它通过 MCP 和 API Key 让智能体操作你的邮件系统，Claude Code 等用 API Key 接入，每个 Key 限流 300 次/分钟；官方已把发送标为不可撤销动作并要求确认。另外它是 AGPL-3.0，改了代码再对外提供服务就要公开你的版本源码。仓库创建于 10 月 10 日，只有 54 次提交，还很新。\n\n防范：给 MCP 单独建只读或草稿权限的 Key，不给发送权限；保持“发送前人工确认”；SES 里先用小名单测试；对外提供改版服务前先确认 AGPL 的义务。",
+   "risk_brief": "有发信权限，误发不可撤销；AGPL 约束二次分发",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/marclou/mailcheap/HEAD/docs/screenshots/overview.webp",
+    "https://raw.githubusercontent.com/marclou/mailcheap/HEAD/docs/screenshots/editor.webp",
+    "https://raw.githubusercontent.com/marclou/mailcheap/HEAD/docs/screenshots/website.webp"
+   ]
+  },
+  {
+   "repo": "rociiu/talorys",
+   "url": "https://github.com/rociiu/talorys",
+   "stars_today": null,
+   "stars_total": 1175,
+   "license": "MIT",
+   "tags": [
+    "个人办公",
+    "生活便利",
+    "Agent 与自动化"
+   ],
+   "brief": "跑在自己 Cloudflare 里的个人 AI 助理",
+   "what": "单用户助理，含流式聊天、可编辑记忆、任务、笔记、定时提醒和每日任务摘要。数据存在你账号里的 Durable Object，聊天用 Workers AI，面向免费套餐设计，无遥测。",
+   "uses": [
+    {
+     "area": "个人办公",
+     "how": "把每天的待办、笔记和提醒集中到一个自己的助理里，手机上也能用，免费额度内基本零成本。"
+    },
+    {
+     "area": "生活便利",
+     "how": "记账单到期、续费日期、家人生日等周期提醒，让助理每天早上推送摘要。"
+    },
+    {
+     "area": "Agent 与自动化",
+     "how": "拿它当模板，改成给客户做的“专属助理”交付件（部署在客户自己的 Cloudflare 账号里）。"
+    }
+   ],
+   "setup": "部署难度 低：Node.js 22+，一条 `npx create-talorys@latest`，需要 Cloudflare 账号",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/rociiu/talorys/HEAD/docs/screenshots/chat.png",
+    "https://raw.githubusercontent.com/rociiu/talorys/HEAD/docs/screenshots/tasks.png",
+    "https://raw.githubusercontent.com/rociiu/talorys/HEAD/docs/screenshots/memory.png",
+    "https://raw.githubusercontent.com/rociiu/talorys/HEAD/docs/screenshots/automations.png"
+   ]
+  },
+  {
+   "repo": "OpenCut-app/OpenCut",
+   "url": "https://github.com/OpenCut-app/OpenCut",
+   "stars_today": 345,
+   "stars_total": 94775,
+   "license": "MIT",
+   "tags": [
+    "设计与视频",
+    "自媒体"
+   ],
+   "brief": "开源的 CapCut 替代品，网页/桌面/移动",
+   "what": "免费开源视频编辑器，目前线上 opencut.app 仍是经典版；新版正在重写，计划提供编辑器 API、插件、给智能体用的 MCP 服务和无界面批量渲染。重写版暂不接受外部贡献。",
+   "uses": [
+    {
+     "area": "设计与视频",
+     "how": "替代剪映/CapCut 做短视频后期，省掉订阅费和导出水印问题。"
+    },
+    {
+     "area": "自媒体",
+     "how": "等 headless 批量渲染可用后，把模板化视频（口播加字幕）接成自动流水线。"
+    },
+    {
+     "area": "在线培训",
+     "how": "剪课程片段和预告，不用为每个人头买软件。"
+    }
+   ],
+   "setup": "部署难度 低：直接用 opencut.app 经典版；源码运行需要 `proto` 和 `moon` 工具",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G04"
+  },
+  {
+   "repo": "SegFault42/HeliosGen",
+   "url": "https://github.com/SegFault42/HeliosGen",
+   "stars_today": 331,
+   "stars_total": 3115,
+   "license": "MIT",
+   "tags": [
+    "设计与视频",
+    "自媒体",
+    "电商"
+   ],
+   "brief": "本地节点式 AI 图像视频工作流",
+   "what": "在无限画布上串联提示词、模型、参考图，生成图像和视频；支持 GPT Image 2、Nano Banana、Seedream 5.0、Kling 3.0、Seedance 2.0、Veo 3.1 等。大部分模型需要自备 kie.ai Key，数据存本地。预编译版目前只有 macOS（Apple Silicon）。",
+   "uses": [
+    {
+     "area": "电商",
+     "how": "把商品图做成多角度主图和 5 秒展示视频，批量替换背景，省摄影和外包。"
+    },
+    {
+     "area": "自媒体",
+     "how": "固定一套角色参考图，批量生成系列配图和短视频素材。"
+    },
+    {
+     "area": "设计与视频",
+     "how": "给客户做广告创意稿件，一次对比多个模型的出图再交付。"
+    }
+   ],
+   "setup": "部署难度 中：macOS 下载预编译版，其他系统需 Node 22+、Rust、Tauri 自行构建；需要 kie.ai Key 充值",
+   "safety": "黄",
+   "safety_note": "结论：本身本地运行，主要风险是 API Key 和费用。\n\n依据：需要在设置里填 kie.ai 的 API Key，生成请求会发往该第三方；页面显示没有发布版本记录，属于很新的项目，我没有审阅源码。\n\n防范：给 kie.ai 账号设充值上限，只充小额；Key 不要与其他服务共用；用不上第三方时可改走自己的 `codex` CLI 账号出图；首次使用在一台独立机器上试跑。",
+   "risk_brief": "要填第三方 API Key，项目很新，源码未审",
+   "id": "G05",
+   "images": [
+    "https://github.com/user-attachments/assets/8263b83d-addb-4af8-99d1-d8406c52be2c",
+    "https://github.com/user-attachments/assets/fc7f1109-76d1-4af0-b91d-0e915bcf5461",
+    "https://github.com/user-attachments/assets/dedbdf4f-9d52-4e29-ad6e-a2e67e341a73",
+    "https://github.com/user-attachments/assets/17ba972c-bd8a-49a7-b367-4ef906fe3e17"
+   ]
+  },
+  {
+   "repo": "Crosstalk-Solutions/project-nomad",
+   "url": "https://github.com/Crosstalk-Solutions/project-nomad",
+   "stars_today": 178,
+   "stars_total": 40308,
+   "license": "Apache-2.0",
+   "tags": [
+    "在线培训",
+    "个人办公",
+    "生活便利"
+   ],
+   "brief": "离线知识与教育服务器：维基、课程、地图、本地 AI",
+   "what": "一套 Docker 编排的离线服务：本地 AI 聊天（Ollama）、离线维基和电子书（Kiwix）、可汗学院课程（Kolibri）、离线地图、CyberChef、笔记。最低 4GB 内存、5GB 磁盘，开启 AI 约需 25GB。",
+   "uses": [
+    {
+     "area": "在线培训",
+     "how": "给学员或团队做“离线资料盒”，把自己的课程和参考书装进去，在网络差的地方交付。"
+    },
+    {
+     "area": "个人办公",
+     "how": "用本地 AI 加文档上传和检索，处理不想上传云端的合同和资料。"
+    },
+    {
+     "area": "生活便利",
+     "how": "家里 NAS 上跑一份，断网时仍可查资料、看课程、看地图。"
+    }
+   ],
+   "setup": "部署难度 中：Debian 系系统（推荐 Ubuntu 26.04），一条安装脚本或 `docker compose up -d`",
+   "safety": "黄",
+   "safety_note": "结论：安装方式是下载并以 sudo 运行脚本，需要先看脚本。\n\n依据：官方快速安装是 curl 下载 `install_nomad.sh` 后用 sudo 执行，并通过 Docker 管理多个容器和第三方应用目录（Supply Depot 支持自定义容器）；自动更新为可选项。我没有审阅脚本。\n\n防范：先把脚本下载下来读一遍再执行；改用 `docker compose` 方式并固定镜像版本；不要开放公网端口，只在内网访问；自动更新保持关闭。",
+   "risk_brief": "sudo 执行下载脚本并管理多个容器",
+   "id": "G06"
+  }
+ ],
+ "skills": [
+  {
+   "name": "planning-with-files",
+   "url": "https://github.com/OthmanAdi/planning-with-files",
+   "repo": "OthmanAdi/planning-with-files",
+   "hot": "长期热门",
+   "stars_total": 27470,
+   "installs": null,
+   "popularity_note": "GitHub 27.5k 星（2026-10-16 抓取），2026-10-14 仍有提交，出现在原始素材的 skills 仓库列表中",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "结论：会在你的 Claude Code 里注册 shell 钩子，需要知道它在做什么。\n\n依据：我读了 SKILL.md：前置声明了 UserPromptSubmit、PreToolUse、PostToolUse、Stop、PreCompact 五个钩子，每个都执行 `sh skill-hook.sh`；插件方式还会加 SessionStart。脚本会在项目里写 `task_plan.md`、`findings.md`、`progress.md` 和 `.planning/` 状态文件，以及缓存 `~/.cache/pwf-sha`。文档称没有网络上传路径，会话回溯仅在显式调用时读取本地会话记录；但钩子输出会进入模型上下文，会随正常调用发给模型服务商。文档也承认对提示注入只能降低风险。\n\n防范：先在一个测试项目里装；读一遍 `skill-hook.sh` 与 `hooks/hooks.json`；不要用 `--replay` 去读含机密的会话；不要让它自动处理来源不明的网页内容。",
+   "risk_brief": "注册多个 shell 钩子，输出会进入模型上下文",
+   "brief": "让智能体把计划写进文件，长任务不丢上下文",
+   "what": "用 `task_plan.md`、`findings.md`、`progress.md` 三个文件充当智能体的工作记忆，/clear 或压缩之后能接着干；带完成检查和钩子自动注入计划。",
+   "uses": [
+    {
+     "area": "开发建站",
+     "how": "做多天的网站或工具项目时，用它记录阶段和决策，换会话不用重新交代背景。"
+    },
+    {
+     "area": "数据与研究",
+     "how": "做长篇调研报告，把每两次搜索的发现落到 `findings.md`，最后一次性成稿。"
+    },
+    {
+     "area": "自媒体",
+     "how": "批量内容生产任务写成计划文件，中断后可接着跑。"
+    }
+   ],
+   "install": "`npx skills add OthmanAdi/planning-with-files --skill planning-with-files -g`；Claude Code 插件：`/plugin marketplace add OthmanAdi/planning-with-files`",
+   "id": "S01",
+   "images": [
+    "https://raw.githubusercontent.com/OthmanAdi/planning-with-files/HEAD/media/pwf-banner-v5.webp",
+    "https://raw.githubusercontent.com/OthmanAdi/planning-with-files/HEAD/media/pwf-context-story-v1.gif"
+   ]
+  },
+  {
+   "name": "taste-skill",
+   "url": "https://github.com/Leonxlnx/taste-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "hot": "长期热门",
+   "stars_total": 97420,
+   "installs": null,
+   "popularity_note": "GitHub 97.4k 星、6.6k fork（2026-10-16），2026-10-14 仍有提交",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "结论：会让智能体运行本地 Node 脚本并联网下载素材，需要 Node 22+ 和浏览器。\n\n依据：我读了 SKILL.md：它执行 `draw.mjs`、`assets.mjs`、`lint.mjs`、`inspect.mjs`；`assets.mjs` 向 Openverse、Wikimedia Commons、芝加哥艺术博物馆、大都会博物馆检索并下载图片和视频到项目的 `assets/` 目录，默认只取允许商用的许可证；`inspect.mjs` 会开本机 Chrome 并起临时本地服务。不需要 API Key，也没有看到混淆命令。脚本源码我没有逐行审阅。\n\n防范：先在空项目里试；检查下载素材的授权记录再上线；不要让 `inspect.mjs` 打开不信任的网址。",
+   "risk_brief": "运行本地 Node 脚本并下载外部素材",
+   "brief": "让 AI 做出有设计感的官网，不再一股 AI 味",
+   "what": "为落地页、作品集、产品页设计的前端 skill：先从多套设计方向里抽一个，找素材并标注出处，再用浏览器在三种宽度下检查，最多三轮修改。单次构建约 30–45 分钟。",
+   "uses": [
+    {
+     "area": "开发建站",
+     "how": "给每个小项目快速做有辨识度的落地页，省掉请设计师的钱。"
+    },
+    {
+     "area": "网站推广",
+     "how": "给联盟评测站或目录站做首页，避免千篇一律的模板感，提高转化。"
+    },
+    {
+     "area": "设计与视频",
+     "how": "接设计外包单：给小企业做官网首页稿，AI 出稿后人工微调交付。"
+    },
+    {
+     "area": "在线培训",
+     "how": "做课程销售页，素材带授权记录，不怕版权纠纷。"
+    }
+   ],
+   "install": "`npx skills add https://github.com/Leonxlnx/taste-skill`；Claude Code：`/plugin marketplace add Leonxlnx/taste-skill`",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/Leonxlnx/taste-skill/HEAD/examples/v2/coffee-storefront.webp",
+    "https://raw.githubusercontent.com/Leonxlnx/taste-skill/HEAD/examples/v2/night-dates.webp",
+    "https://raw.githubusercontent.com/Leonxlnx/taste-skill/HEAD/examples/v2/coffee-roast.webp",
+    "https://raw.githubusercontent.com/Leonxlnx/taste-skill/HEAD/examples/v2/coffee-questions.webp"
+   ]
+  },
+  {
+   "name": "new-term-radar",
+   "url": "https://github.com/zhuyansen/new-term-radar",
+   "repo": "zhuyansen/new-term-radar",
+   "hot": "新晋热门",
+   "stars_total": 1030,
+   "installs": null,
+   "popularity_note": "2026-10-12 创建，4 天涨到约 1030 星、402 fork，出现在 GitHub 新项目列表",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "结论：需要付费 API Key，会克隆仓库并联网调用多个第三方，要小心。\n\n依据：我读了 `skills/new-term-radar/SKILL.md`：它会在 `~/new-term-radar` 不存在时 `git clone` 仓库，运行 `python -m radar daily`，把 `config.example.json` 复制成 `config.json`；需要 `AISA_API_KEY`，可选 `GOANYAPI_API_KEY`、`TRUSTMRR_API_KEY`；数据会发往 AIsa、GoAnyAPI、TrustMRR，并抓取 Reddit、GitHub、Hugging Face。一次 `daily` 约 0.30 美元、10–15 分钟。README 里的 AIsa、GoAnyAPI 链接是作者自己披露的推广链接。没有看到混淆命令，Python 源码我没有逐行审阅。\n\n防范：Key 用单独建的、有额度上限的；先读一遍 `radar/` 代码再填 Key；不要连续运行两次 `daily`；GitHub Actions 的工作流保持关闭。",
+   "risk_brief": "克隆并运行第三方 Python 代码，需付费 Key",
+   "brief": "每日抓新 AI 词，抢在关键词工具收录前做站",
+   "what": "每天从 X、Hugging Face、GitHub 和站点地图里找新模型、产品、仓库的名字，查搜索量和 Google Trends，给出优先做、观察、放弃的关键词表。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "新模型一发布就抢注相关词做评测页，抢到前几周的搜索红利。"
+    },
+    {
+     "area": "自媒体",
+     "how": "把“今日新词”表直接当选题库，批量产短视频和推文。"
+    },
+    {
+     "area": "网站推广",
+     "how": "用关键词表决定 programmatic SEO 页面该先做哪批。"
+    }
+   ],
+   "install": "`npx skills add zhuyansen/new-term-radar`；Claude Code：`/plugin marketplace add zhuyansen/new-term-radar`",
+   "id": "S03",
+   "images": [
+    "https://raw.githubusercontent.com/zhuyansen/new-term-radar/HEAD/docs/radar.en.gif"
+   ]
+  }
+ ],
+ "opportunities": [
+  {
+   "name": "小红书「AI 工具 / 副业」收藏型笔记矩阵 + 资料包",
+   "category": "矩阵 AI 自媒体 / 新媒体 AI 运营",
+   "one_liner": "用 AI 批量产「照着做」的清单笔记，引到资料包和训练营。",
+   "source": {
+    "title": "小红书「AI副业」「AI工具」搜索高互动笔记",
+    "url": "https://www.xiaohongshu.com/explore/6acb84370000000012037192?xsec_token=YBo1TRAh8Q9MMOIOwAQWUlQmutAzPMALhfPGleTPkVbqM=&xsec_source=pc_search"
+   },
+   "automation": {
+    "acquisition": "按周轮换 20 个关键词（AI 副业、AI 工具、Claude Code 入门等），让脚本取近一周高收藏笔记，AI 改写成 5–8 条要点的清单图文，批量排期发 3–5 个垂直号；评论区引导看主页资料包。",
+    "production": "Claude Code 写脚本：抓热榜 → 生成清单文案 → 用 `OpenCut`、模板出图 → 存草稿；资料包（工具清单、提示词模板）做成 PDF 或 Notion 页面。",
+    "payment_support": "资料包上虎皮椒或面包多收款，付款后自动发链接；常见问题写成自动回复。",
+    "manual": "每天抽检 10 分钟，确认没有违规词和虚假承诺；每周挑 2–3 条涨得好的复刻。**每周约 3 小时**。",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "同类笔记收藏远高于点赞：「把人生喂给AI，挖掘薪资天花板」点赞 3.98 万、收藏 7.78 万（收藏率 **1.96**）；「好用的ai软件你都用哪个」点赞 3.45 万、收藏 4.88 万；「WorkBuddy零基础全流程教学」点赞 2.58 万、收藏 3.99 万、评论 2619，评论多说明有人在问没被满足。",
+    "revenue_evidence": "素材里没有这类笔记的直接收入数据。推断：收藏率 1 以上说明大家想存下来照着做，教程和资料包有付费空间；定价需要自己小规模测试。",
+    "competition": "头部笔记数据很大，但同一选题下仍有点赞 2000–4000 的中腰部笔记，说明细分词仍有空位；竞争集中在泛词，细分场景（外贸、跨境、设计师）较空，这点是推断。",
+    "evidence_links": [
+     {
+      "title": "小红书：把人生喂给AI，挖掘薪资天花板",
+      "url": "https://www.xiaohongshu.com/explore/6acb84370000000012037192?xsec_token=YBo1TRAh8Q9MMOIOwAQWUlQmutAzPMALhfPGleTPkVbqM=&xsec_source=pc_search"
+     },
+     {
+      "title": "小红书：1h 丨WorkBuddy零基础全流程教学",
+      "url": "https://www.xiaohongshu.com/explore/6ac8a9cd0000000015000073?xsec_token=YB0CtgCG4ClwtkNKQCXCldFQuHwixK3A0iIF7Nx-0d_Mw=&xsec_source=pc_search"
+     },
+     {
+      "title": "小红书：我如何用AI做出涨粉1.5万的爆款",
+      "url": "https://www.xiaohongshu.com/explore/6a72cbc70000000032023c97?xsec_token=YBTNvXewZk9MpP4XUQDpCDyUNXIJt9uG_H8yuRK2ZWLug=&xsec_source=pc_search"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 100,
+    "mvp_days": 7,
+    "services": "Claude Code、LLM API、`OpenCut` 或模板出图、虎皮椒/面包多、一台 VPS 跑定时脚本",
+    "match": "与他做自媒体和 SEO 的经验直接相通：选词、标题、批量内容都是熟的；比做外贸站启动更快。",
+    "biggest_risk": "平台对批量号、搬运和 AI 生成内容的限流/封号；资料包宣传不能夸大收益。需要做 AI 内容标注，并且所有笔记要改写成自己的内容，不能直接搬运。"
+   },
+   "verdict": "值得验证",
+   "id": "B01"
+  },
+  {
+   "name": "英文 faceless 短视频频道：Newsletter + 数字产品导流",
+   "category": "矩阵 AI 自媒体 / 新媒体 AI 运营",
+   "one_liner": "用 `MoneyPrinterTurbo` 批量出英文无脸视频，导流到 Newsletter 和模板。",
+   "source": {
+    "title": "TikTok「faceless channel」搜索：Here's exactly how these AI kids channels are doing...",
+    "url": "https://www.tiktok.com/@tools_with_valery/video/7695249818322554130"
+   },
+   "automation": {
+    "acquisition": "TikTok/YouTube Shorts 每天 2–3 条无脸视频，选题取自 `new-term-radar` 的新词表和热门问题；主页链接指向 Newsletter。",
+    "production": "`MoneyPrinterTurbo` 部署在 VPS，用 API 传入主题，自动出带字幕和配乐的竖屏视频；脚本定时上传草稿。",
+    "payment_support": "Newsletter 用 `mailcheap` 或现有服务；数字产品放 Gumroad 或 Lemon Squeezy，自动发货。",
+    "manual": "每周审核视频质量、挑选 3 个选题、回复邮件。**每周约 3 小时**。",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "TikTok 同关键词下：「Here's exactly how these AI kids channels are doing」点赞 4698、收藏 4503（收藏率 **0.96**）；「I've automated my entire content process… for $152」点赞 17669、收藏 13194；另有「I'am starting a faceless clipping page from 0」点赞 2460。",
+    "revenue_evidence": "素材里没有这些频道的收入数据，不下判断。X 上有人称用 AI 角色账号一周收 3000 多美元，是转述，我没有核实，也涉及平台政策风险，不作为依据。",
+    "competition": "此类选题已有大量模仿，同质化严重；差异要靠垂直选题和导流产品，不是靠视频本身。这一条是推断。",
+    "evidence_links": [
+     {
+      "title": "TikTok：AI kids channels 解析",
+      "url": "https://www.tiktok.com/@tools_with_valery/video/7695249818322554130"
+     },
+     {
+      "title": "TikTok：I've automated my entire content process… for $152",
+      "url": "https://www.tiktok.com/@ericfinchonline/video/7695594851265498381"
+     },
+     {
+      "title": "GitHub：MoneyPrinterTurbo",
+      "url": "https://github.com/harry0703/MoneyPrinterTurbo"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 100,
+    "mvp_days": 10,
+    "services": "VPS、`MoneyPrinterTurbo`、LLM API、TikTok/YouTube 账号、Gumroad 或 Lemon Squeezy",
+    "match": "他有自媒体和外贸英语经验，做英文垂直内容有基础；批量视频这一步可交给脚本。",
+    "biggest_risk": "TikTok、YouTube 对批量低质量 AI 内容的限流和变现限制；需要标注 AI 生成并避免搬运素材。"
+   },
+   "verdict": "放进观察",
+   "id": "B02"
+  }
+ ],
+ "trends": [
+  {
+   "topic": "小红书 AI 工具/副业清单：收藏远大于点赞",
+   "brief": "清单教程被大量收藏，想照着做的人很多",
+   "signal": "需求信号",
+   "platforms": [
+    "小红书"
+   ],
+   "evidence": [
+    {
+     "platform": "小红书",
+     "title": "把人生喂给AI，挖掘薪资天花板",
+     "url": "https://www.xiaohongshu.com/explore/6acb84370000000012037192?xsec_token=YBo1TRAh8Q9MMOIOwAQWUlQmutAzPMALhfPGleTPkVbqM=&xsec_source=pc_search",
+     "metrics": "点赞 3.98万 · 收藏 7.78万 · 评论 458 · 转发 1.42万"
+    },
+    {
+     "platform": "小红书",
+     "title": "好用的ai软件你都用哪个",
+     "url": "https://www.xiaohongshu.com/explore/6ac1a915000000001b01f850?xsec_token=YBPmBT7w3z-98Hnl64AlQ0W-yss_SWykPjTGN7veWn3O0=&xsec_source=pc_search",
+     "metrics": "点赞 3.45万 · 收藏 4.88万 · 评论 62"
+    },
+    {
+     "platform": "小红书",
+     "title": "1h 丨WorkBuddy零基础全流程教学",
+     "url": "https://www.xiaohongshu.com/explore/6ac8a9cd0000000015000073?xsec_token=YB0CtgCG4ClwtkNKQCXCldFQuHwixK3A0iIF7Nx-0d_Mw=&xsec_source=pc_search",
+     "metrics": "点赞 2.58万 · 收藏 3.99万 · 评论 2619"
+    }
+   ],
+   "quotes": [
+    {
+     "platform": "小红书",
+     "text": "让AI干活这个思路太对了，我现在也拿它做竞品监控，每天早上自动抓价格和上新……三只龙虾分工协作这个想法好绝，你怎么分配任务的？",
+     "likes": 0
+    }
+   ],
+   "why": "三条高互动笔记的收藏率都在 **1.4–1.96**，远超 0.5 的“想存下来照做”门槛；WorkBuddy 教程评论 2619，说明零基础用户在追问怎么上手。",
+   "how": "第一步：用一周时间发 10 条“清单+提示词模板”图文，每条结尾导到同一份资料包；工具用 Claude Code 批量生成文案，模板出图。后续可卖 29–99 元的资料包。这是推断，需要小规模验证。",
+   "risk": "平台对批量号和搬运限流；资料包宣传不要承诺收入；使用 AI 生成内容要按平台要求标注。",
+   "id": "P01"
+  },
+  {
+   "topic": "抖音：AI 实时换装数字人，小号播放爆量",
+   "brief": "粉丝 4304 的小号拿到 50 万点赞",
+   "signal": "新玩法",
+   "platforms": [
+    "抖音"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "谷歌 这个换装插件儿把我惊到了，前阵子Decart才发布他们的实时驱动数字人……",
+     "url": "https://www.douyin.com/video/7695888642912308523",
+     "metrics": "点赞 50.7万 · 收藏 11.7万 · 评论 1.77万 · 粉丝 4304"
+    },
+    {
+     "platform": "抖音",
+     "title": "AI工具怎么选？一句话介绍各个领域最强的AI",
+     "url": "https://www.douyin.com/video/7695393903792491785",
+     "metrics": "点赞 1.65万 · 收藏 9364 · 粉丝 3356"
+    }
+   ],
+   "quotes": [
+    {
+     "platform": "抖音",
+     "text": "有没有前端可以解释下这个是什么原理做出来的？我一个后端完全理解不了啊，就算是按实时换脸的那种原理去做，为什么他换完的衣服还可以用手去扒拉啊",
+     "likes": 25
+    },
+    {
+     "platform": "抖音",
+     "text": "怎么滴？？？？最后怎么还把AI外套拉开一下？？？？？",
+     "likes": 39
+    }
+   ],
+   "why": "两条都来自粉丝不到 5000 的小号（`small_account_hit`），靠新工具的“演示即爆点”而不是粉丝量，新号也能复制；评论里有人在追问原理，说明有未满足的“怎么做”需求。",
+   "how": "第一步：每天挑 1 个新出的 AI 视频或数字人工具，录 30 秒“前后对比”演示，评论区放工具名；再整理成“一句话选工具”的清单合集。用 `OpenCut` 剪辑，配音可用免费 TTS。",
+   "risk": "实时换脸和数字人容易触及肖像权和 AI 标注要求；演示不要用真人或明星肖像，发布时标注 AI 生成。",
+   "id": "P02"
+  },
+  {
+   "topic": "TikTok 无脸（faceless）频道：AI 儿童频道和自动化内容流程",
+   "brief": "教人做无脸频道的视频，收藏率接近 1",
+   "signal": "爆款形式",
+   "platforms": [
+    "TikTok",
+    "YouTube"
+   ],
+   "evidence": [
+    {
+     "platform": "TikTok",
+     "title": "Here's exactly how these AI kids channels are doing",
+     "url": "https://www.tiktok.com/@tools_with_valery/video/7695249818322554130",
+     "metrics": "点赞 4698 · 收藏 4503 · 评论 128 · 粉丝 2.97万"
+    },
+    {
+     "platform": "TikTok",
+     "title": "I've automated my entire content process… for $152",
+     "url": "https://www.tiktok.com/@ericfinchonline/video/7695594851265498381",
+     "metrics": "点赞 1.77万 · 收藏 1.32万 · 评论 245 · 粉丝 1.65万"
+    },
+    {
+     "platform": "TikTok",
+     "title": "Welcome to my secret project.",
+     "url": "https://www.tiktok.com/@bluecollarwifebudgets/video/7695501656326212878",
+     "metrics": "点赞 5637 · 收藏 848 · 评论 440 · 粉丝 2017"
+    }
+   ],
+   "quotes": [
+    {
+     "platform": "YouTube",
+     "text": "Bro, you told us how to choose the best niche, but many of us still struggle to ...",
+     "likes": 11
+    }
+   ],
+   "why": "同一主题在 TikTok 和 YouTube 搜索结果里同时出现（YouTube 有 faceless channel 和 one person business 相关视频），并且有粉丝只有 2017 的小号拿到 5637 点赞；国内同类“AI 副业”清单已很饱和，英文区的教学类内容相对更稀，这是推断。",
+   "how": "第一步：选一个垂直方向（如“AI 工具每周新词”），用 `MoneyPrinterTurbo` 批量出 15 秒演示，每条挂同一个 Newsletter 链接，先测一周看点击。",
+   "risk": "平台对批量低质 AI 内容的限流和变现限制；赚钱案例视频多数没有可验证数据，不要照搬收入承诺。",
+   "id": "P03"
+  }
+ ],
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "在 VPS 上用 Docker 跑起 `MoneyPrinterTurbo`，用一个关键词出第一条视频，看成片质量和单条成本。"
+  },
+  {
+   "minutes": 30,
+   "text": "拿小红书「AI 工具」里 3 条**收藏率 1.4 以上**的笔记，拆出标题、结构和配图方式，列出自己的 10 个细分选题。"
+  },
+  {
+   "minutes": 5,
+   "text": "确认你的网站/博客是否在 Meta 商业账号下关联，**10 月 30 日**前决定是否调整（Meta 新条款允许抓取）。"
+  }
+ ]
+}
