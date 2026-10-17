@@ -461,7 +461,7 @@
     if (state.tab === "history") return renderHistory();
     if (state.tab === "fav") return renderFav();
     var date = state.date || latest();
-    if (!date) { app.innerHTML = '<p class="empty">还没有日报。第一期会在明早 8 点前生成。</p>'; return; }
+    if (!date) { app.innerHTML = '<p class="empty">还没有日报。第一期会在明早 7 点前生成。</p>'; return; }
     loadDaily(date).then(renderToday).catch(function () { app.innerHTML = '<p class="empty">这一期没加载出来，刷新试试。</p>'; });
   }
 

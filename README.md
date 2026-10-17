@@ -1,6 +1,6 @@
 # AI 机会雷达
 
-每天北京时间 8 点前自动出一期日报，发到 GitHub Pages 网站，并推送到飞书。日报有五个栏目：
+每天北京时间 7 点前自动出一期日报，发到 GitHub Pages 网站，并推送到飞书。日报有五个栏目：
 
 | 栏目 | 每天 | 内容 |
 |---|---|---|
@@ -17,7 +17,7 @@
 ## 怎么运转
 
 ```
-每天 07:13 ─ daily.yml ─ fetch.py 抓素材（RSS、GitHub、HN、Hugging Face、X，platforms.py 用 TikHub 抓内容平台）
+每天 04:23 起 ─ daily.yml（5:23、6:23 补跑，7 点推飞书） ─ fetch.py 抓素材（RSS、GitHub、HN、Hugging Face、X，platforms.py 用 TikHub 抓内容平台）
                          └ Claude 按 prompts/daily.md 写日报 → enrich.py 从 README 配图 → validate.py 校验
                          └ 提交 data/daily/日期.json → publish.yml 发布网站 → 飞书卡片
 

@@ -1,8 +1,13 @@
 name: 每日日报
 
 on:
+  # 目标：北京时间 7 点前日报已经做好、飞书准时推送。
+  # GitHub 的定时任务经常晚到一两个小时，所以排三次（北京时间 4:23、5:23、6:23），
+  # 当天已经有日报的就直接跳过；做好后飞书推送等到 7 点再发。
   schedule:
-    - cron: "13 23 * * *" # UTC 23:13 = 北京时间 07:13 开始，8 点前推送
+    - cron: "23 20 * * *"
+    - cron: "23 21 * * *"
+    - cron: "23 22 * * *"
   workflow_dispatch:
 
 permissions:
@@ -20,15 +25,27 @@ jobs:
     timeout-minutes: 75
     outputs:
       date: ${{ steps.day.outputs.date }}
+      made: ${{ steps.day.outputs.skip != 'true' }}
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: main
+      - id: day
+        run: |
+          d=$(TZ=Asia/Shanghai date +%F)
+          echo "date=$d" >> "$GITHUB_OUTPUT"
+          # 定时任务排了好几次，今天已经做好的就跳过；手动运行总是重新生成
+          if [ "${{ github.event_name }}" = "schedule" ] && [ -f "data/daily/$d.json" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "今天（$d）的日报已经有了，这次定时任务跳过。" >> "$GITHUB_STEP_SUMMARY"
+          fi
       - uses: actions/setup-python@v7
+        if: steps.day.outputs.skip != 'true'
         with:
           python-version: "3.12"
-      - id: day
-        run: echo "date=$(TZ=Asia/Shanghai date +%F)" >> "$GITHUB_OUTPUT"
 
       - name: 检查配置
+        if: steps.day.outputs.skip != 'true'
         env:
           HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' || secrets.ANTHROPIC_API_KEY != '' }}
           OR_KEY: ${{ secrets.OPENROUTER_API_KEY }}
@@ -64,6 +81,7 @@ jobs:
           fi
 
       - name: 抓取原始素材
+        if: steps.day.outputs.skip != 'true'
         run: python3 scripts/fetch.py --date "${{ steps.day.outputs.date }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -72,6 +90,7 @@ jobs:
 
       - name: Claude 写日报
         id: claude
+        if: steps.day.outputs.skip != 'true'
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ env.CLAUDE_TOKEN }}
@@ -91,12 +110,15 @@ jobs:
         run: python3 scripts/claude_error.py "${{ steps.claude.outputs.execution_file }}"
 
       - name: 从 README 配图
+        if: steps.day.outputs.skip != 'true'
         run: python3 scripts/enrich.py "data/daily/${{ steps.day.outputs.date }}.json" || echo "配图失败，跳过"
 
       - name: 校验
+        if: steps.day.outputs.skip != 'true'
         run: python3 scripts/validate.py "data/daily/${{ steps.day.outputs.date }}.json"
 
       - name: 提交
+        if: steps.day.outputs.skip != 'true'
         run: |
           git config user.name "ai-radar-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -110,6 +132,7 @@ jobs:
 
   publish:
     needs: generate
+    if: needs.generate.outputs.made == 'true'
     uses: ./.github/workflows/publish.yml
     permissions:
       contents: read
@@ -118,7 +141,7 @@ jobs:
 
   notify:
     needs: [generate, publish]
-    if: always()
+    if: always() && needs.generate.outputs.made != 'false'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -134,10 +157,19 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           OK: ${{ needs.generate.result == 'success' && needs.publish.result == 'success' }}
           DAY: ${{ needs.generate.outputs.date }}
+          EVENT: ${{ github.event_name }}
         run: |
           if [ -z "$FEISHU_WEBHOOK" ]; then echo "没配置飞书机器人，跳过推送"; exit 0; fi
+          now=$(date +%s); seven=$(TZ=Asia/Shanghai date -d "07:00" +%s)
           if [ "$OK" = "true" ]; then
+            # 定时任务做好得早，推送等到北京时间 7 点，不在半夜打扰
+            if [ "$EVENT" = "schedule" ] && [ "$seven" -gt "$now" ]; then
+              echo "等到北京时间 7 点再推送（还有 $(( (seven - now) / 60 )) 分钟）"
+              sleep $((seven - now))
+            fi
             python3 scripts/notify_feishu.py daily "$DAY"
+          elif [ "$EVENT" = "schedule" ] && [ "$(TZ=Asia/Shanghai date +%H)" -lt 6 ]; then
+            echo "这次没做成，6 点前后还会再试一次，先不发失败通知"
           else
             python3 scripts/notify_feishu.py error "今天的日报没有生成成功，点下面的按钮看运行记录。"
           fi
