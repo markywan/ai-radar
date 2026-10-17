@@ -1,4 +1,4 @@
-/* 版式：单栏阅读，最宽 720px。每个栏目一块淡色底（资讯蓝、工具绿、Skills 紫、机会橙、风向玫红、行动金），
+/* 版式：单栏阅读，最宽 720px。每个栏目一块淡色底（行动金、风向玫红、机会橙、跟进青、资讯蓝、工具绿、Skills 紫），
    条目排在底色上的卡片里。点开的条目：标题变栏目色，细节放进一块带色条的浅色面板，面板底部有「收起」。
    深色模式不用纯黑：蓝灰底、略亮的卡片、正文降一点亮度，晚上看不刺眼。 */
 :root {
@@ -25,6 +25,7 @@
   --b: #b4572c; --b-soft: #f7e6da; --b-band: #f8eee6;
   --t: #8a6b0c; --t-soft: #f1e9cd; --t-band: #f5f0de;
   --p: #a83f72; --p-soft: #f5e1eb; --p-band: #f7ecf1;
+  --f: #0f7b8a; --f-soft: #d9eef1; --f-band: #e5f2f4;
   --font: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", system-ui, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --gl: max(16px, env(safe-area-inset-left, 0px));
@@ -41,6 +42,7 @@
     --b: #f1a87b; --b-soft: #3a291e; --b-band: #251c15;
     --t: #dcc46c; --t-soft: #342f18; --t-band: #221f12;
     --p: #ee98c0; --p-soft: #3a222e; --p-band: #25171e;
+    --f: #6fcad8; --f-soft: #163238; --f-band: #12262b;
     color-scheme: dark;
   }
 }
@@ -54,6 +56,7 @@
   --b: #f1a87b; --b-soft: #3a291e; --b-band: #251c15;
   --t: #dcc46c; --t-soft: #342f18; --t-band: #221f12;
   --p: #ee98c0; --p-soft: #3a222e; --p-band: #25171e;
+  --f: #6fcad8; --f-soft: #163238; --f-band: #12262b;
   color-scheme: dark;
 }
 
@@ -75,7 +78,8 @@ p { margin: 0; }
 [data-k="skills"] { --c: var(--s); --c-soft: var(--s-soft); --c-band: var(--s-band); }
 [data-k="opportunities"] { --c: var(--b); --c-soft: var(--b-soft); --c-band: var(--b-band); }
 [data-k="trends"] { --c: var(--p); --c-soft: var(--p-soft); --c-band: var(--p-band); }
-[data-k="todo"] { --c: var(--t); --c-soft: var(--t-soft); --c-band: var(--t-band); }
+[data-k="actions"], [data-k="todo"] { --c: var(--t); --c-soft: var(--t-soft); --c-band: var(--t-band); }
+[data-k="followups"] { --c: var(--f); --c-soft: var(--f-soft); --c-band: var(--f-band); }
 
 /* 卡片：浅色模式纯白，深色模式带一点栏目色，免得一片黑 */
 .list, .opp, .lead, .todo, .deep { background: var(--surface); }
@@ -187,6 +191,23 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
 .row.open .chev { color: var(--on-c); background: var(--c); }
 .row.open .chev::before { transform: translateY(1px) rotate(225deg); }
 
+.row-b .forme { font-size: 15px; line-height: 1.65; color: var(--ink); padding: 8px 10px; border-radius: 9px; background: var(--surface); }
+.row-b .forme b { color: var(--c); margin-right: 7px; font-weight: 650; }
+.row-b .src-l { font-size: 12.5px; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+.track { display: inline-block; font-size: 11.5px; font-weight: 650; line-height: 18px; color: var(--c); background: var(--surface); border-radius: 4px; padding: 0 6px; }
+.row .m .track { background: var(--surface); }
+.grp-l { font-size: 12.5px; font-weight: 650; color: var(--c); letter-spacing: .05em; margin: 2px 0 6px 2px; }
+.list + .grp-l, .more-n + .grp-l { margin-top: 14px; }
+.more-n { margin-top: 10px; }
+.more-n summary {
+  list-style: none; display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 650; color: var(--c);
+  background: var(--c-soft); border-radius: 999px; padding: 4px 12px; cursor: pointer; margin-bottom: 8px;
+}
+.more-n summary::-webkit-details-marker { display: none; }
+.more-n summary::after { content: ""; width: 5px; height: 5px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.more-n[open] summary::after { transform: translateY(1px) rotate(225deg); }
+.row .m .why { color: var(--c); font-weight: 650; }
+
 /* 工具和 Skills：封面图靠右，名字和一句话绕着它排，热度和用途行在图下面通栏 */
 .item .row-h { display: block; }
 .item .row-h > .brief { margin-top: 3px; }
@@ -279,6 +300,9 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
 .metrics div + div { box-shadow: inset 1px 0 0 var(--card-line); }
 .metrics b { font-size: 18px; line-height: 1.3; font-weight: 750; color: var(--c); font-variant-numeric: tabular-nums; }
 .metrics small { font-size: 12px; color: var(--muted); }
+.opp .match { font-size: 14.5px; line-height: 1.65; color: var(--ink); padding: 9px 12px; border-radius: 12px; background: var(--c-soft); box-shadow: inset 3px 0 0 var(--c); }
+.opp .match b { display: block; font-size: 12.5px; font-weight: 650; color: var(--c); letter-spacing: .05em; margin-bottom: 2px; }
+.opp summary small { font-weight: 400; color: var(--muted); font-size: 12.5px; margin-left: auto; margin-right: 8px; }
 .opp .fold-g { display: grid; gap: 6px; }
 .opp details { border-radius: 12px; background: var(--sunk); }
 .opp summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; font-size: 14.5px; font-weight: 650; cursor: pointer; }
@@ -300,6 +324,14 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
 .ev small, .quotes small { display: block; margin-top: 1px; font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .quotes li { border-left: 2px solid var(--c); padding-left: 10px; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
 .how { font-size: 14.5px; color: var(--ink); }
+
+/* 跟进：一行一条，只写变化 */
+.fus .fu { display: grid; gap: 4px; padding: 12px 14px; }
+.fus .fu + .fu { border-top: 1px solid var(--line); }
+.fu .ref { font-size: 11.5px; font-weight: 650; color: var(--c); font-variant-numeric: tabular-nums; }
+.fu p { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+.fu p b { color: var(--ink); margin-right: 6px; }
+.fu .lnk { font-size: 13px; justify-self: start; }
 
 /* 今天做什么 */
 .todo { list-style: none; margin: 0; padding: 4px 14px; display: grid; border-radius: 16px; box-shadow: 0 0 0 1px var(--card-line), var(--shadow); }

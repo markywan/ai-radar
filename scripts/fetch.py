@@ -5,7 +5,11 @@
 环境变量：
   GITHUB_TOKEN       可选，提高 GitHub 搜索 API 的额度（Actions 里自动有）
   TWITTERAPI_IO_KEY  可选，有它才抓 X
-  TIKHUB_API_KEY     可选，有它才抓抖音、小红书、TikTok、YouTube、B站、微博、知乎（见 platforms.py）
+  TIKHUB_API_KEY     可选，有它才抓抖音、小红书、TikTok、YouTube、B站（见 platforms.py）
+  TRUSTMRR_API_KEY   可选，有它才抓 TrustMRR 的收入榜（机会卡的收入证据）
+
+抓完会把前 7 天日报里出现过的帖子、文章、仓库标上 seen_before（哪天、哪条、当时的数字），
+前 7 天的条目清单放在 recent，前一期日报的 watch_next 会在平台上追搜。
 
 试抓 TikHub：python3 scripts/fetch.py --probe，只抓平台部分，并打印每个接口返回的结构。
 """
@@ -214,14 +218,19 @@ def x_search(query, qtype, key, budget, pages=1):
 def fetch_x(cfg, key):
     budget = XBudget(cfg["max_tweets"], cfg.get("min_interval_s", 5.2))
     accounts, hot = [], {}
-    names = cfg["accounts"]
+    groups = cfg["accounts"]
+    if isinstance(groups, list):  # 老配置：不分组
+        groups = {"账号": groups}
     n = cfg["accounts_per_query"]
-    for i in range(0, len(names), n):
-        q = "(" + " OR ".join(f"from:{a}" for a in names[i:i + n]) + f") {cfg['account_window']} -filter:replies"
-        try:
-            accounts += x_search(q, "Latest", key, budget, pages=2)
-        except Exception as e:  # noqa: BLE001
-            errors.append(f"X 账号批次 {i // n + 1}: {e}")
+    for gname, names in groups.items():
+        for i in range(0, len(names), n):
+            q = "(" + " OR ".join(f"from:{a}" for a in names[i:i + n]) + f") {cfg['account_window']} -filter:replies"
+            try:
+                for t in x_search(q, "Latest", key, budget, pages=2):
+                    t["group"] = gname
+                    accounts.append(t)
+            except Exception as e:  # noqa: BLE001
+                errors.append(f"X {gname}批次 {i // n + 1}: {e}")
     for hq in cfg["hot_queries"]:
         try:
             hot[hq["name"]] = x_search(hq["query"], hq.get("type", "Top"), key, budget)
@@ -229,6 +238,122 @@ def fetch_x(cfg, key):
             errors.append(f"X 搜索「{hq['name']}」: {e}")
     accounts.sort(key=lambda t: (t.get("likes") or 0), reverse=True)
     return {"accounts": accounts, "hot": hot, "tweets_used": cfg["max_tweets"] - budget.left}
+
+
+def fetch_topics(cfg, since_day):
+    """他行业里的 GitHub 话题：最近有提交、有一定星数的仓库，补总榜看不到的外贸、SEO、电商工具。"""
+    out, seen = [], set()
+    for t in cfg["topics"]:
+        try:
+            for r in gh_search(f"topic:{t} pushed:>{since_day} stars:>{cfg.get('min_stars', 200)}", per_page=cfg.get("per_topic", 8)):
+                if r["repo"] not in seen:
+                    seen.add(r["repo"])
+                    r["topic"] = t
+                    out.append(r)
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"GitHub 话题 {t}: {e}")
+    return out
+
+
+def fetch_skills_sh(cfg):
+    """skills.sh 的公开榜单：热门（hot，带昨日对比）、趋势、总榜。接口变了就记进 errors，由模型自己打开网页。"""
+    out = {}
+    for view in cfg.get("views", ["hot", "trending"]):
+        url = "https://skills.sh/api/v1/skills?" + urllib.parse.urlencode({"view": view, "limit": cfg.get("limit", 40)})
+        try:
+            data = get_json(url, {"Accept": "application/json"})
+            out[view] = [{"id": x.get("id"), "name": x.get("name"), "source": x.get("source"), "installs": x.get("installs"),
+                          "installs_yesterday": x.get("installsYesterday"), "change": x.get("change"),
+                          "url": x.get("url") or f"https://skills.sh/{x.get('id')}"} for x in data.get("data", [])]
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"skills.sh {view} 榜: {e}（请用 WebFetch 打开 https://skills.sh 看榜单）")
+    return out
+
+
+def fetch_trustmrr(cfg, key):
+    """TrustMRR 公开 API：一人团队里增长最快的和最近挂牌出售的，给机会卡当收入证据。"""
+    out = {}
+    for q in cfg["queries"]:
+        url = "https://trustmrr.com/api/v1/startups?" + urllib.parse.urlencode(q["params"])
+        try:
+            data = get_json(url, {"Authorization": f"Bearer {key}", "Accept": "application/json"})
+            out[q["name"]] = [{"name": x.get("name"), "url": f"https://trustmrr.com/startup/{x.get('slug')}", "website": x.get("website"),
+                               "category": x.get("category"), "team_size": x.get("teamSize"), "mrr_usd": round((x.get("revenue") or {}).get("mrr", 0) / 100),
+                               "growth_30d": x.get("growthMRR30d") or x.get("growth30d"), "customers": x.get("customers"),
+                               "asking_price_usd": (x.get("askingPrice") or 0) // 100 or None, "description": (x.get("description") or "")[:200]}
+                              for x in data.get("data", [])]
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"TrustMRR「{q['name']}」: {e}")
+    return out
+
+
+def norm_url(u):
+    u = str(u or "").strip().lower().replace("twitter.com/", "x.com/")
+    u = re.sub(r"^https?://(www\.)?", "", u).split("#")[0].split("?")[0].rstrip("/")
+    return u
+
+
+def recent_items(date, days=7):
+    """前 7 天日报里出现过的链接和仓库，以及它们当时的数字。返回 (按链接查的字典, 给模型看的清单)。"""
+    seen, listing = {}, []
+    d0 = dt.date.fromisoformat(date)
+    for p in sorted((ROOT / "data/daily").glob("*.json"), reverse=True):
+        try:
+            d = dt.date.fromisoformat(p.stem)
+        except ValueError:
+            continue
+        if not (d0 - dt.timedelta(days=days) <= d < d0):
+            continue
+        doc = json.loads(p.read_text("utf-8"))
+        for key in ("news", "tools", "skills", "opportunities", "trends", "followups"):
+            for it in doc.get(key) or []:
+                base = {"date": p.stem, "id": it.get("id"), "section": key,
+                        "title": it.get("title") or it.get("repo") or it.get("name") or it.get("topic") or ""}
+                if it.get("stars_total") is not None:
+                    base["stars_total"] = it["stars_total"]
+                if it.get("installs") is not None:
+                    base["installs"] = it["installs"]
+                urls = [it.get("url"), (it.get("source") or {}).get("url") if isinstance(it.get("source"), dict) else None]
+                if it.get("repo"):
+                    urls.append(f"https://github.com/{it['repo']}")
+                for e in (it.get("evidence") or []) + ((it.get("market") or {}).get("evidence_links") or []):
+                    if isinstance(e, dict) and e.get("url"):
+                        seen.setdefault(norm_url(e["url"]), {**base, "metrics": e.get("metrics")})
+                for u in urls:
+                    if u:
+                        seen.setdefault(norm_url(u), base)
+                listing.append({**base, "url": it.get("url") or (f"https://github.com/{it['repo']}" if it.get("repo") else None)})
+    return seen, listing
+
+
+def mark_seen(node, seen, depth=0):
+    """把原始素材里前 7 天出现过的帖子、文章、仓库标上 seen_before（哪天、哪条、当时的数字）。"""
+    if depth > 8:
+        return
+    if isinstance(node, dict):
+        keys = [node.get("url"), node.get("hn_url"), f"https://github.com/{node['repo']}" if node.get("repo") else None]
+        for u in keys:
+            hit = seen.get(norm_url(u)) if u else None
+            if hit:
+                node["seen_before"] = {k: v for k, v in hit.items() if k in ("date", "id", "stars_total", "installs", "metrics")}
+                break
+        for v in node.values():
+            mark_seen(v, seen, depth + 1)
+    elif isinstance(node, list):
+        for v in node:
+            mark_seen(v, seen, depth + 1)
+
+
+def watch_words(date):
+    """前一期日报里模型写的 watch_next：明天要在平台上追搜的工具名或玩法。"""
+    past = sorted(p for p in (ROOT / "data/daily").glob("*.json") if p.stem < date)
+    if not past:
+        return []
+    try:
+        doc = json.loads(past[-1].read_text("utf-8"))
+        return [str(w)[:30] for w in (doc.get("watch_next") or []) if str(w).strip()]
+    except (OSError, ValueError):
+        return []
 
 
 def main():
@@ -282,6 +407,17 @@ def main():
     except Exception as e:  # noqa: BLE001
         errors.append(f"GitHub SKILL.md 搜索: {e}")
 
+    raw["github_topics"] = fetch_topics(cfg["github"]["topic_searches"], d0) if cfg["github"].get("topic_searches") else []
+    raw["skills_sh"] = fetch_skills_sh(cfg["skills_sh"]) if cfg.get("skills_sh") else {}
+    tm = "".join(os.environ.get("TRUSTMRR_API_KEY", "").split())
+    if tm and cfg.get("trustmrr"):
+        raw["trustmrr"] = fetch_trustmrr(cfg["trustmrr"], tm)
+    else:
+        raw["trustmrr"] = None
+        errors.append("没有配置 TRUSTMRR_API_KEY，收入证据请打开 config/sources.json 里 evidence_pages 的页面找")
+    raw["policy_pages_without_rss"] = (cfg.get("policy_pages_without_rss") or {}).get("pages", [])
+    raw["evidence_pages"] = (cfg.get("evidence_pages") or {}).get("pages", [])
+
     try:
         raw["hn_front"], raw["hn_show"] = fetch_hn(cfg["hackernews"])
     except Exception as e:  # noqa: BLE001
@@ -300,13 +436,16 @@ def main():
         raw["x"] = None
         errors.append("没有配置 TWITTERAPI_IO_KEY，跳过 X")
 
+    raw["watch_next_from_yesterday"] = watch_words(args.date)
     tk = "".join(os.environ.get("TIKHUB_API_KEY", "").split())
     if tk:
-        raw["platforms"] = fetch_platforms(cfg["tikhub"], tk, args.date, errors)
+        raw["platforms"] = fetch_platforms(cfg["tikhub"], tk, args.date, errors, fresh=raw["watch_next_from_yesterday"])
     else:
         raw["platforms"] = None
         errors.append("没有配置 TIKHUB_API_KEY，跳过抖音、小红书等平台")
 
+    seen, raw["recent"] = recent_items(args.date)
+    mark_seen(raw, seen)
     raw["errors"] = errors
     raw["counts"] = {k: len(v) for k, v in raw.items() if isinstance(v, list)}
     out = ROOT / "data/raw" / f"{args.date}.json"

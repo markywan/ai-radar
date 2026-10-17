@@ -6,14 +6,18 @@
   var app = document.getElementById("app");
   var toastEl = document.getElementById("toast");
   var state = { index: null, config: {}, daily: {}, deep: {}, tab: "today", date: null, focus: null, gallery: {} };
+  /* 栏目顺序：先看今天做什么，再看平台信号和机会，资讯、工具、Skills 放后面 */
   var SEC = [
+    { key: "actions", title: "今天做什么", short: "做什么" },
+    { key: "trends", title: "玩法风向", short: "玩法" },
+    { key: "opportunities", title: "一人公司机会", short: "机会" },
+    { key: "followups", title: "跟进", short: "跟进" },
     { key: "news", title: "AI 资讯", short: "资讯" },
     { key: "tools", title: "GitHub 工具", short: "工具" },
-    { key: "skills", title: "Skills", short: "Skills" },
-    { key: "opportunities", title: "一人公司机会", short: "机会" },
-    { key: "trends", title: "玩法风向", short: "玩法" }
+    { key: "skills", title: "Skills", short: "Skills" }
   ];
-  var LEAD_KEYS = ["news", "tools", "opportunities"];
+  var LEAD_KEYS = ["news", "trends", "actions"];
+  var TIER_TOP = "影响你的", GROUP_ORDER = ["大家都在用", "刚冒出来"];
 
   /* ---------- 小工具 ---------- */
   function esc(s) {
@@ -260,14 +264,27 @@
   }
   function expandTool(key) { return '<button class="tool" data-expand="' + key + '">全部展开</button>'; }
   var FOLD = '<button class="fold" data-fold>收起</button>';
+  function trackTag(it) { return it.track ? '<span class="track">' + esc(it.track) + "</span>" : ""; }
+  function newsRow(d, n) {
+    var fid = d.date + "-" + n.id, bid = "b-" + n.id;
+    var forMe = n.for_me ? '<p class="forme"><b>对你</b>' + rich(n.for_me) + "</p>" : "";
+    var src = [n.source, n.published].filter(Boolean).join(" · ");
+    return '<li class="row news-row"><button class="row-h" aria-expanded="false" aria-controls="' + bid + '">' +
+      '<span class="t">' + rich(n.title) + '</span><span class="chev" aria-hidden="true"></span></button>' +
+      '<div class="row-b" id="' + bid + '" hidden>' + forMe + '<p class="sum">' + rich(n.summary) + "</p>" +
+      (src || n.track ? '<p class="src-l">' + trackTag(n) + esc(src) + "</p>" : "") +
+      actBtns(fid, false, link("看原文 ↗", n.url, "btn")) + FOLD + "</div></li>";
+  }
+  /* 资讯分两档：「影响你的」直接列出，行业动态折在下面 */
   function renderNews(d) {
     if (!d.news.length) return '<p class="empty">今天没有入选的资讯。</p>';
-    return '<ul class="list">' + d.news.map(function (n) {
-      var fid = d.date + "-" + n.id, bid = "b-" + n.id;
-      return '<li class="row news-row"><button class="row-h" aria-expanded="false" aria-controls="' + bid + '">' +
-        '<span class="t">' + rich(n.title) + '</span><span class="chev" aria-hidden="true"></span></button>' +
-        '<div class="row-b" id="' + bid + '" hidden><p class="sum">' + rich(n.summary) + "</p>" + actBtns(fid, false, link("看原文 ↗", n.url, "btn")) + FOLD + "</div></li>";
-    }).join("") + "</ul>";
+    var tiered = d.news.some(function (n) { return n.tier; });
+    var top = tiered ? d.news.filter(function (n) { return n.tier === TIER_TOP; }) : d.news;
+    var rest = tiered ? d.news.filter(function (n) { return n.tier !== TIER_TOP; }) : [];
+    var rows = function (list) { return '<ul class="list">' + list.map(function (n) { return newsRow(d, n); }).join("") + "</ul>"; };
+    var html = top.length ? (tiered ? '<p class="grp-l">影响你的</p>' : "") + rows(top) : "";
+    if (rest.length) html += '<details class="more-n"><summary>还有 ' + rest.length + " 条行业动态</summary>" + rows(rest) + "</details>";
+    return html;
   }
   function itemRow(kind, d, it) {
     var gid = d.date + "-" + it.id, bid = "b-" + it.id, imgs = images(gid, it.images);
@@ -275,8 +292,9 @@
     if (kind === "tools") {
       var parts = String(it.repo || "").split("/");
       name = parts[1] || it.repo; sub = parts[1] ? parts[0] : "";
+      if (it.why_today) meta.push('<span class="why">' + esc(it.why_today) + "</span>");
       meta.push("<span>★ " + wan(it.stars_total) + "</span>");
-      if (it.stars_today != null) meta.push('<span class="up">今日 +' + num(it.stars_today) + "</span>");
+      if (it.stars_today != null && !/今日/.test(it.why_today || "")) meta.push('<span class="up">今日 +' + num(it.stars_today) + "</span>");
     } else {
       var nm = splitName(it.name); name = nm[0]; sub = it.brief ? "" : nm[1];
       if (it.hot === "新晋热门") meta.push('<span class="hot">新晋热门</span>');
@@ -311,7 +329,13 @@
     return function (d) {
       var list = d[kind] || [];
       if (!list.length) return '<p class="empty">今天没有入选的' + (kind === "tools" ? "工具" : " Skills") + "。</p>";
-      return '<ul class="list">' + list.map(function (it) { return itemRow(kind, d, it); }).join("") + "</ul>";
+      var rows = function (l) { return '<ul class="list">' + l.map(function (it) { return itemRow(kind, d, it); }).join("") + "</ul>"; };
+      if (kind !== "tools" || !list.some(function (it) { return it.group; })) return rows(list);
+      /* 工具分「大家都在用」和「刚冒出来」两组 */
+      var groups = GROUP_ORDER.map(function (g) { return [g, list.filter(function (it) { return it.group === g; })]; });
+      var other = list.filter(function (it) { return GROUP_ORDER.indexOf(it.group) < 0; });
+      if (other.length) groups.push(["其他", other]);
+      return groups.filter(function (g) { return g[1].length; }).map(function (g) { return '<p class="grp-l">' + esc(g[0]) + "</p>" + rows(g[1]); }).join("");
     };
   }
   function renderOpps(d) {
@@ -320,13 +344,13 @@
       var a = b.automation || {}, m = b.market || {}, f = b.fit || {}, nm = splitName(b.name);
       var ev = (m.evidence_links || []).map(function (e) { return "<li>" + link(e.title, e.url) + "</li>"; }).join("");
       var dl = function (rows) { return '<dl class="facts">' + rows.filter(function (r) { return r[1]; }).map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + rich(r[1]) + "</dd>"; }).join("") + "</dl>"; };
-      return '<article class="opp"><div class="top">' + verdictPill(b.verdict) + (b.category ? "<span>" + esc(b.category) + "</span>" : "") + "</div>" +
+      return '<article class="opp"><div class="top">' + verdictPill(b.verdict) + (b.category ? "<span>" + esc(b.category) + "</span>" : "") + trackTag(b) + "</div>" +
         "<h3>" + esc(nm[0]) + (nm[1] ? '<span class="sub">' + esc(nm[1]) + "</span>" : "") + "</h3>" +
         '<p class="one">' + rich(b.one_liner) + "</p>" +
         '<div class="metrics"><div><b>$' + num(f.startup_cost_usd) + "</b><small>起步资金</small></div><div><b>" + num(f.mvp_days) + " 天</b><small>做出 MVP</small></div><div><b>" + num(a.weekly_hours) + " 小时</b><small>稳定后每周</small></div></div>" +
-        '<div class="fold-g"><details><summary>怎么自动化运营</summary>' + dl([["获客", a.acquisition], ["生产交付", a.production], ["收款客服", a.payment_support], ["仍要我做", a.manual]]) + "</details>" +
-        "<details><summary>市场与机会</summary>" + dl([["需求", m.demand], ["收入证据", m.revenue_evidence], ["竞争", m.competition]]) + (ev ? '<ul class="evidence">' + ev + "</ul>" : "") + "</details>" +
-        "<details><summary>适不适合我</summary>" + dl([["要用的服务", f.services], ["匹配度", f.match], ["最大风险", f.biggest_risk]]) + "</details></div>" +
+        (f.match ? '<p class="match"><b>适不适合我</b>' + rich(f.match) + "</p>" : "") +
+        '<div class="fold-g"><details><summary>证据' + (ev ? '<small>' + (m.evidence_links || []).length + " 条链接</small>" : "") + "</summary>" + dl([["需求", m.demand], ["收入证据", m.revenue_evidence], ["竞争", m.competition]]) + (ev ? '<ul class="evidence">' + ev + "</ul>" : "") + "</details>" +
+        "<details><summary>怎么做</summary>" + dl([["获客", a.acquisition], ["生产交付", a.production], ["收款客服", a.payment_support], ["仍要我做", a.manual], ["要用的服务", f.services], ["最大风险", f.biggest_risk]]) + "</details></div>" +
         (b.source && b.source.url ? '<p class="src">灵感来源：' + link(b.source.title || b.source.url, b.source.url) + "</p>" : "") +
         actBtns(d.date + "-" + b.id, true) + "</article>";
     }).join("") + "</div>";
@@ -339,7 +363,7 @@
       var gid = d.date + "-" + it.id, bid = "b-" + it.id, ev = it.evidence || [], qs = it.quotes || [];
       var plats = (it.platforms && it.platforms.length ? it.platforms : ev.map(function (e) { return e.platform; }))
         .filter(function (x, i, a) { return x && a.indexOf(x) === i; });
-      var meta = (it.signal ? '<span class="hot">' + esc(it.signal) + "</span>" : "") + (plats.length ? "<span>" + esc(plats.join(" · ")) + "</span>" : "");
+      var meta = (it.signal ? '<span class="hot">' + esc(it.signal) + "</span>" : "") + (plats.length ? "<span>" + esc(plats.join(" · ")) + "</span>" : "") + trackTag(it);
       var head = '<button class="row-h" aria-expanded="false" aria-controls="' + bid + '">' +
         '<span class="t">' + esc(it.topic) + "</span>" +
         '<span class="brief">' + esc(plain(briefOf(it))) + "</span>" +
@@ -359,32 +383,51 @@
       return '<li class="row item trend">' + head + body + "</li>";
     }).join("") + "</ul>";
   }
+  function renderActions(d) {
+    return '<ol class="todo">' + (d.actions || []).map(function (t) {
+      return '<li><span class="min">' + esc(t.minutes) + " 分钟</span><p>" + rich(t.text) + "</p></li>";
+    }).join("") + "</ol>";
+  }
+  /* 跟进：前几天写过的东西今天有什么变化 */
+  function renderFollowups(d) {
+    return '<ul class="list fus">' + (d.followups || []).map(function (f) {
+      return '<li class="fu">' + (f.ref ? '<span class="ref">' + esc(f.ref) + "</span>" : "") +
+        "<p><b>" + esc(f.title) + "</b>" + rich(f.update) + "</p>" + (f.url ? link("看最新 ↗", f.url, "lnk") : "") + "</li>";
+    }).join("") + "</ul>";
+  }
+  function hasSec(d, key) {
+    if (key === "trends") return Array.isArray(d.trends);
+    if (key === "actions" || key === "followups") return (d[key] || []).length > 0;
+    return true;
+  }
   function renderToday(d) {
     state.gallery = {};
     var isLatest = d.date === latest(), no = issueNo(d.date), st = d.stats || {};
     var lead = (d.headline || []).map(function (h, i) {
       return '<li data-k="' + (LEAD_KEYS[i] || "news") + '"><span class="n">' + (i + 1) + "</span><p>" + rich(h) + "</p></li>";
     }).join("");
-    /* 没接平台数据的旧日报不显示「玩法风向」 */
-    var secs = SEC.filter(function (s) { return s.key !== "trends" || Array.isArray(d.trends); });
-    var toc = secs.map(function (s) {
+    /* 没接平台数据的旧日报不显示「玩法风向」；没有跟进的那天不显示「跟进」 */
+    var secs = SEC.filter(function (s) { return hasSec(d, s.key); });
+    var tocSecs = secs.filter(function (s) { return s.key !== "actions"; });  /* 今天做什么就在刊头下面，不用导航 */
+    var toc = tocSecs.map(function (s) {
       return '<a href="#sec-' + s.key + '" data-k="' + s.key + '"><b>' + (d[s.key] || []).length + "</b><small>" + s.short + "</small></a>";
     }).join("");
     var back = isLatest ? unreadPast() : [];
     var backlog = back.length ? '<div class="backlog"><span>还有 ' + back.length + " 期没看</span>" + back.slice(0, 6).map(function (x) { return '<button data-date="' + esc(x.date) + '">' + shortDate(x.date) + "</button>"; }).join("") + "</div>" : "";
-    var fns = { news: renderNews, tools: renderItems("tools"), skills: renderItems("skills"), opportunities: renderOpps, trends: renderTrends };
+    var fns = { actions: renderActions, trends: renderTrends, opportunities: renderOpps, followups: renderFollowups, news: renderNews, tools: renderItems("tools"), skills: renderItems("skills") };
+    var noTool = { actions: 1, opportunities: 1, followups: 1 };
     var body = secs.map(function (s) {
       var n = (d[s.key] || []).length;
-      var tool = s.key !== "opportunities" && n ? expandTool(s.key) : "";
+      var tool = !noTool[s.key] && n ? expandTool(s.key) : "";
       return '<section class="sec" id="sec-' + s.key + '" data-k="' + s.key + '">' + secHead(s, n, tool) + fns[s.key](d) + "</section>";
     }).join("");
-    var todo = (d.actions || []).length ? '<section class="sec" data-k="todo">' + secHead({ title: "今天做什么" }, d.actions.length) + '<ol class="todo">' +
-      d.actions.map(function (t) { return '<li><span class="min">' + esc(t.minutes) + " 分钟</span><p>" + rich(t.text) + "</p></li>"; }).join("") + "</ol></section>" : "";
+    var todo = "";
+    var mins = st.read_minutes ? " · 读完约 " + num(st.read_minutes) + " 分钟" : "";
     app.innerHTML = '<div class="mast">' +
-      '<div class="kicker"><span>' + (no ? "第 " + no + " 期 · " : "") + "扫描 " + num(st.scanned) + " 条，入选 " + num(st.selected) + ' 条</span><span class="rs" id="read-' + esc(d.date) + '">' + readStateHtml(d.date) + "</span></div>" +
+      '<div class="kicker"><span>' + (no ? "第 " + no + " 期 · " : "") + "扫描 " + num(st.scanned) + " 条，入选 " + num(st.selected) + " 条" + mins + '</span><span class="rs" id="read-' + esc(d.date) + '">' + readStateHtml(d.date) + "</span></div>" +
       "<h1>" + longDate(d.date) + "</h1>" +
       '<p class="lead-l">' + (isLatest ? "今天先看这三件" : "这一期的三件事") + '</p><ol class="lead">' + lead + "</ol>" + backlog +
-      '<nav class="toc" aria-label="栏目" style="--cols:' + secs.length + '">' + toc + "</nav></div>" + body + todo +
+      '<nav class="toc" aria-label="栏目" style="--cols:' + tocSecs.length + '">' + toc + "</nav></div>" + body + todo +
       '<div class="foot" id="foot"><span>生成于 ' + esc((d.generated_at || "").replace("T", " ").slice(0, 16)) + "。</span><span>看到这里，这一期就算看过了。</span></div>";
     watchFoot(d.date);
   }

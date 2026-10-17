@@ -354,10 +354,18 @@ def on_topic(post, keyword):
     return bool(parts) and all(x in text for x in parts)
 
 
-def todays_keywords(spec, day):
-    pool, k = spec["keywords"], spec.get("per_day", len(spec["keywords"]))
-    start = (day * k) % len(pool)
-    return [pool[(start + i) % len(pool)] for i in range(min(k, len(pool)))]
+def todays_keywords(spec, day, fresh=()):
+    """每天的关键词，返回 [(词, 组名)]：monitor 长期监测词每天都搜；probe 轮换探针按顺序取 probe_per_day 个，
+    几天轮一遍（老配置里的 keywords / per_day 也认）；追搜词来自前一天日报的 watch_next。"""
+    out = [(w, "长期监测") for w in spec.get("monitor") or []]
+    pool = spec.get("probe") or spec.get("keywords") or []
+    k = spec.get("probe_per_day", spec.get("per_day", len(pool)))
+    if pool and k:
+        start = (day * k) % len(pool)
+        out += [(pool[(start + i) % len(pool)], "轮换探针") for i in range(min(k, len(pool)))]
+    done = {w for w, _ in out}
+    out += [(w, "追搜") for w in fresh if w not in done]
+    return out
 
 
 def fill(params, now):
@@ -365,8 +373,10 @@ def fill(params, now):
     return {k: subs.get(v, v) if isinstance(v, str) else v for k, v in params.items()}
 
 
-def fetch_platforms(cfg, key, date, errors, probe=None):
-    """probe 是一个列表时，把每个请求的返回骨架放进去（试抓用）。"""
+def fetch_platforms(cfg, key, date, errors, probe=None, fresh=()):
+    """probe 是一个列表时，把每个请求的返回骨架放进去（试抓用）。fresh 是前一天日报要追搜的词，只在 fresh_platforms 上搜。"""
+    fresh = list(fresh)[:cfg.get("fresh_max", 3)]
+    fresh_on = set(cfg.get("fresh_platforms") or [])
     budget = Budget(cfg["max_requests"])
     now = dt.datetime.now(dt.timezone.utc)
     day = dt.date.fromisoformat(date).toordinal()
@@ -391,7 +401,7 @@ def fetch_platforms(cfg, key, date, errors, probe=None):
             errors.append(f"TikHub {h['name']}: {e}")
 
     for spec in cfg["searches"]:
-        for kw in todays_keywords(spec, day):
+        for kw, group in todays_keywords(spec, day, fresh if spec["platform"] in fresh_on else ()):
             if not budget.ok():
                 errors.append("TikHub 今天的请求额度用完了，后面的搜索没做")
                 break
@@ -404,7 +414,7 @@ def fetch_platforms(cfg, key, date, errors, probe=None):
                 posts = find_posts(spec["platform"], data)
                 record(label, data, len(posts), posts)
                 posts.sort(key=lambda p: (p.get("likes") or 0, p.get("plays") or 0), reverse=True)
-                out["searches"].append({"platform": spec["platform"], "keyword": kw, "found": len(posts), "items": posts[:keep]})
+                out["searches"].append({"platform": spec["platform"], "keyword": kw, "group": group, "found": len(posts), "items": posts[:keep]})
             except Exception as e:  # noqa: BLE001
                 errors.append(f"TikHub {label}: {e}")
 

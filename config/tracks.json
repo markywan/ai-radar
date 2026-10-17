@@ -1,0 +1,25 @@
+{
+  "_说明": "五条长期主线。日报里的资讯、玩法风向和机会能挂到主线的就写 track，一个月后能看出每条线的走势，周报按主线汇总。改这里不用改代码。",
+  "tracks": [
+    {"name": "GEO", "title": "AI 搜索里的 B2B 可见度",
+     "why": "SEO 经验直接迁移，外贸客户就是买家",
+     "watch": "NiubiGEO 一类开源项目、Product Hunt 的 AI SEO 新品、Semrush / Ahrefs 的 AI 功能公告、Google Search Central 的 AI 搜索政策",
+     "keywords": ["GEO", "AI 搜索", "AI Overviews", "ChatGPT 推荐", "llms.txt", "AI visibility"]},
+    {"name": "AI短视频", "title": "AI 短视频生产线（漫剧、faceless、数字人）",
+     "why": "自媒体经验，能全自动",
+     "watch": "抖音 / TikTok 小号爆款、视频模型价格、YouTube / TikTok 对 AI 内容的政策",
+     "keywords": ["AI漫剧", "faceless", "数字人", "AI UGC", "即梦", "可灵", "Sora", "Veo"]},
+    {"name": "外贸获客", "title": "外贸获客自动化",
+     "why": "最熟的行业，但三期里几乎没有专门内容；AI 工具博主没有这个行业的资源和判断",
+     "watch": "LinkedIn 自动化工具、海关数据工具、开发信送达率讨论、小红书「外贸获客」、Shopify / 亚马逊 AI 工具",
+     "keywords": ["外贸", "跨境", "独立站", "Shopify", "cold email", "开发信", "LinkedIn", "Amazon FBA", "海关数据"]},
+    {"name": "程序化SEO", "title": "Programmatic SEO 和 AI 内容站",
+     "why": "SEO 经验，最接近全自动",
+     "watch": "Google 算法和垃圾政策更新、AI 流量来源数据、目录站 / 评测站收入案例",
+     "keywords": ["programmatic SEO", "内容站", "目录站", "联盟", "affiliate", "Google 更新", "spam policy"]},
+    {"name": "代理工具链", "title": "代理工具链（Claude Code、Codex、Skills）",
+     "why": "他的生产工具，但只需要「该知道的」：每天合成一条，不超过两个工具",
+     "watch": "Claude Code / Codex 版本更新、skills.sh 趋势榜、多代理编排工具",
+     "keywords": ["Claude Code", "Codex", "Skills", "MCP", "Cursor", "agent"]}
+  ]
+}

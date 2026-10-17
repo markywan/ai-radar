@@ -84,30 +84,43 @@ def unread_before(date):
 
 
 def daily_card(date):
+    """三分钟版：一句头条、今天做什么、最强的平台信号、机会一句话、影响你的资讯标题。工具和 Skills 去网站看。"""
     doc = json.loads((ROOT / "data/daily" / f"{date}.json").read_text("utf-8"))
     m, d = int(date[5:7]), int(date[8:10])
-    els = [md("\n".join(f"**{i}.** {h}" for i, h in enumerate(doc.get("headline", []), 1))),
-           md(f"资讯 {len(doc['news'])} · 工具 {len(doc['tools'])} · Skills {len(doc['skills'])} · "
-              f"机会 {len(doc['opportunities'])}" + (f" · 玩法风向 {len(doc['trends'])}" if doc.get("trends") else "")),
-           {"tag": "hr"}]
-    for n in doc["news"][:3]:
-        els.append(md(f"**{n['id']}** [{n['title']}]({n['url']})"))
-    for key in ("tools", "skills"):
-        for it in doc[key][:1]:
-            name = it.get("repo") or it.get("name")
-            els.append(md(f"**{it['id']}** [{name}]({it['url']})：{it['what']}"))
-    for t in (doc.get("trends") or [])[:2]:
+    st = doc.get("stats") or {}
+    head = re.sub(r"[*`]", "", (doc.get("headline") or [""])[0])
+    els = [md(f"**{head}**" if head else ""),
+           md("　".join(x for x in [f"读完约 {st['read_minutes']} 分钟" if st.get("read_minutes") else "",
+                                   f"资讯 {len(doc['news'])} · 工具 {len(doc['tools'])} · Skills {len(doc['skills'])}"
+                                   + (f" · 玩法 {len(doc['trends'])}" if doc.get("trends") else "")
+                                   + (f" · 跟进 {len(doc['followups'])}" if doc.get("followups") else "")] if x))]
+    acts = doc.get("actions") or []
+    if acts:
+        els.append({"tag": "hr"})
+        els.append(md("**今天做什么**\n" + "\n".join(f"{i}. {a['text']}（{a.get('minutes')} 分钟）" for i, a in enumerate(acts, 1))))
+    trends = doc.get("trends") or []
+    if trends:
+        t = trends[0]
         ev = (t.get("evidence") or [{}])[0]
-        els.append(md(f"**{t['id']}** {t['topic']}（{t.get('signal', '')}）：{t.get('brief', '')}"
-                      + (f"\n[{ev.get('platform', '')}：{ev.get('title', '')[:30]}]({ev['url']}) {ev.get('metrics', '')}" if ev.get("url") else "")))
+        els.append({"tag": "hr"})
+        els.append(md(f"**玩法风向** {t['topic']}（{t.get('signal', '')}）：{t.get('brief', '')}"
+                      + (f"\n[{ev.get('platform', '')}：{ev.get('title', '')[:30]}]({ev['url']}) {ev.get('metrics', '')}" if ev.get("url") else "")
+                      + (f"\n还有 {len(trends) - 1} 条在网站上" if len(trends) > 1 else "")))
     for b in doc["opportunities"]:
         fid = f"{date}-{b['id']}"
         els.append({"tag": "hr"})
-        els.append(md(f"**{b['id']} {b['name']}**（{b['verdict']}）\n{b['one_liner']}\n"
+        els.append(md(f"**机会：{b['name']}**（{b['verdict']}）\n{b['one_liner']}\n"
                       f"起步 ${b['fit'].get('startup_cost_usd')} · MVP {b['fit'].get('mvp_days')} 天 · "
                       f"每周 {b['automation'].get('weekly_hours')} 小时"))
         els.append(buttons(("收藏", action_link("fav", fid), "default"),
                            ("收藏并深挖", action_link("deep", fid), "primary")))
+    top = [n for n in doc["news"] if n.get("tier") == "影响你的"] or doc["news"][:3]
+    if top:
+        els.append({"tag": "hr"})
+        els.append(md("**影响你的资讯**\n" + "\n".join(f"- [{n['title']}]({n['url']})" for n in top[:6])))
+    fus = doc.get("followups") or []
+    if fus:
+        els.append(md("**跟进** " + "；".join(f"{f['title']}：{re.sub(r'[*`]', '', f['update']).rstrip('。；;')}" for f in fus[:3])))
     els.append({"tag": "hr"})
     backlog = unread_before(date)
     if backlog:
