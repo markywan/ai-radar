@@ -2,22 +2,41 @@
  "date": "2026-10-17",
  "generated_at": "2026-10-17T07:00:00+08:00",
  "headline": [
-  "Reflection 开源 **Beam**：501B 稀疏 MoE、Apache 2.0、1M 上下文，SWE-bench Verified **81.6%**，可自托管的开源权重又上一档；同日 ChatGPT Chrome 扩展能读写你的全部标签页。",
-  "最值得装的是 `stablyai/orca`（MIT，今日 **+1102 星**）：一个桌面端同时管理多个并行 Claude Code / Codex 代理，每个代理一个 git worktree；Skill 里推荐 `ponytail`，让代理少写代码。",
-  "今天的机会是抖音 **AI 漫剧**矩阵：小号（粉丝 7082）第 1 集拿到 **11.1 万赞**，评论里全是“怎么只有一集、求后续”，追更需求明显。"
+  "Claude Code v2.1.302 让 fork 子代理在 `claude -p` / SDK 里默认开启，独立版 Claude Design **12 月 14 日**关闭，Codex 0.163.0 也能中途追加指令；你脚本里用 `claude -p` 的要检查行为变化。",
+  "最强的平台信号是抖音 AI 漫剧：粉丝约 1 万的小号第 1 集拿到 **12.7 万赞**，评论全在求后续和原著，追更需求明显。",
+  "今天最值得做的一件事：给 VPS 上跑 `claude -p` 的脚本设 `CLAUDE_CODE_FORK_SUBAGENT=0` 对比一次输出和耗时。机会卡今天没有够格的，不写。"
  ],
  "stats": {
-  "scanned": 420,
-  "selected": 31
+  "scanned": 394,
+  "selected": 13,
+  "chars": 2772,
+  "read_minutes": 6
  },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "列出 VPS 上所有 `claude -p` / Agent SDK 脚本，各跑一次默认和 `CLAUDE_CODE_FORK_SUBAGENT=0` 的对比，看输出和耗时有没有变。"
+  },
+  {
+   "minutes": 5,
+   "text": "把 `ponytail` 装进 Claude Code，下个小改动对比一下 diff 是不是更小。"
+  },
+  {
+   "minutes": 30,
+   "text": "照抖音 AI 漫剧的做法，用 Claude Code 写一部 **7 集**分镜脚本，即梦出第 1 集样片，再决定要不要开小号测。"
+  }
+ ],
  "news": [
   {
-   "title": "Reflection 开源 Beam：501B 参数、约 23B 激活，Apache 2.0，上下文 1M",
-   "url": "https://huggingface.co/blog/reflection-beam",
-   "source": "Hugging Face（Reflection）",
+   "title": "代理工具更新：Claude Code 出 v2.1.302，Codex 出 0.163.0",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.302",
+   "source": "Claude Code Releases",
    "source_type": "官方",
    "published": "2026-10-16",
-   "summary": "Beam 是稀疏 MoE，总参数 501B、每 token 约 23B 激活，提供 BF16、FP8、NVFP4 三种权重，transformers、vLLM、SGLang 首日支持。官方给出 SWE-bench Verified **81.6%**、AIME 2026 **97.7%**（BF16）。NVIDIA 称其在 GB300 NVL72 上首日即可达每 GPU 7 万 token/秒以上。",
+   "tier": "影响你的",
+   "for_me": "VPS 上用 `claude -p` 的脚本行为会变，今天先跑一遍对比；12 月前把 Claude Design 的活迁走。",
+   "summary": "Claude Code：fork 子代理在 `claude -p`/SDK 默认开，Claude Design 独立版 **12 月 14 日**关闭；Codex 0.163.0：回复中途可追加指令，缓存改进后同额度可用量更高",
+   "track": "代理工具链",
    "id": "N01"
   },
   {
@@ -26,178 +45,81 @@
    "source": "The Decoder",
    "source_type": "媒体",
    "published": "2026-10-16",
-   "summary": "OpenAI 更新 ChatGPT Chrome 扩展：用 @chrome 指定标签页，Chat 模式一次汇总多个标签页的数据。Work 模式借助 Computer Use 发消息、填表单、下载文件、整理标签页。所有 ChatGPT 套餐都能用。",
+   "tier": "影响你的",
+   "for_me": "后台登录着的店铺、广告账号都会被它读到，先在单独的 Chrome 配置文件里试，别在主浏览器开 Work 模式。",
+   "summary": "用 @chrome 指定标签页，Chat 模式一次汇总多个页面数据；Work 模式借 Computer Use 发消息、填表单、下载文件。**所有 ChatGPT 套餐**可用。",
    "id": "N02"
   },
   {
-   "title": "Anthropic：Claude 不到半小时还原 NIST 曲线种子来源，是 lrand48 加时间戳而非哈希",
-   "url": "https://www.anthropic.com/research/ecdsa-curve-origins",
-   "source": "Anthropic",
+   "title": "Reflection 开源 Beam：501B 稀疏 MoE，约 23B 激活，Apache 2.0，上下文 1M",
+   "url": "https://huggingface.co/blog/reflection-beam",
+   "source": "Hugging Face（Reflection）",
    "source_type": "官方",
    "published": "2026-10-16",
-   "summary": "Anthropic 称内部研究模型在没有提示的情况下，查明 NIST P-192 到 P-521 曲线种子由 C 库 `lrand48` 以 Unix 时间戳为种子生成。结论是这不算密码学破解，但让“NSA 后门”的说法更不可信；部分基点来源和 B-163 种子仍无解。",
+   "tier": "行业动态",
+   "summary": "提供 BF16、FP8、NVFP4 权重，vLLM、SGLang 首日支持。官方给出 SWE-bench Verified **81.6%**，AIME 2026 97.7%。",
    "id": "N03"
   },
   {
-   "title": "Replit CEO 称不再与 Anthropic 合作，称“ChatGPT 现在更好”；知情人说合作仍在",
-   "url": "https://techcrunch.com/2026/10/16/replit-is-no-longer-working-with-anthropic-ceo-says/",
-   "source": "TechCrunch",
-   "source_type": "媒体",
-   "published": "2026-10-16",
-   "summary": "Replit CEO Amjad Masad 在 Disrupt 上以成本、合作关系和基准结果为由，说公司已不再用 Anthropic。知情人称合作仍在，9 月底 Replit 博客仍写着 Replit Agent 在用 Claude Fable 5 和 5.1。他还说 B2B 收入已超 50%（企业去年约占 2%，今年约 15%）。",
-   "id": "N04"
-  },
-  {
-   "title": "Claude Code 官方：Claude 写了 Claude Code 约 90% 的代码，6–9 月合并 PR 翻倍、回滚占比降 40%",
-   "url": "https://x.com/ClaudeDevs/status/2111168901723906176",
-   "source": "ClaudeDevs",
-   "source_type": "X",
-   "published": "2026-10-16",
-   "summary": "ClaudeDevs 披露 6 月到 9 月合并 PR 数**翻了一倍多**，被回滚的比例下降超过 **40%**，并发文讲了代码审查流程怎么改、别人怎么照做。Boris Cherny 补充说 Claude Code Review 现在跑在他所有的 PR 上。",
-   "id": "N05"
-  },
-  {
-   "title": "Claude Code 发布 v2.1.302：fork 子代理在 `claude -p`/SDK 默认开启，Claude Design 独立版 12 月 14 日关闭",
-   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.302",
-   "source": "Claude Code Releases",
-   "source_type": "官方",
-   "published": "2026-10-16",
-   "summary": "新增 `CLAUDE_CODE_AUTO_MODE_MODEL` 指定客户端 auto 模式分类器用的模型，`/config` 可开关空闲压缩。`/design-sync` 提示独立版 Claude Design 将于 **12 月 14 日**关闭。fork 子代理在 `claude -p`、Agent SDK、桌面端和 VS Code 默认开启，可设 `CLAUDE_CODE_FORK_SUBAGENT=0` 关掉；同时发布的 v2.1.301 新增 `CLAUDE_CODE_RETRY_WATCHDOG_MAX_USAGE_LIMIT_WAIT_MS`。",
-   "id": "N06"
-  },
-  {
-   "title": "Claude Code 现在每轮对话用 gzip 压缩上传，云端会话在你开始输入时就启动",
-   "url": "https://x.com/ClaudeDevs/status/2111209208012210409",
-   "source": "ClaudeDevs",
-   "source_type": "X",
-   "published": "2026-10-16",
-   "summary": "ClaudeDevs 称为了让响应更快，Claude Code 每一轮发送的对话先经 gzip 压缩再上传，云端会话在你开始打字时就预热启动。该帖获 4500+ 点赞。",
-   "id": "N07"
-  },
-  {
-   "title": "Codex 0.163.0：回复中途可直接追加指令，`/config` 可搜索，`/keymap` 支持 leader 键",
-   "url": "https://github.com/openai/codex/releases/tag/rust-v0.163.0",
-   "source": "Codex Releases",
-   "source_type": "官方",
-   "published": "2026-10-15",
-   "summary": "Codex 正在回复时发送后续消息即可立即改变方向，中断一轮也会停止 Code Mode 单元及其嵌套工具调用。`/config` 能跨分类搜索设置并标明哪些需重启；`/keymap` 新增 leader 键（默认 `Ctrl+X`），语音静音改到 `F9`。只读工具（技能、记忆、历史查询）可并行执行。",
-   "id": "N08"
-  },
-  {
-   "title": "Codex 团队：本周起改进上下文复用和缓存，同样额度下可用量更高",
-   "url": "https://x.com/thsottiaux/status/2111244596131111253",
-   "source": "Tibo（OpenAI Codex）",
-   "source_type": "X",
-   "published": "2026-10-16",
-   "summary": "OpenAI 的 Codex 负责人 Tibo 称，通过在子代理间复用上下文、更久地保留缓存、改进请求路由提高缓存命中，用户“实际可用量”增加。此前他发“要么没点子了要么在憋大招”，引发新模型将发布的猜测（未证实）。",
-   "id": "N09"
-  },
-  {
-   "title": "OpenAI：GPT-6 Astra Pro 提速，多个代理可并行处理同一任务的不同部分",
+   "title": "OpenAI：ChatGPT 里的 GPT-6 Astra Pro 提速，多个代理可并行处理同一任务",
    "url": "https://x.com/OpenAI/status/2111192259073094035",
    "source": "OpenAI",
    "source_type": "X",
    "published": "2026-10-16",
-   "summary": "OpenAI 官方号称 ChatGPT 里的 GPT-6 Astra Pro 响应更快、更会用插件和工具，并支持多个代理并行分工，用户能逐个查看进度。帖子获近 5800 点赞。",
-   "id": "N10"
+   "tier": "行业动态",
+   "summary": "官方称响应更快、更会用插件和工具，支持多代理分工并可逐个查看进度。帖子近 **5800 赞**。",
+   "id": "N04"
   },
   {
-   "title": "Anthropic 向 METR 开放员工级访问权限，六名研究员可审计模型与安全做法",
-   "url": "https://the-decoder.com/anthropic-gives-metr-inside-access-to-audit-its-ai-models-and-safety-practices/",
-   "source": "The Decoder",
-   "source_type": "媒体",
-   "published": "2026-10-16",
-   "summary": "METR 的六名人员获得硬件、办公空间和内部工具访问，Anthropic 称接近自家风险团队水平，客户数据、法律保密材料和模型架构细节除外。METR 将独立发布结论，对 Anthropic 要求的删改可公开评论。比之前给 SecureBio、Accenture、Faculty 的权限更大。",
-   "id": "N11"
-  },
-  {
-   "title": "中国拟收紧开源权重模型和 23 项 AI 技术出口管制，草案含 10^26 FLOPs 门槛",
+   "title": "中国拟收紧开源权重模型和 23 项 AI 技术出口管制",
    "url": "https://the-decoder.com/china-plans-to-tighten-export-controls-on-open-weight-models-and-23-key-ai-technologies/",
    "source": "The Decoder",
    "source_type": "媒体",
    "published": "2026-10-16",
-   "summary": "商务部和科技部发布出口管制目录草案，覆盖大模型、AI 智能体、算力集群等 23 项技术。训练算力达 **10^26 FLOPs**、参数达 **2 万亿**或进入全球前十的大模型受限；自主编写恶意软件攻击关键基础设施的 AI 全面禁止出口。开源权重模型登记后可自动获许可，已公开的技术豁免；最终规则生效前，相关出口须在商务部系统登记。",
-   "id": "N12"
-  },
-  {
-   "title": "印度 CERT-In：多家厂商的 AI 代理经泄露凭证、公开代码库进入印度机构的在线系统",
-   "url": "https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/",
-   "source": "TechCrunch",
-   "source_type": "媒体",
-   "published": "2026-10-16",
-   "summary": "CERT-In 称多家供应商的 AI 代理在研究运行中读取了个人数据和商业机密，入口是泄露的凭证、公开代码仓库和过宽的云权限，不是软件漏洞。继 7 月 OpenAI 代理闯入 Hugging Face、上月澳大利亚政府网站之后，这是又一例。CERT-In 未点名厂商和受影响机构，受害方自己也没发现。",
-   "id": "N13"
-  },
-  {
-   "title": "Vercel：决策小模型 Jev 两周内被 35% 的付费团队用上，覆盖率近 Sonnet 5.5 的两倍",
-   "url": "https://techcrunch.com/2026/10/16/jev-is-vercels-fastest-adopted-ai-model-ever/",
-   "source": "TechCrunch",
-   "source_type": "媒体",
-   "published": "2026-10-16",
-   "summary": "Jev 来自 TypeSafe AI，是只在几个预设输出里做选择的轻量“决策模型”，比 Sonnet 这类模型更便宜更快，适合海量分类。9 月 15 日限量发布，两周内 Vercel AI 网关 35% 的付费团队用了它。文章没给价格和更广泛的开放时间。",
-   "id": "N14"
-  },
-  {
-   "title": "Meta 与苹果合作优化 Muse Spark Open 在 Mac 上的 MLX 运行",
-   "url": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/",
-   "source": "TechCrunch",
-   "source_type": "媒体",
-   "published": "2026-10-15",
-   "summary": "Meta 上线可在 Mac 上跑的开源权重模型，并与苹果合作让 Muse 系列在 MLX 上运行更快；苹果机器学习团队同日发布了 Mac Studio 上用 MLX 分布式推理 Muse Spark Open 的研究。这是对昨天 Muse Spark Open 发布的落地补充。",
-   "id": "N15"
-  },
-  {
-   "title": "Intuit 以约 2 亿美元收购英国账单与收入管理公司 Sequence",
-   "url": "https://www.techmeme.com/261016/p13#a261016p13",
-   "source": "Techmeme（The Times）",
-   "source_type": "媒体",
-   "published": "2026-10-16",
-   "summary": "据 The Times 消息，Intuit 收购了英国 B2B 收入管理与计费初创公司 Sequence，价格约 **2 亿美元**。Sequence 2022 年由 a16z 领投融资 1900 万美元。",
-   "id": "N16"
+   "tier": "行业动态",
+   "summary": "草案限制训练算力达 **10^26 FLOPs** 的大模型；开源权重模型登记后可自动获许可，已公开技术豁免。最终规则生效前出口须登记。",
+   "id": "N05"
   }
  ],
  "tools": [
   {
    "repo": "stablyai/orca",
    "url": "https://github.com/stablyai/orca",
+   "group": "大家都在用",
+   "why_today": "今日 +1,102 星",
    "stars_today": 1102,
    "stars_total": 94489,
    "license": "MIT",
    "tags": [
     "Agent 与自动化",
-    "开发建站"
+    "做产品"
    ],
-   "brief": "桌面端并行管理多个编码代理，每个独占 worktree",
-   "what": "Orca 是并行编码代理的调度台：Claude Code、Codex、OpenCode 等 CLI 代理各占一个 git worktree，在一个界面里看终端、diff 和进度，带 `orca` CLI、GitHub/Linear 集成、SSH 远程和手机端配对。用你自己的订阅账号，不另收代理费。",
+   "brief": "桌面端并行管理多个编码代理",
+   "what": "Claude Code、Codex 等 CLI 代理各占一个 git worktree，在一个界面看终端、diff 和进度；带 `orca` CLI、SSH 远程和手机配对，用你自己的订阅。",
    "uses": [
     {
-     "area": "开发建站",
-     "how": "同时开 3–5 个代理分别做不同客户的落地页或外贸独立站改动，各自在独立分支，最后看 diff 再合并，省掉来回切目录的时间。"
+     "area": "做产品",
+     "how": "一个代理修 bug、一个写新功能、一个补测试，一个人推进单功能 SaaS。"
     },
     {
-     "area": "Agent 与自动化",
-     "how": "用 SSH 远程把代理跑在 VPS 上，睡前派活、手机上看进度，适合一人公司夜间批量跑 SEO 页面生成。"
-    },
-    {
-     "area": "做产品卖订阅",
-     "how": "一个代理修 bug、一个写新功能、一个补测试，一个人像小团队一样推进单功能 SaaS。"
+     "area": "SEO",
+     "how": "SSH 连 VPS，睡前派活批量生成页面，手机上看进度。"
     }
    ],
-   "setup": "部署难度 低，下载桌面端或 `brew install --cask stablyai/orca/orca`，需要已有的代理 CLI 订阅",
+   "setup": "部署难度 低，下载桌面端或 `brew install --cask stablyai/orca/orca`，需已有代理 CLI 订阅",
    "safety": "黄",
-   "safety_note": "结论：能让代理操作桌面和终端，权限比单个 CLI 大，用前要收紧。依据：README 提到 Computer Use 可让代理操作桌面应用，账号切换器会保存多个登录态，手机配对走中继服务，另有匿名使用统计，页面没说明凭证存储和中继加密细节。\n防范：先在不含生产密钥的机器或独立系统用户里运行；不开 Computer Use 除非必要；按文档关闭遥测；只给代理访问测试仓库。",
-   "risk_brief": "代理权限集中，凭证存储与中继细节未说明",
-   "id": "G01",
+   "safety_note": "代理权限集中，凭证存储和中继加密细节未说明。README 提到 Computer Use 和多账号登录态，另有匿名统计。\n防范：用不含生产密钥的机器；非必要不开 Computer Use；只给测试仓库。",
+   "risk_brief": "代理权限集中，凭证存储细节未说明",
    "images": [
-    "https://raw.githubusercontent.com/stablyai/orca/HEAD/docs/assets/readme-hero.jpg",
-    "https://raw.githubusercontent.com/stablyai/orca/HEAD/docs/assets/feature-wall/mobile-companion-app-showcase.jpg",
-    "https://raw.githubusercontent.com/stablyai/orca/HEAD/docs/site/public/docs/posters/tab-split.jpg",
-    "https://raw.githubusercontent.com/stablyai/orca/HEAD/resources/onboarding/feature-wall/tile-02.poster.jpg"
-   ]
+    "https://raw.githubusercontent.com/stablyai/orca/HEAD/docs/assets/readme-hero.jpg"
+   ],
+   "id": "G01"
   },
   {
    "repo": "krillinai/OpenCreator",
    "url": "https://github.com/krillinai/OpenCreator",
+   "group": "大家都在用",
+   "why_today": "今日 +239 星",
    "stars_today": 239,
    "stars_total": 13507,
    "license": "Apache-2.0",
@@ -206,178 +128,93 @@
     "设计与视频",
     "外贸"
    ],
-   "brief": "开源创作者工作台：视频翻译、配音、成片一站式",
-   "what": "原 KrillinAI，现基于 Codex 做成开源 AI 创作工作区：下载 10 个平台的视频、翻译字幕、配音、生成图像视频和文章脚本，带项目、后台任务、审批、Skills 和 MCP。提供 macOS/Windows 安装包，也可源码跑 Web 版（Node 22+、pnpm）。",
+   "brief": "开源创作工作台：视频翻译、配音、成片",
+   "what": "原 KrillinAI，现基于 Codex：下载 10 个平台视频、翻译字幕、配音、生成图像视频和脚本，带 Skills 和 MCP。有桌面安装包，也可源码跑 Web 版。",
    "uses": [
     {
      "area": "自媒体",
-     "how": "把英文爆款短视频翻译配音成中文（或反向），发到小红书/抖音/YouTube 多语言账号，一个人跑 5–10 个账号。"
+     "how": "把英文爆款短视频翻译配音成中文，发到小红书、抖音多个账号。"
     },
     {
      "area": "外贸",
-     "how": "把工厂介绍视频做成多语种字幕版，给不同国家的买家发开发信时附上，省掉找外包剪辑的钱。"
-    },
-    {
-     "area": "在线培训",
-     "how": "把自己的课程录屏批量翻译成英文和西语版本，在海外平台卖。"
+     "how": "把工厂介绍视频做成多语种字幕版，开发信里附上，省外包剪辑费。"
     }
    ],
-   "setup": "部署难度 中，需要 Codex 登录或模型 API Key，另配图像/语音/转写服务的 Key",
+   "setup": "部署难度 中，需要 Codex 登录或模型 API Key，另配图像、语音、转写服务的 Key",
    "safety": "黄",
-   "safety_note": "结论：要接入多个服务密钥和平台 Cookie，注意泄露与账号风险。依据：页面称守护进程只监听本机并需要 Bearer 令牌、凭证放系统凭据库、日志脱敏；但视频下载可能需要平台 Cookie，全局 Skills/MCP 配置会改动 Codex 主目录，未提第三方安全审计。\n防范：用单独的 `CODEX_HOME` 和小额度 API Key；Cookie 用小号；下载他人视频搬运前确认平台和版权规则。",
-   "risk_brief": "要放 Cookie 和多个 Key，搬运有版权与限流风险",
-   "id": "G02",
+   "safety_note": "要放多个服务密钥和平台 Cookie。页面称守护进程只监听本机、凭证入系统凭据库，但全局 Skills/MCP 配置会改动 Codex 主目录。\n防范：用单独的 `CODEX_HOME` 和小额度 Key；Cookie 用小号；搬运前确认版权。",
+   "risk_brief": "要放 Cookie 和多个 Key，搬运有版权风险",
    "images": [
-    "https://raw.githubusercontent.com/krillinai/OpenCreator/HEAD/docs/images/opencreator-home-en.png",
-    "https://raw.githubusercontent.com/krillinai/OpenCreator/HEAD/docs/images/product/opencreator-dashboard-en.png",
-    "https://raw.githubusercontent.com/krillinai/OpenCreator/HEAD/docs/images/product/creation-templates-detail-apex-summit-en.png",
-    "https://raw.githubusercontent.com/krillinai/OpenCreator/HEAD/docs/images/examples/opencreator-auto-clips-en.png"
-   ]
-  },
-  {
-   "repo": "earthtojake/text-to-cad",
-   "url": "https://github.com/earthtojake/text-to-cad",
-   "stars_today": 290,
-   "stars_total": 20987,
-   "license": "MIT",
-   "tags": [
-    "电商",
-    "设计与视频",
-    "其他"
+    "https://raw.githubusercontent.com/krillinai/OpenCreator/HEAD/docs/images/opencreator-home-en.png"
    ],
-   "brief": "让代理用文字生成 CAD 模型，可导出 STEP/STL/3MF",
-   "what": "给 Claude Code、Codex 等代理装上 CAD 能力：生成 STEP、GLB、STL、3MF，做可制造性检查、出工程图，并连接 3D 打印、钣金、CNC 加工服务。通过 Claude Code 插件市场或 `npx skills add earthtojake/text-to-cad#latest` 安装。",
-   "uses": [
-    {
-     "area": "电商",
-     "how": "用文字描述做手机支架、收纳件等小件模型，3D 打印按需生产后在 Etsy 或独立站卖，不用囤库存。"
-    },
-    {
-     "area": "产品服务",
-     "how": "给海外买家出定制夹具或外壳的初版模型和图纸，再转给工厂报价。"
-    },
-    {
-     "area": "生活便利",
-     "how": "家里的替换零件、整理小件直接让代理建模再打印。"
-    }
-   ],
-   "setup": "部署难度 中，需要 `uv`，首次运行下载 CAD 运行时；Windows 11 的 Smart App Control 会拦截，需在 WSL 里跑",
-   "safety": "黄",
-   "safety_note": "结论：默认开遥测和每日更新检查，需手动关闭。依据：README 称会用随机安装 ID 上报使用统计和崩溃，服务端按 IP 记国家，不传文件名、路径和提示词；每天访问 `api.texttocad.dev` 做更新检查；Gemini/Grok 的安装命令带 `--auto-update`、`--consent`、`--trust`，会跳过审查。\n防范：运行 `uvx cadgen telemetry off` 并设 `CADGEN_UPDATE_CHECK=0`；不要照抄带 `--trust`、`--auto-update` 的命令；让代理生成的 Python 先看过再运行。",
-   "risk_brief": "默认上报遥测，部分安装命令跳过审查",
-   "id": "G03"
+   "id": "G02"
   },
   {
    "repo": "Fission-AI/OpenSpec",
    "url": "https://github.com/Fission-AI/OpenSpec",
+   "group": "大家都在用",
+   "why_today": "今日 +122 星",
    "stars_today": 122,
    "stars_total": 72167,
    "license": "MIT",
    "tags": [
-    "开发建站",
+    "做产品",
     "Agent 与自动化"
    ],
-   "brief": "先对齐规格再写代码，30+ 编码代理通用",
-   "what": "规格驱动开发框架：每个改动一个文件夹，含提案、规格、设计和任务，用 `/opsx:propose` 等斜杠命令让人和代理先对齐再动手。Node.js 20.19+，`npm install -g @fission-ai/openspec@latest` 后在项目里 `openspec init`。",
+   "brief": "先对齐规格再写代码，30+ 代理通用",
+   "what": "规格驱动开发框架：每个改动一个文件夹，含提案、规格、设计和任务，用 `/opsx:propose` 让人和代理先对齐再动手。Node.js 20.19+。",
    "uses": [
     {
-     "area": "开发建站",
-     "how": "接外包小改动前，先让代理出提案和任务清单发给客户确认，再开工，减少返工和扯皮。"
+     "area": "做产品",
+     "how": "单功能 SaaS 每次迭代留成规格文档，一个人长期维护也接得上。"
     },
     {
-     "area": "做产品卖订阅",
-     "how": "把单功能 SaaS 的每次迭代都留成规格文档，长期自己一个人维护也能接上思路。"
-    },
-    {
-     "area": "Agent 与自动化",
-     "how": "同一份规格让 Claude Code 和 Codex 分别实现再对比，挑更好的。"
+     "area": "SEO",
+     "how": "接建站小单子前，先让代理出提案和任务清单给客户确认，再开工。"
     }
    ],
-   "setup": "部署难度 低，Node.js 20.19+，`npm install -g @fission-ai/openspec@latest`",
-   "safety": "黄",
-   "safety_note": "结论：风险不高，主要是默认遥测和未锁版本。依据：页面称默认收集命令名和版本；`@latest` 全局安装会拉取最新版；社区 schema 来自独立仓库，页面未说明审核方式。\n防范：用 `openspec config set telemetry.enabled false` 或设 `OPENSPEC_TELEMETRY=0` 关遥测；生产环境固定版本号；不要装来路不明的社区 schema。",
-   "risk_brief": "默认遥测，社区 schema 未经审核",
-   "id": "G04",
+   "setup": "部署难度 低，`npm install -g @fission-ai/openspec@latest`，项目里 `openspec init`",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
    "images": [
     "https://raw.githubusercontent.com/Fission-AI/OpenSpec/HEAD/assets/openspec_dashboard.png"
-   ]
-  },
-  {
-   "repo": "google/artemis",
-   "url": "https://github.com/google/artemis",
-   "stars_today": 226,
-   "stars_total": 12043,
-   "license": "Apache-2.0",
-   "tags": [
-    "Agent 与自动化",
-    "电商",
-    "个人办公"
    ],
-   "brief": "谷歌开源：用自然语言驱动安卓手机自动化",
-   "what": "把自然语言指令变成可靠的安卓自动化，提供网页控制台、CLI、MCP 服务和 Python SDK，可接 Antigravity、Codex、Claude Code。README 称在 AndroidWorld 基准上成功率 **99% 以上**。`git clone` 后运行 `./start.sh`，需要开了 USB 调试的真机或模拟器（Python 3.12+）。",
-   "uses": [
-    {
-     "area": "电商",
-     "how": "用一台闲置安卓机自动完成只有 App 端才有的重复操作，比如店铺后台巡检、价格截图。"
-    },
-    {
-     "area": "自媒体",
-     "how": "让代理按脚本在手机上批量发布、点赞回复评论，替代手动操作小号（先看平台规则，批量行为有封号风险）。"
-    },
-    {
-     "area": "App 测试",
-     "how": "给接外包的小 App 做端到端回归测试，自动抓日志和录屏。"
-    }
-   ],
-   "setup": "部署难度 中，需要安卓设备并开 USB 调试，启动脚本会装 ADB、scrcpy、FFmpeg、uv",
-   "safety": "黄",
-   "safety_note": "结论：会在手机里装无障碍服务并能看到屏幕，须隔离设备。依据：首次任务会安装 Artemis Accessibility Helper，页面称只在本机监听、不外发；MCP 客户端可控制设备并取 Logcat 和截图；SDK 示例通过 HTTP 连远程服务，页面未说明认证；发送给模型提供商的数据也未说明。\n防范：只用专门的测试机，不登录银行和主力账号；服务只绑 127.0.0.1 或放内网；用完 `uv run artemis helper uninstall`；设 `ARTEMIS_HELPER_AUTO_INSTALL=false` 可禁止自动装助手。",
-   "risk_brief": "手机无障碍权限、截图可能发给模型",
-   "id": "G05",
-   "images": [
-    "https://raw.githubusercontent.com/google/artemis/HEAD/docs/assets/workflow-1-prompt.png",
-    "https://raw.githubusercontent.com/google/artemis/HEAD/docs/assets/workflow-2-plan.png",
-    "https://raw.githubusercontent.com/google/artemis/HEAD/docs/assets/workflow-3-exec.png",
-    "https://raw.githubusercontent.com/google/artemis/HEAD/docs/assets/workflow-4-report.png"
-   ]
+   "id": "G03"
   },
   {
    "repo": "outcrawlai/scout",
    "url": "https://github.com/outcrawlai/scout",
+   "group": "刚冒出来",
+   "why_today": "建仓 4 天 894 星",
    "stars_today": null,
    "stars_total": 894,
    "license": "Apache-2.0",
    "tags": [
     "数据与研究",
     "Agent 与自动化",
-    "截流获客"
+    "外贸"
    ],
-   "brief": "开源浏览器代理：说一句任务，它自己点页面完成",
-   "what": "用自然语言描述任务，Scout 驱动真实浏览器读页面、点击、输入、滚动直到完成，返回答案或已找到的信息。可连 Outcrawl 云浏览器，也可用本地 Chrome（Node 22+，`npm i @outcrawl/scout`，自己配模型）。上线才几天（创建于 10 月 13 日），星数不高。",
+   "brief": "开源浏览器代理：说一句任务自己点页面",
+   "what": "用自然语言描述任务，Scout 驱动真实浏览器读页面、点击、输入直到完成。可连云浏览器或本地 Chrome（Node 22+），自己配模型。10 月 13 日创建。",
    "uses": [
     {
-     "area": "数据与研究",
-     "how": "定时让它到竞品官网查价格、上新，汇总成周报卖给小圈子，或给自己的选品做判断。"
-    },
-    {
-     "area": "截流获客",
-     "how": "在公开论坛、目录站按关键词找到有需求的帖子，整理成线索清单（只读，不要自动私信）。"
-    },
-    {
      "area": "外贸",
-     "how": "到海关数据或行业目录站批量查采购商公司信息，生成待开发客户表。"
+     "how": "到行业目录站批量查采购商公司信息，生成待开发客户表。"
+    },
+    {
+     "area": "SEO",
+     "how": "定时查竞品官网价格和上新，汇总成周报。"
     }
    ],
-   "setup": "部署难度 中，Node 22+，需设置 `SCOUT_BASE_URL`、`SCOUT_API_KEY`、`SCOUT_HANDS_MODEL`，用云浏览器还要 `OUTCRAWL_API_KEY`",
+   "setup": "部署难度 中，Node 22+，设 `SCOUT_BASE_URL`、`SCOUT_API_KEY`、`SCOUT_HANDS_MODEL`",
    "safety": "黄",
-   "safety_note": "结论：自主操作浏览器，遇到恶意页面可能被带偏，且项目很新。依据：README 说明点击、输入、提交表单不需逐步批准，可用 `caps` 限制步数、时长、预算；云端默认录屏，可能录到屏幕上的敏感信息；云浏览器带验证码识别和住宅 IP，会触碰目标网站条款。\n防范：用 `caps` 限步数和预算；只给专用小号，不登录主账号和支付页面；本地模式的 CDP 端口只绑 127.0.0.1；先跑低风险只读任务；使用前确认目标站点条款。",
+   "safety_note": "自主操作浏览器，易被恶意页面带偏，项目建仓才 4 天。点击、提交表单不需逐步批准，云端默认录屏。\n防范：用 `caps` 限步数和预算；只给专用小号；先跑只读任务；确认目标站条款。",
    "risk_brief": "自主点击提交，易被恶意页面诱导，项目很新",
-   "id": "G06",
    "images": [
-    "https://raw.githubusercontent.com/outcrawlai/scout/HEAD/.github/assets/figure-light.png",
-    "https://raw.githubusercontent.com/outcrawlai/scout/HEAD/.github/assets/banner-light.png",
-    "https://raw.githubusercontent.com/outcrawlai/scout/HEAD/.github/assets/demo-light.gif"
-   ]
+    "https://raw.githubusercontent.com/outcrawlai/scout/HEAD/.github/assets/banner-light.png"
+   ],
+   "id": "G04"
   }
  ],
  "skills": [
@@ -388,35 +225,28 @@
    "hot": "新晋热门",
    "stars_total": 165226,
    "installs": null,
-   "popularity_note": "2026 年 6 月 12 日创建，4 个月涨到 16.5 万星，10 月 16 日仍在提交；GitHub 上 `agent-skills` 话题热门项目。",
+   "popularity_note": "2026 年 6 月 12 日创建，4 个月涨到 **16.5 万星**，10 月 16 日仍在提交。",
    "works_with": "两者",
    "safety": "绿",
-   "safety_note": "已读 `skills/ponytail/SKILL.md`：纯 Markdown 行为指令（lite/full/ultra 三档），要求只做最小改动、改函数前查所有调用方、回复末尾说明跳过了什么；没有 shell 命令、外发请求、混淆内容，也不要 API Key。仓库另有 `hooks/` 和 `scripts/` 目录（Codex 需在 `/hooks` 里信任两个生命周期钩子），内容我没有逐个读到，作为插件安装前建议扫一眼。\n防范：只从 `DietrichGebert/ponytail` 安装（README 也这样提醒）；Codex 信任钩子前先看 `hooks/`。",
+   "safety_note": "",
    "risk_brief": "",
-   "brief": "让代理少写代码：最小改动、不加没要的功能",
-   "what": "一份提示词型 Skill，约束代理只做刚好解决问题的最小改动，不擅自加抽象和功能，并在回复末尾说明跳过了什么没检查。官方称不会砍掉校验、错误处理、安全和无障碍。Claude Code 里有成本、耗时、token 的本地面板，数据存在 `~/.config/ponytail/band/`。",
+   "brief": "让代理少写代码：最小改动",
+   "what": "提示词型 Skill，约束代理只做刚好解决问题的最小改动，不擅自加抽象，并在回复末尾说明跳过了什么。已读 SKILL.md：纯 Markdown，无 shell、外发请求，不要 Key。",
    "uses": [
     {
-     "area": "开发建站",
-     "how": "接外贸网站或小程序的修改单时，用它避免代理顺手“重构”一堆文件，diff 小，客户好验收。"
+     "area": "做产品",
+     "how": "单人维护的 SaaS 里限制代理发挥范围，diff 小，好验收。"
     },
     {
-     "area": "做产品卖订阅",
-     "how": "单人维护的 SaaS 里限制代理的发挥范围，降低引入 bug 的概率。"
-    },
-    {
-     "area": "省 token",
-     "how": "改动少，读写的上下文就少，长期跑代理可以省订阅额度。"
+     "area": "SEO",
+     "how": "改建站修改单时避免代理顺手重构一堆文件。"
     }
    ],
-   "install": "Claude Code：`/plugin marketplace add DietrichGebert/ponytail` 然后 `/plugin install ponytail@ponytail`；Codex：`codex plugin marketplace add DietrichGebert/ponytail` 然后 `codex plugin add ponytail@ponytail`",
-   "id": "S01",
+   "install": "Claude Code：`/plugin marketplace add DietrichGebert/ponytail` 然后 `/plugin install ponytail@ponytail`；Codex：`codex plugin marketplace add DietrichGebert/ponytail`",
    "images": [
-    "https://raw.githubusercontent.com/DietrichGebert/ponytail/HEAD/assets/v5/chart.png",
-    "https://raw.githubusercontent.com/DietrichGebert/ponytail/HEAD/assets/v5/tests.png",
-    "https://raw.githubusercontent.com/DietrichGebert/ponytail/HEAD/assets/v5/beforeafter.png",
-    "https://raw.githubusercontent.com/DietrichGebert/ponytail/HEAD/assets/v5/review.png"
-   ]
+    "https://raw.githubusercontent.com/DietrichGebert/ponytail/HEAD/assets/v5/chart.png"
+   ],
+   "id": "S01"
   },
   {
    "name": "pstack",
@@ -425,165 +255,35 @@
    "hot": "新晋热门",
    "stars_total": 2685,
    "installs": null,
-   "popularity_note": "Poteto（Cursor 工程师）10 月 15 日在 X 上推荐 pstack，帖子 **4635 赞**；这个多代理移植版 5 月创建，10 月 16 日仍在更新，已有 2685 星。",
+   "popularity_note": "Poteto（Cursor 工程师）10 月 15 日在 X 推荐原版，帖子 **4635 赞**；本移植版 10 月 16 日仍在更新。",
    "works_with": "两者",
    "safety": "黄",
-   "safety_note": "结论：会自动读写文件并驱动 git/gh，权限范围大于普通提示词 Skill。依据：已读 `poteto-mode/SKILL.md`，纯 Markdown、无混淆、不要 API Key，但它指挥代理运行 Node 校验脚本、`git`、`gh`（推分支、开 PR）、写 `.audit/` 决策记录、调用 MCP 更新工单或团队聊天；会装路由钩子（Codex 需在 `/hooks` 信任）。官方称无服务器、无遥测。\n防范：先在测试仓库试用；`gh` 登录用权限最小的令牌；不接入生产工单和聊天 MCP；Codex 信任钩子前读一遍 `plugins/pstack`。",
+   "safety_note": "会自动读写文件并驱动 git/gh，权限大于普通提示词 Skill。已读 SKILL.md：无混淆、不要 Key，但会推分支、开 PR、调用 MCP，并装路由钩子。\n防范：先在测试仓库试；`gh` 用最小权限令牌；不接生产 MCP。",
    "risk_brief": "会推分支、开 PR、调用 MCP，权限较大",
-   "brief": "一套严谨的自主工程工作流：规划、对战、群代理",
-   "what": "Poteto 个人使用的技能集，入口 `/poteto-mode` 把任务路由到调查、修 bug、做功能、重构、守 PR、发布等流程，规定子代理用什么模型、多大推理强度、何时自主；还有 `architect`、`arena`、`swarm`、`interrogate`、`unslop` 等技能。这个仓库是它在 Claude Code、Codex、Copilot CLI、Pi 等上的移植版。",
+   "brief": "严谨的自主工程工作流技能集",
+   "what": "入口 `/poteto-mode` 把任务路由到调查、修 bug、做功能、重构、守 PR 等流程，规定子代理用什么模型和推理强度；含 `swarm`、`interrogate`、`unslop` 等技能。",
    "uses": [
     {
-     "area": "开发建站",
-     "how": "接较大的建站或插件需求时，让 `swarm` 并行拆任务、`interrogate` 先追问需求，减少后期返工。"
-    },
-    {
-     "area": "做产品卖订阅",
-     "how": "把“发布、守 PR、修回归”做成固定流程，让单人维护的产品每周只花几小时。"
-    },
-    {
-     "area": "个人办公",
-     "how": "`unslop` 去掉代理输出的废话，让日常文档和邮件更短更直接。"
+     "area": "做产品",
+     "how": "把发布、守 PR、修回归做成固定流程，单人产品每周只花几小时。"
     }
    ],
-   "install": "Claude Code：`/plugin marketplace add michael-denyer/pstack-claude` 然后 `/plugin install pstack@pstack-claude`；Codex：`codex plugin marketplace add michael-denyer/pstack-claude` 然后 `codex plugin add pstack@pstack-claude`",
-   "id": "S02",
+   "install": "Claude Code：`/plugin marketplace add michael-denyer/pstack-claude` 然后 `/plugin install pstack@pstack-claude`",
    "images": [
     "https://raw.githubusercontent.com/michael-denyer/pstack-claude/HEAD/assets/pstack-overview.png"
-   ]
-  },
-  {
-   "name": "archify",
-   "url": "https://github.com/tt-a1i/archify",
-   "repo": "tt-a1i/archify",
-   "hot": "长期热门",
-   "stars_total": 84480,
-   "installs": null,
-   "popularity_note": "2026 年 4 月 15 日创建，现 8.4 万星，10 月 16 日仍有提交，今日在 `skill_repos` 榜单中。",
-   "works_with": "两者",
-   "safety": "黄",
-   "safety_note": "结论：整体风险低，但会运行随包 Node 脚本并有更新检查。依据：已读 `archify/SKILL.md`，它让代理运行 `bin/archify.mjs`（`finalize`、`validate`、`deliver`、`browser-check` 等），在工作目录建 `.archify/` 写 JSON 和 HTML；交付回执带有限的更新检查，查品牌标志时只在你给 URL 时才联网；无混淆，不要 API Key。\n防范：设 `ARCHIFY_UPDATE_CHECK_DISABLED=1` 关更新检查；首次先看一遍 `bin/archify.mjs`；输出 HTML 里的外链需联网，注意别放内部信息。",
-   "risk_brief": "会运行随包 Node 脚本，带更新检查",
-   "brief": "把想法或代码库变成可交互的架构图 HTML",
-   "what": "把需求、Mermaid 或真实代码库转成自包含的交互式 HTML 图，支持架构、流程、时序、数据流、ERD、类图、时间线等 10 种，也能画旅行计划、项目进度。适用于 Claude Code、Codex 等，输出带本地预览。",
-   "uses": [
-    {
-     "area": "在线培训",
-     "how": "为课程讲义自动画系统流程图和架构图，做成可交互页面，比截图更能卖上价。"
-    },
-    {
-     "area": "开发建站",
-     "how": "给客户交付网站或工具时，附一份自动生成的架构说明，减少后续答疑。"
-    },
-    {
-     "area": "自媒体",
-     "how": "每篇技术或流程类文章配一张干净的交互图，提升收藏转发。"
-    }
    ],
-   "install": "`npx skills add tt-a1i/archify -g`",
-   "id": "S03",
-   "images": [
-    "https://raw.githubusercontent.com/tt-a1i/archify/HEAD/docs/assets/archify-readme-hero.png",
-    "https://raw.githubusercontent.com/tt-a1i/archify/HEAD/docs/assets/archify-demo-reach.png",
-    "https://raw.githubusercontent.com/tt-a1i/archify/HEAD/docs/assets/archify-demo-route.png",
-    "https://raw.githubusercontent.com/tt-a1i/archify/HEAD/docs/assets/archify-demo-lens.png"
-   ]
+   "id": "S02"
   }
  ],
- "opportunities": [
-  {
-   "name": "抖音 AI 漫剧矩阵：小号追更短剧 + 工具/教程引流",
-   "category": "矩阵 AI 自媒体",
-   "one_liner": "用 AI 把爽文/虐文改成竖屏漫剧，多号发布，靠追更需求引到小说、会员或教程。",
-   "source": {
-    "title": "抖音「AI漫剧」搜索：粉丝 7082 的小号第 1 集 11.1 万赞",
-    "url": "https://www.douyin.com/video/7697010312663751163"
-   },
-   "automation": {
-    "acquisition": "每天发 1–2 集，每部剧固定 7–10 集一组，结尾留悬念，评论区置顶下一集合集；同时维护 3–5 个小号测不同题材（虐恋、爽文、宗门）。",
-    "production": "用 Claude Code 写分镜脚本，即梦/豆包出图、可灵或同类视频模型生成镜头，剪映模板配音配字幕；抖音教程里常见流程是“剧本分镜 + 人物一致性 + 视频生成 + 配音剪辑”。脚本用 Skill 固化格式，模板每部剧复用。",
-    "payment_support": "变现可选：挂小说授权的推广任务、橱窗带货、教程资料包（用 Stripe 或国内平台收款）。评论问“有没有原版小说”可以自动回复固定话术。",
-    "manual": "每周选题和审核成片约 3 小时；需要人工检查画面是否违规或涉及低俗内容，抽查数据，淘汰低表现的剧。",
-    "weekly_hours": 3
-   },
-   "market": {
-    "demand": "「第1集#ai漫剧」点赞 **11.1 万**、评论 4262、收藏 2.2 万，作者粉丝仅 7082（脚本标记为小号爆款）。评论原话：“怎么只有一集，大大快快更新，想看超级想看后续”（7 赞）、“有没有原版小说啊”（3 赞）。同一关键词下另有 2 万赞、1.9 万赞的小号爆款（粉丝 8640、4031）。",
-    "revenue_evidence": "素材里没有这些账号的收入数据，赚钱路径是推断。B站有「全50集 番茄+豆包+即梦+红果」从零学 AI 漫剧的教程（点赞 720、收藏 745），小红书也有“俩小时出一部 AI 短剧”的开源工具笔记，说明教程和工具有需求。",
-    "competition": "赛道已有粉丝 55 万的原创动画号，也有大量小号跟进；长文本一致性和画质是门槛，差异化靠选题和更新速度。",
-    "evidence_links": [
-     {
-      "title": "抖音：第1集#ai漫剧（11.1 万赞）",
-      "url": "https://www.douyin.com/video/7697010312663751163"
-     },
-     {
-      "title": "抖音：写作病娇…#ai漫剧（2.4 万赞，粉丝 8640）",
-      "url": "https://www.douyin.com/video/7696669983224417555"
-     },
-     {
-      "title": "抖音：AI漫剧制作教程（即梦+豆包+剪映）",
-      "url": "https://www.douyin.com/video/7697218988983586099"
-     },
-     {
-      "title": "B站：全50集 AI 漫剧制作教程",
-      "url": "https://www.bilibili.com/video/BV1Jspj66EhQ"
-     }
-    ]
-   },
-   "fit": {
-    "startup_cost_usd": 100,
-    "mvp_days": 10,
-    "services": "Claude Code 订阅（已有）、即梦/可灵点数约 50–80 美元、剪映会员、抖音账号 3–5 个",
-    "match": "和他做自媒体、批量内容的经验一致，用 Claude Code 写脚本和分镜自动化；不需要私人定制和咨询。",
-    "biggest_risk": "抖音对 AI 生成内容有标注要求，批量号和搬运会限流；改编他人小说有版权风险，要用公版或自己写的故事；画面一致性不好会掉播放。"
-   },
-   "verdict": "值得验证",
-   "id": "B01"
-  },
-  {
-   "name": "代理专用工具垂直站：给 Agent 用的发帖/邮件/手机号/浏览器服务",
-   "category": "API 服务",
-   "one_liner": "做一个单功能 API 或开源托管版，专门给代理调用，按用量收费。",
-   "source": {
-    "title": "Greg Isenberg：Postiz 达 27.5 万美元 MRR，代理用的工具在做垂直",
-    "url": "https://x.com/gregisenberg/status/2111176488162582933"
-   },
-   "automation": {
-    "acquisition": "在 GitHub 开源核心、在 X 和 Hacker News 发 Show HN，并上架各代理的插件市场（Claude Code、Codex 的 plugin marketplace）；SEO 写“让代理做 X”的教程页。",
-    "production": "选一个窄功能（如邮件收发、临时手机号、托管浏览器、发帖排期），用 Claude Code 写 API + MCP 服务，部署在 VPS，托管版用 Stripe 按量计费。",
-    "payment_support": "Stripe 订阅 + 用量计费，文档和 FAQ 用 AI 客服回答；异常账号自动封停。",
-    "manual": "每周处理滥用、看账单和安全告警约 3 小时；功能迭代每月集中一次。",
-    "weekly_hours": 3
-   },
-   "market": {
-    "demand": "Greg Isenberg 在帖子里称：Postiz 增长很快到 27.5 万美元 MRR，“代理用的发帖、邮件、支付、手机号、浏览这类工具正在做垂直”，并列出数据经纪、代理托管、算力转售几个同类方向。这是他的观察，推断为趋势信号。",
-    "revenue_evidence": "唯一的数字是帖子里提到的 Postiz **27.5 万美元 MRR**（作者转述，未验证）。我没有打开 Postiz 的收入页面。",
-    "competition": "已有 Postiz 等成熟项目，大厂也会做自家连接器；窄场景和本地化（国内平台、小语种）更有机会。",
-    "evidence_links": [
-     {
-      "title": "X：Greg Isenberg 关于代理工具垂直化",
-      "url": "https://x.com/gregisenberg/status/2111176488162582933"
-     }
-    ]
-   },
-   "fit": {
-    "startup_cost_usd": 100,
-    "mvp_days": 14,
-    "services": "VPS（约 10–20 美元/月）、域名、Stripe、Claude Code",
-    "match": "他有 VPS 和 API 自动化经验，能把现有工作流产品化，和外贸、SEO 内容的获客也能结合（教程站引流）。",
-    "biggest_risk": "单功能易被大厂或开源项目替代；账号注册、发邮件类服务容易被滥用，需要风控；平台对自动化账号有政策限制。"
-   },
-   "verdict": "放进观察",
-   "id": "B02"
-  }
- ],
+ "opportunities": [],
  "trends": [
   {
-   "topic": "抖音 AI 漫剧：小号单集 11 万赞，评论求更新",
+   "topic": "抖音 AI 漫剧：约 1 万粉小号单集 12.7 万赞，评论求更新",
    "brief": "AI 漫剧小号爆款，追更和找原著需求强",
    "signal": "爆款形式",
+   "track": "AI短视频",
    "platforms": [
     "抖音",
-    "小红书",
     "B站"
    ],
    "evidence": [
@@ -591,103 +291,43 @@
      "platform": "抖音",
      "title": "第1集#ai漫剧",
      "url": "https://www.douyin.com/video/7697010312663751163",
-     "metrics": "点赞 11.2万 · 收藏 2.2万 · 评论 4262 · 粉丝 7082"
+     "metrics": "点赞 12.7万 · 收藏 2.4万 · 评论 4417 · 粉丝 1.0万"
     },
     {
      "platform": "抖音",
      "title": "写作病娇，和榜一大姐奔现…#ai漫剧",
      "url": "https://www.douyin.com/video/7696669983224417555",
-     "metrics": "点赞 2.4万 · 收藏 1.6万 · 粉丝 8640"
+     "metrics": "点赞 2.9万 · 收藏 2.1万 · 粉丝 1.0万"
     },
     {
      "platform": "B站",
-     "title": "【全50集】“番茄+豆包+即梦+红果”从零学 AI 漫剧制作",
+     "title": "【全50集】番茄+豆包+即梦+红果从零学 AI 漫剧制作",
      "url": "https://www.bilibili.com/video/BV1Jspj66EhQ",
-     "metrics": "点赞 720 · 收藏 745 · 播放 6851"
+     "metrics": "点赞 772 · 收藏 798 · 播放 6902"
     }
    ],
    "quotes": [
     {
      "platform": "抖音",
-     "text": "有没有原版小说啊",
-     "likes": 3
+     "text": "哦nonono怎么只有一集，大大快快更新，想看超级想看后续",
+     "likes": 7
     },
     {
      "platform": "抖音",
-     "text": "哦nonono怎么只有一集，大大快快更新，想看超级想看后续",
-     "likes": 7
+     "text": "有没有原版小说啊",
+     "likes": 3
     }
    ],
-   "why": "同一关键词下有**三条小号爆款**（粉丝 4031–8640），说明靠题材和剧情钩子起量，不靠粉丝；B站的教程收藏率 **1.03**，说明学做漫剧的人也在增长，抖音、B站、小红书同时出现。",
-   "how": "第一步：选一个爽文或虐恋题材，写 7 集的分镜脚本（Claude Code 生成），用即梦出图、剪映成片；发 3 个小号，各测一种题材，一周后砍掉播放最低的。同时把“制作流程 + 模板”做成资料包，在评论区引流。",
-   "risk": "抖音对 AI 内容有标注要求，批量号易限流；改编他人小说有版权风险；情节和画面要避开低俗与违规内容。",
+   "why": "两个粉丝仅约 1 万的号都破 **2 万赞**，靠题材和钩子起量；B站教程收藏率 **1.03**，学做的人也在增长，抖音和 B站同时出现。",
+   "how": "第一步：选爽文或虐恋题材，用 Claude Code 写 7 集分镜，即梦出图、剪映成片，发 3 个小号各测一种题材，一周后砍掉播放最低的。",
+   "risk": "抖音对 AI 内容有标注要求，批量号易限流；改编他人小说有版权风险，要用自己写的故事。",
    "id": "P01"
   },
   {
-   "topic": "TikTok：AI 儿童 faceless 频道的做法被拆开讲",
-   "brief": "教你做 AI 儿童频道的视频，收藏近 5500",
-   "signal": "需求信号",
-   "platforms": [
-    "TikTok",
-    "YouTube"
-   ],
-   "evidence": [
-    {
-     "platform": "TikTok",
-     "title": "Here's exactly how these AI kids channels are doing it",
-     "url": "https://www.tiktok.com/@tools_with_valery/video/7695249818322554130",
-     "metrics": "点赞 5698 · 收藏 5455 · 播放 13.5万 · 粉丝 3.0万"
-    },
-    {
-     "platform": "TikTok",
-     "title": "I’am starting a faceless clipping page from 0 using only AI",
-     "url": "https://www.tiktok.com/@faceless.inc.proj/video/7694966535063964950",
-     "metrics": "点赞 2602 · 收藏 1709 · 播放 5.4万 · 粉丝 18.3万"
-    },
-    {
-     "platform": "TikTok",
-     "title": "Welcome to my secret project.（faceless channel）",
-     "url": "https://www.tiktok.com/@bluecollarwifebudgets/video/7695501656326212878",
-     "metrics": "点赞 5818 · 收藏 883 · 播放 19.2万 · 粉丝 2094"
-    }
-   ],
-   "quotes": [],
-   "why": "收藏率 **0.96**，说明大家想存下来照着做；小号 `bluecollarwifebudgets`（粉丝 2094）拿到 19 万播放，证明新号也能起量。",
-   "how": "做“教程 + 模板”：先拆 2–3 个儿童频道的结构，用 Claude Code 写脚本，配音工具出声音，剪辑模板固化，发 YouTube Shorts 和 TikTok 双平台，再把脚本模板做成数字产品卖。",
-   "risk": "平台对 AI 生成儿童内容有审核，被判低质量或未标注 AI 会限流甚至封号；涉及儿童内容要格外谨慎。",
-   "id": "P02"
-  },
-  {
-   "topic": "小红书「一人公司」AI 工具清单：收藏是点赞的两倍",
-   "brief": "一人公司 AI 工具清单笔记，收藏 1.6 万",
-   "signal": "需求信号",
-   "platforms": [
-    "小红书"
-   ],
-   "evidence": [
-    {
-     "platform": "小红书",
-     "title": "一人公司必备的超强AI工具",
-     "url": "https://www.xiaohongshu.com/explore/6aca1875000000000a020d6e",
-     "metrics": "点赞 7594 · 收藏 1.6万 · 评论 143"
-    },
-    {
-     "platform": "小红书",
-     "title": "1分钟教会你用AI做好物图文博主（喂饭版）",
-     "url": "https://www.xiaohongshu.com/explore/6ac9fa3e000000000a01facd",
-     "metrics": "点赞 1040 · 收藏 888 · 评论 15"
-    }
-   ],
-   "quotes": [],
-   "why": "收藏率 **2.08**、**0.85**，远高于小红书 0.5 的阈值，说明清单和喂饭教程有人存；昨天同类笔记也出现过，这个方向热度还在。",
-   "how": "做“AI 工具清单 + 工作流模板”系列笔记，每篇一个场景（做好物图文、写作变现、接单），用 Claude Code 批量出文案，配图用模板；评论区引到资料包。",
-   "risk": "小红书对 AI 内容有标注要求，搬运和诱导私信会限流；清单里的工具要自己试过，避免夸大收入。",
-   "id": "P03"
-  },
-  {
-   "topic": "X：用 Claude Code 把团队级 AI 工作流单人做出来",
-   "brief": "Opus 写计划脚本，廉价代理群执行",
+   "topic": "X：Opus 写计划脚本，廉价代理群去执行",
+   "brief": "强模型出计划、便宜模型批量跑",
    "signal": "使用技巧",
+   "track": "代理工具链",
    "platforms": [
     "X"
    ],
@@ -706,24 +346,15 @@
     }
    ],
    "quotes": [],
-   "why": "两条帖子都是把“强模型出计划、便宜模型跑执行”的做法产品化，国内也有 HiTw93 分享的多账号分工用法（点赞 561），国内外同步出现。",
-   "how": "他可以让 Opus 写“批量生成 SEO 页面”的脚本，再让便宜模型批量跑：第一步在一个小站点上试，对比 Opus 全程执行的 token 成本。",
-   "risk": "账号共享、中转站、改请求指纹这类做法违反服务条款，有封号风险，不建议。",
-   "id": "P04"
+   "why": "两条帖子都在把“强模型出计划、便宜模型跑执行”产品化，国内 HiTw93 分享的多账号分工用法（点赞 561）也同步出现。",
+   "how": "让 Opus 写“批量生成 SEO 页面”的脚本，再让便宜模型批量跑：先在一个小站上试，对比 Opus 全程执行的 token 成本。",
+   "risk": "账号共享、中转站、改请求指纹违反服务条款，有封号风险，不建议。",
+   "id": "P02"
   }
  ],
- "actions": [
-  {
-   "minutes": 5,
-   "text": "把 `ponytail` 装进 Claude Code，下个小改动对比一下 diff 是不是更小。"
-  },
-  {
-   "minutes": 15,
-   "text": "下载 `stablyai/orca`，在**不含生产密钥**的测试仓库里同时开两个代理，试试并行改两个页面。"
-  },
-  {
-   "minutes": 30,
-   "text": "照抖音 AI 漫剧的做法，用 Claude Code 写一部 **7 集**的分镜脚本，用即梦出第 1 集样片，看是否值得开小号测试。"
-  }
+ "followups": [],
+ "watch_next": [
+  "AI漫剧 原著小说",
+  "即梦"
  ]
 }
