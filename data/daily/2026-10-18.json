@@ -1,0 +1,496 @@
+{
+ "date": "2026-10-18",
+ "generated_at": "2026-10-18T06:30:00+08:00",
+ "headline": [
+  "DeepSeek 发布开源的 V4.1-Flash-1017，同类任务输出更短更省钱；官方同时宣布搜索/抓取 API **每千次 0.75 美元，10 月 31 日 16:00 UTC 起收费**。",
+  "抖音 AI 漫剧再出三条小号爆款（粉丝不到 6000，最高 **2.66 万赞**），小红书同时有人在卖 SOP，AI 漫剧在国内是持续升温的形式。",
+  "今天先花 15 分钟把一个现有脚本的模型名换成 `deepseek-flash`，对比 token 用量和结果，再决定要不要换主力模型。"
+ ],
+ "stats": {
+  "scanned": 833,
+  "selected": 19,
+  "chars": 3641,
+  "read_minutes": 8
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "把 VPS 上一个现有脚本的模型名换成 `deepseek-flash`（官方说调用方式不变），同一批任务跑两遍，记下 token 数和结果差异；顺便记下搜索 API 10 月 31 日起收费。"
+  },
+  {
+   "minutes": 5,
+   "text": "如果你用过 OpenCode Console 并绑定了 OpenAI / Anthropic / Google 密钥：查邮箱有没有官方通知，没绑过就跳过；绑过的去各家后台轮换密钥、看余额。"
+  },
+  {
+   "minutes": 30,
+   "text": "打开本页「玩法风向」里的三条抖音 AI 漫剧小号视频，逐条记下：开头 3 秒怎么抓人、单集多长、评论怎么引导追更，存成一份拆解笔记。"
+  }
+ ],
+ "news": [
+  {
+   "title": "DeepSeek 发布开源 V4.1-Flash-1017：任务更快、输出更短；搜索/抓取 API 每千次 0.75 美元，10 月 31 日起收费",
+   "url": "https://api-docs.deepseek.com/news/news261017",
+   "source": "DeepSeek",
+   "source_type": "官方",
+   "published": "2026-10-17",
+   "tier": "影响你的",
+   "for_me": "`deepseek-flash` 已自动指向新版；想用它的搜索 API 的脚本，10 月 31 日后会计费。",
+   "summary": "官方称基准更高、完成更快、输出更短；权重已上 Hugging Face。搜索与抓取 API **每个端点 0.75 美元/千次**，Claude Code、Codex 里的服务端工具调用暂免费。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "代理工具更新：Codex 通过复用子代理上下文、延长缓存提高有效额度；Codex CLI 0.164.0 预发布版持续推出",
+   "url": "https://x.com/thsottiaux/status/2111244596131111253",
+   "source": "Codex 团队（X）",
+   "source_type": "X",
+   "published": "2026-10-16",
+   "tier": "影响你的",
+   "for_me": "同样的订阅能多跑一些任务，长任务可以放心拆给子代理。",
+   "summary": "Codex 和 Work 改进：子代理间复用上下文、上下文缓存更久、请求路由更好，**有效用量提高**；次日又重置了一次限额。",
+   "track": "代理工具链",
+   "id": "N02"
+  },
+  {
+   "title": "OpenCode 称遭“大规模蒸馏攻击”，1.4% 的 Console 用户受影响，部分用户 OpenAI、Anthropic、Google 余额被刷空",
+   "url": "https://x.com/testingcatalog/status/2111536604351246541",
+   "source": "TestingCatalog（X）",
+   "source_type": "X",
+   "published": "2026-10-17",
+   "tier": "影响你的",
+   "for_me": "绑过外部密钥的先轮换密钥；没收到官方邮件就是没受影响。",
+   "summary": "OpenCode 官方声明：受影响的是 Console 里绑定了外部服务商的**一部分用户**，已在 10 月 17 日上午给他们发邮件；详情以官方声明为准。",
+   "id": "N03"
+  },
+  {
+   "title": "Replit 称将 OpenAI 设为 Replit Agent 默认模型，取代 Anthropic，Claude 仍可选",
+   "url": "https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-17",
+   "tier": "行业动态",
+   "summary": "CEO 称成本、合作与性能是原因，用内部基准做判断；知情人对合作状态说法不一，Anthropic 模型对用户仍可选。",
+   "id": "N04"
+  },
+  {
+   "title": "Vercel：新模型 Jev 两周内被 35% 付费 AI 网关团队使用，是 Vercel 增长最快的模型",
+   "url": "https://techcrunch.com/2026/10/16/jev-is-vercels-fastest-adopted-ai-model-ever/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-16",
+   "tier": "行业动态",
+   "summary": "Jev 是 TypeSafe AI 的轻量“决策模型”，用来在少量预设输出里选一个，适合大批量分类；数据只来自 Vercel 网关，可能低估 OpenAI 和 Anthropic 直连用量。",
+   "id": "N05"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "every-app/open-seo",
+   "url": "https://github.com/every-app/open-seo",
+   "group": "大家都在用",
+   "why_today": "总星 2.4 万，10 月 14 日仍有提交",
+   "stars_today": null,
+   "stars_total": 23916,
+   "license": "MIT",
+   "tags": [
+    "SEO",
+    "Agent 与自动化"
+   ],
+   "brief": "开源 Semrush/Ahrefs 替代品",
+   "what": "关键词研究、排名追踪、竞品、反链、站点审计和 AI 可见度，自带 MCP 服务和 Agent skills。可用 Docker 或 Cloudflare 免费档部署。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "自托管后让 Claude Code 通过 MCP 直接查词和审计，替掉每月几十美元的 SEO 工具"
+    },
+    {
+     "area": "做产品",
+     "how": "给客户做关键词调研报告，数据按量付给 DataForSEO"
+    }
+   ],
+   "setup": "部署难度 中，需要 DataForSEO API Key，Cloudflare 或 Docker",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G01",
+   "images": [
+    "https://github.com/user-attachments/assets/8ebdc439-3e72-41ab-8bde-8cda771ef2e8"
+   ]
+  },
+  {
+   "repo": "ethanplusai/harvey",
+   "url": "https://github.com/ethanplusai/harvey",
+   "group": "大家都在用",
+   "why_today": "总星 1,236，10 月 15 日有提交",
+   "stars_today": null,
+   "stars_total": 1236,
+   "license": "MIT",
+   "tags": [
+    "外贸",
+    "Agent 与自动化"
+   ],
+   "brief": "用 Claude Code 或 Codex 跑的开发信代理",
+   "what": "自动找潜在客户、写开发信、发信、读回复、推进约会。每封信默认先进待审箱，发信前有规则闸门，有日发送上限和暂停开关。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "按产品网站训练后，批量找海外买家写开发信，你只审批"
+    },
+    {
+     "area": "做产品",
+     "how": "给小商家做“自动开发客户”的托管服务"
+    }
+   ],
+   "setup": "部署难度 中，需要 Python 3.11、邮箱授权、副域名",
+   "safety": "黄",
+   "safety_note": "它会拿到邮箱的收发权限，并能代你对外发信。依据：README 要求配置 Gmail、Microsoft 365 或 SMTP 凭证并存在本地 `.env`。防范：用独立副域名和专用邮箱，保持默认的人工审批，先预热 2–4 周再放量。",
+   "risk_brief": "拿邮箱收发权限，会对外发信",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/ethanplusai/harvey/HEAD/docs/dashboard.gif"
+   ]
+  },
+  {
+   "repo": "Mahanaicoach/google-maps-scraper-kit",
+   "url": "https://github.com/Mahanaicoach/google-maps-scraper-kit",
+   "group": "大家都在用",
+   "why_today": "总星 1,533，外贸线索类",
+   "stars_today": null,
+   "stars_total": 1533,
+   "license": "MIT",
+   "tags": [
+    "外贸",
+    "数据与研究"
+   ],
+   "brief": "本地跑的谷歌地图商家线索抓取",
+   "what": "Docker 里跑无头浏览器，抓商家名、电话、邮箱、网站、评分，可选社交账号，导出 CSV；带 Claude Code skill，不要 Google API Key。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "按“城市+行业”抓海外经销商名单，做开发信名单"
+    },
+    {
+     "area": "做产品",
+     "how": "卖按行业整理好的线索名单给小团队"
+    }
+   ],
+   "setup": "部署难度 低，需要 Docker",
+   "safety": "黄",
+   "safety_note": "它是爬虫，并会访问商家网站取邮箱。依据：README 自己写明抓谷歌地图违反谷歌服务条款，量大可能被限 IP。防范：一次只跑一个任务，小批量，使用前核对线索，发信遵守 GDPR、CAN-SPAM。",
+   "risk_brief": "爬虫，违反谷歌地图条款",
+   "id": "G03"
+  },
+  {
+   "repo": "threerocks/sweety-handdraw-video",
+   "url": "https://github.com/threerocks/sweety-handdraw-video",
+   "group": "刚冒出来",
+   "why_today": "建仓 6 天 669 星",
+   "stars_today": null,
+   "stars_total": 669,
+   "license": "MIT",
+   "tags": [
+    "自媒体",
+    "设计与视频"
+   ],
+   "brief": "从主题或文章生成手绘讲解视频",
+   "what": "代理写旁白、分镜、生成插图，本地工具逐笔描线、手写文字、对齐配音并导出 1080p 视频、封面和字幕。仅支持 macOS 和 Linux。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "把一篇文章变成手绘讲解短视频，批量做无脸账号"
+    },
+    {
+     "area": "做产品",
+     "how": "给培训机构做“文章转讲解视频”的代做服务"
+    }
+   ],
+   "setup": "部署难度 中，需要 FFmpeg、Python、配音方案和出图能力",
+   "safety": "黄",
+   "safety_note": "建仓仅 6 天，且需要允许代理在本机运行 shell。依据：安装脚本会下载包和素材，作者称 Claude Code 流程尚未完整端到端测试。防范：先读 `scripts/setup.sh` 再运行，在独立目录里试，密钥只放环境变量。",
+   "risk_brief": "新仓库，需放开本机 shell",
+   "id": "G04",
+   "images": [
+    "https://raw.githubusercontent.com/threerocks/sweety-handdraw-video/HEAD/docs/media/snake-drawing.webp",
+    "https://raw.githubusercontent.com/threerocks/sweety-handdraw-video/HEAD/docs/media/wolf-drawing.webp",
+    "https://raw.githubusercontent.com/threerocks/sweety-handdraw-video/HEAD/docs/media/hand-presets.jpg",
+    "https://raw.githubusercontent.com/threerocks/sweety-handdraw-video/HEAD/docs/media/snake-cover.jpg"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "caveman",
+   "url": "https://skills.sh/juliusbrussee/caveman/caveman",
+   "repo": "juliusbrussee/caveman",
+   "hot": "长期热门",
+   "stars_total": 113000,
+   "installs": 578700,
+   "popularity_note": "skills.sh 总榜第 39 位，安装 57.87 万；GitHub 约 11.3 万星（skills.sh 页面，10 月 18 日）",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "让代理用极简语言回复，省输出 token",
+   "what": "常驻的回复风格：先答案后原因，去掉寒暄和复述，代码、命令、数字原样保留；遇到安全警告和不可逆操作时自动恢复正常。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "跑长任务时压低输出 token，缩短账单"
+    },
+    {
+     "area": "自媒体",
+     "how": "批量生成脚本时让代理少说废话，直接给成稿"
+    }
+   ],
+   "install": "npx skills add https://github.com/juliusbrussee/caveman --skill caveman",
+   "id": "S01",
+   "images": [
+    "https://raw.githubusercontent.com/juliusbrussee/caveman/HEAD/docs/assets/learn-report.png",
+    "https://img.youtube.com/vi/L29q2LRiMRc/hqdefault.jpg"
+   ]
+  },
+  {
+   "name": "remotion-best-practices",
+   "url": "https://skills.sh/remotion-dev/skills/remotion-best-practices",
+   "repo": "remotion-dev/skills",
+   "hot": "长期热门",
+   "stars_total": 5200,
+   "installs": 634300,
+   "popularity_note": "skills.sh 总榜第 34 位，安装 63.43 万；GitHub 约 5.2k 星（skills.sh 页面，10 月 18 日）",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "教代理用 React 做程序化视频",
+   "what": "Remotion 的路由式 skill：先开本地预览再改，不主动渲染；涵盖动画、字幕、音频、FFmpeg 操作、图表等 30 多个规则文件。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "用代码批量出数据解读短视频，换文案就出新片"
+    },
+    {
+     "area": "做产品",
+     "how": "做“模板化短视频生成”的单功能工具"
+    }
+   ],
+   "install": "npx skills add https://github.com/remotion-dev/skills --skill remotion-best-practices",
+   "id": "S02"
+  },
+  {
+   "name": "ScrapeCreators 社媒研究 skills",
+   "url": "https://github.com/ScrapeCreators/social-media-research-skills",
+   "repo": "ScrapeCreators/social-media-research-skills",
+   "hot": "新晋热门",
+   "stars_total": 4030,
+   "installs": null,
+   "popularity_note": "GitHub 4,030 星，10 月 18 日趋势榜今日 +140 星",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "黄",
+   "safety_note": "它会拿到 API Key 并联网取数。依据：outlier-post-finder 要 `SCRAPECREATORS_API_KEY`，授予 Bash、Write、WebFetch 权限，我没看到仓库根目录 `scripts` 文件夹的内容。防范：给它单独的限额 Key，先在空目录里试，读一遍 `scripts` 再决定。",
+   "risk_brief": "要付费 API Key，授予 Bash 权限",
+   "brief": "跨平台爆款帖和评论挖掘",
+   "what": "13 个 skill：找超出账号基线的爆款帖、评论挖掘、竞品拆解、广告库、趋势发现、选题复用，覆盖 TikTok、YouTube、X 等。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "每周找小号爆款帖，拆开头和结构，作为选题库"
+    },
+    {
+     "area": "外贸",
+     "how": "挖海外竞品账号评论里的真实需求，改写成产品卖点"
+    }
+   ],
+   "install": "按仓库 README 安装，并设置 `SCRAPECREATORS_API_KEY`",
+   "id": "S03"
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "抖音 AI 漫剧：粉丝不到 6000 的小号做出 1–2.7 万赞",
+   "brief": "小号 AI 漫剧在抖音反复起量",
+   "signal": "爆款形式",
+   "track": "AI短视频",
+   "platforms": [
+    "抖音",
+    "小红书",
+    "YouTube"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "火鸡面家族 #AI漫剧 #原创动画",
+     "url": "https://www.douyin.com/video/7697340863529221989",
+     "metrics": "点赞 2.66万 · 收藏 2005 · 评论 820 · 粉丝 3503"
+    },
+    {
+     "platform": "抖音",
+     "title": "#ai漫剧 #二次元 #原创漫剧",
+     "url": "https://www.douyin.com/video/7696790386886315307",
+     "metrics": "点赞 1.91万 · 收藏 5217 · 评论 468 · 粉丝 5483"
+    },
+    {
+     "platform": "抖音",
+     "title": "要温柔一点，悄悄地叫她 #漫剧 #ai短剧",
+     "url": "https://www.douyin.com/video/7697375758775313343",
+     "metrics": "点赞 1.43万 · 收藏 2994 · 粉丝 1638"
+    },
+    {
+     "platform": "小红书",
+     "title": "AI漫剧制作全流程SOP，一张图讲透！",
+     "url": "https://www.xiaohongshu.com/explore/6ace1210000000001c02e46e",
+     "metrics": "点赞 457 · 收藏 365 · 评论 12"
+    }
+   ],
+   "quotes": [
+    {
+     "platform": "抖音",
+     "text": "蹲后续",
+     "likes": 25
+    },
+    {
+     "platform": "抖音",
+     "text": "想学 有人带吗",
+     "likes": 0
+    }
+   ],
+   "why": "抖音是三个小号同一天爆量，小红书同时有人卖 SOP，YouTube 上也有中文漫剧在拿 12.4 万播放，说明国内起量、海外出海版同步在跑（推断）。",
+   "how": "先挑一部公版或自己改编的短篇故事，用即梦出图，剪映拼接，做一个 10 集、每集 1 分钟的小系列；第一周只发抖音，记录哪一集评论最多，再决定做不做小红书 SOP 笔记。",
+   "risk": "平台对 AI 生成内容要求显式标注；搬运他人小说改编有版权风险；批量发同质内容容易限流。",
+   "id": "P01"
+  },
+  {
+   "topic": "WorkBuddy 教程在抖音小号起量，DeepSeek 新版针对它优化",
+   "brief": "WorkBuddy 保姆级教程，收藏远高于点赞",
+   "signal": "需求信号",
+   "track": "代理工具链",
+   "platforms": [
+    "抖音",
+    "B站",
+    "X"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "【workbuddy保姆级教程】零基础入门到精通",
+     "url": "https://www.douyin.com/video/7696832184623041818",
+     "metrics": "点赞 8910 · 收藏 1.32万 · 评论 960 · 粉丝 3996"
+    },
+    {
+     "platform": "B站",
+     "title": "Deepseek 现已上线搜索与网页抓取 API，Codex 和 Claude Code 免费",
+     "url": "https://www.bilibili.com/video/BV1eDJ46QEtA",
+     "metrics": "点赞 909 · 收藏 641 · 评论 451 · 播放 3.84万"
+    },
+    {
+     "platform": "X",
+     "title": "DeepSeek 官方：新版针对 DeepSeek Harness、腾讯 CodeBuddy、WorkBuddy 优化",
+     "url": "https://x.com/deepseek_ai/status/2111375640717033777",
+     "metrics": "点赞 2.93万"
+    }
+   ],
+   "quotes": [],
+   "why": "抖音收藏率 1.48，说明大家想存下来照着做；工具方又是腾讯，国内上手需求大于国外（推断）。",
+   "how": "先自己装一遍 WorkBuddy，录屏做一条“外贸人用它自动整理询盘”的实操教程，发抖音和小红书；成稿后可打包成资料包。",
+   "risk": "工具本身我还没核实，教程类账号容易被判引流；别承诺收益。",
+   "id": "P02"
+  },
+  {
+   "topic": "TikTok“不写一行代码做出 App”小号视频起量",
+   "brief": "vibe coding 副业视频小号高播放",
+   "signal": "爆款形式",
+   "track": "",
+   "platforms": [
+    "TikTok"
+   ],
+   "evidence": [
+    {
+     "platform": "TikTok",
+     "title": "Quedé igual de sorprendida jaja #vibecoding #ia #sidehustle",
+     "url": "https://www.tiktok.com/@cami.earns/video/7697111970822049045",
+     "metrics": "点赞 2.12万 · 播放 34.8万 · 粉丝 421"
+    },
+    {
+     "platform": "TikTok",
+     "title": "POV: you just built a real app without writing a single line",
+     "url": "https://www.tiktok.com/@buildwith.carla/video/7695747648204328213",
+     "metrics": "点赞 1.19万 · 收藏 4046 · 评论 589 · 粉丝 2552"
+    }
+   ],
+   "quotes": [
+    {
+     "platform": "TikTok",
+     "text": "can it pay in Kenya how to do it in Kenya please help",
+     "likes": 7
+    }
+   ],
+   "why": "两个粉丝不到 3000 的号拿到上万赞，评论里有人直接问怎么变现，是需求信号；目前只在 TikTok 出现，国内还没看到同样形式（推断）。",
+   "how": "用 Claude Code 做一个外贸小工具，拍 30 秒“POV：我没写一行代码”的屏幕录像，挂在 TikTok；第一步先做录屏模板。",
+   "risk": "容易沦为卖课导流；真实收入要有证据，别用夸大的数字。",
+   "id": "P03"
+  },
+  {
+   "topic": "抖音“AI小海”数字人批量卖惨带货被媒体曝光",
+   "brief": "数字人卖惨带货，反面案例",
+   "signal": "新玩法",
+   "track": "AI短视频",
+   "platforms": [
+    "抖音"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "批量“AI小海”收割“姨姨妈妈”：数字儿子卖惨带货，佣金高达55%",
+     "url": "https://www.douyin.com/video/7697072959621532978",
+     "metrics": "点赞 9.88万 · 收藏 6353 · 评论 4134 · 粉丝 2809万"
+    },
+    {
+     "platform": "抖音",
+     "title": "批量“AI小海”收割“姨姨妈妈”（另一条报道）",
+     "url": "https://www.douyin.com/video/7697150088174390582",
+     "metrics": "点赞 3.58万 · 收藏 7175 · 评论 6941"
+    }
+   ],
+   "quotes": [
+    {
+     "platform": "抖音",
+     "text": "银发经济就得这么搞[笑哭]",
+     "likes": 8071
+    }
+   ],
+   "why": "视频称运营者一天赚两三千、制作一条十几分钟，同时报道里律师认为虚构人设可能涉嫌消费欺诈，所以是风险信号，不是机会。",
+   "how": "不要照搬。要做数字人带货，就明确标注 AI、用真实商品信息，先小范围测转化。",
+   "risk": "虚构人设和卖惨可能涉嫌欺诈；平台对 AI 数字人批量号会收紧。",
+   "id": "P04"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-16 N14",
+   "title": "Meta 新商业条款：商业账号关联网站可被抓取",
+   "update": "Meta 已删除该条款，称抓取规则本身没变，条款只针对广告与商业产品",
+   "url": "https://techcrunch.com/2026/10/17/meta-removes-language-that-raised-scraping-and-ai-training-concerns/",
+   "id": "F01"
+  },
+  {
+   "ref": "10-17 P01",
+   "title": "抖音 AI 漫剧：约 1 万粉小号单集 12.7 万赞",
+   "update": "今天新增 3 条粉丝不到 6000 的小号漫剧，最高 2.66 万赞",
+   "url": "https://www.douyin.com/video/7697340863529221989",
+   "id": "F02"
+  },
+  {
+   "ref": "10-17 追搜",
+   "title": "即梦 追搜",
+   "update": "小红书“Seedance2.5 不需要会员直接用”346 赞，评论 592；多为问免费用法",
+   "url": "https://www.xiaohongshu.com/explore/6acf3ad3000000001c01c0f0",
+   "id": "F03"
+  }
+ ],
+ "watch_next": [
+  "WorkBuddy",
+  "AI漫剧 原著小说",
+  "DeepSeek Harness",
+  "Seedance 2.5"
+ ]
+}
