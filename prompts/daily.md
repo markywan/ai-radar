@@ -9,7 +9,7 @@
 - `data/raw/<日期>.json`：脚本抓好的原始素材。`errors` 里列出了没抓到的来源。主要字段：
   - `feeds`：RSS，`kind` 是「官方」「媒体」「政策」（平台规则、创作者政策、Google 搜索公告）「社区」（只用来发现线索）「机会」。
   - `official_pages_without_rss`：没有 RSS 的厂商官网，用 WebFetch 打开看最近 3 天有没有新发布。`policy_pages_without_rss`：平台公告页，只在写「影响你的」资讯时看一眼。
-  - `github_trending`、`github_new`、`github_topics`（他行业里的话题：Shopify、SEO、亚马逊、开发信、邮件通讯等，`topic` 字段标明）、`skill_repos`、`skills_sh`（skills.sh 的 hot / trending / all-time 榜，含 `installs`，hot 榜带昨日对比）、`hn_front`、`hn_show`、`hf_trending`。
+  - `github_trending`、`github_new`、`github_topics`（他行业里的话题：Shopify、SEO、亚马逊、开发信、邮件通讯等，`topic` 字段标明）、`skill_repos`、`skills_sh.all-time`（skills.sh 总榜前 40，含 `installs`；趋势榜脚本抓不到，要看就用 WebFetch 打开 https://skills.sh 切到 Hot）、`hn_front`、`hn_show`、`hf_trending`。
   - `x.accounts`：两组账号最近 24 小时的帖子，`group` 是「新闻号」（AI 公司、媒体、官方发布的人，给资讯用）或「实践者」（晒用法、晒做法、晒收入的人，给玩法风向和机会用）。`x.hot`：按主题搜的高赞帖，「AI 热议」两组给资讯用，其余给玩法风向和机会用。
   - `platforms`：用 TikHub 抓的小红书、抖音、TikTok、YouTube、B站。`searches[].group` 是「长期监测」（每天都搜的固定词，只报新增的帖子和数字变化）、「轮换探针」（一周轮一遍的词）、「追搜」（前一天日报 `watch_next` 里点名要追的工具或玩法）。
   - `trustmrr`：配了密钥时是 TrustMRR 的一人团队增长榜和在售项目（MRR、增长、售价），给机会卡当收入证据；是 null 时，收入证据去 `evidence_pages` 列的页面找。
@@ -52,7 +52,7 @@
 - `stars_today` 只填榜单上明确标注「今日」的数字，取不到就写 null。配图不用管，脚本会从 README 自动挑。
 
 **skills（Skills，2–5 个）**
-- 带 SKILL.md 的能力包，Claude Code 和 Codex 通用。只选非常流行或正在冲榜的：`skills_sh` 榜上的（`installs` 直接从那里抄，hot 榜的 `change` 说明正在涨）、GitHub 星数高的（单独仓库一般 1000 星以上）、大仓库（如 anthropics/skills）里的。1–2 个是新晋热门（`hot` 写「新晋热门」），其余「长期热门」。
+- 带 SKILL.md 的能力包，Claude Code 和 Codex 通用。只选非常流行或正在冲榜的：`skills_sh` 榜上的（`installs` 直接从那里抄）、GitHub 星数高的（单独仓库一般 1000 星以上）、大仓库（如 anthropics/skills）里的。1–2 个是新晋热门（`hot` 写「新晋热门」），其余「长期热门」。
 - `installs` 从 `skills_sh` 里取；`skills_sh` 为空时才用 WebFetch 打开 https://skills.sh。`popularity_note` 一句话写热度依据，含数字和日期。
 - `brief`、`what`、`uses`、`risk_brief` 的写法同工具（`uses` 同样只写 1–2 条、四个方向）。同一个项目不要既放工具又放 Skills。
 - 安全检查是硬要求：用 WebFetch 打开 SKILL.md 和附带脚本（raw.githubusercontent.com），看会不会执行 shell、读写本地文件、把数据发到外部服务器、有没有编码混淆的命令、要不要 API Key。黄的标准同工具。读不到 SKILL.md 的不选。

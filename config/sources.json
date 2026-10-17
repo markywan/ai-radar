@@ -71,8 +71,7 @@
     }
   },
   "skills_sh": {
-    "_说明": "skills.sh 的公开接口，每天固定抓热门榜和趋势榜，Skills 栏目的安装量从这里来。",
-    "views": ["hot", "trending", "all-time"],
+    "_说明": "每天解析 skills.sh 首页的总榜（接口要 Vercel 令牌，用不了），Skills 栏目的安装量从这里来；趋势榜由模型用 WebFetch 看。",
     "limit": 40
   },
   "huggingface_trending_limit": 15,

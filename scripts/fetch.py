@@ -256,17 +256,27 @@ def fetch_topics(cfg, since_day):
 
 
 def fetch_skills_sh(cfg):
-    """skills.sh 的公开榜单：热门（hot，带昨日对比）、趋势、总榜。接口变了就记进 errors，由模型自己打开网页。"""
+    """skills.sh 的总榜：接口要 Vercel 的令牌，所以直接解析首页，每行是一个指向 /owner/repo/skill 的链接，
+    链接文字末尾是安装量（3.9M、12K）。页面结构变了认不出来就记进 errors，由模型自己打开网页。"""
     out = {}
-    for view in cfg.get("views", ["hot", "trending"]):
-        url = "https://skills.sh/api/v1/skills?" + urllib.parse.urlencode({"view": view, "limit": cfg.get("limit", 40)})
-        try:
-            data = get_json(url, {"Accept": "application/json"})
-            out[view] = [{"id": x.get("id"), "name": x.get("name"), "source": x.get("source"), "installs": x.get("installs"),
-                          "installs_yesterday": x.get("installsYesterday"), "change": x.get("change"),
-                          "url": x.get("url") or f"https://skills.sh/{x.get('id')}"} for x in data.get("data", [])]
-        except Exception as e:  # noqa: BLE001
-            errors.append(f"skills.sh {view} 榜: {e}（请用 WebFetch 打开 https://skills.sh 看榜单）")
+    try:
+        page = get("https://skills.sh/", {"Accept": "text/html"})
+        rows, seen = [], set()
+        for m in re.finditer(r'<a\b[^>]*href="(?:https?://(?:www\.)?skills\.sh)?/([^/"\s]+)/([^/"\s]+)/([^/"\s?#]+)"[^>]*>(.*?)</a>', page, re.S | re.I):
+            owner, repo, slug, inner = m.groups()
+            if owner in ("docs", "api", "site", "_next", "static") or f"{owner}/{repo}/{slug}" in seen:
+                continue
+            seen.add(f"{owner}/{repo}/{slug}")
+            text = strip_tags(inner, 300)
+            n = re.search(r"(\d+(?:\.\d+)?)\s*([KkMm])?\s*$", text)
+            installs = int(float(n.group(1)) * {"k": 1e3, "m": 1e6}.get((n.group(2) or "").lower(), 1)) if n else None
+            rows.append({"rank": len(rows) + 1, "id": f"{owner}/{repo}/{slug}", "name": slug, "source": f"{owner}/{repo}",
+                         "installs": installs, "url": f"https://skills.sh/{owner}/{repo}/{slug}"})
+        if not rows:
+            raise ValueError("首页里没认出榜单")
+        out["all-time"] = rows[:cfg.get("limit", 40)]
+    except Exception as e:  # noqa: BLE001
+        errors.append(f"skills.sh 榜: {e}（请用 WebFetch 打开 https://skills.sh 看榜单）")
     return out
 
 
