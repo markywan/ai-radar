@@ -53,7 +53,7 @@
 
 ## 配置
 
-完整步骤见「AI 机会雷达｜配置指南」文档。要填的东西：
+完整步骤见 [`docs/setup.md`](docs/setup.md)。要接手维护、修改或换成别的 AI，先看 [`AGENTS.md`](AGENTS.md)。要填的东西：
 
 **仓库 Settings → Secrets and variables → Actions → Secrets**
 
