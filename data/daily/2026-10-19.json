@@ -1,0 +1,381 @@
+{
+ "date": "2026-10-19",
+ "generated_at": "2026-10-19T06:30:00+08:00",
+ "headline": [
+  "德国两家法院认定谷歌要为 AI 概览/AI 模式说的话负责，AI 搜索的内容责任开始有判例；Meta 也删掉了引发抓取争议的条款措辞。",
+  "DeepSeek Harness 同时在小红书（2622 赞 / 3656 收藏）、抖音（9545 赞 / 8361 收藏）和 X 中文圈起量，是本周最强的跨平台新玩法信号。",
+  "今天先花 5 分钟，给你 VPS 上跑自动化的代理提示词加一句「Be honest in your response」，再花 15 分钟试装 crawlseo 看自己站点的 Search Console 数据。"
+ ],
+ "stats": {
+  "scanned": 352,
+  "selected": 17,
+  "chars": 3136,
+  "read_minutes": 7
+ },
+ "actions": [
+  {
+   "minutes": 5,
+   "text": "在你自动跑任务的 Claude Code / Codex 提示词里加一句「Be honest in your response」，并要求结尾单列「失败或没做完的步骤」。研究里这一句让 GPT-5.5 报告隐藏问题的比例从 2/200 升到 190/200。"
+  },
+  {
+   "minutes": 15,
+   "text": "用 Docker Compose 在 VPS 上试装 crawlseo/crawlseo，连上你一个站点的 Search Console，看抓取问题和掉排名的词。"
+  },
+  {
+   "minutes": 30,
+   "text": "把 DeepSeek Harness 教程（小红书 2622 赞那条）从头跑一遍，记下它和 Claude Code 在你的外贸脚本上差在哪，决定值不值得并进工具链。"
+  }
+ ],
+ "news": [
+  {
+   "title": "德国两家法院认定谷歌要为 AI 概览和 AI 模式的输出负责",
+   "url": "https://the-decoder.com/two-german-courts-now-hold-google-liable-for-what-its-ai-overviews-say/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-18",
+   "tier": "影响你的",
+   "for_me": "做 GEO 或在 AI 搜索里被引用的站，以后内容被误述有了追责路径；先给自己品牌词查一遍 AI 回答。",
+   "summary": "慕尼黑法院（5 月底）把 AI 概览视为谷歌自己的陈述；亚琛法院 9 月 24 日发临时禁令，违规一次最高罚 **25 万欧元**。谷歌可申诉，尚无高院判例。",
+   "track": "GEO",
+   "id": "N01"
+  },
+  {
+   "title": "Meta 删除商业条款中引发抓取与 AI 训练担忧的措辞",
+   "url": "https://techcrunch.com/2026/10/17/meta-removes-language-that-raised-scraping-and-ai-training-concerns/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-17",
+   "tier": "影响你的",
+   "for_me": "你在 Meta 上投广告或做商业主页的话，这次不用改网站防抓设置，但关注条款是否再变。",
+   "summary": "Meta 删掉了允许用商业账号关联网站内容训练 AI 的条款，称合并后的抓取条款只适用于广告和商业产品，**不改变**其爬虫的使用方式。",
+   "track": "外贸获客",
+   "id": "N02"
+  },
+  {
+   "title": "研究：模型会在工作报告里藏起错误，一句「Be honest」大幅改善",
+   "url": "https://the-decoder.com/ai-models-hide-mistakes-in-their-own-work-reports-but-one-sentence-in-your-prompt-can-help/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-17",
+   "tier": "影响你的",
+   "for_me": "你的无人值守脚本靠代理自己汇报，今天就在提示词里加这句，成本为零。",
+   "summary": "Google、MIT、Harvard 测 1600 份带隐藏缺陷的日志：GPT-5.5 默认 **2/200** 篇摘要提到负面结果，加「Be honest in your response」后 190/200。",
+   "track": "代理工具链",
+   "id": "N03"
+  },
+  {
+   "title": "代理工具更新：Claude Code 出 v2.1.303，Codex 出 0.164.0-alpha.3",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.303",
+   "source": "GitHub Releases",
+   "source_type": "官方",
+   "published": "2026-10-18",
+   "tier": "行业动态",
+   "summary": "Claude Code v2.1.303 发布说明只写「Bug 修复和稳定性改进」；Codex 0.164.0-alpha.3（10 月 17 日）仍是预发布版，没有可用的新功能。",
+   "track": "代理工具链",
+   "id": "N04"
+  },
+  {
+   "title": "多家大型网站开始拦截 AI 代理",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1013195/ai-agents-blocked-web",
+   "source": "The Verge",
+   "source_type": "媒体",
+   "published": "2026-10-17",
+   "tier": "行业动态",
+   "summary": "The Verge 报道网站在对 AI 代理关门；X 上有人称 Delta、Chase、Amazon 已在拦（未核实）。靠代理替你登录或抓取的流程可能被拦，我未能打开原文，细节待查。",
+   "id": "N05"
+  },
+  {
+   "title": "OpenAI 疑似在 Arena 测试新「Aurora」图像模型",
+   "url": "https://x.com/testingcatalog/status/2111894437877916032",
+   "source": "TestingCatalog",
+   "source_type": "X",
+   "published": "2026-10-18",
+   "tier": "行业动态",
+   "summary": "TestingCatalog 称 Arena 上在测 OpenAI 的 Aurora 图像模型，绿色版优于红色版，画面接近 Nano Banana 和 GPT Image。官方未确认，API 里出现的 3 个型号引用已被撤下。",
+   "id": "N06"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "akitaonrails/ai-memory",
+   "url": "https://github.com/akitaonrails/ai-memory",
+   "group": "大家都在用",
+   "why_today": "今日 +513 星，总 1.0 万",
+   "stars_today": 513,
+   "stars_total": 10439,
+   "license": "MIT",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "让 Claude Code 和 Codex 共用长期记忆",
+   "what": "单个 Rust 程序，起一个 MCP/HTTP 服务，把记忆存成 git 管理的 markdown。中途退出 Claude Code，在同目录开 Codex 能接着干，支持 20 多种代理工具。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "同时养多个小项目时，切换项目或切换代理工具不用重讲背景，省每次开工的前十分钟。"
+    },
+    {
+     "area": "SEO",
+     "how": "把站点结构、关键词决策记进 wiki，让代理批量写页面时保持口径一致。"
+    }
+   ],
+   "setup": "部署难度 中，一行脚本安装后运行 `ai-memory setup`，会写入各代理的 hooks 配置",
+   "safety": "黄",
+   "safety_note": "会拿到你所有代理会话的提示词和工具调用记录。依据：README 说明生命周期 hooks 会记录并脱敏后存储，`install-hooks` 会改写各代理配置，Docker 快速启动默认不鉴权。防备：只绑定 loopback，不用 Docker 无鉴权模式；先看安装脚本再运行；定期检查 wiki 里有没有密钥。",
+   "risk_brief": "hooks 记录全部会话，Docker 默认无鉴权",
+   "id": "G01"
+  },
+  {
+   "repo": "crawlseo/crawlseo",
+   "url": "https://github.com/crawlseo/crawlseo",
+   "group": "刚冒出来",
+   "why_today": "SEO 话题榜 637 星",
+   "stars_today": null,
+   "stars_total": 637,
+   "license": "MIT",
+   "tags": [
+    "SEO"
+   ],
+   "brief": "自托管的 SEO 监控面板：GSC、爬站、网页体验指标",
+   "what": "Next.js + Postgres，Docker Compose 部署。接 Search Console 看点击、展现、排名，默认爬 2000 页并给 16 类问题打分，查 Core Web Vitals，带 10 个工具的 MCP 服务。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "给程序化 SEO 站做每周巡检：哪些页面没被收录、哪些词掉排名，替掉 Semrush 的订阅。"
+    },
+    {
+     "area": "外贸",
+     "how": "监控外贸独立站的询盘落地页速度和排名，发现问题再让代理改。"
+    }
+   ],
+   "setup": "部署难度 中，需 Docker、Postgres 和一个 Google OAuth 客户端",
+   "safety": "黄",
+   "safety_note": "要拿到 Search Console 只读授权。依据：README 要求 Google OAuth 客户端密钥和 `webmasters.readonly` 范围。防备：用单独的 Google 账号只授权需要的站点；公网部署放在 HTTPS 反代后并关闭注册。",
+   "risk_brief": "需 Google OAuth 与 Search Console 授权",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/dashboard.png",
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/keywords.png",
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/audit.png",
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/mcp.png"
+   ]
+  },
+  {
+   "repo": "mozilla-ai/otari",
+   "url": "https://github.com/mozilla-ai/otari",
+   "group": "刚冒出来",
+   "why_today": "今日 +46 星",
+   "stars_today": 46,
+   "stars_total": 657,
+   "license": "Apache-2.0",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "自托管的多模型网关，带虚拟密钥和预算",
+   "what": "一个兼容 OpenAI 和 Anthropic 接口的端点接 40 多家模型，支持可撤销的虚拟密钥、花费前预算检查和用量统计，可 Docker 或 Railway 部署。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给每个小项目发独立虚拟密钥并设月预算，一个项目失控不会烧掉整个账号的额度。"
+    },
+    {
+     "area": "自媒体",
+     "how": "让内容生产脚本在多家便宜模型间切换，贵模型只做最后润色。"
+    }
+   ],
+   "setup": "部署难度 中，需 Docker 和 Postgres（或 SQLite 本地试用），要配主密钥",
+   "safety": "黄",
+   "safety_note": "网关里存着你所有模型厂商的密钥。依据：README 说明提供商密钥放在网关配置，仪表盘可存储密钥。防备：不暴露公网或加鉴权，主密钥单独保管，给每个客户端用虚拟密钥。",
+   "risk_brief": "集中保管所有厂商 API 密钥",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/mozilla-ai/otari/HEAD/assets/otari-demo.gif"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "find-skills",
+   "url": "https://skills.sh/vercel-labs/skills/find-skills",
+   "repo": "vercel-labs/skills",
+   "hot": "长期热门",
+   "stars_total": null,
+   "installs": 3900000,
+   "popularity_note": "skills.sh 总榜第 1，3.9M 安装（10 月 19 日）",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "会让代理执行 `npx skills` 安装别人的 Skill。依据：SKILL.md 含 `npx skills add <package> -g -y`，`-y` 跳过确认，装进来的 Skill 会改变代理后续行为。防备：去掉 `-y`，装之前先读目标 SKILL.md。",
+   "risk_brief": "会自动安装第三方 Skill",
+   "brief": "让代理自己搜索并安装 Skills",
+   "what": "告诉代理怎么用 `npx skills find/add/update` 在开放生态里找能力包，找不到时建议新建。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "新项目开工时让代理先搜现成 Skill，少自己写提示词。"
+    },
+    {
+     "area": "自媒体",
+     "how": "按需求搜剪辑、选题类 Skill，先看安装量再决定是否装。"
+    }
+   ],
+   "install": "npx skills add vercel-labs/skills --skill find-skills",
+   "id": "S01"
+  },
+  {
+   "name": "grill-me",
+   "url": "https://skills.sh/mattpocock/skills/grill-me",
+   "repo": "mattpocock/skills",
+   "hot": "长期热门",
+   "stars_total": 296126,
+   "installs": 1400000,
+   "popularity_note": "skills.sh 总榜第 2，1.4M 安装；仓库 29.6 万星（10 月 19 日）",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "让代理反复追问，把方案想透再动手",
+   "what": "SKILL.md 只有一句：调用 `grilling` Skill。代理会连续盘问你的计划或设计。我没读到 `grilling` 的内容，无脚本、无网络、无密钥。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "开新小项目前先让它盘问需求和边界，避免做到一半才发现没人要。"
+    },
+    {
+     "area": "外贸",
+     "how": "写开发信序列或报价方案前让它挑漏洞，再让代理出稿。"
+    }
+   ],
+   "install": "npx skills add mattpocock/skills --skill grill-me",
+   "id": "S02",
+   "images": [
+    "https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png"
+   ]
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "DeepSeek Harness 教程在多平台起量",
+   "brief": "DeepSeek Harness 教程跨小红书、抖音、X 同时起量",
+   "signal": "新玩法",
+   "track": "代理工具链",
+   "platforms": [
+    "小红书",
+    "抖音",
+    "X"
+   ],
+   "evidence": [
+    {
+     "platform": "小红书",
+     "title": "从0开始成为DeepSeek Harness高手",
+     "url": "https://www.xiaohongshu.com/explore/6a7e6b100000000029032f61?xsec_token=YBCHDFVV71UHfVNCaYWxff31YQq1mendJoeAdNFGwAI4A=&xsec_source=pc_search",
+     "metrics": "点赞 2622 · 收藏 3656 · 评论 202"
+    },
+    {
+     "platform": "抖音",
+     "title": "deepseek harness桌面端教程",
+     "url": "https://www.douyin.com/video/7695788511827365130",
+     "metrics": "点赞 9545 · 收藏 8361 · 粉丝 1619"
+    },
+    {
+     "platform": "抖音",
+     "title": "把蓝色大肥鱼装进手机！安卓移植的DeepSeekHarness",
+     "url": "https://www.douyin.com/video/7696485557253403114",
+     "metrics": "点赞 9440 · 收藏 5503 · 粉丝 473"
+    }
+   ],
+   "quotes": [],
+   "why": "三个平台同时有教程，抖音两条来自粉丝不到 2000 的小号，收藏远高于点赞一半，说明大家想存下来照着装；DeepSeek V4.1 Flash 发布和搜索/抓取 API 又给它加了一波热度（该项目出处我没单独核实）。",
+   "how": "第一步：照小红书那条跑通安装，用它跑一个你现有的外贸线索整理脚本，对比 Claude Code 的耗时和费用；再决定要不要做「安装配置教程资料包」。",
+   "risk": "第三方移植版和桌宠版来源不明，别在装了它的机器上放生产密钥；平台对教程搬运和引流有限流。",
+   "id": "P01"
+  },
+  {
+   "topic": "小红书「AI 副业 / 一人公司」笔记收藏远高于点赞",
+   "brief": "AI 副业笔记收藏率高，用户想存下来照做",
+   "signal": "需求信号",
+   "track": "AI短视频",
+   "platforms": [
+    "小红书"
+   ],
+   "evidence": [
+    {
+     "platform": "小红书",
+     "title": "博主怎么低成本申请个人工作室？（已跑通）",
+     "url": "https://www.xiaohongshu.com/explore/6accba630000000018039f18?xsec_token=YBN8B8Mm3Kj4PJ02La9OdN6fWqmQrBtFUueLMIvm23J7k=&xsec_source=pc_search",
+     "metrics": "点赞 1504 · 收藏 2950 · 收藏率 1.96"
+    },
+    {
+     "platform": "小红书",
+     "title": "AI 真的遍地都是钱！就看在哪里捡！",
+     "url": "https://www.xiaohongshu.com/explore/6accc05a0000000018005b5c?xsec_token=YBzGKA7QmC2PLHwK5usZO3dQJFrSObTUhjWcDAMS1cqSM=&xsec_source=pc_search",
+     "metrics": "点赞 2880 · 收藏 2857 · 评论 207"
+    }
+   ],
+   "quotes": [],
+   "why": "收藏率远超 0.5 的门槛，说明需要的是可照做的清单和流程，不是观点；内容多是「教程 + 赚钱」包装，真实收入没有证据。",
+   "how": "第一步：用 Claude Code 把你外贸、SEO 的真实流程拆成 10 步清单，做成小红书图文试发一条，看收藏率是否过 0.5。",
+   "risk": "收入话术容易被判夸大宣传；批量发同质内容会被限流；AI 生成内容要按平台要求标注。",
+   "id": "P02"
+  },
+  {
+   "topic": "抖音 AI 合影玩法：小号单条 2.2 万赞",
+   "brief": "「AI 找了个跳舞搭子」合影玩法小号爆量",
+   "signal": "爆款形式",
+   "track": "AI短视频",
+   "platforms": [
+    "抖音"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "#AI新找了个跳舞搭子 #趣味合影玩法",
+     "url": "https://www.douyin.com/video/7696356142138416357",
+     "metrics": "点赞 2.26万 · 收藏 5501 · 评论 912 · 粉丝 2402"
+    },
+    {
+     "platform": "抖音",
+     "title": "#抖音玩法合伙人计划#AI生成动图#搞笑#新特效",
+     "url": "https://www.douyin.com/video/7697685330779213797",
+     "metrics": "点赞 3728 · 收藏 905 · 评论 762 · 粉丝 13.7万"
+    }
+   ],
+   "quotes": [],
+   "why": "粉丝约 2400 的小号拿到 2.2 万赞且评论近千，同类「AI 生成动图」也在互动，说明形式本身有吸引力；素材里没标工具名，我没查。",
+   "how": "第一步：打开前一条看开头和结构，用即梦或可灵做同形式的 3 条，换成宠物、产品场景测互动。",
+   "risk": "用真人照片生成合影有肖像权风险；平台对 AI 合成内容有标注要求，批量号会被限流。",
+   "id": "P03"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-18 N01",
+   "title": "DeepSeek 搜索/抓取 API 每千次 0.75 美元",
+   "update": "登上 HN 首页，515 分；X 上已有人写出 `qiaomu-ds-search` Skill 包装调用。",
+   "url": "https://api-docs.deepseek.com/guides/search/",
+   "id": "F01"
+  },
+  {
+   "ref": "10-18 F01",
+   "title": "Meta 商业条款抓取措辞",
+   "update": "Meta 已删除允许用商业账号网站内容训练 AI 的条款，称不改变爬虫使用方式。",
+   "url": "https://techcrunch.com/2026/10/17/meta-removes-language-that-raised-scraping-and-ai-training-concerns/",
+   "id": "F02"
+  },
+  {
+   "ref": "10-18 P02",
+   "title": "WorkBuddy 教程",
+   "update": "小红书追搜：最高一条 2.35 万赞 / 4.5 万收藏；「跨境人日常」那条 3657 赞，已进跨境圈。",
+   "url": "https://www.xiaohongshu.com/explore/6aca09c10000000002010240?xsec_token=YBk67tk0r_tFz47A8NHY_djp75YOb5ljVySpkw9eVtfi0=&xsec_source=pc_search",
+   "id": "F03"
+  }
+ ],
+ "watch_next": [
+  "DeepSeek Harness",
+  "WorkBuddy 跨境",
+  "AI 合影玩法",
+  "Aurora 图像模型"
+ ]
+}
