@@ -89,5 +89,6 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 - **AI 那一步红了**：日志里「查 Claude 出错原因」一步打印了原因，常见是令牌过期或额度用完。
 - **点收藏提示「口令不对」**：Worker 里的 `ACTION_KEY` 和 GitHub 里的不一致。
 - **提示「GitHub 没有接受请求」**：Worker 的 `GITHUB_TOKEN` 没有 Contents 写权限，或生成时没选中 `ai-radar`。
-- **网站显示「还没连上收藏接口」**：从飞书卡片的「打开今日日报」进一次网站。
+- **网站提示「收藏接口还没部署」**：第 7、8 步没做完，Worker 没部署或地址没填；每次日报运行的「检查配置」摘要也会标出来。
+- **网站提示「浏览器里还没有口令」**：从飞书卡片的「打开今日日报」进一次网站。
 - **想换信息源或写作标准**：改 `config/sources.json` 和 `prompts/daily.md`。

@@ -196,7 +196,8 @@
     var op = btn.getAttribute("data-op"), fid = btn.getAttribute("data-id");
     var key = store("radar-key");
     if (EMBED && EMBED.preview) { toast("这是预览版，网站部署后按钮才能用"); return; }
-    if (!worker() || !key) { toast("还没连上收藏接口：请从飞书卡片里的链接打开一次网站"); return; }
+    if (!worker()) { toast("收藏还没开通：Cloudflare Worker 还没部署，步骤见仓库 docs/setup.md 第 7、8 步"); return; }
+    if (!key) { toast("浏览器里还没有口令：从飞书卡片的「打开今日日报」进一次网站"); return; }
     btn.disabled = true;
     fetch(worker() + "/act?op=" + op + "&id=" + encodeURIComponent(fid) + "&k=" + encodeURIComponent(key), { method: "POST" })
       .then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.ok) throw new Error(j.message || "失败"); return j; }); })
