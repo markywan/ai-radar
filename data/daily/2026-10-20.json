@@ -1,0 +1,312 @@
+{
+ "date": "2026-10-20",
+ "generated_at": "2026-10-20T06:30:00+08:00",
+ "headline": [
+  "开源编程代理 OpenCode 的在线控制台被入侵，**1.4% 用户**的 API 密钥被盗刷，个别人损失超 1000 美元。",
+  "抖音 AI 漫剧出现粉丝不到 3000 的小号拿到 **1 万点赞、收藏 1 万**，说明这个形式还没被大号占满。",
+  "今天先花 15 分钟检查你存过 API 密钥的第三方平台，换掉不确定的密钥。"
+ ],
+ "stats": {
+  "scanned": 330,
+  "selected": 14,
+  "chars": 2366,
+  "read_minutes": 5
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "登录 OpenAI、Anthropic、Google 后台看最近 3 天用量有没有陌生扣费；凡是填进过 OpenCode Console 的密钥一律作废重建。"
+  },
+  {
+   "minutes": 15,
+   "text": "给 VPS 上的代理工具加每日额度上限，并把密钥改成按项目单独发放，一个泄露不牵连其他项目。"
+  },
+  {
+   "minutes": 30,
+   "text": "拿 Douyin 上收藏率最高的 AI 漫剧账号「慢泡泡」，拆开头 3 秒和集数结构，列出一个你能复刻的外贸或产品题材。"
+  }
+ ],
+ "news": [
+  {
+   "title": "OpenCode 控制台被入侵：1.4% 用户的 API 密钥被盗，个别人被刷超 1000 美元",
+   "url": "https://techcrunch.com/2026/10/19/hackers-hit-ai-coding-tool-opencode-running-up-charges-on-users-ai-accounts/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-19",
+   "tier": "影响你的",
+   "for_me": "只要密钥填进过 OpenCode Console，今天就去各家后台作废重建，并查用量。",
+   "summary": "攻击者闯入 OpenCode 旧系统，**1.4%** 控制台用户密钥泄露，有人被刷超 1000 美元。开源应用和命令行未受影响，Anthropic、Google 已封禁相关密钥。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "代理工具更新：Claude Code 出 v2.1.304，Codex 连发 0.164.0 三个 alpha",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.304",
+   "source": "Claude Code Releases",
+   "source_type": "官方",
+   "published": "2026-10-19",
+   "tier": "影响你的",
+   "for_me": "都是插件钩子和内测版，不影响你现在的流程，不用急着升级。",
+   "summary": "Claude Code v2.1.304 给插件钩子加了 `decider: \"person\"` 和 `e.isReadOnly` 字段；Codex 0.164.0 的 alpha.4 到 alpha.6 当天连发，说明为空。",
+   "track": "代理工具链",
+   "id": "N02"
+  },
+  {
+   "title": "MiniMax M3.1 Flash 发布：智能指数 42，较上代涨 13 分、成本减半",
+   "url": "https://the-decoder.com/minimax-m3-1-flash-shows-chinas-ai-price-race-has-no-floor-in-sight/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-19",
+   "tier": "影响你的",
+   "for_me": "批量改写、翻译、开发信这类量大的任务，可以拿它和现在用的模型对比成本。",
+   "summary": "Artificial Analysis 智能指数 **42**，比上代高 13 分，成本减半；DeepSWE v1.1 编码得分 73.7%，单任务低于 0.30 美元，和 DeepSeek V4.1 Flash 价格性能相当。",
+   "track": "外贸获客",
+   "id": "N03"
+  },
+  {
+   "title": "可灵 Kling 4.0 发布：单次 30 秒、立体声、多语言口型同步，另出 Flash 版",
+   "url": "https://the-decoder.com/kling-ai-drops-version-4-0-with-stereo-audio-multilingual-lip-sync-and-a-lighter-flash-variant/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-19",
+   "tier": "影响你的",
+   "for_me": "多语言口型同步可以直接做产品演示的外语版；API 和价格还没公布，先别排期。",
+   "summary": "支持最长 **30 秒**单次生成、10 张关键帧输入、8000 token 提示词。Flash 版最高 720p、20 秒。API 标注「即将推出」，价格未定，目前可经 MCP 和命令行调用。",
+   "track": "AI短视频",
+   "id": "N04"
+  },
+  {
+   "title": "Nvidia 发布新开源模型，面向企业内部代理和个人电脑本地运行",
+   "url": "https://techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-19",
+   "tier": "行业动态",
+   "summary": "Nvidia 推出一批开源权重模型，分别针对企业自建数据中心里的代理和个人电脑上的本地私有代理。具体参数和许可证以原文为准。",
+   "id": "N05"
+  },
+  {
+   "title": "OpenAI 公布低资源编程语言评测，含 SQLite 和 COBOL 迁移",
+   "url": "https://openai.com/index/low-resource-programming-languages",
+   "source": "OpenAI",
+   "source_type": "官方",
+   "published": "2026-10-19",
+   "tier": "行业动态",
+   "summary": "OpenAI 说明在 ChatGPT 里改进冷门编程语言的表现，并新增软件工程、SQLite、COBOL 迁移三类评测。",
+   "id": "N06"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "headroomlabs-ai/headroom",
+   "url": "https://github.com/headroomlabs-ai/headroom",
+   "group": "大家都在用",
+   "why_today": "今日 +317 星",
+   "stars_today": 317,
+   "stars_total": 76229,
+   "license": "Apache-2.0",
+   "tags": [
+    "Agent 与自动化"
+   ],
+   "brief": "发给模型前先压缩日志和工具输出",
+   "what": "在本机压缩工具输出、日志、文件和 RAG 片段后再送给模型，称编程代理省 **20%** token，JSON 类省 60–95%。有库、代理和 MCP 三种用法。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给自己的 Claude Code 或 API 产品前面挂一层，长日志和网页抓取内容少花 token。"
+    },
+    {
+     "area": "SEO",
+     "how": "批量抓取竞品页面再让模型分析时先压缩，降低大批量任务的 API 成本。"
+    }
+   ],
+   "setup": "部署难度 低，`pip install \"headroom-ai[all]\"` 或 Docker",
+   "safety": "黄",
+   "safety_note": "作为代理会处在请求路径上，转发你的 API 凭证。页面写明 Anthropic 认证会保留，OAuth 令牌会转发，未配置第三方提供方时密钥可能被发到 OpenAI。页面没说代理是否记录密钥。防范：只绑定 127.0.0.1，先用额度很低的专用密钥测试，抓包确认请求只去了你配置的上游。",
+   "risk_brief": "代理转发 API 密钥，配错会发给错的服务",
+   "id": "G01"
+  },
+  {
+   "repo": "diegosouzapw/OmniRoute",
+   "url": "https://github.com/diegosouzapw/OmniRoute",
+   "group": "大家都在用",
+   "why_today": "今日 +427 星",
+   "stars_today": 427,
+   "stars_total": 78547,
+   "license": "MIT",
+   "tags": [
+    "Agent 与自动化"
+   ],
+   "brief": "一个本地入口接多家模型并自动切换",
+   "what": "本地网关，给 Claude Code、Codex、Cursor 等提供一个 `localhost:20128/v1` 入口，额度用完或失败时自动切到别家，带 token 压缩。称接入 1400 多个模型。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "把多个项目的模型调用统一走一个网关，某家限流时自动换，免得半夜脚本停掉。"
+    },
+    {
+     "area": "自媒体",
+     "how": "批量生成文案时优先走便宜模型，额度耗尽自动降级，不用人工盯。"
+    }
+   ],
+   "setup": "部署难度 中，npm、Docker 或桌面版，需要填各家密钥",
+   "safety": "黄",
+   "safety_note": "网关要保管你所有模型提供方的密钥和 OAuth 令牌，页面称用 AES-256-GCM 本地加密，但具体存储位置没看到。防范：只在自己的 VPS 内网使用，不要暴露公网端口，每家用独立低额度密钥。",
+   "risk_brief": "集中保管所有模型密钥，泄露即全丢",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/diegosouzapw/OmniRoute/HEAD/docs/screenshots/MainOmniRoute.png",
+    "https://img.youtube.com/vi/NJ0TQ-pyMDY/maxresdefault.jpg"
+   ]
+  },
+  {
+   "repo": "Leonxlnx/earshot",
+   "url": "https://github.com/Leonxlnx/earshot",
+   "group": "刚冒出来",
+   "why_today": "建仓 5 天 1.5k 星",
+   "stars_today": null,
+   "stars_total": 1512,
+   "license": "MIT",
+   "tags": [
+    "自媒体",
+    "设计与视频"
+   ],
+   "brief": "让编程代理听音频并检查声音",
+   "what": "给编程代理加上「耳朵」，能听、审查和生成声音，只用 CPU，开源，带 MCP。适合让代理检查配音和音效是否合格。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "让代理自动听生成的短视频配音，检查有没有爆音、静音段，再决定是否重生成。"
+    },
+    {
+     "area": "做产品",
+     "how": "给自己的音视频工具加自动质检环节，减少人工试听。"
+    }
+   ],
+   "setup": "部署难度 中，Python，需要接入 MCP",
+   "safety": "黄",
+   "safety_note": "建仓不到 30 天，且以 MCP 方式接入代理，会读取本地音频文件。防范：先在无敏感文件的目录里试用，装之前看一遍依赖和 MCP 声明的权限。",
+   "risk_brief": "新项目，MCP 会读本地音频文件",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/Leonxlnx/earshot/HEAD/docs/media/launch_frames.png",
+    "https://raw.githubusercontent.com/Leonxlnx/earshot/HEAD/docs/media/launch_sheet.png"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "frontend-design",
+   "url": "https://skills.sh/anthropics/skills/frontend-design",
+   "repo": "anthropics/skills",
+   "hot": "长期热门",
+   "stars_total": null,
+   "installs": 1000000,
+   "popularity_note": "skills.sh 总榜第 12 名，累计安装 **100 万**（2026-10-20）",
+   "works_with": "Claude Code / Codex",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "让代理写出不千篇一律的前端页面",
+   "what": "一份设计准则：先定视觉方向，再对照常见的套路化默认做法检查，最后搭页面并自我评审，覆盖字体、排版、动效和界面文案。我读过 SKILL.md，没有执行 shell、读写文件或联网的指令，不需要密钥。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "批量做程序化 SEO 落地页时套用，页面不再长得一个模样。"
+    },
+    {
+     "area": "做产品",
+     "how": "单功能 AI 工具站的首页和定价页，让代理一次出可上线的版本。"
+    }
+   ],
+   "install": "`npx skills add anthropics/skills --skill frontend-design`",
+   "id": "S01"
+  },
+  {
+   "name": "agent-browser",
+   "url": "https://skills.sh/vercel-labs/agent-browser/agent-browser",
+   "repo": "vercel-labs/agent-browser",
+   "hot": "长期热门",
+   "stars_total": null,
+   "installs": 1200000,
+   "popularity_note": "skills.sh 总榜第 4 名，累计安装 **120 万**（2026-10-20）",
+   "works_with": "Claude Code / Codex",
+   "safety": "黄",
+   "safety_note": "会拿到浏览器会话和登录凭证：skill 允许执行 `agent-browser` 命令，涉及登录、认证保险库、Slack 发消息和云浏览器。我只读到入口说明，详细用法由安装后的命令行提供，没看到。防范：用单独的浏览器档案和测试账号，不要接入主账号的登录态。",
+   "risk_brief": "能操控浏览器和已登录账号",
+   "brief": "让代理操作真实 Chrome 浏览器",
+   "what": "命令行工具，让代理导航、填表、点击、截图和提取数据，可保存会话状态、录屏，也能操作 Electron 应用。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "让代理登录阿里巴巴国际站等后台，批量整理询盘表，不用手动复制。"
+    },
+    {
+     "area": "SEO",
+     "how": "截图并提取竞品页面的标题、结构和价格表，做对比表。"
+    }
+   ],
+   "install": "`npm i -g agent-browser && agent-browser install`",
+   "id": "S02"
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "抖音 AI 漫剧：小号靠连续剧集拿高收藏",
+   "brief": "粉丝不到 7000 的 AI 漫剧号拿到过万点赞",
+   "signal": "爆款形式",
+   "track": "AI短视频",
+   "platforms": [
+    "抖音"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "《冷雾长眠》P1-P10",
+     "url": "https://www.douyin.com/video/7697641127729721445",
+     "metrics": "点赞 2.1万 · 收藏 7005 · 粉丝 6448"
+    },
+    {
+     "platform": "抖音",
+     "title": "四大漫剧第一名，至今无人能撼动，你心中的第一名是哪部",
+     "url": "https://www.douyin.com/video/7698044889849711935",
+     "metrics": "点赞 1.1万 · 收藏 1.0万 · 粉丝 2614"
+    },
+    {
+     "platform": "抖音",
+     "title": "01-04纯享版，昔日宿敌变同居",
+     "url": "https://www.douyin.com/video/7697694766137347382",
+     "metrics": "点赞 1.7万 · 收藏 5997 · 粉丝 4561"
+    }
+   ],
+   "quotes": [],
+   "why": "三个粉丝 2600–6500 的号点赞过万，收藏率 0.33–0.96，**观众想存下来追更**。榜单类内容的收藏率最高。只在抖音出现，其他平台这次没搜到，是可以先搬运思路的时间差。",
+   "how": "第一步：选一个小说类 IP 或自己写的 10 集短剧本，用 Claude 拆成分镜，用可灵或即梦出图和视频，剪成 10 集合集发布；再做一条「漫剧榜单」引流。",
+   "risk": "抖音要求 AI 生成内容标注；小说改编有版权风险，要用原创或授权题材；批量号容易被限流。",
+   "id": "P01"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-19 G01",
+   "title": "akitaonrails/ai-memory",
+   "update": "星数从 10,439 涨到 **11,307**，今日 +666。",
+   "url": "https://github.com/akitaonrails/ai-memory",
+   "id": "F01"
+  },
+  {
+   "ref": "10-17 G01",
+   "title": "stablyai/orca",
+   "update": "星数从 94,489 涨到 **98,222**，今日 +1,591，逼近 10 万。",
+   "url": "https://github.com/stablyai/orca",
+   "id": "F02"
+  }
+ ],
+ "watch_next": [
+  "WorkBuddy",
+  "AI漫剧",
+  "可灵4.0",
+  "OpenCode"
+ ]
+}
