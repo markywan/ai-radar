@@ -53,6 +53,7 @@ jobs:
           HAS_TIKHUB: ${{ secrets.TIKHUB_API_KEY != '' }}
           HAS_TRUSTMRR: ${{ secrets.TRUSTMRR_API_KEY != '' }}
           HAS_FEISHU: ${{ secrets.FEISHU_WEBHOOK != '' }}
+          HAS_FEISHU_2: ${{ secrets.FEISHU_WEBHOOK_2 != '' }}
           HAS_KEY: ${{ secrets.ACTION_KEY != '' }}
           WORKER_URL: ${{ vars.WORKER_URL }}
           T_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
@@ -73,6 +74,7 @@ jobs:
             ok "$HAS_TIKHUB" "TikHub 抓取密钥" "缺少 TIKHUB_API_KEY：今天不抓抖音、小红书等平台，其他来源照常"
             ok "$HAS_TRUSTMRR" "TrustMRR 密钥" "缺少 TRUSTMRR_API_KEY（可选）：机会卡的收入证据由模型自己打开页面找"
             ok "$HAS_FEISHU" "飞书机器人" "缺少 FEISHU_WEBHOOK：不推送飞书"
+            [ "$HAS_FEISHU_2" = "true" ] && echo "- ✅ 另一个飞书群（FEISHU_WEBHOOK_2，只收日报）"
             ok "$HAS_KEY" "收藏口令" "缺少 ACTION_KEY：飞书卡片上没有收藏按钮"
             w="${WORKER_URL:-$(python3 -c 'import json;print(json.load(open("config/site.json")).get("worker_url",""))')}"
             [ -n "$w" ] && echo "- ✅ 收藏接口 $w" || echo "- ⚠️ 收藏接口没配：仓库变量 WORKER_URL 和 config/site.json 的 worker_url 都空着，网站和飞书上的收藏按钮不可用（配法见 docs/setup.md 第 7、8 步）"
@@ -157,6 +159,8 @@ jobs:
         env:
           FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
           FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+          FEISHU_WEBHOOK_2: ${{ secrets.FEISHU_WEBHOOK_2 }}
+          FEISHU_SECRET_2: ${{ secrets.FEISHU_SECRET_2 }}
           ACTION_KEY: ${{ secrets.ACTION_KEY }}
           SITE_URL: ${{ vars.SITE_URL }}
           WORKER_URL: ${{ vars.WORKER_URL }}

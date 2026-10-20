@@ -1,6 +1,6 @@
 name: 飞书推送测试
 
-# 手动运行：把最近一份日报的卡片推到飞书，用来确认机器人和签名配置对不对。
+# 手动运行：把最近一份日报的卡片推到飞书，用来确认机器人和签名配置对不对。配了 FEISHU_WEBHOOK_2 时另一个群也推一份。
 on:
   workflow_dispatch:
 
@@ -16,6 +16,8 @@ jobs:
         env:
           FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
           FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+          FEISHU_WEBHOOK_2: ${{ secrets.FEISHU_WEBHOOK_2 }}
+          FEISHU_SECRET_2: ${{ secrets.FEISHU_SECRET_2 }}
           ACTION_KEY: ${{ secrets.ACTION_KEY }}
           SITE_URL: ${{ vars.SITE_URL }}
           WORKER_URL: ${{ vars.WORKER_URL }}

@@ -11,6 +11,7 @@
 | `OPENROUTER_API_KEY` | GitHub 仓库 Secrets | 第 3 步，OpenRouter 后台 | 三选一，前两个都没有时才用 |
 | `FEISHU_WEBHOOK` | GitHub 仓库 Secrets | 第 4 步，飞书自定义机器人 | 不填就不推送 |
 | `FEISHU_SECRET` | GitHub 仓库 Secrets | 第 4 步，签名校验密钥 | 建议 |
+| `FEISHU_WEBHOOK_2`、`FEISHU_SECRET_2` | GitHub 仓库 Secrets | 第 4 步「推到另一个群」 | 可选，另一个群（比如家人群）也收日报 |
 | `TWITTERAPI_IO_KEY` | GitHub 仓库 Secrets | 第 5 步，twitterapi.io 后台 | 不填就不抓 X |
 | `TIKHUB_API_KEY` | GitHub 仓库 Secrets | 第 5 步，TikHub 用户后台 | 不填就不抓抖音、小红书等平台 |
 | `TRUSTMRR_API_KEY` | GitHub 仓库 Secrets | 第 5 步，trustmrr.com 免费申请 | 可选 |
@@ -50,6 +51,13 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 4. 安全设置里勾选 **签名校验**，复制密钥，存为 `FEISHU_SECRET`。不要勾「自定义关键词」和「IP 白名单」，GitHub 的出口 IP 不固定。
 5. Actions → **飞书推送测试** → Run workflow，把最近一期推到飞书，确认配置对。
 
+**推到另一个群（可选，比如家人群）**：自定义机器人只属于添加它的那个群，换个群要在那个群里再加一个，会得到新的 Webhook 地址和签名密钥。
+
+- 只能用**电脑版飞书**加（手机版的群机器人里没有「自定义机器人」）。
+- 家人用的是另一个飞书个人账号，对你来说是「外部」用户：外部用户进不了你原来的群，往原群里拉人时飞书会另建一个带「外部」标签的新群，原群的机器人不会跟过去。所以先在手机上把家人加为联系人（对方要通过），再拉群，然后在新群里加机器人。
+- 新群的地址存为 `FEISHU_WEBHOOK_2`，签名密钥存为 `FEISHU_SECRET_2`，再跑一次**飞书推送测试**，两个群都会收到。
+- 这个群只收日报，卡片上没有收藏按钮，「打开今日日报」也不带收藏口令；失败通知和深挖完成只发你自己的群。另一个群推送失败时，你的群会收到一张失败卡片。
+
 ## 第 5 步：抓取用的 API
 
 - **X（twitterapi.io）**：注册后后台首页有 API Key，充几美元，存为 `TWITTERAPI_IO_KEY`。每天最多抓 600 条推文，约 1–3 美元/月；想更省调小 `config/sources.json` 的 `x.max_tweets`。
@@ -86,6 +94,7 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 ## 出问题时
 
 - **飞书没收到**：看 Actions 里那次运行哪一步红了；失败时机器人会推一张带运行记录链接的卡片。什么卡片都收不到，多半是 `FEISHU_WEBHOOK` 或 `FEISHU_SECRET` 填错。
+- **群里找不到「自定义机器人」**：换电脑版飞书加；外部群也只能在电脑版加。
 - **AI 那一步红了**：日志里「查 Claude 出错原因」一步打印了原因，常见是令牌过期或额度用完。
 - **点收藏提示「口令不对」**：Worker 里的 `ACTION_KEY` 和 GitHub 里的不一致。
 - **提示「GitHub 没有接受请求」**：Worker 的 `GITHUB_TOKEN` 没有 Contents 写权限，或生成时没选中 `ai-radar`。

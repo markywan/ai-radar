@@ -6,6 +6,7 @@
   python3 scripts/notify_feishu.py error "说明文字"
 
 环境变量：FEISHU_WEBHOOK（必填）、FEISHU_SECRET（开了签名校验才要）、
+FEISHU_WEBHOOK_2 与 FEISHU_SECRET_2（另一个群，比如家人群，可选：只收日报，卡片不带收藏口令）、
 SITE_URL（网站地址）、WORKER_URL 与 ACTION_KEY（卡片上的收藏按钮要用）、RUN_URL（失败时附上运行记录）。
 网站地址和收藏接口地址没给环境变量时，从 config/site.json 读。
 """
@@ -164,25 +165,29 @@ def describe(v):
     return f"{len(v)} 个字符，{head}" + ("，里面有机器人编号" if HOOK.search(v) else "")
 
 
-def webhook_and_secret():
-    """取出飞书机器人地址和签名密钥（复制时折行、多出的空格都去掉），并纠正几种常见填法。"""
-    url = "".join(os.environ.get("FEISHU_WEBHOOK", "").split())
-    secret = "".join(os.environ.get("FEISHU_SECRET", "").split())
+def webhook_and_secret(suffix=""):
+    """取出飞书机器人地址和签名密钥（复制时折行、多出的空格都去掉），并纠正几种常见填法。
+
+    suffix 是 "" 时读自己的群（FEISHU_WEBHOOK），是 "_2" 时读另一个群（FEISHU_WEBHOOK_2）。
+    """
+    hook, sec = f"FEISHU_WEBHOOK{suffix}", f"FEISHU_SECRET{suffix}"
+    url = "".join(os.environ.get(hook, "").split())
+    secret = "".join(os.environ.get(sec, "").split())
     if not url.startswith("http") and secret.startswith("http"):
         url, secret = secret, url  # 两个值填反了
-        print("FEISHU_WEBHOOK 和 FEISHU_SECRET 好像填反了，已按调换后的值推送。")
+        print(f"{hook} 和 {sec} 好像填反了，已按调换后的值推送。")
     if not url.startswith("http") and HOOK.fullmatch(url):
         url = f"https://open.feishu.cn/open-apis/bot/v2/hook/{url}"  # 只填了地址最后那段编号
-        print("FEISHU_WEBHOOK 只填了机器人编号，已补成完整地址。")
+        print(f"{hook} 只填了机器人编号，已补成完整地址。")
     if not url.startswith("https://"):
         raise SystemExit(
-            "FEISHU_WEBHOOK 应该是飞书群机器人的完整地址，形如 https://open.feishu.cn/open-apis/bot/v2/hook/…；"
-            f"现在它{describe(url)}；FEISHU_SECRET {describe(secret)}。")
+            f"{hook} 应该是飞书群机器人的完整地址，形如 https://open.feishu.cn/open-apis/bot/v2/hook/…；"
+            f"现在它{describe(url)}；{sec} {describe(secret)}。")
     return url, secret
 
 
-def send(payload):
-    url, secret = webhook_and_secret()
+def send(payload, suffix=""):
+    url, secret = webhook_and_secret(suffix)
     if secret:
         ts = str(int(time.time()))
         sign = base64.b64encode(hmac.new(f"{ts}\n{secret}".encode(), digestmod=hashlib.sha256).digest()).decode()
@@ -193,17 +198,27 @@ def send(payload):
         body = json.loads(r.read().decode() or "{}")
     if body.get("code", 0) != 0:
         raise SystemExit(f"飞书返回错误：{body}")
-    print("飞书已推送")
+    print("飞书已推送" + ("到另一个群" if suffix else ""))
 
 
 def main():
+    global KEY
     kind, arg = sys.argv[1], sys.argv[2]
-    payload = {"daily": daily_card, "deepdive": deepdive_card, "error": error_card}[kind](arg)
+    build = {"daily": daily_card, "deepdive": deepdive_card, "error": error_card}[kind]
     if not os.environ.get("FEISHU_WEBHOOK", "").strip():
         print("没有配置 FEISHU_WEBHOOK，只打印卡片：")
-        print(json.dumps(payload, ensure_ascii=False, indent=1))
+        print(json.dumps(build(arg), ensure_ascii=False, indent=1))
         return 0
-    send(payload)
+    send(build(arg))
+    # 另一个群只收日报；收藏口令能触发深挖、花 AI 额度，不发给别人，卡片上就没有收藏按钮和未读提醒
+    if kind == "daily" and os.environ.get("FEISHU_WEBHOOK_2", "").strip():
+        KEY = ""
+        try:
+            send(build(arg), "_2")
+        except (SystemExit, Exception) as e:  # noqa: BLE001
+            print(f"另一个群没推送成功：{e}")
+            send(error_card(f"日报已推到这个群，但另一个群（FEISHU_WEBHOOK_2）没推送成功：{e}"))
+            return 1
     return 0
 
 

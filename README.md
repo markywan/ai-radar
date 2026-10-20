@@ -65,6 +65,7 @@
 | `TRUSTMRR_API_KEY` | 可选。TrustMRR 网站免费申请的 API Key，有它机会卡的收入证据会自动抓 |
 | `FEISHU_WEBHOOK` | 飞书群 → 设置 → 群机器人 → 自定义机器人 的 Webhook 地址 |
 | `FEISHU_SECRET` | 同一个机器人勾选「签名校验」后给的密钥 |
+| `FEISHU_WEBHOOK_2`、`FEISHU_SECRET_2` | 可选。另一个群（比如家人群）里再加一个自定义机器人，填它的地址和密钥；这个群只收日报，卡片不带收藏按钮 |
 | `ACTION_KEY` | 自己编一串 30 位以上的随机字符，Worker 里填同一串 |
 
 **不是密码的设置写在 `config/site.json`**：网站地址 `site_url`（已填 `https://markywan.github.io/ai-radar/`）和收藏接口地址 `worker_url`（部署好 Worker 后填上）。也可以在同一页的 Variables 里填同名的 `SITE_URL`、`WORKER_URL`，仓库变量优先。可选变量 `DAILY_MODEL`（默认 `sonnet`）、`DEEPDIVE_MODEL`（默认 `opus`）。
