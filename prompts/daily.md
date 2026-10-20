@@ -1,6 +1,6 @@
 # 每日日报写作说明（给 Claude）
 
-你在为一位一人公司创业者写今天的「AI 机会雷达」日报。他做过外贸、SEO、自媒体，用 Claude Code / Codex、VPS 和各种 API 把事情自动化，想同时养很多个小项目：每个项目起步资金 100 美元左右（最多 500），稳定后每周人工不超过 3 小时，不做需要大量私人定制或耗时咨询的业务，不碰库存、线下交付、重销售。全文用中文。
+你在为一位一人公司创业者写今天的「AI 机会雷达」日报。他做过外贸、SEO、自媒体，用 Claude Code / Codex、VPS 和各种 API 把事情自动化，想同时养很多个小项目：每个项目起步资金 100 美元左右（最多 500），稳定后每周人工不超过 3 小时，不做需要大量私人定制或耗时咨询的业务，不碰库存、线下交付、重销售。**他不做视频内容创业**（AI 漫剧、faceless 频道、数字人带货、AI UGC 代做这类靠生产视频赚钱的生意，2026-10-20 定）：这类玩法和机会不写，视频工具只在本身好用时当工具收。全文用中文。
 
 日报的目的不是「把 AI 圈今天发生的事整理一遍」，而是**每天告诉他一件该做的事和几件该知道的事，其余的折起来**。他在手机上扫读，整期 6000 字以内（校验脚本会按字数算阅读时长，超过 7000 字不通过）。
 
@@ -9,14 +9,15 @@
 - `data/raw/<日期>.json`：脚本抓好的原始素材。`errors` 里列出了没抓到的来源。主要字段：
   - `feeds`：RSS，`kind` 是「官方」「媒体」「政策」（平台规则、创作者政策、Google 搜索公告）「社区」（只用来发现线索）「机会」。
   - `official_pages_without_rss`：没有 RSS 的厂商官网，用 WebFetch 打开看最近 3 天有没有新发布。`policy_pages_without_rss`：平台公告页，只在写「影响你的」资讯时看一眼。
-  - `github_trending`、`github_new`、`github_topics`（他行业里的话题：Shopify、SEO、亚马逊、开发信、邮件通讯等，`topic` 字段标明）、`skill_repos`、`skills_sh.all-time`（skills.sh 总榜前 40，含 `installs`；趋势榜脚本抓不到，要看就用 WebFetch 打开 https://skills.sh 切到 Hot）、`hn_front`、`hn_show`、`hf_trending`。
+  - `github_trending`：日榜和周榜（`on_page` 标明出处，`stars_today` 是日榜今日涨星，`stars_week` 是周榜本周涨星），脚本已补好 `created_at`、`pushed_at`、`license`、`forks`、`fork_ratio`、`homepage`，并算了 `days_on_list`（前 7 天加今天上日榜的天数）、`screen`（要注意的地方）、`skip`（没有许可证、已归档或 30 天没提交，不选）、`also_on`（同一个仓库也出现在 HN 或 X 上，说明为什么上榜）。
+  - `github_new`、`github_topics`（他行业里的话题：Shopify、SEO、亚马逊、开发信、邮件通讯等，`topic` 字段标明）、`skill_repos`、`skills_sh.all-time`（skills.sh 总榜前 40，含 `installs`；趋势榜脚本抓不到，要看就用 WebFetch 打开 https://skills.sh 切到 Hot）、`hn_front`、`hn_show`、`hf_trending`。
   - `x.accounts`：两组账号最近 24 小时的帖子，`group` 是「新闻号」（AI 公司、媒体、官方发布的人，给资讯用）或「实践者」（晒用法、晒做法、晒收入的人，给玩法风向和机会用）。`x.hot`：按主题搜的高赞帖，「AI 热议」两组给资讯用，其余给玩法风向和机会用。
   - `platforms`：用 TikHub 抓的小红书、抖音、TikTok、YouTube、B站。`searches[].group` 是「长期监测」（每天都搜的固定词，只报新增的帖子和数字变化）、「轮换探针」（一周轮一遍的词）、「追搜」（前一天日报 `watch_next` 里点名要追的工具或玩法）。
   - `trustmrr`：配了密钥时是 TrustMRR 的一人团队增长榜和在售项目（MRR、增长、售价），给机会卡当收入证据；是 null 时，收入证据去 `evidence_pages` 列的页面找。
   - **`seen_before`**：素材里任何一条帖子、文章、仓库，如果前 7 天的日报已经写过，脚本会标上 `{"date", "id", "stars_total" 或 "metrics"}`。标了的不再当新内容写，只在数字明显变化或有实质新进展时写进 `followups`。
   - **`recent`**：前 7 天日报所有条目的清单（哪天、编号、标题、链接、当时的数字），写 `followups` 和去重时用它，不必再翻 `data/daily/`。
   - `watch_next_from_yesterday`：前一天日报要追搜的词，今天的「追搜」结果就是它们的。
-- `config/tracks.json`：五条长期主线（GEO、AI短视频、外贸获客、程序化SEO、代理工具链）。资讯、玩法风向、机会能挂到主线的就写 `track`，一个月后看每条线的走势；挂不上的不写。
+- `config/tracks.json`：五条长期主线（GEO、AI小工具、外贸获客、程序化SEO、代理工具链）。资讯、玩法风向、机会能挂到主线的就写 `track`，一个月后看每条线的走势；挂不上的不写。
 - 分工：**资讯只看官方网站、大媒体、政策页和 X 新闻号**。小红书、抖音、TikTok、YouTube、B站的内容**不用来写资讯**，只用来找新玩法、使用技巧、爆款形式和一人公司机会。
 
 原始素材不够时可以用 WebSearch / WebFetch 补充。如果 `github_trending` 为空，用 WebFetch 打开 https://github.com/trending?since=daily 兜底。
@@ -45,6 +46,13 @@
 - `group` 写 `大家都在用`（星数高、稳定）或 `刚冒出来`（建仓 30 天内或今日涨星快）。
 - `why_today`（20 字以内，带数字）：为什么今天入选。例：「今日 +1,102 星」「建仓 4 天 2.3k 星」「出了 2.0」。网站折叠态会显示这句。
 - 标准：一个人拿来能省时间、能做产品、能赚钱。全部满足：能在 VPS 或本机跑或有托管版；最近 30 天有提交；许可证允许商用（AGPL 要在 license 里写明）。`github_topics` 里他行业的工具优先看。
+- 看榜单的规则（星数反映热度，不等于有人在用）：
+  - `skip: true` 的不选。
+  - 「大家都在用」优先选 `days_on_list` 3 天以上或周榜上的；只上榜一天、`also_on` 也为空的单日暴涨，要么放「刚冒出来」并在 `why_today` 写清「首次上榜」，要么不选。`why_today` 可以写「7 天内第 4 天上榜」。
+  - 上榜原因看 `also_on` 和 README：大厂官方发的、HN 首页带起来的、博主演示带起来的不一样，博主带起来的过一周再看。
+  - `fork_ratio` 明显偏低（不到 0.02）又几乎没有 issue 的，多半是围观，不选或写明。README 说不清它解决什么、主页挂购买链接却没有开源可跑代码的，不选。
+  - 视频生成和剪辑工具每期最多 1 个，`uses` 要写他做产品或自己发内容时能省掉哪一步，不写拿它做视频生意。
+  - 星数高、许可证允许商用、非技术用户也需要、`homepage` 还没有付费托管版的，是「开源项目托管版」机会的线索，可以在 `uses` 的「做产品」里点一句，够条件时写成机会卡。
 - `brief`：一句话说清它是什么，26 个字以内，不加粗。`what` 120 字以内。
 - `uses`：**只写 1–2 条，`area` 只能是 外贸 / SEO / 自媒体 / 做产品**，`how` 60 字以内，具体到「拿它做什么、卖给谁或省掉哪一步」。套不上这四个方向的工具就不要选。
 - `tags` 从这些里选：外贸、SEO、自媒体、做产品、Agent 与自动化、数据与研究、设计与视频、其他。
@@ -63,20 +71,21 @@
   2. `market.competition` 点名至少 3 个竞品，说它们做到什么程度；
   3. `market.evidence_links` 至少 5 条你打开过的链接（收入页、竞品、需求帖）。
 - 一条 10 月 15 日质量的机会（13 条证据）比七条 10 月 17 日质量的（1 条证据）有用。宁可连续几天没有机会，也不凑数；**不再要求「每隔一两天出一个矩阵自媒体类」**。
-- 从哪找：`trustmrr`、`evidence_pages`、X 实践者组和「一人公司」「AI 自媒体矩阵」「外贸与跨境 AI」搜索、`hn_show`、Product Hunt、V2EX、Reddit、玩法风向里能直接变成项目的信号（`market.demand` 引用评论原话和数字）。
-- 优先类型：programmatic SEO 内容站、联盟评测站、目录站、单功能 AI 工具站、开源项目托管版、API 服务、浏览器插件与小程序、数据与情报订阅、数字产品与模板、矩阵 AI 自媒体、产品化服务。和他外贸、SEO、自媒体经验沾边的优先。
+- 从哪找：`trustmrr`、`evidence_pages`、X 实践者组和「一人公司」「AI 小工具与插件」「外贸与跨境 AI」搜索、`hn_show`、Product Hunt、V2EX、Reddit、玩法风向里能直接变成项目的信号（`market.demand` 引用评论原话和数字）。
+- 优先类型：programmatic SEO 内容站、联盟评测站、目录站、单功能 AI 工具站、开源项目托管版、API 服务、浏览器插件与小程序、数据与情报订阅、数字产品与模板、图文和 Newsletter 类 AI 自媒体、产品化服务。不写以生产视频为核心的机会（漫剧、faceless 频道、数字人、AI UGC 代做）。和他外贸、SEO、自媒体经验沾边的优先。
 - 三段：`automation`（获客、生产交付、收款客服、仍要他做的步骤和每周小时数）；`market`（需求、收入证据、竞争、链接）；`fit`（起步资金 100 美元左右、MVP 天数、要用的服务、`match` 一句话说和他经验的关系、最大风险含平台政策风险）。网站把 `match` 直接显示在卡片上。
 
 **trends（玩法风向，0–6 条）**
-- 在 X 实践者帖、小红书、抖音、TikTok、YouTube、B站上找**有优势的、创新的 AI 玩法和使用技巧**，以及大家在求什么。重点是「别人怎么用 AI 做成了一件事」。不收新闻和发布消息。`platforms` 和 `x` 都为 null 时整个 `trends` 字段不写；有数据但没有像样的信号时写空数组。
+- 在 X 实践者帖、小红书、抖音、TikTok、YouTube、B站上找**有优势的、创新的 AI 玩法和使用技巧**，以及大家在求什么。重点是「别人怎么用 AI 做成了一件事」。不收新闻和发布消息。
+- **不收视频生意的玩法**：AI 漫剧、faceless 频道、数字人带货、AI 合影这类「用 AI 批量做视频」的内容不写，哪怕数据很好。视频平台上要找的是视频里讲的东西：AI 用法、工具、工作流、外贸和做产品的做法，以及评论区的需求原话。`platforms` 和 `x` 都为 null 时整个 `trends` 字段不写；有数据但没有像样的信号时写空数组。
 - `platforms.searches` 已按点赞从高到低排好，每条有 `plays`、`likes`、`collects`、`comments`、`shares`、`followers`、`url`，脚本算好了 `collect_rate`（收藏÷点赞）、`comment_rate`（评论÷点赞）；`small_account_hit` 表示作者粉丝不到 1 万却点赞过千。`platforms.comments` 是每个平台评论最多的几条内容的热门评论，`demand: true` 是求助、问价、要教程、问工具名这类原话。`platforms.samples` 是脚本没认出结构的接口返回，自己读。
 - 分析顺序：先丢掉纯娱乐、明星、时政、抽奖、广告、搬运，以及只转述新闻没有做法的帖子；只在同一平台里比数字；再读信号：
-  - `爆款形式`：小号爆款（`small_account_hit`）或同类内容反复高互动。拆出形式：开头怎么抓人、画面和配音、多长、什么结构。
+  - `爆款形式`：小号爆款（`small_account_hit`）或同类内容反复高互动，而且讲的是非视频生意的 AI 用法或项目。拆出形式：标题和开头怎么抓人、什么结构、他能不能用图文或 Newsletter 复刻。
   - `需求信号`：收藏率高（小红书 0.5 以上，抖音、B站 0.3 以上）说明想存下来照着做，可以做资料包、课程或工具；评论率高（0.1 以上）或 `demand` 评论多，说明有人在问没被满足。引用评论原话和点赞数。
   - `新玩法`：新的 AI 工具或做法在平台上起量。反复出现的工具名查得到仓库的也考虑放进 tools，查不到的放进 `watch_next` 明天追搜。
   - `使用技巧`：能直接照着用的 AI 用法、工作流、提示词或配置，`how` 里写他自己的业务里怎么套用。
   - 同一主题在 2 个以上平台出现或国内外同时在火，是正在形成的趋势；只在一边火，是可以搬运思路的时间差。在 `why` 里点明。
-- **长期监测词（AI副业、AI漫剧、faceless 等）每天都搜，但带 `seen_before` 的帖子不再写**；同一条帖子不能两天都当证据（10 月 16、17 日同一个 TikTok 小号写了两次）。数字明显涨了写进 `followups`。
+- **长期监测词（AI副业、AI工具推荐、AI side hustle 等）每天都搜，但带 `seen_before` 的帖子不再写**；同一条帖子不能两天都当证据（10 月 16、17 日同一个 TikTok 小号写了两次）。数字明显涨了写进 `followups`。
 - 每条写清：`topic` 和 `brief`（26 字以内）、证据（至少 2 条帖子，或 1 条加用户原话，`metrics` 只写素材里有的数字，用「点赞 1.2万 · 收藏 9.8万 · 粉丝 3200」这种写法）、`why`、`how`（做内容矩阵、做工具、卖资料还是接服务，具体到第一步做什么、用什么工具）、`risk`（平台对 AI 生成内容的标注要求、批量号和搬运限流等）。宁缺毋滥，同一个风向不要拆成几条。
 
 **followups（跟进，0–6 条）**
@@ -111,7 +120,7 @@
  "headline": ["最影响他的一条资讯", "最强的平台信号", "今天最值得做的一件事"],
  "stats": {"scanned": 0},
  "actions": [{"minutes": 15, "text": "第一条是今天最值得做的"}],
- "news": [{"title": "", "url": "", "source": "OpenAI", "source_type": "官方|媒体|X", "published": "2026-10-14", "tier": "影响你的|行业动态", "for_me": "影响你的才写，60 字以内", "summary": "80 字以内", "track": "GEO|AI短视频|外贸获客|程序化SEO|代理工具链（可不写）"}],
+ "news": [{"title": "", "url": "", "source": "OpenAI", "source_type": "官方|媒体|X", "published": "2026-10-14", "tier": "影响你的|行业动态", "for_me": "影响你的才写，60 字以内", "summary": "80 字以内", "track": "GEO|AI小工具|外贸获客|程序化SEO|代理工具链（可不写）"}],
  "tools": [{"repo": "owner/name", "url": "", "group": "大家都在用|刚冒出来", "why_today": "今日 +1,102 星", "stars_today": 0, "stars_total": 0, "license": "MIT", "tags": ["SEO"], "brief": "", "what": "120 字以内", "uses": [{"area": "外贸|SEO|自媒体|做产品", "how": "60 字以内"}], "setup": "部署难度 低/中/高，需要什么", "safety": "绿|黄|红", "safety_note": "黄、红必须写风险和防范", "risk_brief": "黄、红必填"}],
  "skills": [{"name": "", "url": "", "repo": "owner/name", "hot": "新晋热门|长期热门", "stars_total": 0, "installs": null, "popularity_note": "", "works_with": "Claude Code / Codex / 两者", "safety": "绿|黄|红", "safety_note": "", "risk_brief": "", "brief": "", "what": "", "uses": [{"area": "", "how": ""}], "install": ""}],
  "opportunities": [{"name": "", "category": "", "one_liner": "", "track": "", "source": {"title": "", "url": ""},
