@@ -1,0 +1,378 @@
+{
+ "date": "2026-10-21",
+ "generated_at": "2026-10-21T06:30:00+08:00",
+ "headline": [
+  "OpenAI Responses API 上线 **12 小时提示词缓存**，写入价是输入价的 2.5 倍，长上下文的常驻代理能省钱，但要算账。",
+  "TikTok 上「大家都装一样的 Claude skills，这 5 个不一样」单条 **3.5 万赞、4 万收藏**，收藏率超过 1，说明 skills 清单类内容是强需求。",
+  "今天最值得做的是把 VPS 脚本里复用长前缀的 API 调用挑出来，算一遍 12 小时缓存是否划算。"
+ ],
+ "stats": {
+  "scanned": 587,
+  "selected": 18,
+  "chars": 2840,
+  "read_minutes": 6
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "列出 VPS 上复用长系统提示或工具定义、且调用间隔超过 1 小时的脚本，按「写入 2.5 倍价」估算 12 小时缓存是否回本。"
+  },
+  {
+   "minutes": 15,
+   "text": "在自己的一个站点上跑 `claude-seo` 的技术审计，把输出当作程序化 SEO 站的检查清单模板。"
+  },
+  {
+   "minutes": 5,
+   "text": "查一下 Codex 账号的用量是否被误扣（官方称约 4 万账号限额计算不一致），有异常就保留截图申诉。"
+  }
+ ],
+ "news": [
+  {
+   "title": "OpenAI Responses API 新增 12 小时提示词缓存，缓存写入收 2.5 倍输入价",
+   "url": "https://developers.openai.com/api/docs/changelog",
+   "source": "OpenAI",
+   "source_type": "官方",
+   "published": "2026-10-20",
+   "tier": "影响你的",
+   "for_me": "长前缀的常驻代理间隔数小时也能吃到缓存价，但要**多次复用**才回本，今天先算账。",
+   "summary": "缓存保留可选 **12 小时**；12 小时缓存写入按输入 token 价的 **2.5 倍**计，命中后按较低的缓存输入价计费。更新日志未写具体缓存价。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "MiniMax M3.1 Flash 发布：输入 1 元、输出 4 元每百万 token，输出 200+ TPS",
+   "url": "https://www.qbitai.com/2026/10/504517.html",
+   "source": "量子位",
+   "source_type": "媒体",
+   "published": "2026-10-20",
+   "tier": "影响你的",
+   "for_me": "做批量内容或外贸邮件的脚本可以把它列入备选，和 DeepSeek V4.1 Flash 比价后再切。",
+   "summary": "总成本约为上一代 M3 的 **30%**，缓存读取 0.1 元；量子位称国模 Agent 榜（ALE）**29.6% 第一**。价格与 DeepSeek V4.1 Flash 谷期相近。",
+   "id": "N02"
+  },
+  {
+   "title": "代理工具更新：Claude Code 2.1.305 修了工具搜索回归；Codex 0.164.0 仍在预览",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.305",
+   "source": "Anthropic",
+   "source_type": "官方",
+   "published": "2026-10-20",
+   "tier": "影响你的",
+   "for_me": "在 Vertex、Bedrock 或网关上用 Claude Code 的，升到 2.1.305 即可，其余不用动。",
+   "summary": "Claude Code 2.1.305：修复 2.1.304 里网关拒绝工具搜索导致请求失败的问题，新增沙箱嵌套用户命名空间选项；Codex：0.164.0-alpha.4 到 alpha.8 仅预发布，未见更新说明。",
+   "track": "代理工具链",
+   "id": "N03"
+  },
+  {
+   "title": "Codex 团队称约 4 万账号用量限额计算不一致，已重置",
+   "url": "https://x.com/thsottiaux/status/2112592264686149749",
+   "source": "Tibo（OpenAI Codex）",
+   "source_type": "X",
+   "published": "2026-10-20",
+   "tier": "影响你的",
+   "for_me": "周末额度掉得快的话多半是这个原因，先看是否已重置，不要急着换工具。",
+   "summary": "官方帖称周末有用户反映用量消耗比预期快，查到约 **40,000 个账号**的实际用量与所适用的限额不对应；另一条帖称已重置额度。",
+   "track": "代理工具链",
+   "id": "N04"
+  },
+  {
+   "title": "DeepSeek 开源内部推理框架 DeepInfer（Apache-2.0），服务 V4.1 Flash",
+   "url": "https://the-decoder.com/deepseek-open-sources-the-inference-engine-that-powers-its-fastest-and-cheapest-ai-model/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-20",
+   "tier": "行业动态",
+   "summary": "基于 vLLM，同时放出 deepseek-recipe，让自托管行为与官方 API 一致。文章未给性能和成本数字，GitHub 建仓 4 天约 **1.2 万星**。",
+   "id": "N05"
+  },
+  {
+   "title": "美国国土安全部禁止联邦民用机构使用 DeepSeek",
+   "url": "https://the-decoder.com/us-bans-deepseek-technology-across-federal-civilian-agencies/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-20",
+   "tier": "行业动态",
+   "summary": "要求移除现有产品、不得新购，也覆盖关联公司和第三方服务；未设期限，也未说明 OpenRouter 这类网关是否受影响。只约束联邦机构，不是对个人用户。",
+   "id": "N06"
+  },
+  {
+   "title": "Mistral 发布 Voxtral 3：语音转写加语音合成加语音代理 SDK，转写 0.0035 美元/分钟起",
+   "url": "https://the-decoder.com/mistral-ai-launches-voxtral-3-a-full-voice-agent-stack-that-listens-thinks-and-talks-in-real-time/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-20",
+   "tier": "行业动态",
+   "summary": "转写支持 **50+ 语言**，TTS 35+ 语言，可自托管或用欧盟托管 API，SDK 基于 LiveKit。",
+   "id": "N07"
+  },
+  {
+   "title": "Cloudflare 发布 Clairic：文档字段抽取比大模型更快更便宜（Workers AI 预览）",
+   "url": "https://the-decoder.com/cloudflares-clairic-pulls-data-from-documents-faster-and-cheaper-than-llms/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-20",
+   "tier": "行业动态",
+   "summary": "指定字段一次出结果并带置信度；Cloudflare 称投诉邮件处理链路 **19.3 秒**，GLM-5.3 单跑 61.7 秒且贵近一倍。开源权重「即将」放出，未列价格。",
+   "id": "N08"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "emdash-cms/emdash",
+   "url": "https://github.com/emdash-cms/emdash",
+   "group": "大家都在用",
+   "why_today": "总星 1.38 万，昨天仍有提交",
+   "stars_today": 48,
+   "stars_total": 13827,
+   "license": "MIT",
+   "tags": [
+    "SEO",
+    "做产品"
+   ],
+   "brief": "基于 Astro 的全栈 TypeScript CMS",
+   "what": "自称 WordPress 的精神继任者，TypeScript 加 Astro。可部署到 Cloudflare 或自己的服务器，适合拿来搭内容站。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "拿它做程序化 SEO 内容站的后台，批量写入页面，替代 WordPress。"
+    },
+    {
+     "area": "做产品",
+     "how": "给单功能 AI 工具站配一个博客和文档后台，省掉自己写 CMS。"
+    }
+   ],
+   "setup": "部署难度 中，需要 Node 环境和 Cloudflare 或 VPS",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/emdash-cms/emdash/HEAD/assets/templates/blog/latest/homepage-light-desktop.jpg",
+    "https://raw.githubusercontent.com/emdash-cms/emdash/HEAD/assets/templates/marketing/latest/homepage-light-desktop.jpg",
+    "https://raw.githubusercontent.com/emdash-cms/emdash/HEAD/assets/templates/portfolio/latest/work-light-desktop.jpg"
+   ]
+  },
+  {
+   "repo": "rmyndharis/OpenWA",
+   "url": "https://github.com/rmyndharis/OpenWA",
+   "group": "大家都在用",
+   "why_today": "今日 +252 星",
+   "stars_today": 252,
+   "stars_total": 15991,
+   "license": "MIT",
+   "tags": [
+    "外贸",
+    "Agent 与自动化"
+   ],
+   "brief": "自托管的 WhatsApp API 网关",
+   "what": "把 WhatsApp 账号变成 HTTP API，可收发消息、接 webhook，自己部署，不走官方商业 API。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "接入询盘自动回复和客户跟进，把 WhatsApp 咨询转进自己的 CRM 表格。"
+    }
+   ],
+   "setup": "部署难度 中，需要 VPS 和一个 WhatsApp 账号",
+   "safety": "黄",
+   "safety_note": "要登录你的 WhatsApp 账号并长期持有会话，属于非官方接入，**有封号风险**。依据：它模拟客户端而非走官方商业 API，WhatsApp 条款不鼓励批量消息。防范：用专门的小号，不做群发，会话数据放在加密盘，不暴露管理端口。",
+   "risk_brief": "要持有账号会话，非官方接入有封号风险",
+   "id": "G02"
+  },
+  {
+   "repo": "ScrapeGraphAI/Scrapegraph-ai",
+   "url": "https://github.com/ScrapeGraphAI/Scrapegraph-ai",
+   "group": "大家都在用",
+   "why_today": "总星 3.2 万，榜上 +57 星",
+   "stars_today": 57,
+   "stars_total": 32040,
+   "license": "MIT",
+   "tags": [
+    "数据与研究",
+    "SEO"
+   ],
+   "brief": "用大模型描述需求的 Python 爬虫库",
+   "what": "用自然语言说要抓什么，由大模型生成抓取流程并输出结构化数据，支持多种模型后端。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "抓竞品的标题、价格和 FAQ，做程序化 SEO 页面的数据底表。"
+    },
+    {
+     "area": "外贸",
+     "how": "从展会和行业目录页抽取买家公司和联系方式，进开发信名单。"
+    }
+   ],
+   "setup": "部署难度 低，pip 安装，需要大模型 API Key",
+   "safety": "黄",
+   "safety_note": "会用你的模型 API Key 并抓取外部网页，抓到的内容会发给模型服务。依据：属于爬虫类，最近一次提交是 10 月 6 日。防范：Key 设额度上限，只抓公开页面，遵守目标站 robots 和条款。",
+   "risk_brief": "爬虫加 API Key，抓取内容会发给模型服务",
+   "id": "G03"
+  },
+  {
+   "repo": "thesysdev/openui",
+   "url": "https://github.com/thesysdev/openui",
+   "group": "刚冒出来",
+   "why_today": "今日 +402 星，总星 1.27 万",
+   "stars_today": 402,
+   "stars_total": 12654,
+   "license": "MIT",
+   "tags": [
+    "做产品"
+   ],
+   "brief": "让大模型直接输出可交互界面的开放标准",
+   "what": "模型输出界面描述而不是 JSON 或代码，React、Vue、Svelte、Angular 都有运行时，React 自带组件库和聊天界面。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给单功能 AI 工具站加「对话生成表单和图表」的界面，省掉解析层。"
+    }
+   ],
+   "setup": "部署难度 低，前端项目引入即可，需要模型 API",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G04",
+   "images": [
+    "https://raw.githubusercontent.com/thesysdev/openui/HEAD/assets/banner.png"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "security-audit",
+   "url": "https://github.com/cloudflare/security-audit-skill",
+   "repo": "cloudflare/security-audit-skill",
+   "hot": "新晋热门",
+   "stars_total": 34062,
+   "installs": null,
+   "popularity_note": "10 月 21 日 GitHub 趋势榜今日 **+1,680 星**，总星 3.4 万",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "黄",
+   "safety_note": "完整审计会在沙箱里跑目标项目的构建和测试，并写本地文件。依据：SKILL.md 无混淆命令、不外发数据、不要 API Key，但还引用了未逐个读过的配套文件。防范：只在有沙箱的环境审计，不跑不信任的仓库，输出目录放在仓库之外。",
+   "risk_brief": "会执行目标项目的构建和测试",
+   "brief": "Cloudflare 出品的多阶段代码安全审计技能",
+   "what": "六阶段流程：侦察、覆盖式查找、候选验证、结构化输出、独立复核、报告，输出机器可读的发现。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "上线前对自己的 AI 工具站代码审一遍，查密钥泄露和注入。"
+    }
+   ],
+   "install": "`npx skills add https://github.com/cloudflare/security-audit-skill --skill security-audit`",
+   "id": "S01"
+  },
+  {
+   "name": "claude-seo",
+   "url": "https://github.com/AgriciDaniel/claude-seo",
+   "repo": "AgriciDaniel/claude-seo",
+   "hot": "长期热门",
+   "stars_total": 19474,
+   "installs": null,
+   "popularity_note": "10 月 21 日趋势榜今日 +185 星，总星 1.9 万",
+   "works_with": "Claude Code",
+   "safety": "黄",
+   "safety_note": "安装脚本会建 Python 环境和 Chromium，并抓取你指定的网址。依据：SKILL.md 命令清晰无混淆，核心流程不要 Key，可选接 Google、DataForSEO 等需你的凭证。防范：只给只读的 Search Console 权限，不要把付费 API Key 写进仓库。",
+   "risk_brief": "会装浏览器环境，可选接入外部 API 凭证",
+   "brief": "Claude Code 的通用 SEO 审计技能包",
+   "what": "26 个子技能加 19 个子代理，覆盖技术 SEO、内容质量、结构化数据和 AI 搜索优化，输出优先级行动计划。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "给客户站或自己的站出审计报告，直接做成产品化服务卖。"
+    },
+    {
+     "area": "外贸",
+     "how": "体检外贸独立站的结构化数据和 AI 搜索可见度。"
+    }
+   ],
+   "install": "在 Claude Code 添加 marketplace 安装插件后运行 `/seo setup`",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/AgriciDaniel/claude-seo/HEAD/assets/growth-3-months.png",
+    "https://raw.githubusercontent.com/AgriciDaniel/claude-seo/HEAD/screenshots/seo-command-demo.gif",
+    "https://raw.githubusercontent.com/AgriciDaniel/claude-seo/HEAD/screenshots/seo-audit-demo.gif"
+   ]
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "Claude skills 清单类内容",
+   "brief": "「别人都装的 skills，这几个不一样」收藏率破 1",
+   "signal": "需求信号",
+   "track": "代理工具链",
+   "platforms": [
+    "TikTok",
+    "抖音"
+   ],
+   "evidence": [
+    {
+     "platform": "TikTok",
+     "title": "Everybody's installing the same Claude skills. Here are 5 things...",
+     "url": "https://www.tiktok.com/@nocode.joshua/video/7697000653733891346",
+     "metrics": "点赞 3.5万 · 收藏 4.0万 · 粉丝 13.8万"
+    },
+    {
+     "platform": "抖音",
+     "title": "WorkBuddy必装8技能，技能市场下载量最高的 8 个 Skill",
+     "url": "https://www.douyin.com/video/7698358416049196314",
+     "metrics": "点赞 6825 · 收藏 8184 · 粉丝 4493"
+    }
+   ],
+   "quotes": [],
+   "why": "海外 TikTok 和国内抖音同时出现「skills 清单」，收藏远多于点赞，说明大家想存下来照着装。",
+   "how": "做一份「外贸 / SEO 场景 Claude skills 清单」：先用本期 `claude-seo` 等 5 个跑通，截图配步骤发小红书和 TikTok，评论区引到资料包。",
+   "risk": "清单内容同质化快；推荐的 skills 要自己先做安全检查，避免带货变投毒。",
+   "id": "P01"
+  },
+  {
+   "topic": "批量 AI 数字人带货",
+   "brief": "「AI小海」卖惨带货被央视点名，佣金最高 55%",
+   "signal": "爆款形式",
+   "track": "AI短视频",
+   "platforms": [
+    "抖音"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "批量「AI小海」收割「姨姨妈妈」，数字人卖惨带货，佣金高达55%",
+     "url": "https://www.douyin.com/video/7697135970604436777",
+     "metrics": "点赞 9650 · 收藏 1594 · 评论 1690 · 粉丝 2810万"
+    },
+    {
+     "platform": "抖音",
+     "title": "卖惨带货的「小海」们，央视起底「AI小海」",
+     "url": "https://www.douyin.com/video/7698753239600090402",
+     "metrics": "点赞 3068 · 评论 565 · 粉丝 3099万"
+    }
+   ],
+   "quotes": [],
+   "why": "视频称单条十几分钟可做完、有运营者称日入两三千，但央视同步起底，属于**正在被整治的玩法**，只可当反面教材。",
+   "how": "不要照做；可以借它的流程（脚本批量化、数字人口播）做合规的产品测评或知识类数字人，并明确标注 AI 生成。",
+   "risk": "卖惨带货涉嫌误导，平台要求 AI 生成内容标注，批量号和虚假人设会被限流甚至封号。",
+   "id": "P02"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-19 F03",
+   "title": "WorkBuddy 教程（昨日追搜）",
+   "update": "小红书教程帖涨到 **9821 赞、1.49 万收藏**，另有 68 页攻略帖 5226 评论，抖音出现「必装 8 技能」。",
+   "url": "https://www.xiaohongshu.com/explore/69e8b982000000001f002e10",
+   "id": "F01"
+  },
+  {
+   "ref": "10-18 F02",
+   "title": "抖音 AI 漫剧小号爆款",
+   "update": "今日抖音又有 3 条粉丝不到 700 的号点赞 2 万以上，最高 **3.2 万赞**；小红书「动物成精5」**4.4 万赞**。",
+   "url": "https://www.douyin.com/video/7698335278381391247",
+   "id": "F02"
+  }
+ ],
+ "watch_next": [
+  "WorkBuddy 技能",
+  "AI小海",
+  "可灵4.0",
+  "Serena MCP"
+ ]
+}
