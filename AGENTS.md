@@ -78,5 +78,5 @@
 
 - `TRUSTMRR_API_KEY`（可选）还没申请；没有时机会卡的收入证据由 AI 自己找。
 - X「实践者」组还要加仓库主人常看的中文外贸、跨境电商账号（`config/sources.json` 的 `x.accounts`）。
-- Cloudflare Worker：`config/site.json` 的 `worker_url` 还空着（仓库变量 `WORKER_URL` 填了则以它为准），Worker 本身也还没部署，所以网站和飞书上的收藏、深挖按钮都不可用；`ACTION_KEY` 已在仓库 secrets 里。2026-10-19 已把部署步骤（`docs/setup.md` 第 7、8 步）交给仓库主人，等他在 Cloudflare 上操作。没配时网站点收藏会提示去看配置指南，每次运行的「检查配置」摘要也会列出。
+- Cloudflare Worker：2026-10-20 仓库主人已部署在自己的 Cloudflare 账号（`https://ai-radar-act.markywan916.workers.dev`，已填进 `config/site.json` 的 `worker_url`；仓库变量 `WORKER_URL` 填了则以它为准）。还没确认：网站和飞书上点收藏能否走通、可选的 KV（已读状态多设备同步）没配。
 - 机会研究是否换更强的模型、周六是否出周报，还没定。2026-10-17 到 10-19 三期机会卡都是 0 条，整期也只有约 3000 字（目标 6000）：门槛是对的，但默认的 `sonnet` 在一次写日报里凑不齐收入证据、三个竞品和五条链接。可选做法是机会研究拆成单独一步、用 `opus`（要多花订阅额度），等仓库主人定。

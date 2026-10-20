@@ -1,5 +1,5 @@
 {
  "说明": "不是密码的网站设置。GitHub 仓库变量里填了同名设置时，以仓库变量为准。",
  "site_url": "https://markywan.github.io/ai-radar/",
- "worker_url": ""
+ "worker_url": "https://ai-radar-act.markywan916.workers.dev"
 }
