@@ -1,0 +1,41 @@
+{
+ "id": "2026-10-21-S02",
+ "date": "2026-10-21",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-21T03:00:49+00:00",
+ "item": {
+  "name": "claude-seo",
+  "url": "https://github.com/AgriciDaniel/claude-seo",
+  "repo": "AgriciDaniel/claude-seo",
+  "hot": "长期热门",
+  "stars_total": 19474,
+  "installs": null,
+  "popularity_note": "10 月 21 日趋势榜今日 +185 星，总星 1.9 万",
+  "works_with": "Claude Code",
+  "safety": "黄",
+  "safety_note": "安装脚本会建 Python 环境和 Chromium，并抓取你指定的网址。依据：SKILL.md 命令清晰无混淆，核心流程不要 Key，可选接 Google、DataForSEO 等需你的凭证。防范：只给只读的 Search Console 权限，不要把付费 API Key 写进仓库。",
+  "risk_brief": "会装浏览器环境，可选接入外部 API 凭证",
+  "brief": "Claude Code 的通用 SEO 审计技能包",
+  "what": "26 个子技能加 19 个子代理，覆盖技术 SEO、内容质量、结构化数据和 AI 搜索优化，输出优先级行动计划。",
+  "uses": [
+   {
+    "area": "SEO",
+    "how": "给客户站或自己的站出审计报告，直接做成产品化服务卖。"
+   },
+   {
+    "area": "外贸",
+    "how": "体检外贸独立站的结构化数据和 AI 搜索可见度。"
+   }
+  ],
+  "install": "在 Claude Code 添加 marketplace 安装插件后运行 `/seo setup`",
+  "id": "S02",
+  "images": [
+   "https://raw.githubusercontent.com/AgriciDaniel/claude-seo/HEAD/assets/growth-3-months.png",
+   "https://raw.githubusercontent.com/AgriciDaniel/claude-seo/HEAD/screenshots/seo-command-demo.gif",
+   "https://raw.githubusercontent.com/AgriciDaniel/claude-seo/HEAD/screenshots/seo-audit-demo.gif"
+  ]
+ },
+ "deepdive": "pending"
+}
