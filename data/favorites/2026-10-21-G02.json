@@ -1,0 +1,35 @@
+{
+ "id": "2026-10-21-G02",
+ "date": "2026-10-21",
+ "type": "tools",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-21T02:58:17+00:00",
+ "item": {
+  "repo": "rmyndharis/OpenWA",
+  "url": "https://github.com/rmyndharis/OpenWA",
+  "group": "大家都在用",
+  "why_today": "今日 +252 星",
+  "stars_today": 252,
+  "stars_total": 15991,
+  "license": "MIT",
+  "tags": [
+   "外贸",
+   "Agent 与自动化"
+  ],
+  "brief": "自托管的 WhatsApp API 网关",
+  "what": "把 WhatsApp 账号变成 HTTP API，可收发消息、接 webhook，自己部署，不走官方商业 API。",
+  "uses": [
+   {
+    "area": "外贸",
+    "how": "接入询盘自动回复和客户跟进，把 WhatsApp 咨询转进自己的 CRM 表格。"
+   }
+  ],
+  "setup": "部署难度 中，需要 VPS 和一个 WhatsApp 账号",
+  "safety": "黄",
+  "safety_note": "要登录你的 WhatsApp 账号并长期持有会话，属于非官方接入，**有封号风险**。依据：它模拟客户端而非走官方商业 API，WhatsApp 条款不鼓励批量消息。防范：用专门的小号，不做群发，会话数据放在加密盘，不暴露管理端口。",
+  "risk_brief": "要持有账号会话，非官方接入有封号风险",
+  "id": "G02"
+ },
+ "deepdive": "pending"
+}
