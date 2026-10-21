@@ -1,0 +1,431 @@
+{
+ "date": "2026-10-22",
+ "generated_at": "2026-10-22T06:30:00+08:00",
+ "headline": [
+  "PHP 引擎爆出两个免登录远程执行漏洞（PHP2Shell），官方 10 月 21 日紧急发布 **8.5.12 / 8.4.27 / 8.3.36 / 8.2.35**，WordPress 等 PHP 站点都在范围内。",
+  "小红书「AI 写作变现」笔记收藏率普遍超过 1（最高一条 **2.1 万赞、2.6 万收藏**），想存下来照着做的人很多，图文类资料包有需求；今天没有够门槛的机会卡。",
+  "今天先做一件事：把你名下所有 PHP / WordPress 站点和 VPS 的 PHP 升到修复版本。"
+ ],
+ "stats": {
+  "scanned": 1010,
+  "selected": 21,
+  "chars": 3385,
+  "read_minutes": 7
+ },
+ "actions": [
+  {
+   "minutes": 30,
+   "text": "登录每台 VPS / 宝塔面板，查 `php -v`，升级到 8.5.12、8.4.27、8.3.36、8.2.35 之一（PHP 8.1 及更早只有源码补丁，宝塔有 7.4/8.0/8.1 修复版），升完重启 PHP-FPM 并打开站点确认。"
+  },
+  {
+   "minutes": 5,
+   "text": "如果你的 Claude 账号是美国 Pro / Max，去给 Claude Duet 排候补；不是就跳过。"
+  },
+  {
+   "minutes": 15,
+   "text": "本机试 `uv tool install openoutreach` 后跑 `openoutreach find 10 > leads.csv`（只出名单不发信），看外贸获客名单质量。"
+  }
+ ],
+ "news": [
+  {
+   "title": "PHP 引擎两个免登录远程代码执行漏洞（PHP2Shell）被 AI 发现，PHP 紧急发布 8.5.12 等修复版",
+   "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities",
+   "source": "OpenAI",
+   "source_type": "官方",
+   "published": "2026-10-21",
+   "tier": "影响你的",
+   "for_me": "你的 WordPress 站和 VPS 多半在范围内，今天先升级到修复版本再做别的。",
+   "summary": "OpenAI 的 Patch the Planet 联合 Wiz 披露 CVE-2026-109618/109619，修复版 **8.5.12、8.4.27、8.3.36、8.2.35**；有公开 PoC 在流传，OpenAI 另给了 Codex 自检 skill。",
+   "track": "程序化SEO",
+   "id": "N01"
+  },
+  {
+   "title": "Anthropic 推出 Claude Duet：会主动找你、云端后台干活的智能体 App，美国 Pro/Max 排候补",
+   "url": "https://x.com/claudeai/status/2112984664256241837",
+   "source": "Claude（X）",
+   "source_type": "X",
+   "published": "2026-10-21",
+   "tier": "影响你的",
+   "for_me": "不另收费但和 Claude 共用额度；你不在美国暂时用不上，先看它的连接器和代购思路。",
+   "summary": "研究预览，iOS、Android、网页都有；每天早上发简报，在云端替你做事，**行动前会先问你**。据媒体报道还会接 Stripe Link 代购。",
+   "id": "N02"
+  },
+  {
+   "title": "Claude API 发布新版本号 2026-10-21，是 2023 年以来首个官方版本",
+   "url": "https://x.com/ClaudeDevs/status/2113013247209021918",
+   "source": "ClaudeDevs（X）",
+   "source_type": "X",
+   "published": "2026-10-21",
+   "tier": "影响你的",
+   "for_me": "VPS 脚本现在不用改：官方明确 `2023-06-01` **没有被弃用**；以后新模型前会先出新版本。",
+   "summary": "Anthropic 说今后会更频繁发布 API 版本，让开发者在新模型要求之前先处理破坏性变更；旧版本 2023-06-01 继续可用。",
+   "track": "代理工具链",
+   "id": "N03"
+  },
+  {
+   "title": "代理工具更新：Claude Code 一天出 v2.1.306、v2.1.307；Codex 0.164.0 预发布推到 alpha.10",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.307",
+   "source": "GitHub Releases",
+   "source_type": "官方",
+   "published": "2026-10-21",
+   "tier": "影响你的",
+   "for_me": "两个版本我只确认了发布，没逐条核对改动；每天例行更新即可，不用专门处理。",
+   "summary": "Claude Code v2.1.305 到 v2.1.307 两天连发三版；Codex 0.164.0 的 alpha.7 到 alpha.10 连发；Codex 与 Work 登录用户缓存改为永久保留。",
+   "track": "代理工具链",
+   "id": "N04"
+  },
+  {
+   "title": "ChatGPT 广告扩到 26 个新国家，已有超过 10 万广告主投放",
+   "url": "https://openai.com/index/chatgpt-ads-expands-26-new-countries",
+   "source": "OpenAI",
+   "source_type": "官方",
+   "published": "2026-10-21",
+   "tier": "影响你的",
+   "for_me": "ChatGPT 变成可买的流量位，GEO 主线要盯：先观察，别急着投。",
+   "summary": "OpenAI 称本地商家到全球品牌都可投，**10 万+** 广告主已用；另发文说明广告栈如何在对话里排序与竞价，并保证答案独立。具体国家和价格我没打开到正文，未核实。",
+   "track": "GEO",
+   "id": "N05"
+  },
+  {
+   "title": "沃尔玛下月起允许 AI 代理在官网代购，带消费上限和逐笔确认；亚马逊仍在拦截代理",
+   "url": "https://techcrunch.com/2026/10/21/while-amazon-blocks-ai-agents-walmart-rolls-out-the-welcome-mat/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-21",
+   "tier": "行业动态",
+   "summary": "沃尔玛 **下月** 开放代理购物并设审批与限额，与亚马逊相反；10-19 那期写过多家大站拦代理，这是对立的一边。",
+   "track": "外贸获客",
+   "id": "N06"
+  },
+  {
+   "title": "OpenAI 的 GPT-6 系列模型进入 Google Cloud，目前是企业私有预览",
+   "url": "https://the-decoder.com/google-cloud-now-offers-openai-models-alongside-gemini-and-claude-becoming-the-only-major-provider-with-all-three/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-21",
+   "tier": "行业动态",
+   "summary": "GPT-6 Astra、GPT-6.1 Sol、GPT-6 Luna 上线 Google Model Garden，Google Cloud 成为唯一同时提供 Gemini、Claude、GPT 的大厂；个人暂时用不上。",
+   "id": "N07"
+  },
+  {
+   "title": "Recursive 发布开源编程模型 Flint：40B 混合专家，Apache 2.0，称本地跑比同类快 2 倍",
+   "url": "https://techcrunch.com/2026/10/21/recursive-launches-flint-a-laptop-coding-model-it-says-was-largely-built-by-ai/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-21",
+   "tier": "行业动态",
+   "summary": "笔记本可跑的开源权重编程模型，官方称大部分由自家 AI 研究系统造出；速度数字是厂商自称，尚无第三方评测。",
+   "id": "N08"
+  },
+  {
+   "title": "Meta 称 Muse 已超 1000 万用户，25% 以上用户在应用内购物，平均客单 200 美元以上",
+   "url": "https://techcrunch.com/2026/10/21/meta-says-muse-has-over-10m-users-with-shopping-a-top-activity/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-21",
+   "tier": "行业动态",
+   "summary": "扎克伯格在财报上披露；这是目前少见的「代理购物」真实转化数字，数据来自 Meta 自述。",
+   "id": "N09"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "Graphify-Labs/graphify",
+   "url": "https://github.com/Graphify-Labs/graphify",
+   "group": "刚冒出来",
+   "why_today": "今日 +1,434 星，首次上榜",
+   "stars_today": 1434,
+   "stars_total": 131578,
+   "license": "Apache-2.0",
+   "tags": [
+    "Agent 与自动化",
+    "数据与研究"
+   ],
+   "brief": "把代码库和文档变成可查询的知识图谱",
+   "what": "给 Claude Code、Cursor、Codex、Gemini CLI 用的 `/graphify` 技能：本地用 AST 解析代码，连同文档、SQL 表结构、配置和 PDF 建成知识图谱，每条关系都有解释，不用向量库。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "接手别人的开源项目或自己的旧项目时，先出图谱再让代理改，省掉通读代码的一步。"
+    },
+    {
+     "area": "SEO",
+     "how": "把站点配置、模板和内容 PDF 一起建图，让代理回答「哪些页面缺内链」之类的问题（推断，需自己试）。"
+    }
+   ],
+   "setup": "低，装成代理技能即可，本地运行",
+   "safety": "黄",
+   "safety_note": "**结论：** 要读本地代码、配置和 PDF，范围由你指定。**依据：** 我只读了仓库说明，没逐个检查脚本。**防范：** 只对不含密钥的目录运行，`.env` 和凭证文件用忽略规则排除。",
+   "risk_brief": "会读本地配置和文档",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/Graphify-Labs/graphify/v8/docs/graph-hero.png"
+   ]
+  },
+  {
+   "repo": "k2-fsa/OmniVoice",
+   "url": "https://github.com/k2-fsa/OmniVoice",
+   "group": "刚冒出来",
+   "why_today": "今日 +204 星，首次上榜",
+   "stars_today": 204,
+   "stars_total": 15445,
+   "license": "Apache-2.0",
+   "tags": [
+    "自媒体",
+    "设计与视频"
+   ],
+   "brief": "支持 600 多种语言的声音克隆语音合成",
+   "what": "开源高质量声音克隆 TTS，覆盖 600+ 语言，可本机运行。fork 比例 0.147，社区确有人在用。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "给图文和 Newsletter 自动生成多语种配音版，省掉外包配音。"
+    },
+    {
+     "area": "外贸",
+     "how": "把产品介绍转成客户母语的语音，随开发信附带。"
+    }
+   ],
+   "setup": "中，需要 Python 环境，最好有 GPU",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G02"
+  },
+  {
+   "repo": "eracle/OpenOutreach",
+   "url": "https://github.com/eracle/OpenOutreach",
+   "group": "大家都在用",
+   "why_today": "外贸话题榜，今日有提交，3.4k 星",
+   "stars_today": null,
+   "stars_total": 3364,
+   "license": "GPL-3.0",
+   "tags": [
+    "外贸",
+    "Agent 与自动化"
+   ],
+   "brief": "描述产品，自动找客户并用你的邮箱发信",
+   "what": "自托管命令行：你写产品和目标市场，它从授权数据源找人，LLM 判断匹配度并写明理由，可从你自己的邮箱发信；也可只导出 CSV 给 Instantly、Smartlead。不需要 LinkedIn 账号。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "用 `openoutreach find 10 > leads.csv` 先出名单，不发信，评估质量后再导入发信工具。"
+    }
+   ],
+   "setup": "中，要 LLM Key、BetterContact Key（免费 40 额度）、邮箱应用密码",
+   "safety": "黄",
+   "safety_note": "**结论：** 要邮箱应用密码和多个 API Key。**依据：** README 称配置存 `~/.openoutreach`；自带法律声明，群发有数据保护责任；挑客户的学习环节自述是实验性的。**防范：** 先只用 CSV 模式；用独立发信域名和邮箱，不用主邮箱。",
+   "risk_brief": "要邮箱密码，群发有合规责任",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/eracle/OpenOutreach/HEAD/docs/demo.gif"
+   ]
+  },
+  {
+   "repo": "knadh/listmonk",
+   "url": "https://github.com/knadh/listmonk",
+   "group": "大家都在用",
+   "why_today": "Newsletter 话题榜，2.4k 以上星",
+   "stars_today": null,
+   "stars_total": 23903,
+   "license": "AGPL-3.0",
+   "tags": [
+    "自媒体",
+    "做产品"
+   ],
+   "brief": "自托管的高性能 Newsletter 和邮件列表管理",
+   "what": "单个二进制文件、带管理界面的邮件列表和群发工具，AGPL-3.0（改了代码对外提供服务要开源）。今天仍有提交。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "VPS 上自建 Newsletter，不付每月订阅费，列表数据自己掌握。"
+    },
+    {
+     "area": "外贸",
+     "how": "给老客户做产品上新通知，配合 SMTP 服务发送。"
+    }
+   ],
+   "setup": "中，要 VPS、Postgres 和 SMTP 服务",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G04",
+   "images": [
+    "https://github.com/user-attachments/assets/689b5fbb-dd25-4956-a36f-e3226a65f9c4"
+   ]
+  },
+  {
+   "repo": "anomalyco/opencode",
+   "url": "https://github.com/anomalyco/opencode",
+   "group": "大家都在用",
+   "why_today": "日榜 +1,269，周榜 +5,792",
+   "stars_today": 1269,
+   "stars_total": 219655,
+   "license": "MIT",
+   "tags": [
+    "Agent 与自动化"
+   ],
+   "brief": "开源编程代理，可换各家模型",
+   "what": "开源的终端编程代理，日榜、周榜都在榜；10 月 20 日它的 Console 被入侵，1.4% 用户的 API 密钥被盗（见 10-20 日报）。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "作为 Claude Code 的备用，自己接 DeepSeek 等便宜模型跑重复开发。"
+    }
+   ],
+   "setup": "低，npm 或二进制安装，要自备模型 Key",
+   "safety": "黄",
+   "safety_note": "**结论：** 代理会读写文件、跑命令，还有近期入侵事件。**依据：** 10-20 日报记录 Console 密钥被盗。**防范：** 用自己的模型 Key 直连，不走它的托管 Console；Key 设额度上限。",
+   "risk_brief": "有文件命令权限，近期有密钥泄露事件",
+   "id": "G05",
+   "images": [
+    "https://raw.githubusercontent.com/anomalyco/opencode/HEAD/packages/web/src/assets/lander/screenshot.png"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "knowledge-work-plugins",
+   "url": "https://github.com/anthropics/knowledge-work-plugins",
+   "repo": "anthropics/knowledge-work-plugins",
+   "hot": "长期热门",
+   "stars_total": 31166,
+   "installs": null,
+   "popularity_note": "Anthropic 官方仓库，10-22 日榜 +382 星，总星 31,166",
+   "works_with": "Claude Code / Cowork",
+   "safety": "黄",
+   "safety_note": "**结论：** 内容是 markdown 和 JSON，不含代码；风险来自连接器。**依据：** README 称无代码和构建步骤；营销、销售插件通过 MCP 接 HubSpot、Ahrefs、Slack 等。**防范：** 连接器只授只读权限，不用的 `.mcp.json` 条目删掉。我只读了 README，没逐个读 SKILL.md。",
+   "risk_brief": "连接器要授权第三方账号",
+   "brief": "Anthropic 官方的 11 个知识工作插件",
+   "what": "覆盖销售、营销、客服、数据、法务、财务等 11 类插件，含技能和斜杠命令，如 `/sales:call-prep`。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "销售插件做客户调研和开发信草稿，对着询盘出竞品对比卡。"
+    },
+    {
+     "area": "自媒体",
+     "how": "营销插件定品牌语气、做内容计划和竞品简报。"
+    }
+   ],
+   "install": "`claude plugin marketplace add anthropics/knowledge-work-plugins`，再 `claude plugin install sales@knowledge-work-plugins`",
+   "id": "S01"
+  },
+  {
+   "name": "scientific-agent-skills",
+   "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
+   "repo": "K-Dense-AI/scientific-agent-skills",
+   "hot": "新晋热门",
+   "stars_total": 53575,
+   "installs": null,
+   "popularity_note": "10-22 周榜 +4,549 星，总星 53,575，自称 177 个技能",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "**结论：** 技能会让代理装包、联网、改文件。**依据：** README 自己提示技能可执行任意代码，部分带 `scripts/`，要求先读再装。**防范：** 只装用得上的单个技能，先读对应 SKILL.md 和脚本。我只读了 README。",
+   "risk_brief": "技能可执行代码、联网、装包",
+   "brief": "177 个科研方向的技能库",
+   "what": "生物、化学、医学、数据分析、科研写作等技能，每个是一份 SKILL.md，查 PubChem、UniProt 等公开库。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "挑数据分析类技能做行业数据报告，卖订阅或一次性报告（推断）。"
+    }
+   ],
+   "install": "`npx skills add K-Dense-AI/scientific-agent-skills`",
+   "id": "S02"
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "小红书 AI 写作变现：收藏远高于点赞",
+   "brief": "AI 写作接单拆解类笔记收藏率超过 1",
+   "signal": "需求信号",
+   "track": "AI小工具",
+   "platforms": [
+    "小红书"
+   ],
+   "evidence": [
+    {
+     "platform": "小红书",
+     "title": "普通人也能吃上的AI红利💰附接单全流程拆解",
+     "url": "https://www.xiaohongshu.com/explore/6ac4e5ae000000001203bf11",
+     "metrics": "点赞 2.1万 · 收藏 2.6万 · 评论 442"
+    },
+    {
+     "platform": "小红书",
+     "title": "🇲🇾我的AI员工变现+效率，花了三个月",
+     "url": "https://www.xiaohongshu.com/explore/65e678080000000004002745",
+     "metrics": "点赞 6313 · 收藏 8300 · 评论 774"
+    }
+   ],
+   "quotes": [
+    {
+     "platform": "小红书",
+     "text": "走头无路 懂感恩 求带",
+     "likes": 1
+    }
+   ],
+   "why": "两条收藏率 **1.23 和 1.31**，远超小红书 0.5 的门槛，说明读者想存下来照做；评论里大量「求带」是没被满足的需求。推断：这两条不是今天新发的。",
+   "how": "先做图文 + Newsletter 的「AI 接单流程模板包」：用 Claude 把 10 条高收藏笔记拆成步骤清单，做成可下载的 Notion 模板再卖。",
+   "risk": "收入类笔记里夹带课程引流居多，数字不可信；小红书对 AI 生成内容要求标注，批量号容易限流。",
+   "id": "P01"
+  },
+  {
+   "topic": "抖音「一人公司」注册报税类内容高收藏",
+   "brief": "一人公司从注册到报税的一期讲完",
+   "signal": "需求信号",
+   "track": "AI小工具",
+   "platforms": [
+    "抖音"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "一人公司全攻略：注册、报税、拿钱、架构一期讲完",
+     "url": "https://www.douyin.com/video/7696827899675954475",
+     "metrics": "点赞 1.3万 · 收藏 1.3万 · 评论 456 · 粉丝 1.8万"
+    },
+    {
+     "platform": "抖音",
+     "title": "一人公司怎么赚钱",
+     "url": "https://www.douyin.com/video/7698751085434998056",
+     "metrics": "点赞 3236 · 收藏 2254 · 评论 92 · 粉丝 497万"
+    }
+   ],
+   "why": "粉丝 1.8 万的账号拿到 **1.3 万赞、收藏率 1.06**，大号同主题收藏率 0.7，说明「一人公司怎么合规做」是真实需求。只在抖音出现，其他平台我没看到同量级内容。",
+   "how": "做一份「一人公司合规清单」：注册、记账、报税、收款，按国家（中国大陆、香港、美国 LLC）分页的图文模板，第一步先查 3 个主流地区的步骤。",
+   "risk": "税务和注册信息有地区时效，写错有责任；写清「非税务建议」并标注日期。",
+   "id": "P02"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-21 F01",
+   "title": "WorkBuddy 教程",
+   "update": "小红书单条 **3.0 万赞、5.4 万收藏**，抖音「必装 8 个 skill」**4.1 万赞**；已是跨平台热点",
+   "url": "https://www.xiaohongshu.com/explore/6ad33d40000000001c02dc3d",
+   "id": "F01"
+  },
+  {
+   "ref": "10-21 N01",
+   "title": "OpenAI 提示词缓存",
+   "update": "Codex 与 Work 登录用户缓存永久保留，API 12 小时；Claude 客户端 1 小时，API 5 分钟（社区整理）",
+   "url": "https://x.com/thsottiaux/status/2112712984644784534",
+   "id": "F02"
+  },
+  {
+   "ref": "10-20 N01",
+   "title": "OpenCode 控制台被入侵",
+   "update": "OpenCode 今日仍位列日榜 +1,269 星、周榜 +5,792 星，热度未受影响",
+   "url": "https://github.com/anomalyco/opencode",
+   "id": "F03"
+  }
+ ],
+ "watch_next": [
+  "Claude Duet",
+  "WorkBuddy 技能",
+  "Muse 购物",
+  "OmniVoice"
+ ]
+}
