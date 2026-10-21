@@ -407,7 +407,7 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
 /* 历史分组和收藏里的深挖报告 */
 [data-k="unread"] { --c: var(--dot); --c-soft: color-mix(in srgb, var(--dot) 12%, transparent); --c-band: color-mix(in srgb, var(--dot) 5%, var(--bg)); }
 [data-k="done"] { --c: var(--muted); --c-soft: var(--sunk); --c-band: var(--sunk); }
-.deep-d { padding: 0 14px 14px; }
+.deep-d, .fav > .acts { padding: 0 14px 14px; }
 .deep-d summary { list-style: none; display: inline-flex; }
 .deep-d summary::-webkit-details-marker { display: none; }
 .deep-d[open] summary { margin-bottom: 10px; }

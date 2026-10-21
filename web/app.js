@@ -453,23 +453,29 @@
 
   /* ---------- 收藏 ---------- */
   function favName(f) { var it = f.item || {}; return it.name || it.repo || it.title || it.topic || f.id; }
+  var FAV_GROUPS = [["opportunities", "机会"], ["tools", "GitHub 仓库"], ["skills", "Skills"], ["trends", "玩法风向"], ["news", "资讯"]];
+  var FAV_TYPE = { B: "opportunities", G: "tools", S: "skills", P: "trends", N: "news" };
+  function favType(f) { return f.type || FAV_TYPE[String(f.id).slice(11, 12)] || "news"; }
   function renderFav() {
-    var favs = state.index.favorites || [];
-    var head = '<div class="page-h"><h1>收藏</h1><p>点「收藏并深挖」的条目，Claude 写完报告后放在这里。</p></div>';
+    var favs = (state.index.favorites || []).slice().sort(function (a, b) { return String(b.saved_at || "").localeCompare(String(a.saved_at || "")); });
+    var head = '<div class="page-h"><h1>收藏</h1><p>按类别放。没深挖的可以点「深挖」，深挖完的报告直接显示在条目下面。</p></div>';
     if (!favs.length) { app.innerHTML = head + '<p class="empty">还没有收藏。在日报里点「收藏」或「收藏并深挖」，几分钟后会出现在这里。</p>'; return; }
-    var groups = {};
-    favs.forEach(function (f) { (groups[f.library] = groups[f.library] || []).push(f); });
-    var order = [["机会库", "opportunities"], ["工具库", "tools"], ["资讯库", "news"]];
-    app.innerHTML = head + order.filter(function (g) { return groups[g[0]]; }).map(function (g) {
-      return '<section class="sec" data-k="' + g[1] + '">' + secHead({ title: g[0] }, groups[g[0]].length) + '<ul class="list">' + groups[g[0]].map(function (f) {
+    var groups = {}, local = savedSet();
+    favs.forEach(function (f) { var k = favType(f); (groups[k] = groups[k] || []).push(f); });
+    app.innerHTML = head + FAV_GROUPS.filter(function (g) { return groups[g[0]]; }).map(function (g) {
+      return '<section class="sec" data-k="' + g[0] + '">' + secHead({ title: g[1] }, groups[g[0]].length) + '<ul class="list">' + groups[g[0]].map(function (f) {
         var it = f.item || {}, nm = splitName(favName(f));
-        var dd = f.deepdive === "done" ? '<span class="st done">深挖完成</span>' : f.deepdive === "pending" ? '<span class="st pending">深挖中</span>' : "";
+        var pending = f.deepdive === "pending" || (f.deepdive !== "done" && local[f.id] === "deep");
+        var dd = f.deepdive === "done" ? '<span class="st done">已深挖</span>' : pending ? '<span class="st pending">深挖中</span>' : '<span class="st">未深挖</span>';
+        var body = f.deepdive === "done"
+          ? '<details class="deep-d" data-deep="' + esc(f.id) + '" open><summary class="btn">深挖报告</summary><div class="deep" id="deep-' + esc(f.id) + '"><p class="empty">加载中……</p></div></details>'
+          : '<div class="acts">' + (it.url ? link("看原文 ↗", it.url, "btn") : "") +
+            (pending ? '<button class="btn primary" disabled>深挖中</button>' : '<button class="btn primary" data-op="deep" data-id="' + esc(f.id) + '">深挖</button>') + "</div>";
         return '<li class="row fav" id="fav-' + esc(f.id) + '"><div class="row-h" style="cursor:default">' +
-          '<span class="t">' + (it.url ? link(nm[0], it.url) : esc(nm[0])) + '<span class="st">' + esc(f.status) + "</span>" + dd + "</span>" +
+          '<span class="t">' + (it.url ? link(nm[0], it.url) : esc(nm[0])) + dd + "</span>" +
           '<span class="brief">' + esc(plain(it.brief || it.one_liner || it.what || it.summary || "")) + "</span>" +
-          '<span class="m"><span>' + esc(f.saved_at ? String(f.saved_at).slice(0, 10) : "") + "</span></span></div>" +
-          (f.deepdive === "done" ? '<details class="deep-d" data-deep="' + esc(f.id) + '"' + (state.focus === f.id ? " open" : "") + '><summary class="btn">看深挖报告</summary><div class="deep" id="deep-' + esc(f.id) + '"><p class="empty">加载中……</p></div></details>' : "") +
-          "</li>";
+          '<span class="m"><span>' + esc(f.date || "") + " 日报 · " + esc(f.saved_at ? String(f.saved_at).slice(0, 10) : "") + " 收藏</span></span></div>" +
+          body + "</li>";
       }).join("") + "</ul></section>";
     }).join("");
     Array.prototype.forEach.call(app.querySelectorAll("details[data-deep]"), function (el) {
