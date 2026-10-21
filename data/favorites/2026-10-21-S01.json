@@ -1,0 +1,32 @@
+{
+ "id": "2026-10-21-S01",
+ "date": "2026-10-21",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-21T03:00:01+00:00",
+ "item": {
+  "name": "security-audit",
+  "url": "https://github.com/cloudflare/security-audit-skill",
+  "repo": "cloudflare/security-audit-skill",
+  "hot": "新晋热门",
+  "stars_total": 34062,
+  "installs": null,
+  "popularity_note": "10 月 21 日 GitHub 趋势榜今日 **+1,680 星**，总星 3.4 万",
+  "works_with": "Claude Code / Codex / 两者",
+  "safety": "黄",
+  "safety_note": "完整审计会在沙箱里跑目标项目的构建和测试，并写本地文件。依据：SKILL.md 无混淆命令、不外发数据、不要 API Key，但还引用了未逐个读过的配套文件。防范：只在有沙箱的环境审计，不跑不信任的仓库，输出目录放在仓库之外。",
+  "risk_brief": "会执行目标项目的构建和测试",
+  "brief": "Cloudflare 出品的多阶段代码安全审计技能",
+  "what": "六阶段流程：侦察、覆盖式查找、候选验证、结构化输出、独立复核、报告，输出机器可读的发现。",
+  "uses": [
+   {
+    "area": "做产品",
+    "how": "上线前对自己的 AI 工具站代码审一遍，查密钥泄露和注入。"
+   }
+  ],
+  "install": "`npx skills add https://github.com/cloudflare/security-audit-skill --skill security-audit`",
+  "id": "S01"
+ },
+ "deepdive": null
+}
