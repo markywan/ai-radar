@@ -10,7 +10,7 @@
 | 步骤 | 文件 | 要 AI 吗 | 要什么密钥 |
 |---|---|---|---|
 | 定时触发：北京时间 4:23、5:23、6:23 各一次，当天已有日报就跳过 | `.github/workflows/daily.yml` | 否 | — |
-| 抓素材，写 `data/raw/<日期>.json`（不提交） | `scripts/fetch.py`、`scripts/platforms.py`、`config/sources.json` | 否 | X、TikHub、TrustMRR 都可选，缺了只跳过那部分 |
+| 抓素材，写 `data/raw/<日期>.json`（不提交）和 GitHub 日榜快照 `data/trending/<日期>.json`（提交，用来算连续上榜天数） | `scripts/fetch.py`、`scripts/platforms.py`、`config/sources.json` | 否 | X、TikHub、TrustMRR 都可选，缺了只跳过那部分 |
 | **写日报，写 `data/daily/<日期>.json`** | `prompts/daily.md` | **是**，要能读写文件、上网搜索和打开网页、运行 `validate.py` 后按提示改 | Claude 令牌（三选一，见 `docs/setup.md` 第 3 步） |
 | 从 README 配图 | `scripts/enrich.py` | 否 | — |
 | 校验和编号 | `scripts/validate.py` | 否 | — |
@@ -36,7 +36,9 @@
 - **用法只写外贸、SEO、自媒体、做产品四个方向**；安全「黄」只给要权限或凭证的、建仓不到 30 天的。
 - **整期 6000 字左右，超过 7000 字校验不过**：他在手机上扫读。
 - **跨期去重**：`fetch.py` 给前 7 天写过的条目标 `seen_before`，没有变化的不再写，有变化的进「跟进」栏。
-- **五条长期主线**在 `config/tracks.json`，2026-10-17 定下，计划看一周后再调。
+- **五条长期主线**在 `config/tracks.json`，2026-10-17 定下，计划看一周后再调。2026-10-20 把「AI短视频」换成「AI小工具」。
+- **不做视频内容创业**（2026-10-20 仓库主人定）：AI 漫剧、faceless、数字人、AI UGC 这类靠生产视频赚钱的玩法和机会不写，TikHub 关键词也不再监测这些；视频工具只在本身好用时当工具收，每期最多 1 个。之前抖音、小红书搜回来的多是视频生意，他觉得太窄。
+- **GitHub 榜单先由脚本预筛**：`fetch.py` 给日榜、周榜上的仓库补许可证、最后提交、fork 比例，记每日快照算前 7 天上榜天数，标出 HN、X 上同时出现的；没许可证、已归档、30 天没提交的标 `skip`。原因：星数只反映热度，单日暴涨里营销和围观多，连续上榜和有人讨论的才可能真有人用。
 - 脚本只用 Python 标准库，Actions 里不装依赖。
 - 仓库是公开的（免费账号的 Pages 和 Actions 时长要求），所以数据和收藏夹别人能看到；**任何密钥都只放在 GitHub Secrets 和 Cloudflare 后台，不写进仓库**。
 
@@ -76,5 +78,5 @@
 
 - `TRUSTMRR_API_KEY`（可选）还没申请；没有时机会卡的收入证据由 AI 自己找。
 - X「实践者」组还要加仓库主人常看的中文外贸、跨境电商账号（`config/sources.json` 的 `x.accounts`）。
-- Cloudflare Worker：`config/site.json` 的 `worker_url` 还空着（仓库变量 `WORKER_URL` 填了则以它为准），Worker 本身也还没部署，所以网站和飞书上的收藏、深挖按钮都不可用；`ACTION_KEY` 已在仓库 secrets 里。2026-10-19 已把部署步骤（`docs/setup.md` 第 7、8 步）交给仓库主人，等他在 Cloudflare 上操作。没配时网站点收藏会提示去看配置指南，每次运行的「检查配置」摘要也会列出。
+- Cloudflare Worker：2026-10-21 已部署并测通（`https://ai-radar-act.markyradar2.workers.dev`，写在 `config/site.json` 的 `worker_url`；仓库变量 `WORKER_URL` 填了则以它为准）。原子域 `markywan916` 在 Cloudflare 一直签不出证书，改名为 `markyradar2` 后一分钟就好了。`ACTION_KEY` 10-21 换过，Worker 和仓库 secrets 一致。注意：`*.workers.dev` 在国内不开代理基本打不开，按钮要开着代理点；以后想不开代理也能点，备选是飞书多维表格工作流（卡片按钮由飞书服务器调 GitHub），见项目文件 `ai-radar-analysis/飞书一键收藏方案比较-2026-10-21.md`。可选的 KV（已读状态多设备同步）没配。
 - 机会研究是否换更强的模型、周六是否出周报，还没定。2026-10-17 到 10-19 三期机会卡都是 0 条，整期也只有约 3000 字（目标 6000）：门槛是对的，但默认的 `sonnet` 在一次写日报里凑不齐收入证据、三个竞品和五条链接。可选做法是机会研究拆成单独一步、用 `opus`（要多花订阅额度），等仓库主人定。

@@ -10,6 +10,7 @@
 
 抓完会把前 7 天日报里出现过的帖子、文章、仓库标上 seen_before（哪天、哪条、当时的数字），
 前 7 天的条目清单放在 recent，前一期日报的 watch_next 会在平台上追搜。
+GitHub 日榜每天存一份快照到 data/trending/<日期>.json（随日报提交），用来算仓库前 7 天上榜几天。
 
 试抓 TikHub：python3 scripts/fetch.py --probe，只抓平台部分，并打印每个接口返回的结构。
 """
@@ -119,22 +120,30 @@ def fetch_trending(url):
         desc = re.search(r'<p class="col-9[^"]*"[^>]*>(.*?)</p>', block, re.S)
         lang = re.search(r'itemprop="programmingLanguage">([^<]+)<', block)
         total = re.search(r'href="/%s/stargazers"[^>]*>.*?([\d,]+)\s*</a>' % re.escape(name), block, re.S)
-        today = re.search(r'([\d,]+)\s+stars? (today|this week)', block)
+        gain = re.search(r'([\d,]+)\s+stars? (today|this week)', block)
+        gain_n = int(gain.group(1).replace(",", "")) if gain else None
         repos.append({
             "repo": name,
             "url": f"https://github.com/{name}",
             "description": strip_tags(desc.group(1) if desc else "", 300),
             "language": lang.group(1).strip() if lang else None,
             "stars_total": int(total.group(1).replace(",", "")) if total else None,
-            "stars_today": int(today.group(1).replace(",", "")) if today else None,
+            "stars_today": gain_n if gain and gain.group(2) == "today" else None,
+            "stars_week": gain_n if gain and gain.group(2) == "this week" else None,
+            "on_page": url.split("github.com/")[-1],
         })
     return repos
 
 
-def gh_search(q, per_page=30):
+def gh_headers():
     headers = {"Accept": "application/vnd.github+json"}
     if os.environ.get("GITHUB_TOKEN"):
         headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
+    return headers
+
+
+def gh_search(q, per_page=30):
+    headers = gh_headers()
     url = "https://api.github.com/search/repositories?" + urllib.parse.urlencode(
         {"q": q, "sort": "stars", "order": "desc", "per_page": per_page})
     data = get_json(url, headers)
@@ -144,6 +153,76 @@ def gh_search(q, per_page=30):
         "pushed_at": r.get("pushed_at"), "license": (r.get("license") or {}).get("spdx_id"),
         "topics": r.get("topics", [])[:8], "language": r.get("language"),
     } for r in data.get("items", [])]
+
+
+def screen_trending(repos, date, days=7):
+    """给榜单上的仓库补建仓时间、最后提交、许可证、fork 数，算前 7 天上日榜的天数，标出不该选的。
+
+    上榜天数靠 data/trending/<日期>.json 的每日快照，快照随日报一起提交。
+    没有 GITHUB_TOKEN 时 API 每小时只有 60 次，只补前 25 个。
+    """
+    d0 = dt.date.fromisoformat(date)
+    history = {}
+    for p in sorted((ROOT / "data/trending").glob("*.json")):
+        try:
+            d = dt.date.fromisoformat(p.stem)
+        except ValueError:
+            continue
+        if d0 - dt.timedelta(days=days) <= d < d0:
+            for it in json.loads(p.read_text("utf-8")):
+                if "weekly" in (it.get("on_page") or ""):  # 周榜一挂就是好几天，只数日榜
+                    continue
+                history.setdefault(it["repo"].lower(), []).append((p.stem, it.get("stars_total")))
+    limit = len(repos) if os.environ.get("GITHUB_TOKEN") else 25
+    for i, r in enumerate(repos):
+        past = history.get(r["repo"].lower(), [])
+        r["days_on_list"] = len(past) + ("weekly" not in r["on_page"])
+        if past:
+            r["first_seen"] = past[0][0]
+            if past[0][1] and r.get("stars_total"):
+                r["stars_since_first_seen"] = r["stars_total"] - past[0][1]
+        if i >= limit:
+            continue
+        try:
+            m = get_json(f"https://api.github.com/repos/{r['repo']}", gh_headers())
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"GitHub 仓库信息 {r['repo']}: {e}")
+            continue
+        now = dt.datetime.now(dt.timezone.utc)
+        created, pushed = parse_date(m.get("created_at")), parse_date(m.get("pushed_at"))
+        age = (now - created).days if created else None
+        idle = (now - pushed).days if pushed else None
+        lic = (m.get("license") or {}).get("spdx_id")
+        stars = m.get("stargazers_count") or 0
+        r.update(created_at=m.get("created_at"), pushed_at=m.get("pushed_at"), license=lic,
+                 forks=m.get("forks_count"), open_issues=m.get("open_issues_count"),
+                 homepage=m.get("homepage") or None, topics=(m.get("topics") or [])[:8],
+                 age_days=age, fork_ratio=round(m["forks_count"] / stars, 3) if stars and m.get("forks_count") is not None else None)
+        flags = []
+        if m.get("archived"):
+            flags.append("已归档")
+        if not lic:
+            flags.append("没有许可证，不能商用")
+        elif lic == "NOASSERTION":
+            flags.append("许可证要打开 LICENSE 看")
+        if idle is not None and idle > 30:
+            flags.append(f"{idle} 天没提交")
+        if age is not None and age < 30:
+            flags.append(f"建仓 {age} 天")
+        if flags:
+            r["screen"] = flags
+        r["skip"] = bool(m.get("archived") or not lic or (idle is not None and idle > 30))
+    return repos
+
+
+def mark_also_on(repos, raw):
+    """榜单仓库同时出现在 HN、X 上的，标出 also_on，说明它为什么上榜。"""
+    blobs = {"HN": json.dumps([raw.get("hn_front"), raw.get("hn_show")], ensure_ascii=False).lower(),
+             "X": json.dumps(raw.get("x") or {}, ensure_ascii=False).lower()}
+    for r in repos:
+        hit = [k for k, b in blobs.items() if f"github.com/{r['repo'].lower()}" in b]
+        if hit:
+            r["also_on"] = hit
 
 
 def fetch_hn(cfg):
@@ -397,8 +476,25 @@ def main():
                     raw["github_trending"].append(r)
         except Exception as e:  # noqa: BLE001
             errors.append(f"GitHub Trending {url}: {e}")
+    for url in cfg["github"].get("weekly_pages", []):
+        try:
+            for r in fetch_trending(url):
+                if r["repo"] in seen:
+                    old = next(x for x in raw["github_trending"] if x["repo"] == r["repo"])
+                    old["stars_week"] = r["stars_week"]
+                else:
+                    seen.add(r["repo"])
+                    raw["github_trending"].append(r)
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"GitHub Trending {url}: {e}")
     if not raw["github_trending"]:
         errors.append("GitHub Trending 解析为空，请用 WebFetch 打开 trending 页面兜底")
+    else:
+        screen_trending(raw["github_trending"], args.date)
+        snap = ROOT / "data/trending" / f"{args.date}.json"
+        snap.parent.mkdir(parents=True, exist_ok=True)
+        snap.write_text(json.dumps([{k: r.get(k) for k in ("repo", "stars_total", "stars_today", "stars_week", "on_page")}
+                                    for r in raw["github_trending"]], ensure_ascii=False, indent=0), "utf-8")
 
     d0 = (dt.date.fromisoformat(args.date) - dt.timedelta(days=cfg["github"]["new_repo_days"])).isoformat()
     try:
@@ -454,6 +550,7 @@ def main():
         raw["platforms"] = None
         errors.append("没有配置 TIKHUB_API_KEY，跳过抖音、小红书等平台")
 
+    mark_also_on(raw["github_trending"], raw)
     seen, raw["recent"] = recent_items(args.date)
     mark_seen(raw, seen)
     raw["errors"] = errors
