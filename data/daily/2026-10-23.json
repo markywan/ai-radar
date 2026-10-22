@@ -1,0 +1,390 @@
+{
+ "date": "2026-10-23",
+ "generated_at": "2026-10-23T06:30:00+08:00",
+ "headline": [
+  "Anthropic 宣布下周起 Claude 网页、桌面、手机会话在 Pro/Max/Team 上**默认进入 auto mode**，同时把 Agent Skills 标准捐给 AAIF，70+ 平台已接入。",
+  "抖音上「Skill 大扫盲」「必装 8 个 Skill」这类清单收藏率接近 1，和 Skills 标准化同一天发生，说明有人想存下来照着装。",
+  "今天先把 VPS 上的 PHP 站升级到 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35，修的是两个严重的未认证远程代码执行漏洞。"
+ ],
+ "stats": {
+  "scanned": 434,
+  "selected": 18,
+  "chars": 2992,
+  "read_minutes": 6
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "登录 VPS，检查所有 PHP 站（WordPress、SEO 站）的 PHP 版本，升级到 8.5.12 / 8.4.27 / 8.3.36 / 8.2.35 之一，重启 php-fpm。"
+  },
+  {
+   "minutes": 5,
+   "text": "去 claude.ai 申请 Claude Duet 的候补名单（Pro/Max 可申请），用来试它能不能替你每天盯外贸和 SEO 数据。"
+  },
+  {
+   "minutes": 30,
+   "text": "用 `npx skills add coreyhaines31/marketingskills --skill programmatic-seo` 装一个 SEO 技能，拿它给你一个站点出一版程序化页面模板。"
+  }
+ ],
+ "news": [
+  {
+   "title": "Claude 网页、桌面、手机会话下周起在 Pro/Max/Team 默认 auto mode",
+   "url": "https://x.com/claudeai/status/2113360845409583307",
+   "source": "Claude（官方 X）",
+   "source_type": "X",
+   "published": "2026-10-22",
+   "tier": "影响你的",
+   "for_me": "不再逐步点批准，由自动检查拦高风险动作；不想放权的下周起手动切回。",
+   "summary": "下周起 Claude 会话默认不逐步询问，由自动检查拦截有风险的操作，可手动切换回去。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "Anthropic 把 Agent Skills 标准捐给 AAIF，称 70+ 平台已集成",
+   "url": "https://x.com/ClaudeDevs/status/2113328526413996100",
+   "source": "ClaudeDevs（官方 X）",
+   "source_type": "X",
+   "published": "2026-10-22",
+   "tier": "影响你的",
+   "for_me": "你写的 SKILL.md 以后在 ChatGPT、Cursor、Copilot 都能用，值得把自己的流程写成 Skill。",
+   "summary": "Agent Skills 与 MCP 一样转入 Agentic AI Foundation；官方称自 2025 年 12 月起 70+ 平台接入，含 ChatGPT、Cursor、GitHub Copilot。",
+   "track": "代理工具链",
+   "id": "N02"
+  },
+  {
+   "title": "代理工具更新：Claude Code 出 v2.1.309，Codex 出 0.164 预发布版",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.309",
+   "source": "Claude Code Releases",
+   "source_type": "官方",
+   "published": "2026-10-22",
+   "tier": "影响你的",
+   "for_me": "脚本里调用 `claude ultrareview` 的，升级后要加 `--trust-workspace`，否则会卡住。",
+   "summary": "Claude Code v2.1.309：补上多处 Bash 权限绕过和沙箱漏洞；`claude ultrareview` 需工作区信任；Codex 仍是 0.164.0 alpha 迭代。",
+   "track": "代理工具链",
+   "id": "N03"
+  },
+  {
+   "title": "OpenAI Decisions API 正式可用：响应从 1–3 秒降到约 100–180 毫秒",
+   "url": "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-22",
+   "tier": "影响你的",
+   "for_me": "做分类、过滤、路由（询盘分级、评论审核）可以换成它，延迟低；价格文章没给，先看官方定价页。",
+   "summary": "对选项做选择并返回置信度，支持文本、图像、语音；10 月 22 日对所有客户开放，早期用户有 Box、Datadog、Ramp。",
+   "track": "AI小工具",
+   "id": "N04"
+  },
+  {
+   "title": "Anthropic 发布 Claude Duet：Opus 5.5 驱动的后台个人代理，研究预览需候补",
+   "url": "https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-22",
+   "tier": "影响你的",
+   "for_me": "面向「专业人士和小企业」，能后台出日报和看板，付款需你批准；先排队。",
+   "summary": "在自己的虚拟机里后台干活，可连 6,000+ 连接器；Pro 和 Max 订阅者可用，iOS、安卓、网页，需候补，文章未给价格。",
+   "track": "代理工具链",
+   "id": "N05"
+  },
+  {
+   "title": "Amazon 开始拦截 AI 代理代购，Walmart 开放 Agent Gateway（MCP）",
+   "url": "https://techcrunch.com/2026/10/21/while-amazon-blocks-ai-agents-walmart-rolls-out-the-welcome-mat/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-21",
+   "tier": "影响你的",
+   "for_me": "做亚马逊相关的代理或比价工具别指望爬单抓下单，沃尔玛这条路是通的。",
+   "summary": "Walmart 的 MCP 服务让获批代理查库存、下单；下月上线 Agent Profiles，可设每笔审批或限额；违规代理会被封。",
+   "track": "外贸获客",
+   "id": "N06"
+  },
+  {
+   "title": "PHP 修复两个严重未认证 RCE（php2shell），8.5.12 / 8.4.27 / 8.3.36 / 8.2.35 已发布",
+   "url": "https://x.com/testingcatalog/status/2113184364209004811",
+   "source": "TestingCatalog（X）",
+   "source_type": "X",
+   "published": "2026-10-22",
+   "tier": "影响你的",
+   "for_me": "你 VPS 上跑 PHP 的站（WordPress 等）**今天升级**；漏洞细节在补丁前已泄露，已有利用代码流出。",
+   "summary": "漏洞编号 CVE-2026-109618、CVE-2026-109619；PHP 基金会称细节在补丁发布前泄露；Vercel 已先行做防火墙缓解。",
+   "id": "N07"
+  },
+  {
+   "title": "Claude 模型在 Google Cloud（Anthropic 托管）正式可用",
+   "url": "https://x.com/claudeai/status/2113380122468454765",
+   "source": "Claude（官方 X）",
+   "source_type": "X",
+   "published": "2026-10-22",
+   "tier": "行业动态",
+   "summary": "用 Google Cloud IAM、账单和承诺额度即可调用完整 Claude 平台，含 Managed Agents、代码执行、Opus 5.5 快速模式。",
+   "id": "N08"
+  },
+  {
+   "title": "ChatGPT Ads 扩到 26 个新国家，已有 10 万+ 广告主",
+   "url": "https://openai.com/index/chatgpt-ads-expands-26-new-countries",
+   "source": "OpenAI",
+   "source_type": "官方",
+   "published": "2026-10-21",
+   "tier": "行业动态",
+   "summary": "按 OpenAI 官方标题：ChatGPT 广告平台新增 26 国，广告主累计超 10 万；具体国家和门槛未能打开原文核对。",
+   "track": "GEO",
+   "id": "N09"
+  },
+  {
+   "title": "Canva 发布首个自研图像模型 Craft，全部用户可用",
+   "url": "https://techcrunch.com/2026/10/22/canva-releases-its-first-image-generation-model/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-22",
+   "tier": "行业动态",
+   "summary": "基于人类设计的模板训练，先规划版式再生成；Canva 计划后续支持第三方聊天机器人调用。",
+   "id": "N10"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "tashfeenahmed/freellmapi",
+   "url": "https://github.com/tashfeenahmed/freellmapi",
+   "group": "大家都在用",
+   "why_today": "今日 +632 星，连续 2 天上榜",
+   "stars_today": 632,
+   "stars_total": 39576,
+   "license": "MIT",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "把几十家免费模型额度聚合成一个接口",
+   "what": "自托管路由器，对外暴露一个 OpenAI 兼容的 `/v1` 端点，一家限流就切到下一家（Google、Groq、Cerebras、Mistral 等）。README 写明仅供个人实验，晚间热门模型额度会耗尽，无 SLA。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给新做的小工具站当后端模型，起步阶段把 API 成本压到接近 0。"
+    },
+    {
+     "area": "SEO",
+     "how": "批量生成程序化页面草稿时跑在免费额度上，先验证再换付费模型。"
+    }
+   ],
+   "setup": "低，需要 Docker，并自备各家免费 API Key",
+   "safety": "黄",
+   "safety_note": "要把多家服务商的 API Key 交给它保管，安装脚本是 `curl | bash`。README 称密钥 AES-256-GCM 加密存本地，目录服务器看不到提示词。免费额度的转发是否符合各家条款，README 没有讨论。\n防范：先读安装脚本再跑，只放专用的免费账号 Key，不要用于有客户数据的生产业务。",
+   "risk_brief": "托管多家 Key；转发免费额度可能违约",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/HEAD/repo-assets/github-hero.png",
+    "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/HEAD/repo-assets/free-tier.png",
+    "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/HEAD/repo-assets/comparison.png",
+    "https://raw.githubusercontent.com/tashfeenahmed/freellmapi/HEAD/repo-assets/features.png"
+   ]
+  },
+  {
+   "repo": "firecrawl/firecrawl",
+   "url": "https://github.com/firecrawl/firecrawl",
+   "group": "大家都在用",
+   "why_today": "今日 +455 星，总星 19.4 万",
+   "stars_today": 455,
+   "stars_total": 194295,
+   "license": "AGPL-3.0（SDK 为 MIT）",
+   "tags": [
+    "数据与研究",
+    "SEO",
+    "外贸"
+   ],
+   "brief": "给 AI 代理用的网页搜索、抓取、爬站接口",
+   "what": "提供 search、scrape、crawl、map 等接口，把网页转成适合模型读的内容；可自托管，也有 firecrawl.dev 托管版。主体为 AGPL-3.0，改了代码对外提供服务要开源。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "爬竞品站点地图和页面结构，喂给 Claude Code 出对标的内容规划。"
+    },
+    {
+     "area": "外贸",
+     "how": "抓目标行业网站的公司页和联系方式，整理成开发信线索表。"
+    }
+   ],
+   "setup": "中，自托管需 Docker，抓取量大要代理",
+   "safety": "黄",
+   "safety_note": "爬虫类，会访问大量外部站点，并可能保存你的 API Key 和抓取内容。抓取受目标站条款和各国隐私法约束。\n防范：自托管放在独立 VPS，限制出站账号权限，不抓登录后的页面和个人数据。",
+   "risk_brief": "爬取合规；AGPL 限制改后对外服务",
+   "id": "G02"
+  },
+  {
+   "repo": "genspark-ai/genoffice",
+   "url": "https://github.com/genspark-ai/genoffice",
+   "group": "大家都在用",
+   "why_today": "今日 +191 星，首次上榜",
+   "stars_today": 191,
+   "stars_total": 10530,
+   "license": "Apache-2.0（ee/ 目录另有企业许可）",
+   "tags": [
+    "做产品",
+    "自媒体"
+   ],
+   "brief": "带 AI 代理的开源桌面办公套件",
+   "what": "桌面端 Docs、Sheets、Slides、PDF、Markdown、HTML 编辑器，读写 .docx/.xlsx/.pptx；自带 `genoffice` 命令行和 MCP 服务，可接 Claude Code、Cursor。AI 功能需 Genspark 登录或自备 Key。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "让 Claude Code 通过 MCP 直接生成并修改客户要的 PPT、报价表，当交付环节自动化。"
+    },
+    {
+     "area": "自媒体",
+     "how": "批量出图文 Newsletter 的 PDF 版和幻灯片版作为资料包。"
+    }
+   ],
+   "setup": "低，下载安装包即可；AI 功能要账号或 Key",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/genspark-ai/genoffice/HEAD/docs/assets/readme/hero.webp",
+    "https://raw.githubusercontent.com/genspark-ai/genoffice/HEAD/docs/assets/readme/docs-report.webp",
+    "https://raw.githubusercontent.com/genspark-ai/genoffice/HEAD/docs/assets/readme/docs-ai.webp",
+    "https://raw.githubusercontent.com/genspark-ai/genoffice/HEAD/docs/assets/readme/sheets-ai.webp"
+   ]
+  },
+  {
+   "repo": "omkarcloud/google-maps-scraper",
+   "url": "https://github.com/omkarcloud/google-maps-scraper",
+   "group": "大家都在用",
+   "why_today": "外贸线索话题下 3,778 星",
+   "stars_today": null,
+   "stars_total": 3778,
+   "license": "MIT",
+   "tags": [
+    "外贸",
+    "数据与研究"
+   ],
+   "brief": "抓谷歌地图商家信息做线索库",
+   "what": "抓取商家名称、地址、电话、邮箱等 50+ 字段，用于找海外买家和本地商家名单。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "按「国家+品类」抓进口商和分销商名单，再批量写个性化开发信。"
+    }
+   ],
+   "setup": "低，Python 或桌面版；量大需代理",
+   "safety": "黄",
+   "safety_note": "爬取地图数据可能违反谷歌条款，且涉及商家个人联系方式，发信要遵守当地反垃圾邮件法规。我没有逐个核对其最近提交日期。\n防范：控制抓取频率，只用公开的企业联系方式，发信前做退订和合规检查。",
+   "risk_brief": "抓取违约；邮箱外发合规",
+   "id": "G04",
+   "images": [
+    "https://raw.githubusercontent.com/omkarcloud/google-maps-scraper/master/screenshots/google-maps-scraper-feautred-image.png",
+    "https://raw.githubusercontent.com/omkarcloud/google-maps-scraper/master/screenshots/apify-vs-omkar.png",
+    "https://raw.githubusercontent.com/omkarcloud/google-maps-scraper/master/screenshots/nyc-restaurants-csv.png",
+    "https://raw.githubusercontent.com/omkarcloud/google-maps-scraper/master/screenshots/video-thumbnails/quick-demo.png"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "marketingskills",
+   "url": "https://github.com/coreyhaines31/marketingskills",
+   "repo": "coreyhaines31/marketingskills",
+   "hot": "长期热门",
+   "stars_total": 56037,
+   "installs": null,
+   "popularity_note": "GitHub 56,037 星，最近一次提交 2026-10-22，52 个技能",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "52 个营销与 SEO 技能的合集",
+   "what": "含 programmatic-seo、ai-seo、seo-audit、cold-email、copywriting、directory-submissions 等。我读了 programmatic-seo 的 SKILL.md：纯文字流程，不跑 shell、不写文件、不发数据；其余技能和 `tools/` 下的账号集成没有逐个读。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "用 programmatic-seo 给站点出关键词模板和内链方案。"
+    },
+    {
+     "area": "外贸",
+     "how": "用 cold-email 按你的产品出分行业的开发信序列。"
+    }
+   ],
+   "install": "`npx skills add coreyhaines31/marketingskills --skill programmatic-seo`",
+   "id": "S01"
+  },
+  {
+   "name": "hyperframes",
+   "url": "https://github.com/heygen-com/hyperframes",
+   "repo": "heygen-com/hyperframes",
+   "hot": "新晋热门",
+   "stars_total": 69986,
+   "installs": 1200000,
+   "popularity_note": "skills.sh 总榜 120 万安装；GitHub 周榜本周 +5,740 星（2026-10-23）",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "让代理用 HTML 写视频并渲染",
+   "what": "写 HTML 合成，逐帧渲染成视频。SKILL.md 会让代理运行 `npx hyperframes` 子命令并读写项目文件；`capture <url>` 会抓取网页，未见编码混淆，也未提 API Key。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "把图文稿一键做成带动画的讲解短片，省掉剪辑一步，用于你自己的 Newsletter 配套。"
+    },
+    {
+     "area": "做产品",
+     "how": "给你的小工具做产品宣传片和演示。"
+    }
+   ],
+   "install": "`npx skills add heygen-com/hyperframes`",
+   "id": "S02",
+   "images": [
+    "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/biennale-yellow.png",
+    "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/blockframe.png",
+    "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/blue-professional.png",
+    "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/broadside.png"
+   ]
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "抖音：Skill 清单类内容收藏率高",
+   "brief": "「Skill 大扫盲」「必装 8 个」被收藏存档",
+   "signal": "需求信号",
+   "track": "代理工具链",
+   "platforms": [
+    "抖音",
+    "小红书"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "小白学AI之「skill 大扫盲」",
+     "url": "https://www.douyin.com/video/7697919009110410470",
+     "metrics": "点赞 998 · 收藏 872 · 评论 30 · 粉丝 8097"
+    },
+    {
+     "platform": "抖音",
+     "title": "WorkBuddy 必装的 8 个 Skill",
+     "url": "https://www.douyin.com/video/7699496342556609818",
+     "metrics": "点赞 449 · 收藏 298 · 评论 1 · 粉丝 3776"
+    }
+   ],
+   "why": "收藏率分别约 0.87、0.66，用户想存下来照着装；同一天 Agent Skills 标准捐给 AAIF，Skills 正在从开发者圈走向普通用户。",
+   "how": "做图文版「外贸/SEO 人必装 Skills 清单」放小红书和 Newsletter，每条写清用途和安装命令，文末导流到你自己整理的外贸技能包；第一步用 marketingskills 里 cold-email 和 programmatic-seo 实测并截图。",
+   "risk": "Skill 里可能夹带脚本，清单必须写明已审查；平台对 AI 生成内容有标注要求。",
+   "id": "P01"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-22 F01",
+   "title": "WorkBuddy 教程",
+   "update": "小红书「1h丨WorkBuddy零基础入门教程」点赞 **9,639**、收藏 **1.56 万**、评论 2,013。",
+   "url": "https://www.xiaohongshu.com/explore/6ad356dd000000001203cc1a",
+   "id": "F01"
+  }
+ ],
+ "watch_next": [
+  "Claude Duet",
+  "Agent Skills 标准",
+  "Decisions API",
+  "WorkBuddy 外贸"
+ ]
+}
