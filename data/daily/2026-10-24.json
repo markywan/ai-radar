@@ -1,0 +1,349 @@
+{
+ "date": "2026-10-24",
+ "generated_at": "2026-10-24T06:30:00+08:00",
+ "headline": [
+  "Moonshot 发布 3T 级开源权重模型 Kimi K3.1 Pro，智能指数 **55 分排第 4**，完整权重 **11 月 4 日前**放出，之后会有一批更便宜的托管 API。",
+  "抖音上 AI 名词、工具清单类内容收藏率偏高：一条 64 分钟的「99 个 AI 名词」，9 千粉账号拿到 **收藏 8078，超过点赞 6767**。",
+  "今天最值得做的一件事：把 Codex 升到 0.164.0，用 `/presets` 存下外贸开发信和 SEO 文章的常用提示词，5 分钟。"
+ ],
+ "stats": {
+  "scanned": 684,
+  "selected": 16,
+  "chars": 2372,
+  "read_minutes": 5
+ },
+ "actions": [
+  {
+   "minutes": 5,
+   "text": "把 Codex 升到 0.164.0，用 `/presets` 把外贸开发信、SEO 文章大纲两条常用提示词存进槽位。"
+  },
+  {
+   "minutes": 15,
+   "text": "给 11 月 4 日 Kimi K3.1 Pro 开放权重设个提醒，届时拿你 VPS 上最贵的一个脚本换模型试跑，对比成本。"
+  },
+  {
+   "minutes": 30,
+   "text": "装 `reddit-automation` 技能，拿你一个外贸或 SEO 产品跑一遍找帖，看能不能找到 3 个真有需求的帖子。"
+  }
+ ],
+ "news": [
+  {
+   "title": "Moonshot 发布 Kimi K3.1 Pro：3T 级开源权重，1M 上下文，智能指数 55 排第 4",
+   "url": "https://the-decoder.com/chinese-ai-model-kimi-k3-1-pro-is-closing-in-on-anthropics-claude-opus-5-5/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-23",
+   "tier": "影响你的",
+   "for_me": "**11 月 4 日前**放出完整权重，之后会有便宜的托管 API，可当备选模型。",
+   "summary": "Artificial Analysis 智能指数 **55 分**，比上一代涨 11 分，只落后 Anthropic 和 Meta 的三个模型。另有 Highspeed 版，权重承诺 11 月 4 日前放出。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "代理工具更新：Codex 0.164.0 正式版发布，Claude Code 出 v2.1.308、v2.1.309",
+   "url": "https://github.com/openai/codex/releases/tag/rust-v0.164.0",
+   "source": "Codex Releases",
+   "source_type": "官方",
+   "published": "2026-10-23",
+   "tier": "影响你的",
+   "for_me": "Codex 的 `/presets` 能存 10 条常用提示词，今天就能用上。",
+   "summary": "Codex：10 个 `/presets` 槽位存提示词和斜杠命令；`/model`、`/permissions` 可带参数直接设置；终端内预览图片。Claude Code：沙箱安全修复。",
+   "track": "代理工具链",
+   "id": "N02"
+  },
+  {
+   "title": "Meta 推迟新商业条款，改到 11 月 20 日生效",
+   "url": "https://www.theverge.com/tech/1017450/meta-business-terms-delayed-ai-scraping",
+   "source": "The Verge",
+   "source_type": "媒体",
+   "published": "2026-10-23",
+   "tier": "影响你的",
+   "for_me": "你若有 Meta 商业账号，**11 月 20 日前**读一遍新条款里抓取一条。",
+   "summary": "出版商担心条款让 Meta 能抓新闻网站做 AI 训练，Meta 把生效日推到 **11 月 20 日**，说是为了留出时间沟通。",
+   "id": "N03"
+  },
+  {
+   "title": "美国大银行开始封堵用客户账号密码登录的 AI 代理，Morgan Stanley 已禁用",
+   "url": "https://the-decoder.com/major-us-banks-are-locking-out-ai-agents-that-log-in-with-customer-credentials/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-22",
+   "tier": "影响你的",
+   "for_me": "别让代理用你的账号密码登录银行和支付后台，这条路在被堵死。",
+   "summary": "JPMorgan 等多数银行计划把代理限制为**只读访问**，Morgan Stanley 已直接拦截。客户把凭证交给代理，有时没有逐次指令。",
+   "track": "代理工具链",
+   "id": "N04"
+  },
+  {
+   "title": "Google 隐私政策更新：个性化 AI 功能开启时，可能用 Gmail、Photos 数据定向广告",
+   "url": "https://www.theverge.com/tech/1017600/google-personal-intelligence-privacy-policy-ads-update",
+   "source": "The Verge",
+   "source_type": "媒体",
+   "published": "2026-10-23",
+   "tier": "行业动态",
+   "summary": "政策给「不用 Drive、Gmail、Photos 数据投放个性化广告」的承诺加了例外，适用于使用个性化 AI 功能的用户。",
+   "id": "N05"
+  },
+  {
+   "title": "Anthropic 让 Claude 为 123 个开源库生成约 1.8 亿行正确性证明代码",
+   "url": "https://the-decoder.com/anthropics-claude-now-writes-code-and-proves-it-safe-automatically/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-23",
+   "tier": "行业动态",
+   "summary": "过程中发现了多年测试没抓到的 bug。目标是让 AI 形式化验证像普通测试一样常规。",
+   "id": "N06"
+  },
+  {
+   "title": "Google 推出 Agent Compute Engine：每个 Gemini 代理一个硬件隔离的微型虚拟机",
+   "url": "https://the-decoder.com/googles-agent-compute-engine-gives-every-gemini-agent-its-own-hardware-isolated-micro-virtual-machine/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-22",
+   "tier": "行业动态",
+   "summary": "每个代理跑在独立的硬件隔离微型虚拟机里，面向企业部署代理的安全隔离。",
+   "id": "N07"
+  },
+  {
+   "title": "1Password 推出让 AI 代理替你登录、但看不到密码的功能",
+   "url": "https://techcrunch.com/2026/10/22/1password-launches-a-way-for-ai-agents-to-log-in-on-your-behalf-without-seeing-your-password/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-22",
+   "tier": "行业动态",
+   "summary": "代理拿到的是登录能力而不是密码本身，和银行封堵凭证登录的做法是一个方向。",
+   "track": "代理工具链",
+   "id": "N08"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "NVIDIA/OpenShell",
+   "url": "https://github.com/NVIDIA/OpenShell",
+   "group": "刚冒出来",
+   "why_today": "首次上榜 今日 +1,240 星",
+   "stars_today": 1240,
+   "stars_total": 18749,
+   "license": "Apache-2.0",
+   "tags": [
+    "Agent 与自动化"
+   ],
+   "brief": "给自主代理用的安全私有运行环境",
+   "what": "NVIDIA 出品的 Rust 运行时，让自主 AI 代理在受限环境里跑，控制它能碰的文件和网络。建仓 241 天，今天刚上日榜。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "把代理类产品放进去跑，限制它读写范围，卖给客户时有安全说法。"
+    },
+    {
+     "area": "自媒体",
+     "how": "让代理批量处理素材和发布脚本时，不让它碰到你的主目录。"
+    }
+   ],
+   "setup": "部署难度 中，需要本机或 VPS 的容器环境",
+   "safety": "黄",
+   "safety_note": "要给它执行代理的权限，配置错了反而制造错觉。**今天首次上榜，未见更多讨论，571 个未关闭 issue。** 防范：先在没有真实凭证的测试机上跑，确认限制确实生效再放真实任务。",
+   "risk_brief": "运行代理需要系统权限",
+   "id": "G01"
+  },
+  {
+   "repo": "luongnv89/claude-howto",
+   "url": "https://github.com/luongnv89/claude-howto",
+   "group": "大家都在用",
+   "why_today": "7 天内第 3 天上榜 +1,168 星",
+   "stars_today": 1168,
+   "stars_total": 43988,
+   "license": "MIT",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "Claude Code 的图文示例指南，带可复制模板",
+   "what": "从基础概念到子代理的图文指南，附可直接复制的模板。建仓 350 天，forks 5451，连续 3 天上榜。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "照模板配好 Claude Code 的子代理和命令，省下摸索时间。"
+    },
+    {
+     "area": "SEO",
+     "how": "拿模板搭一个批量生成、检查页面的固定流程。"
+    }
+   ],
+   "setup": "部署难度 低，读文档照抄模板",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G02"
+  },
+  {
+   "repo": "promptfoo/promptfoo",
+   "url": "https://github.com/promptfoo/promptfoo",
+   "group": "大家都在用",
+   "why_today": "总星 2.6 万 今日 +68",
+   "stars_today": 68,
+   "stars_total": 26351,
+   "license": "MIT",
+   "tags": [
+    "做产品",
+    "数据与研究"
+   ],
+   "brief": "测试提示词和代理，并跑红队扫描的命令行工具",
+   "what": "用声明式配置对比 GPT、Claude、Gemini、DeepSeek 等模型的输出，可接 CI。建仓 1274 天，昨天仍有提交。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "换模型前拿它跑一遍你的真实提示词，看质量和成本。"
+    },
+    {
+     "area": "外贸",
+     "how": "批量比较不同模型写开发信的结果，选最便宜够用的一个。"
+    }
+   ],
+   "setup": "部署难度 低，`npx` 即可，需要各模型的 API Key",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/promptfoo/promptfoo/HEAD/site/static/img/claude-vs-gpt-example@2x.png",
+    "https://www.promptfoo.dev/img/redteam-vulnerability-report-hero@2x.png",
+    "https://www.promptfoo.dev/img/docs/self-grading.gif"
+   ]
+  },
+  {
+   "repo": "baidu/Unlimited-OCR",
+   "url": "https://github.com/baidu/Unlimited-OCR",
+   "group": "刚冒出来",
+   "why_today": "首次上榜 总星 2.8 万",
+   "stars_today": 93,
+   "stars_total": 28288,
+   "license": "MIT",
+   "tags": [
+    "外贸",
+    "数据与研究"
+   ],
+   "brief": "百度开源的长文档一次性解析 OCR",
+   "what": "面向长文档的 OCR，一次处理整份文件而不是逐页。建仓 127 天，forks 3002，昨天仍有提交，MIT 许可。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "批量把扫描版报价单、合同、发票转成结构化文本。"
+    },
+    {
+     "area": "做产品",
+     "how": "做成按页收费的文档转换小工具。"
+    }
+   ],
+   "setup": "部署难度 中，本地跑需要 GPU 或使用托管推理",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G04"
+  }
+ ],
+ "skills": [
+  {
+   "name": "book-to-skill",
+   "url": "https://github.com/virgiliojr94/book-to-skill",
+   "repo": "virgiliojr94/book-to-skill",
+   "hot": "新晋热门",
+   "stars_total": 35873,
+   "installs": null,
+   "popularity_note": "10-24 日榜 +139 星，总星 3.6 万，建仓 175 天",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "黄",
+   "safety_note": "会跑 shell、写 `~/.agents/skills/` 并建符号链接，可选发布到 GitHub。**读过 SKILL.md：本地提取，不含密钥，发布前要你同意。** 防范：不要同意自动安装依赖和发布，书的版权要自己确认。",
+   "risk_brief": "写本地目录、可选发布",
+   "brief": "把技术书 PDF 转成可按章节调用的技能",
+   "what": "把一本书或一批文档拆成章节、术语表、速查表，生成技能，代理按需读取对应章节来回答。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "把行业手册做成技能，当作产品的知识库底座。"
+    },
+    {
+     "area": "SEO",
+     "how": "把平台规则文档转成技能，写内容时让代理按规则检查。"
+    }
+   ],
+   "install": "`npx skills add virgiliojr94/book-to-skill`",
+   "id": "S01",
+   "images": [
+    "https://raw.githubusercontent.com/virgiliojr94/book-to-skill/HEAD/docs/assets/banner.webp"
+   ]
+  },
+  {
+   "name": "reddit-automation",
+   "url": "https://skills.sh/flowkit-labs/skills/reddit-automation",
+   "repo": "flowkit-labs/skills",
+   "hot": "长期热门",
+   "stars_total": 20,
+   "installs": 1100000,
+   "popularity_note": "skills.sh 总榜第 10，安装 110 万；仓库仅 20 星，10-24 查看",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "找 Reddit 上有需求的帖子并起草带披露的回复",
+   "what": "先找出少数真有需求的帖子，再起草回复，要求披露你的身份。读过 SKILL.md：不执行命令、不写文件、不发帖，由你手动发布。skills.sh 上 Snyk 为警告，Socket 通过。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "找问供应商、问工具的帖子，起草带披露的回复引流。"
+    },
+    {
+     "area": "自媒体",
+     "how": "找高频提问，当作下一篇内容的选题。"
+    }
+   ],
+   "install": "`npx skills add https://github.com/flowkit-labs/skills --skill reddit-automation`",
+   "id": "S02"
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "抖音 AI 名词、工具清单：收藏高于点赞",
+   "brief": "AI 知识清单类视频被大量收藏",
+   "signal": "需求信号",
+   "track": "AI小工具",
+   "platforms": [
+    "抖音"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "最常见99个AI名词全鉴（64分钟）",
+     "url": "https://www.douyin.com/video/7699106532872572203",
+     "metrics": "点赞 6767 · 收藏 8078 · 粉丝 9028"
+    },
+    {
+     "platform": "抖音",
+     "title": "ai挖漏洞居然已经发展到这个地步了",
+     "url": "https://www.douyin.com/video/7699078042831834387",
+     "metrics": "点赞 1613 · 收藏 1128 · 评论 176 · 粉丝 1903"
+    }
+   ],
+   "why": "两条的收藏率分别为 **1.19 和 0.7**，高于 0.3 的参考线，说明有人想存下来照着学。只在抖音出现，是可以搬运思路的时间差。",
+   "how": "做图文版「AI 名词和工具速查」资料包：用 Claude Code 把每个名词配一句解释和外贸场景，放到小红书和 Newsletter，再挂一个付费完整版。",
+   "risk": "名词类内容门槛低、同质化快；搬运他人视频内容会被限流。",
+   "id": "P01"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-23 N04",
+   "title": "OpenAI Decisions API 正式可用",
+   "update": "定价：输入 **$0.10/百万 token**，不收输出，新增语音和视觉",
+   "url": "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
+   "id": "F01"
+  }
+ ],
+ "watch_next": [
+  "Dots",
+  "Personal Agent",
+  "Kimi K3.1",
+  "vibecoding 副业"
+ ]
+}
