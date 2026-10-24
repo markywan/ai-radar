@@ -1,0 +1,39 @@
+{
+ "id": "2026-10-24-S01",
+ "date": "2026-10-24",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-24T13:32:59+00:00",
+ "item": {
+  "name": "book-to-skill",
+  "url": "https://github.com/virgiliojr94/book-to-skill",
+  "repo": "virgiliojr94/book-to-skill",
+  "hot": "新晋热门",
+  "stars_total": 35873,
+  "installs": null,
+  "popularity_note": "10-24 日榜 +139 星，总星 3.6 万，建仓 175 天",
+  "works_with": "Claude Code / Codex / 两者",
+  "safety": "黄",
+  "safety_note": "会跑 shell、写 `~/.agents/skills/` 并建符号链接，可选发布到 GitHub。**读过 SKILL.md：本地提取，不含密钥，发布前要你同意。** 防范：不要同意自动安装依赖和发布，书的版权要自己确认。",
+  "risk_brief": "写本地目录、可选发布",
+  "brief": "把技术书 PDF 转成可按章节调用的技能",
+  "what": "把一本书或一批文档拆成章节、术语表、速查表，生成技能，代理按需读取对应章节来回答。",
+  "uses": [
+   {
+    "area": "做产品",
+    "how": "把行业手册做成技能，当作产品的知识库底座。"
+   },
+   {
+    "area": "SEO",
+    "how": "把平台规则文档转成技能，写内容时让代理按规则检查。"
+   }
+  ],
+  "install": "`npx skills add virgiliojr94/book-to-skill`",
+  "id": "S01",
+  "images": [
+   "https://raw.githubusercontent.com/virgiliojr94/book-to-skill/HEAD/docs/assets/banner.webp"
+  ]
+ },
+ "deepdive": "pending"
+}
