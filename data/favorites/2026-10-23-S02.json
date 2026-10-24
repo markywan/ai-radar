@@ -1,0 +1,42 @@
+{
+ "id": "2026-10-23-S02",
+ "date": "2026-10-23",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-24T13:37:00+00:00",
+ "item": {
+  "name": "hyperframes",
+  "url": "https://github.com/heygen-com/hyperframes",
+  "repo": "heygen-com/hyperframes",
+  "hot": "新晋热门",
+  "stars_total": 69986,
+  "installs": 1200000,
+  "popularity_note": "skills.sh 总榜 120 万安装；GitHub 周榜本周 +5,740 星（2026-10-23）",
+  "works_with": "两者",
+  "safety": "绿",
+  "safety_note": "",
+  "risk_brief": "",
+  "brief": "让代理用 HTML 写视频并渲染",
+  "what": "写 HTML 合成，逐帧渲染成视频。SKILL.md 会让代理运行 `npx hyperframes` 子命令并读写项目文件；`capture <url>` 会抓取网页，未见编码混淆，也未提 API Key。",
+  "uses": [
+   {
+    "area": "自媒体",
+    "how": "把图文稿一键做成带动画的讲解短片，省掉剪辑一步，用于你自己的 Newsletter 配套。"
+   },
+   {
+    "area": "做产品",
+    "how": "给你的小工具做产品宣传片和演示。"
+   }
+  ],
+  "install": "`npx skills add heygen-com/hyperframes`",
+  "id": "S02",
+  "images": [
+   "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/biennale-yellow.png",
+   "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/blockframe.png",
+   "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/blue-professional.png",
+   "https://static.heygen.ai/hyperframes-oss/docs/images/design-templates/broadside.png"
+  ]
+ },
+ "deepdive": "pending"
+}
