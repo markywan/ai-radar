@@ -1,0 +1,40 @@
+{
+ "id": "2026-10-23-G02",
+ "date": "2026-10-23",
+ "type": "tools",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-24T13:35:35+00:00",
+ "item": {
+  "repo": "firecrawl/firecrawl",
+  "url": "https://github.com/firecrawl/firecrawl",
+  "group": "大家都在用",
+  "why_today": "今日 +455 星，总星 19.4 万",
+  "stars_today": 455,
+  "stars_total": 194295,
+  "license": "AGPL-3.0（SDK 为 MIT）",
+  "tags": [
+   "数据与研究",
+   "SEO",
+   "外贸"
+  ],
+  "brief": "给 AI 代理用的网页搜索、抓取、爬站接口",
+  "what": "提供 search、scrape、crawl、map 等接口，把网页转成适合模型读的内容；可自托管，也有 firecrawl.dev 托管版。主体为 AGPL-3.0，改了代码对外提供服务要开源。",
+  "uses": [
+   {
+    "area": "SEO",
+    "how": "爬竞品站点地图和页面结构，喂给 Claude Code 出对标的内容规划。"
+   },
+   {
+    "area": "外贸",
+    "how": "抓目标行业网站的公司页和联系方式，整理成开发信线索表。"
+   }
+  ],
+  "setup": "中，自托管需 Docker，抓取量大要代理",
+  "safety": "黄",
+  "safety_note": "爬虫类，会访问大量外部站点，并可能保存你的 API Key 和抓取内容。抓取受目标站条款和各国隐私法约束。\n防范：自托管放在独立 VPS，限制出站账号权限，不抓登录后的页面和个人数据。",
+  "risk_brief": "爬取合规；AGPL 限制改后对外服务",
+  "id": "G02"
+ },
+ "deepdive": "pending"
+}
