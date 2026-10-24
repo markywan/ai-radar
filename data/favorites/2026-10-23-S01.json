@@ -1,0 +1,36 @@
+{
+ "id": "2026-10-23-S01",
+ "date": "2026-10-23",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-24T13:36:12+00:00",
+ "item": {
+  "name": "marketingskills",
+  "url": "https://github.com/coreyhaines31/marketingskills",
+  "repo": "coreyhaines31/marketingskills",
+  "hot": "长期热门",
+  "stars_total": 56037,
+  "installs": null,
+  "popularity_note": "GitHub 56,037 星，最近一次提交 2026-10-22，52 个技能",
+  "works_with": "两者",
+  "safety": "绿",
+  "safety_note": "",
+  "risk_brief": "",
+  "brief": "52 个营销与 SEO 技能的合集",
+  "what": "含 programmatic-seo、ai-seo、seo-audit、cold-email、copywriting、directory-submissions 等。我读了 programmatic-seo 的 SKILL.md：纯文字流程，不跑 shell、不写文件、不发数据；其余技能和 `tools/` 下的账号集成没有逐个读。",
+  "uses": [
+   {
+    "area": "SEO",
+    "how": "用 programmatic-seo 给站点出关键词模板和内链方案。"
+   },
+   {
+    "area": "外贸",
+    "how": "用 cold-email 按你的产品出分行业的开发信序列。"
+   }
+  ],
+  "install": "`npx skills add coreyhaines31/marketingskills --skill programmatic-seo`",
+  "id": "S01"
+ },
+ "deepdive": "pending"
+}
