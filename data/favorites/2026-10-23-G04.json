@@ -1,0 +1,41 @@
+{
+ "id": "2026-10-23-G04",
+ "date": "2026-10-23",
+ "type": "tools",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-24T13:35:48+00:00",
+ "item": {
+  "repo": "omkarcloud/google-maps-scraper",
+  "url": "https://github.com/omkarcloud/google-maps-scraper",
+  "group": "大家都在用",
+  "why_today": "外贸线索话题下 3,778 星",
+  "stars_today": null,
+  "stars_total": 3778,
+  "license": "MIT",
+  "tags": [
+   "外贸",
+   "数据与研究"
+  ],
+  "brief": "抓谷歌地图商家信息做线索库",
+  "what": "抓取商家名称、地址、电话、邮箱等 50+ 字段，用于找海外买家和本地商家名单。",
+  "uses": [
+   {
+    "area": "外贸",
+    "how": "按「国家+品类」抓进口商和分销商名单，再批量写个性化开发信。"
+   }
+  ],
+  "setup": "低，Python 或桌面版；量大需代理",
+  "safety": "黄",
+  "safety_note": "爬取地图数据可能违反谷歌条款，且涉及商家个人联系方式，发信要遵守当地反垃圾邮件法规。我没有逐个核对其最近提交日期。\n防范：控制抓取频率，只用公开的企业联系方式，发信前做退订和合规检查。",
+  "risk_brief": "抓取违约；邮箱外发合规",
+  "id": "G04",
+  "images": [
+   "https://raw.githubusercontent.com/omkarcloud/google-maps-scraper/master/screenshots/google-maps-scraper-feautred-image.png",
+   "https://raw.githubusercontent.com/omkarcloud/google-maps-scraper/master/screenshots/apify-vs-omkar.png",
+   "https://raw.githubusercontent.com/omkarcloud/google-maps-scraper/master/screenshots/nyc-restaurants-csv.png",
+   "https://raw.githubusercontent.com/omkarcloud/google-maps-scraper/master/screenshots/video-thumbnails/quick-demo.png"
+  ]
+ },
+ "deepdive": "pending"
+}
