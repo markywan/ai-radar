@@ -1,0 +1,36 @@
+{
+ "id": "2026-10-24-S02",
+ "date": "2026-10-24",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-24T13:32:34+00:00",
+ "item": {
+  "name": "reddit-automation",
+  "url": "https://skills.sh/flowkit-labs/skills/reddit-automation",
+  "repo": "flowkit-labs/skills",
+  "hot": "长期热门",
+  "stars_total": 20,
+  "installs": 1100000,
+  "popularity_note": "skills.sh 总榜第 10，安装 110 万；仓库仅 20 星，10-24 查看",
+  "works_with": "Claude Code / Codex / 两者",
+  "safety": "绿",
+  "safety_note": "",
+  "risk_brief": "",
+  "brief": "找 Reddit 上有需求的帖子并起草带披露的回复",
+  "what": "先找出少数真有需求的帖子，再起草回复，要求披露你的身份。读过 SKILL.md：不执行命令、不写文件、不发帖，由你手动发布。skills.sh 上 Snyk 为警告，Socket 通过。",
+  "uses": [
+   {
+    "area": "外贸",
+    "how": "找问供应商、问工具的帖子，起草带披露的回复引流。"
+   },
+   {
+    "area": "自媒体",
+    "how": "找高频提问，当作下一篇内容的选题。"
+   }
+  ],
+  "install": "`npx skills add https://github.com/flowkit-labs/skills --skill reddit-automation`",
+  "id": "S02"
+ },
+ "deepdive": "pending"
+}
