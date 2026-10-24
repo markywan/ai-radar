@@ -1,0 +1,363 @@
+{
+ "date": "2026-10-25",
+ "generated_at": "2026-10-25T06:30:00+08:00",
+ "headline": [
+  "最影响你的是一项对照研究：Claude Code、OpenCode 等不同代理外壳的通过率差不多，但每个任务的成本最多差 **3 倍**，主要是系统提示每步重发。",
+  "最强的平台信号：小红书「做 SEO 必备 5 个 skills」收藏 **2359**、点赞 1087，收藏是点赞的 2 倍多，想存下来照着用的人很多。",
+  "今天最值得做的一件事：数一下你 VPS 脚本里每步重发的系统提示有多长，砍掉一半再对比一次成本。"
+ ],
+ "stats": {
+  "scanned": 370,
+  "selected": 14,
+  "chars": 2665,
+  "read_minutes": 6
+ },
+ "actions": [
+  {
+   "minutes": 30,
+   "text": "打开你最常跑的一个代理脚本，量系统提示和工具清单的 token 数，删掉用不到的部分，跑同一任务对比前后花费。"
+  },
+  {
+   "minutes": 15,
+   "text": "用 `npx skills add nutlope/hallmark -g` 装 hallmark（先看它写入的文件），给一个现有落地页跑 `/hallmark audit`。"
+  },
+  {
+   "minutes": 5,
+   "text": "如果你给客户或自己发 AI 生成的广告图和视频，给素材模板加一行「AI 生成」标注，宾州新法已把它写成要求。"
+  }
+ ],
+ "news": [
+  {
+   "title": "代理工具更新：Claude Code 出 v2.1.310，Codex 0.165.0 仍在 alpha",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.310",
+   "source": "Claude Code Releases",
+   "source_type": "官方",
+   "published": "2026-10-23",
+   "tier": "影响你的",
+   "for_me": "你在 VPS 上用 Claude Code 跑任务，网关报错和压缩失败的坑修了，升级即可。",
+   "summary": "Claude Code 2.1.310：网关拒绝 beta 参数时自动重试；**压缩**报错后少留 base64；Bedrock、Vertex 支持 Monitor 工具；Codex 仅出 0.165.0 alpha。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "宾夕法尼亚州签署法案：AI 生成或大幅修改的广告必须加标注",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1018187/pennsylvania-ai-deceptive-advertising-act",
+   "source": "The Verge",
+   "source_type": "媒体",
+   "published": "2026-10-24",
+   "tier": "影响你的",
+   "for_me": "你做自媒体或替客户出广告图文，美国用户的素材先留好「AI 生成」标注位。",
+   "summary": "州长 Shapiro 周四签署 AI 欺骗性广告法：图片、视频、音频、文字只要**被 AI 生成或大幅修改**，就要用同样形式加标注。生效日期、罚则摘要里没写，我没打开全文，待查。",
+   "id": "N02"
+  },
+  {
+   "title": "研究：换代理外壳通过率几乎不变，单任务成本可翻 3 倍",
+   "url": "https://the-decoder.com/fancy-harnesses-make-coding-agents-more-expensive-but-not-better-study-finds/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-24",
+   "tier": "影响你的",
+   "for_me": "别为「更花哨的外壳」多花钱；先砍系统提示，往往比换工具省得多。",
+   "summary": "对照 Claude Code、OpenCode、mini-SWE-agent：通过率差距不超过**重复跑同一配置的波动**，每个任务成本最多 3 倍，主因是系统提示每一步重发。",
+   "track": "代理工具链",
+   "id": "N03"
+  },
+  {
+   "title": "Block 发布语音到语音模型 Dessa：只用人类对话训练，可在 M4 Max 本地跑",
+   "url": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-24",
+   "tier": "行业动态",
+   "summary": "全双工，不接大模型，Block 称**目前无公开访问**，只请安全研究员测试；未提语言和开源许可。性能说法未经第三方验证。",
+   "id": "N04"
+  },
+  {
+   "title": "OpenAI：前沿模型改在「离线世界」里训练，不再碰实时互联网",
+   "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
+   "source": "OpenAI",
+   "source_type": "官方",
+   "published": "2026-10-23",
+   "tier": "行业动态",
+   "summary": "用缓存网页搭出隔离环境，让模型练浏览、搜索和用网页应用。媒体称此前出现多起越权入侵事件后暂停了训练。对你的 API 用法没有直接影响。",
+   "id": "N05"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "umami-software/umami",
+   "url": "https://github.com/umami-software/umami",
+   "group": "大家都在用",
+   "why_today": "今日榜上，总星 3.96 万",
+   "stars_today": 43,
+   "stars_total": 39643,
+   "license": "MIT",
+   "tags": [
+    "SEO",
+    "做产品"
+   ],
+   "brief": "不用 cookie 的自托管网站统计",
+   "what": "隐私优先的网页和产品分析，看流量、渠道、转化和收入，可自托管或用云版。创建 6 年多，**8401 个 fork**，昨天仍有提交。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "给每个程序化 SEO 站挂一份，按页面看哪些词带来访问和转化。"
+    },
+    {
+     "area": "做产品",
+     "how": "给小工具站装统计，不装 Google Analytics，少一份隐私条款。"
+    }
+   ],
+   "setup": "部署难度 中，需要 Node 或 Docker 加 PostgreSQL",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G01"
+  },
+  {
+   "repo": "thedotmack/claude-mem",
+   "url": "https://github.com/thedotmack/claude-mem",
+   "group": "大家都在用",
+   "why_today": "今日 +274 星，总星 10.3 万",
+   "stars_today": 274,
+   "stars_total": 102800,
+   "license": "Apache-2.0",
+   "tags": [
+    "Agent 与自动化"
+   ],
+   "brief": "给代理加跨会话记忆",
+   "what": "记录代理在会话里做过的事，用 AI 压缩后在下次会话注入相关上下文，支持 Claude Code、Codex、Gemini、Copilot 等。昨天仍有提交。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "长期维护的小项目让代理记住上次改了什么，少重复交代背景。"
+    },
+    {
+     "area": "SEO",
+     "how": "批量建站时记住每个站的关键词和决定，换会话不丢。"
+    }
+   ],
+   "setup": "部署难度 低，按 README 装插件",
+   "safety": "黄",
+   "safety_note": "它会读取并保存代理做的所有操作，再交给 AI 压缩，里面可能有密钥和客户数据。我只读了仓库简介，没看源码。\n防范：只在没有敏感文件的项目里开，查看记忆存放位置，定期清理。",
+   "risk_brief": "会保存全部会话内容，可能含密钥",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/thedotmack/claude-mem/main/docs/public/cm-preview.gif"
+   ]
+  },
+  {
+   "repo": "anthropics/sandbox-runtime",
+   "url": "https://github.com/anthropics/sandbox-runtime",
+   "group": "大家都在用",
+   "why_today": "今日 +592 星，总星 6450",
+   "stars_today": 592,
+   "stars_total": 6450,
+   "license": "Apache-2.0",
+   "tags": [
+    "Agent 与自动化"
+   ],
+   "brief": "不用容器，限制进程读写和联网",
+   "what": "在系统层限制任意进程能读写哪些文件、访问哪些网络，不需要容器。Anthropic 官方仓库，昨天仍有提交，**未结 issue 304 个**。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "VPS 上跑第三方抓取脚本或代理时，只放行必要目录和域名。"
+    }
+   ],
+   "setup": "部署难度 中，需要读懂规则文件",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G03"
+  },
+  {
+   "repo": "marclou/mailcheap",
+   "url": "https://github.com/marclou/mailcheap",
+   "group": "刚冒出来",
+   "why_today": "建仓 15 天 1.4k 星",
+   "stars_today": null,
+   "stars_total": 1398,
+   "license": "AGPL-3.0",
+   "tags": [
+    "自媒体",
+    "做产品"
+   ],
+   "brief": "按发送量计费的开源 Newsletter",
+   "what": "可自托管的邮件通讯：写、发、网页发布，支持 MCP 和 REST 让 AI 代理操作。自托管只付发信费，用 Amazon SES 每千封 0.10 到 0.16 美元；云版每月 19 美元起。作者说自托管没有支持，issue 已关。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "做图文 Newsletter 时订阅者多、发得少，比按订阅人数收费便宜。"
+    },
+    {
+     "area": "外贸",
+     "how": "给客户做行业简报，让代理起草后你审核再发。"
+    }
+   ],
+   "setup": "部署难度 高，需要 MongoDB、Amazon SES、Upstash QStash 和 Node 22",
+   "safety": "黄",
+   "safety_note": "建仓不到 30 天，要 AWS 凭证和发信权限，发信出问题会拖累域名信誉。\n防范：用只有 SES 发信权限的 IAM 账号，先用测试域名和小名单，设好退订和投诉处理。",
+   "risk_brief": "新仓库，要 AWS 发信凭证",
+   "id": "G04",
+   "images": [
+    "https://raw.githubusercontent.com/marclou/mailcheap/HEAD/docs/screenshots/overview.webp",
+    "https://raw.githubusercontent.com/marclou/mailcheap/HEAD/docs/screenshots/editor.webp",
+    "https://raw.githubusercontent.com/marclou/mailcheap/HEAD/docs/screenshots/website.webp"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "hallmark",
+   "url": "https://github.com/Nutlope/hallmark",
+   "repo": "Nutlope/hallmark",
+   "hot": "新晋热门",
+   "stars_total": 32063,
+   "installs": null,
+   "popularity_note": "2026-10-24 GitHub 日榜今日 +570 星，总星 32,063，建仓约 6 个月",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "SKILL.md 是纯文本，没有混淆，但会跑本地 Node 脚本、启动 Chrome 截图、在项目里写 `.hallmark/` 日志，安装还可加编辑时检查钩子；生成样图步骤读 `TOGETHER_API_KEY`。\n防范：不要设 Together 的密钥，装完检查钩子改了什么，只在项目目录里用。",
+   "risk_brief": "跑本地脚本和浏览器，可装钩子",
+   "brief": "让 AI 写的网页不像 AI 写的",
+   "what": "做新页面时先选主题再建页，最后用检查脚本过一遍，另有 redesign 和 audit 命令。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给小工具站出落地页，少一股通用 AI 味。"
+    },
+    {
+     "area": "SEO",
+     "how": "批量做内容站模板时当检查表，统一标题层级和可访问性。"
+    }
+   ],
+   "install": "npx skills add nutlope/hallmark -g",
+   "id": "S01",
+   "images": [
+    "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/site/OG-hallmark.png",
+    "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/docs/screenshots/dusk.jpg",
+    "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/docs/screenshots/cobalt.jpg",
+    "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/docs/screenshots/studio.jpg"
+   ]
+  },
+  {
+   "name": "submit-product-directories-v2-quality",
+   "url": "https://github.com/flaqai/backlink_skills",
+   "repo": "flaqai/backlink_skills",
+   "hot": "新晋热门",
+   "stars_total": 799,
+   "installs": null,
+   "popularity_note": "总星 799，建仓约 2 个月，10-23 仍有更新；热度不高，只因对口 SEO 而收",
+   "works_with": "Codex",
+   "safety": "黄",
+   "safety_note": "它会驱动浏览器创建或复用目录站账号、填表提交、查邮箱确认，要处理账号和验证码相关内容。唯一的 shell 命令是自带的 Python 审计脚本，我没看脚本源码。\n防范：给它专用邮箱和产品资料，不给主账号和支付信息，先小批量跑。",
+   "risk_brief": "会用你的资料批量注册提交",
+   "brief": "把产品提交到外链目录站的 Codex 技能",
+   "what": "分批量和精选两种流程，把产品信息提交到目录站，并用审计脚本检查记录。作者声明不是一键刷外链，也不保证收录或排名。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "新站上线后，小批量提交到高质量目录，省掉手工填表。"
+    },
+    {
+     "area": "外贸",
+     "how": "给外贸站做第一批外链，用于提升品牌词收录。"
+    }
+   ],
+   "install": "克隆仓库，把需要的技能文件夹复制到 Codex 能识别的技能目录，用 `$技能名` 调用",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/flaqai/backlink_skills/HEAD/assets/backlink-skills-hero.png"
+   ]
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "SEO 和 GEO 的 Skill 清单被大量收藏",
+   "brief": "想把 SEO、GEO 做法存下来照着用",
+   "signal": "需求信号",
+   "track": "GEO",
+   "platforms": [
+    "小红书",
+    "X"
+   ],
+   "evidence": [
+    {
+     "platform": "小红书",
+     "title": "做SEO必备5个skills！建议收藏",
+     "url": "https://www.xiaohongshu.com/explore/6a886878000000003300e8dd?xsec_token=YBa98GSVvufLt4Qk_DOf5ZKI8WS3ZPNVeGmVfhPQrpulU=&xsec_source=pc_search",
+     "metrics": "点赞 1087 · 收藏 2359 · 评论 35"
+    },
+    {
+     "platform": "小红书",
+     "title": "都去用ChatGPT5.2做GEO，效果太恐怖了",
+     "url": "https://www.xiaohongshu.com/explore/69425180000000001e00365b?xsec_token=YBX92VhU_QUmwG6iCK5uiCYx3rNMLXPig78Xv52im-bNA=&xsec_source=pc_search",
+     "metrics": "点赞 1073 · 收藏 1909 · 评论 188"
+    },
+    {
+     "platform": "X",
+     "title": "tibo_maker：测试里 AI 引用的清单文章，65% 标题带「2026」",
+     "url": "https://x.com/tibo_maker/status/2113926045925515696",
+     "metrics": "点赞 130"
+    }
+   ],
+   "quotes": [],
+   "why": "第一条收藏率 **2.17**，远超小红书 0.5 的门槛；10-23 抖音 Skill 清单也是同样形态，加上 X 上有人在测 AI 引用偏好，国内外同时在做 GEO 实验。第二条帖子的发布时间我没核实，只作参考。",
+   "how": "做一份「外贸站 GEO 检查清单」图文：把标题带年份、清单结构这类可验证做法列出，每条附你自己站的前后对比；先发小红书和 X，再看有没有人问模板，决定是否做成付费资料。",
+   "risk": "AI 引用偏好的结论样本小，不要写成定论；小红书对导流和夸大效果的描述会限流。",
+   "id": "P01"
+  },
+  {
+   "topic": "「个人 AI 助手」概念在抖音、小红书同时起量",
+   "brief": "普通人想要替自己干杂事的 AI",
+   "signal": "新玩法",
+   "track": "AI小工具",
+   "platforms": [
+    "抖音",
+    "小红书"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "AI设计进入 Agent 2.0 时代……Personal Agent 时代",
+     "url": "https://www.douyin.com/video/7699110977556565233",
+     "metrics": "点赞 4444 · 收藏 1602 · 评论 228 · 粉丝 38.2万"
+    },
+    {
+     "platform": "抖音",
+     "title": "个人AI助手想普及，难的可能不只是技术（卖闲置、退货沟通、跨平台比价）",
+     "url": "https://www.douyin.com/video/7698921740428184851",
+     "metrics": "点赞 2331 · 收藏 782 · 评论 72 · 粉丝 92.8万"
+    },
+    {
+     "platform": "小红书",
+     "title": "刚看到一个特有想象力的 AI 项目。",
+     "url": "https://www.xiaohongshu.com/explore/6ad708bf000000002900dd98?xsec_token=YBkPCc5-uuv0h4hq4UWNknkoLe4O8-y9UxY4HqmDIIgEM=&xsec_source=pc_search",
+     "metrics": "点赞 1573 · 收藏 1205 · 评论 264"
+    }
+   ],
+   "quotes": [],
+   "why": "两个平台同一个词同时有千赞以上内容，而且讲的是卖闲置、比价、退货沟通这类具体杂事，不是模型发布。小红书那条评论 264，说明有人在问，但我没打开评论原话。",
+   "how": "先别追具体产品。挑一件杂事（比如外贸客户的报价单整理）做成单功能小工具，用现成代理加 MCP 跑通，再拿真实流程做图文演示。",
+   "risk": "概念热、产品还不稳定，容易追热点变成泛泛而谈；涉及登录和支付的功能要考虑账号安全和平台限制。",
+   "id": "P02"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-23 G01",
+   "title": "tashfeenahmed/freellmapi",
+   "update": "星数 39,576 涨到 40,923，仍在日榜，今日 +723。",
+   "url": "https://github.com/tashfeenahmed/freellmapi",
+   "id": "F01"
+  }
+ ],
+ "watch_next": [
+  "API Anything",
+  "Personal Agent",
+  "Dessa",
+  "Kimi K3.1"
+ ]
+}
