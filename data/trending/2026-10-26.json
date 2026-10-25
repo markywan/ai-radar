@@ -1,0 +1,366 @@
+[
+{
+"repo": "makecindy/cindy",
+"stars_total": 4794,
+"stars_today": 677,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "Nutlope/hallmark",
+"stars_total": 33625,
+"stars_today": 1359,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "debpalash/VoiceStudio",
+"stars_total": 86664,
+"stars_today": 1588,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "pbakaus/impeccable",
+"stars_total": 87599,
+"stars_today": 1113,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "pollen-robotics/microduck",
+"stars_total": 11584,
+"stars_today": 657,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "TauricResearch/TradingAgents",
+"stars_total": 114523,
+"stars_today": 636,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "Renhuai123/ziwei-doushu",
+"stars_total": 7517,
+"stars_today": 255,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "JetBrains/thinkrail",
+"stars_total": 1591,
+"stars_today": 52,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "coollabsio/coolify",
+"stars_total": 64302,
+"stars_today": 192,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "cloudflare/security-audit-skill",
+"stars_total": 46750,
+"stars_today": 2874,
+"stars_week": 12680,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "AgriciDaniel/claude-seo",
+"stars_total": 20771,
+"stars_today": 179,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "Shubhamsaboo/awesome-llm-apps",
+"stars_total": 143043,
+"stars_today": 131,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "browser-use/video-use",
+"stars_total": 29818,
+"stars_today": 120,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "apirrone/Open_Duck_Mini",
+"stars_total": 4487,
+"stars_today": 44,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "HKUDS/DeepTutor",
+"stars_total": 42671,
+"stars_today": 213,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "unslothai/unsloth",
+"stars_total": 78557,
+"stars_today": 48,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "521xueweihan/HelloGitHub",
+"stars_total": 184434,
+"stars_today": 295,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "NanmiCoder/MediaCrawler",
+"stars_total": 68568,
+"stars_today": 408,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "experientiallabs/experiential",
+"stars_total": 12809,
+"stars_today": 1224,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "aws/agent-toolkit-for-aws",
+"stars_total": 3272,
+"stars_today": 304,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "AstrBotDevs/AstrBot",
+"stars_total": 43424,
+"stars_today": 216,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "SnailSploit/Claude-Red",
+"stars_total": 9055,
+"stars_today": 186,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "google-gemini/gemini-cli",
+"stars_total": 108380,
+"stars_today": 825,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "anthropics/sandbox-runtime",
+"stars_total": 6594,
+"stars_today": 199,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "google-labs-code/stitch-skills",
+"stars_total": 8590,
+"stars_today": 21,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "thedotmack/claude-mem",
+"stars_total": 103098,
+"stars_today": 302,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "tashfeenahmed/freellmapi",
+"stars_total": 41553,
+"stars_today": 670,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "mantrakp04/ardia",
+"stars_total": 819,
+"stars_today": 102,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "remotion-dev/remotion",
+"stars_total": 67417,
+"stars_today": 357,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "MoonshotAI/kimi-code",
+"stars_total": 8014,
+"stars_today": 18,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "nightly-labs/openbot",
+"stars_total": 968,
+"stars_today": 81,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "google/brotli",
+"stars_total": 15011,
+"stars_today": 20,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "moeru-ai/airi",
+"stars_total": 50712,
+"stars_today": 59,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "basketikun/infinite-canvas",
+"stars_total": 9121,
+"stars_today": 148,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "garrytan/gstack",
+"stars_total": 137696,
+"stars_today": 177,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "ever-co/ever-gauzy",
+"stars_total": 8593,
+"stars_today": 34,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "garrytan/gbrain",
+"stars_total": 31208,
+"stars_today": 38,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "firecrawl/firecrawl",
+"stars_total": 195313,
+"stars_today": 383,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "every-app/open-seo",
+"stars_total": 24956,
+"stars_today": 142,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "ruvnet/ruflo",
+"stars_total": 79265,
+"stars_today": null,
+"stars_week": 3241,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "anthropics/knowledge-work-plugins",
+"stars_total": 32961,
+"stars_today": null,
+"stars_week": 2631,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "anomalyco/opencode",
+"stars_total": 221492,
+"stars_today": null,
+"stars_week": 6857,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "stablyai/orca",
+"stars_total": 105738,
+"stars_today": null,
+"stars_week": 9828,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "heygen-com/hyperframes",
+"stars_total": 72116,
+"stars_today": null,
+"stars_week": 5633,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "android/skills",
+"stars_total": 9710,
+"stars_today": null,
+"stars_week": 1317,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "Graphify-Labs/graphify",
+"stars_total": 135172,
+"stars_today": null,
+"stars_week": 6868,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "akitaonrails/ai-memory",
+"stars_total": 13506,
+"stars_today": null,
+"stars_week": 3541,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "Comfy-Org/ComfyUI",
+"stars_total": 142916,
+"stars_today": null,
+"stars_week": 4648,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "anthropics/claude-plugins-official",
+"stars_total": 44547,
+"stars_today": null,
+"stars_week": 3232,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "vllm-project/vllm",
+"stars_total": 95483,
+"stars_today": null,
+"stars_week": 1371,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "multica-ai/andrej-karpathy-skills",
+"stars_total": 223807,
+"stars_today": null,
+"stars_week": 2981,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "pingdotgg/t3code",
+"stars_total": 30109,
+"stars_today": null,
+"stars_week": 1778,
+"on_page": "trending?since=weekly"
+}
+]

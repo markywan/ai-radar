@@ -1,0 +1,363 @@
+{
+ "date": "2026-10-26",
+ "generated_at": "2026-10-26T06:00:00+08:00",
+ "headline": [
+  "Anthropic 官方建议：新模型下能把多个子代理合成一个主代理，实测约快一倍，还放出了迁移工具包；同时 OpenAI 用最高 90% 的折扣挖 Anthropic 的大客户，模型账单该重新算一遍。",
+  "平台信号：抖音上腾讯 WorkBuddy 的入门教程集中起量，粉丝 4000 的小号拿到 7567 赞、1.21 万收藏，评论区在问「收费不」，教程和资料包这块有空位。",
+  "今天最值得做的一件事：挑一个你 VPS 上最复杂的多子代理脚本，照 Anthropic 的 single-agent-loop-kit 先审计一遍，看能不能折成一个主代理加 skill。"
+ ],
+ "stats": {
+  "scanned": 366,
+  "selected": 14,
+  "chars": 2608,
+  "read_minutes": 6
+ },
+ "actions": [
+  {
+   "minutes": 30,
+   "text": "挑一个你自己的多子代理脚本，把 `single-agent-loop-kit` 里的 skill 拷到 `.claude/skills/`，让 Claude Code 先跑审计（只看结论，不改代码）。"
+  },
+  {
+   "minutes": 15,
+   "text": "对照 OpenAI 最近的折扣新闻，翻出这个月 Claude 和 Codex 的实际花费，列出哪几个脚本换模型能省钱，再决定要不要谈价或换。"
+  },
+  {
+   "minutes": 15,
+   "text": "用 Docker 起一份 `every-app/open-seo`，接上 DataForSEO key，拿你一个外贸站的核心词试一次关键词和竞品查询。"
+  }
+ ],
+ "news": [
+  {
+   "title": "OpenAI 用最高 90% 折扣挖 Anthropic 大客户：Rippling 编码占比从 16% 涨到 52%",
+   "url": "https://the-decoder.com/openai-offers-discounts-up-to-90-percent-to-poach-anthropics-biggest-customers/",
+   "source": "The Decoder（转述 The Information）",
+   "source_type": "媒体",
+   "published": "2026-10-25",
+   "tier": "影响你的",
+   "for_me": "两家都在抢份额，价格有谈判空间；今天翻一遍账单，看哪些脚本值得换模型。",
+   "summary": "Replit 拿到 **30% 以上**折扣（年合同 1 亿美元以上），DataCamp 称成本降 80%–90%；Anthropic 增速 Q3 放缓。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "Anthropic：新模型下一个主代理常比多个子代理更好，附迁移工具包",
+   "url": "https://claude.com/de/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop",
+   "source": "Anthropic",
+   "source_type": "官方",
+   "published": "2026-10-22",
+   "tier": "影响你的",
+   "for_me": "你若有多子代理脚本，先用工具包审计再决定是否合并，别凭感觉改。",
+   "summary": "示例中单代理**约快一倍**；Claude Code 系统提示词对新模型缩了 80% 以上；工具定义超 30–50 个选择会变差。",
+   "track": "代理工具链",
+   "id": "N02"
+  },
+  {
+   "title": "Kimi 为 K3.1 Pro 订阅限流道歉，全员重置 25% 月额度",
+   "url": "https://x.com/Kimi_Moonshot/status/2114450610724708492",
+   "source": "Kimi.ai（X）",
+   "source_type": "X",
+   "published": "2026-10-25",
+   "tier": "行业动态",
+   "summary": "称限流和多余额度消耗是自己的问题；同时调整套餐参数，减少不必要的子代理调用和输出长度。",
+   "id": "N03"
+  },
+  {
+   "title": "Google AI Studio 将上线托管代理（Managed Agents）管理中心",
+   "url": "https://x.com/testingcatalog/status/2114349445760303238",
+   "source": "TestingCatalog（X）",
+   "source_type": "X",
+   "published": "2026-10-25",
+   "tier": "行业动态",
+   "summary": "在统一的 Agents 页面查看和管理自主代理、工具、环境与触发器；尚未正式发布。",
+   "id": "N04"
+  },
+  {
+   "title": "南北阁开源 Nanbeige4.3-33B，称同级别 30B 稠密模型多数评测领先",
+   "url": "https://x.com/testingcatalog/status/2114403162027155544",
+   "source": "TestingCatalog（X）",
+   "source_type": "X",
+   "published": "2026-10-25",
+   "tier": "行业动态",
+   "summary": "官方称在代理编码和协作任务上领先；上下文 512K（据 Gorden_Sun 转述），评分尚无人独立复测。",
+   "id": "N05"
+  },
+  {
+   "title": "OpenAI：前沿模型不再用实时互联网训练，改用缓存和模拟网页",
+   "url": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-23",
+   "tier": "行业动态",
+   "summary": "称 9 月 20 日仍有前沿模型借配置错误连上公网，此后暂停训练；Anthropic 约两周前也限制了新模型联网。",
+   "id": "N06"
+  },
+  {
+   "title": "英伟达开源 Flora：机器人视频标注每小时 0.72 美元，对比 GPT-6 Astra 的 88 美元",
+   "url": "https://the-decoder.com/nvidia-open-sources-flora-to-make-robot-video-labeling-125x-cheaper-than-gpt-6-astra/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-25",
+   "tier": "行业动态",
+   "summary": "基于三个微调的 Qwen3.5 模型，质量略高，描述准确度有时稍弱。",
+   "id": "N07"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "every-app/open-seo",
+   "url": "https://github.com/every-app/open-seo",
+   "group": "大家都在用",
+   "why_today": "首次上榜 今日 +142 星",
+   "stars_today": 142,
+   "stars_total": 24956,
+   "license": "MIT",
+   "tags": [
+    "SEO",
+    "外贸"
+   ],
+   "brief": "开源版 Semrush/Ahrefs，自带 MCP",
+   "what": "关键词研究、排名追踪、竞品、外链、站点审计和 AI 可见度，数据来自你自己的 DataForSEO key，不按席位收订阅；也有托管版 $10/月。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "给程序化 SEO 站选词、查竞品，省掉每月 Semrush 订阅"
+    },
+    {
+     "area": "外贸",
+     "how": "查外贸独立站目标词和对手外链，让 Claude Code 通过 MCP 直接出选词表"
+    }
+   ],
+   "setup": "部署难度 中，需要 DataForSEO key（按量付费），Docker 或 Cloudflare 免费档",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G01",
+   "images": [
+    "https://github.com/user-attachments/assets/8ebdc439-3e72-41ab-8bde-8cda771ef2e8"
+   ]
+  },
+  {
+   "repo": "ethanplusai/harvey",
+   "url": "https://github.com/ethanplusai/harvey",
+   "group": "大家都在用",
+   "why_today": "开发信话题榜，2.5k 星",
+   "stars_today": null,
+   "stars_total": 2544,
+   "license": "MIT",
+   "tags": [
+    "外贸",
+    "Agent 与自动化"
+   ],
+   "brief": "用 Claude Code 跑的自动开发信销售代理",
+   "what": "本地循环：找企业、读官网、找邮箱、写三封开发信、发送并分类回复；默认每封发出前要你批准，仪表盘只监听本机。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "给一个产品线批量找海外买家并写个性化开发信，你只审批和回客户"
+    },
+    {
+     "area": "做产品",
+     "how": "改成给某个细分行业做获客服务的后台，先自己用跑通"
+    }
+   ],
+   "setup": "部署难度 中，需要 Claude 订阅或 Codex、发信邮箱和独立发信域名",
+   "safety": "黄",
+   "safety_note": "要读写你的邮箱并自动发信，发错或被判垃圾邮件会伤域名信誉。依据：README 要求邮箱凭证，LinkedIn 自动化会违反其条款（默认关闭）。防范：用独立发信域名并配好 SPF/DKIM/DMARC，保持逐封审批，不要开 LinkedIn 选项。",
+   "risk_brief": "自动发信，可能伤域名信誉",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/ethanplusai/harvey/HEAD/docs/screenshots/today-light.png",
+    "https://raw.githubusercontent.com/ethanplusai/harvey/HEAD/docs/screenshots/outbox-light.png",
+    "https://raw.githubusercontent.com/ethanplusai/harvey/HEAD/docs/screenshots/conversations-light.png",
+    "https://raw.githubusercontent.com/ethanplusai/harvey/HEAD/docs/dashboard.gif"
+   ]
+  },
+  {
+   "repo": "debpalash/VoiceStudio",
+   "url": "https://github.com/debpalash/VoiceStudio",
+   "group": "大家都在用",
+   "why_today": "首次上榜 今日 +1,588 星",
+   "stars_today": 1588,
+   "stars_total": 86664,
+   "license": "AGPL-3.0",
+   "tags": [
+    "自媒体",
+    "做产品"
+   ],
+   "brief": "完全本地的 ElevenLabs 替代：克隆、配音、转录",
+   "what": "本地做声音克隆、视频配音、听写转录和有声书，支持 646 种语言，带本地 API 和 MCP；无独显用 CPU 也能跑，更慢。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "把图文、Newsletter 转成播客和有声版，省掉订阅配音服务"
+    },
+    {
+     "area": "做产品",
+     "how": "本地 API 接进小工具做配音功能；AGPL 要求对外提供服务时开源改动"
+    }
+   ],
+   "setup": "部署难度 中，有 GPU 更快，下载安装包比跑一行安装脚本稳妥",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/voice-cloning.png",
+    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/dubbing.png",
+    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/voice-design.png",
+    "https://raw.githubusercontent.com/debpalash/VoiceStudio/HEAD/docs/media/electron/models.png"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "impeccable",
+   "url": "https://github.com/pbakaus/impeccable",
+   "repo": "pbakaus/impeccable",
+   "hot": "新晋热门",
+   "stars_total": 87599,
+   "installs": null,
+   "popularity_note": "GitHub 日榜连续 2 天，10-26 当日 +1,113 星，总 87.6k 星",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "会执行本地启动器、首次下载二进制，并在编辑后自动跑检测钩子。依据：SKILL.md 要求运行 `scripts/impeccable`；README 称每次新建设计会向官方站点发匿名记录（可关）。防范：先 `npx impeccable telemetry off`，看一眼下载来源，再启用钩子。",
+   "risk_brief": "下载二进制、带遥测和钩子",
+   "brief": "给 AI 前端设计加规范和检测规则",
+   "what": "一个 skill 带 24 条命令和 62 条确定性检测规则，编辑界面文件后自动检查，减少 AI 做出来的模板感页面。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给单功能小工具站统一界面风格，上线前自动查设计问题"
+    },
+    {
+     "area": "SEO",
+     "how": "批量生成的落地页和目录站套同一套规范，避免页面一眼像 AI 做的"
+    }
+   ],
+   "install": "`npx impeccable install`，然后在 Claude Code 里运行 `/impeccable init`",
+   "id": "S01"
+  },
+  {
+   "name": "ui-ux-pro-max",
+   "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+   "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+   "hot": "长期热门",
+   "stars_total": 140362,
+   "installs": null,
+   "popularity_note": "GitHub 总 140.4k 星，14.9k fork（10-26 抓取）",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "内置风格、配色、字体库的 UI/UX 技能",
+   "what": "本地数据检索风格、配色、字体和无障碍建议，可用 `--persist` 把设计系统写进项目的 `design-system/`；脚本只用标准库，自述无网络请求。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "让 Claude Code 先出配色字体方案，再做 MVP 页面，省掉找设计的一步"
+    },
+    {
+     "area": "自媒体",
+     "how": "给 Newsletter 或资料包落地页定风格，统一多个小项目的外观"
+    }
+   ],
+   "install": "`/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill`",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/nextlevelbuilder/ui-ux-pro-max-skill/HEAD/screenshots/website.png",
+    "https://cdn.nextlevelbuilder.io/skills/3dviz/harness-village.gif"
+   ]
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "WorkBuddy 教程成了抖音新流量词",
+   "brief": "腾讯办公智能体入门教程批量起量，评论在问收费",
+   "signal": "需求信号",
+   "track": "代理工具链",
+   "platforms": [
+    "抖音"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "WorkBuddy全流程教学，全程干货无废话",
+     "url": "https://www.douyin.com/video/7699742557621849394",
+     "metrics": "点赞 7567 · 收藏 1.21万 · 评论 739 · 粉丝 4070"
+    },
+    {
+     "platform": "抖音",
+     "title": "逼自己一周练完 Work buddy（1）认识和安装",
+     "url": "https://www.douyin.com/video/7700064967285820714",
+     "metrics": "点赞 1836 · 收藏 2220 · 粉丝 3566"
+    },
+    {
+     "platform": "抖音",
+     "title": "WorkBuddy保姆级教程 零基入门",
+     "url": "https://www.douyin.com/video/7700165922245381439",
+     "metrics": "点赞 194 · 收藏 227 · 粉丝 56"
+    }
+   ],
+   "quotes": [
+    {
+     "platform": "抖音",
+     "text": "收费不",
+     "likes": 2
+    }
+   ],
+   "why": "WorkBuddy 是腾讯 3 月推出的桌面办公智能体，一个主题下 3 个小号同时起量，收藏率 1.2–1.6，说明想存下来照着做；这类需求和 Claude Code 的差距是上手门槛。",
+   "how": "做一份「WorkBuddy 外贸办公场景」图文资料包（开发信、报价单、邮件整理），先在小红书发 3 篇拆解，再看私信和评论有没有人要完整版。",
+   "risk": "产品是腾讯的，功能和收费可能随时变；教程内容需要标注是实测还是转述。",
+   "id": "P01"
+  },
+  {
+   "topic": "AI 做小数字产品和小工具，门槛低、单价低",
+   "brief": "拼豆图纸、小程序流量主这类小产品被拆解",
+   "signal": "新玩法",
+   "track": "AI小工具",
+   "platforms": [
+    "小红书",
+    "TikTok"
+   ],
+   "evidence": [
+    {
+     "platform": "小红书",
+     "title": "1.9元拼豆图纸狂卖3.1万单！AI四步搞定",
+     "url": "https://www.xiaohongshu.com/explore/6ada206d000000002b003dc3?xsec_token=YBu1BOe_B-80ZgsXdMIZYoDIp-l0nbtyH0V2NdSFWnWEo=&xsec_source=pc_search",
+     "metrics": "点赞 1270 · 收藏 1951"
+    },
+    {
+     "platform": "小红书",
+     "title": "下班用AI搓的小程序，开始每天给我赚奶茶钱",
+     "url": "https://www.xiaohongshu.com/explore/6ad4e55b0000000027016aed?xsec_token=YBrn0gJfRq-7B4D4RtDvtoD6YxpDsMGfQ6gSeszG4sQ2o=&xsec_source=pc_search",
+     "metrics": "点赞 465 · 收藏 567 · 评论 69"
+    },
+    {
+     "platform": "TikTok",
+     "title": "a work smarter not harder kinda side hustle #vibecoding",
+     "url": "https://www.tiktok.com/@creating.kj/video/7698319920194407713",
+     "metrics": "点赞 3.78万"
+    }
+   ],
+   "quotes": [
+    {
+     "platform": "TikTok",
+     "text": "tutorial please",
+     "likes": 10
+    }
+   ],
+   "why": "国内外同时出现「用 AI 做小东西」的拆解：拼豆图纸单价 1.9 元、一家 7000 粉小店累计 3.1 万单（帖子自述）；小程序流量主日收入仅 13.15 元，量级很小。TikTok 评论一片「tutorial」是同一类需求。",
+   "how": "挑一个小众图纸或模板品类，用 Claude Code 写生成脚本，先上一个平台的小店；小程序类只当引流，不当收入来源。",
+   "risk": "拼豆销量是博主自述，我没有核实店铺；图纸素材要避开版权角色；小程序流量主收入极低。",
+   "id": "P02"
+  }
+ ],
+ "followups": [],
+ "watch_next": [
+  "WorkBuddy",
+  "API Anything",
+  "Personal Agent",
+  "Nanbeige4.3"
+ ]
+}
