@@ -1,0 +1,36 @@
+{
+ "id": "2026-10-27-S01",
+ "date": "2026-10-27",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-27T02:43:20+00:00",
+ "item": {
+  "name": "find-skills",
+  "url": "https://skills.sh/vercel-labs/skills/find-skills",
+  "repo": "vercel-labs/skills",
+  "hot": "长期热门",
+  "stars_total": null,
+  "installs": 4099999,
+  "popularity_note": "skills.sh 总榜第 1，约 410 万次安装（10-27 抓取）",
+  "works_with": "Claude Code / Codex",
+  "safety": "黄",
+  "safety_note": "它会替你搜索并安装别的 skill。结论：本身无害，但装第三方 skill 有风险。依据：SKILL.md 示例含 `npx skills add ... -g -y`，全局安装且跳过确认。\n防范：别让它用 `-y`；装之前看对方 SKILL.md 和附带脚本。",
+  "risk_brief": "会自动装第三方 skill，注意 `-y`",
+  "brief": "让代理自己搜索并安装别的 skill",
+  "what": "按任务查 skills.sh 榜单，用 `npx skills find` 搜索，按安装量、来源和星数筛选，再给出安装命令。",
+  "uses": [
+   {
+    "area": "做产品",
+    "how": "每次做新类型的小工具前，让代理先找现成 skill，少写一半提示词。"
+   },
+   {
+    "area": "SEO",
+    "how": "让它查 SEO 与内容类 skill，快速搭起批量写页面的流程。"
+   }
+  ],
+  "install": "`npx skills add vercel-labs/skills --skill find-skills`",
+  "id": "S01"
+ },
+ "deepdive": "pending"
+}
