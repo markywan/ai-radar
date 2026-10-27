@@ -1,0 +1,39 @@
+{
+ "id": "2026-10-27-S03",
+ "date": "2026-10-27",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-27T02:44:09+00:00",
+ "item": {
+  "name": "last30days",
+  "url": "https://github.com/mvanhorn/last30days-skill",
+  "repo": "mvanhorn/last30days-skill",
+  "hot": "新晋热门",
+  "stars_total": 65586,
+  "installs": null,
+  "popularity_note": "GitHub 日榜 10-27 +157 星，总星 6.5 万",
+  "works_with": "Claude Code / Codex",
+  "safety": "黄",
+  "safety_note": "会执行本地脚本、写本地文件，并把查询发给外部服务。结论：功能合理，但要密钥且可读浏览器 cookie。依据：SKILL.md 用 Bash 跑 Python 引擎和 yt-dlp，简报写入 `~/Documents/Last30Days`；可选 `SCRAPECREATORS_API_KEY` 等多个密钥。\n防范：先跑 `--preflight`；不开浏览器 cookie 读取；密钥只放专用环境。",
+  "risk_brief": "跑本地脚本，可读 cookie，多个密钥",
+  "brief": "一次查 Reddit、X、YouTube 等最近 30 天讨论",
+  "what": "按互动量给 Reddit、X、YouTube、TikTok、HN、Polymarket 的近 30 天内容打分，让代理生成带引用的简报。Reddit、HN 等免密钥。",
+  "uses": [
+   {
+    "area": "自媒体",
+    "how": "写选题前跑一遍某个话题，拿到近 30 天最高互动的讨论和说法。"
+   },
+   {
+    "area": "外贸",
+    "how": "查目标行业近一个月的买家抱怨，作为开发信开头素材。"
+   }
+  ],
+  "install": "`npx skills add mvanhorn/last30days-skill`",
+  "id": "S03",
+  "images": [
+   "https://raw.githubusercontent.com/mvanhorn/last30days-skill/HEAD/media/pr-assets/last30days-ad.gif"
+  ]
+ },
+ "deepdive": "pending"
+}
