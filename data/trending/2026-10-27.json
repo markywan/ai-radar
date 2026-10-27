@@ -1,0 +1,366 @@
+[
+{
+"repo": "Nutlope/hallmark",
+"stars_total": 36252,
+"stars_today": 2235,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "TauricResearch/TradingAgents",
+"stars_total": 116057,
+"stars_today": 1376,
+"stars_week": 2461,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "JetBrains/thinkrail",
+"stars_total": 2867,
+"stars_today": 1156,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "makecindy/cindy",
+"stars_total": 6435,
+"stars_today": 1268,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "affaan-m/ECC",
+"stars_total": 289819,
+"stars_today": 987,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "pbakaus/impeccable",
+"stars_total": 89156,
+"stars_today": 1551,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "NVIDIA/SkillSpector",
+"stars_total": 22164,
+"stars_today": 203,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "pollen-robotics/microduck",
+"stars_total": 12394,
+"stars_today": 844,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "nightly-labs/openbot",
+"stars_total": 1457,
+"stars_today": 312,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "Panniantong/Agent-Reach",
+"stars_total": 103543,
+"stars_today": 723,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "debpalash/VoiceStudio",
+"stars_total": 89171,
+"stars_today": 2292,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "gitroomhq/postiz-app",
+"stars_total": 38427,
+"stars_today": 146,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "alchaincyf/huashu-design",
+"stars_total": 26721,
+"stars_today": 409,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "multica-ai/andrej-karpathy-skills",
+"stars_total": 224628,
+"stars_today": 702,
+"stars_week": 2937,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "AstrBotDevs/AstrBot",
+"stars_total": 43821,
+"stars_today": 369,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "Alishahryar1/free-claude-code",
+"stars_total": 63751,
+"stars_today": 358,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "smicallef/spiderfoot",
+"stars_total": 23866,
+"stars_today": 75,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "eugeniughelbur/obsidian-second-brain",
+"stars_total": 4955,
+"stars_today": 35,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "Asabeneh/30-Days-Of-Python",
+"stars_total": 77253,
+"stars_today": 110,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "AgriciDaniel/claude-seo",
+"stars_total": 22129,
+"stars_today": 1539,
+"stars_week": 2492,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "higgsfield-ai/skills",
+"stars_total": 1681,
+"stars_today": 253,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "homeassistant-ai/ha-mcp",
+"stars_total": 5279,
+"stars_today": 36,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "Significant-Gravitas/AutoGPT",
+"stars_total": 187779,
+"stars_today": 79,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "home-assistant/core",
+"stars_total": 91748,
+"stars_today": 25,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "mvanhorn/last30days-skill",
+"stars_total": 65586,
+"stars_today": 157,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "HarnessRouter/harnessrouter",
+"stars_total": 3692,
+"stars_today": 95,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "microsoft/skill-recorder",
+"stars_total": 5222,
+"stars_today": 257,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "calcom/cal.diy",
+"stars_total": 49404,
+"stars_today": 59,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "thedotmack/claude-mem",
+"stars_total": 103423,
+"stars_today": 320,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "garrytan/gstack",
+"stars_total": 137834,
+"stars_today": 158,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "ed0ard/CS2-Bot-Improver",
+"stars_total": 1314,
+"stars_today": 15,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "CodebuffAI/freebuff",
+"stars_total": 13785,
+"stars_today": 26,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "refactoringhq/tolaria",
+"stars_total": 20352,
+"stars_today": 61,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "Narcooo/inkos",
+"stars_total": 10842,
+"stars_today": 107,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "ranxianglei/billion-context",
+"stars_total": 2962,
+"stars_today": 176,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "thesysdev/openui",
+"stars_total": 14187,
+"stars_today": 392,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "every-app/open-seo",
+"stars_total": 25117,
+"stars_today": 136,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "nicobailon/pi-subagents",
+"stars_total": 4077,
+"stars_today": 31,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "laurent22/joplin",
+"stars_total": 56888,
+"stars_today": 22,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "vega-org/vega-app",
+"stars_total": 1634,
+"stars_today": 11,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "cloudflare/security-audit-skill",
+"stars_total": 48525,
+"stars_today": null,
+"stars_week": 15072,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "anthropics/knowledge-work-plugins",
+"stars_total": 33203,
+"stars_today": null,
+"stars_week": 2790,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "ruvnet/ruflo",
+"stars_total": 79536,
+"stars_today": null,
+"stars_week": 2987,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "anomalyco/opencode",
+"stars_total": 221951,
+"stars_today": null,
+"stars_week": 5921,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "stablyai/orca",
+"stars_total": 107045,
+"stars_today": null,
+"stars_week": 9622,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "Graphify-Labs/graphify",
+"stars_total": 136124,
+"stars_today": null,
+"stars_week": 6903,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "android/skills",
+"stars_total": 9831,
+"stars_today": null,
+"stars_week": 1070,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "akitaonrails/ai-memory",
+"stars_total": 13794,
+"stars_today": null,
+"stars_week": 3254,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "wshobson/agents",
+"stars_total": 41807,
+"stars_today": null,
+"stars_week": 726,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "heygen-com/hyperframes",
+"stars_total": 73046,
+"stars_today": null,
+"stars_week": 5612,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "Comfy-Org/ComfyUI",
+"stars_total": 143268,
+"stars_today": null,
+"stars_week": 4790,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "pingdotgg/t3code",
+"stars_total": 30503,
+"stars_today": null,
+"stars_week": 1770,
+"on_page": "trending?since=weekly"
+}
+]

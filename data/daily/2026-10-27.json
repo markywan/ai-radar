@@ -1,0 +1,406 @@
+{
+ "date": "2026-10-27",
+ "generated_at": "2026-10-27T06:30:00+08:00",
+ "headline": [
+  "OpenAI 发布 GPT-6.1 Terra，API 价格砍半到 **1 美元/5 美元**每百万 token，Plus 以上订阅在 Codex 里直接可用。",
+  "抖音 WorkBuddy 教程第 4 集 **706 条评论里大半是「求蓝皮书」**，B 站也有「一份 skill 卖了一千多份」：教程加资料包的卖法正在被验证。",
+  "今天把 VPS 上用 GPT 或 Claude 的批量脚本，拿 Terra 跑一遍同样的任务，对比成本和质量。"
+ ],
+ "stats": {
+  "scanned": 520,
+  "selected": 16,
+  "chars": 3138,
+  "read_minutes": 7
+ },
+ "actions": [
+  {
+   "minutes": 30,
+   "text": "拿你 VPS 上跑得最多的一个批量任务（如开发信改写或页面生成），用 `gpt-6.1-terra` 跑 20 条，和现在的模型对比质量与单条成本。"
+  },
+  {
+   "minutes": 15,
+   "text": "读 Anthropic 的单代理迁移建议，数一数你的 Claude Code 工作流里有几个子代理，挑一个合并试试。"
+  },
+  {
+   "minutes": 5,
+   "text": "把 Google AI Pro 或 Ultra 账号的每月 Cloud 额度（10/40/100 美元）领一下，用在 AI Studio 的 API 调用上。"
+  }
+ ],
+ "news": [
+  {
+   "title": "OpenAI 发布 GPT-6.1 Terra：API 价格减半至 1 美元/5 美元，主打电脑操作",
+   "url": "https://openai.com/index/introducing-gpt-6-1-terra",
+   "source": "OpenAI",
+   "source_type": "官方",
+   "published": "2026-10-26",
+   "tier": "影响你的",
+   "for_me": "批量脚本的首选候选：今天拿 Terra 跑一遍你最费钱的任务，比较成本。",
+   "summary": "输入 **1 美元**、输出 5 美元每百万 token，是上一代 Terra 的一半；缓存输入 0.05 美元。Plus 及以上订阅在 ChatGPT Work 和 Codex 可用，最难的编程仍推荐 Sol。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "代理工具更新：Claude Code v2.1.311 修了大会话卡顿，Codex 推出 0.165 预览，Cursor 上线 Agent SDK 并接入 DeepSeek V4.1 Flash",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.311",
+   "source": "Claude Code Releases",
+   "source_type": "官方",
+   "published": "2026-10-26",
+   "tier": "影响你的",
+   "for_me": "Claude Code 超 200K 的会话现在会自动压缩继续，长任务不会再卡在额度提示上。",
+   "summary": "Claude Code：**超 200K 的会话自动压缩继续**，`ultrathink` 按 xhigh 跑；Codex：0.165 仍是 alpha；Cursor：Agent SDK 可用，接入 DeepSeek V4.1 Flash。",
+   "track": "代理工具链",
+   "id": "N02"
+  },
+  {
+   "title": "Anthropic 建议把多个子代理合并成一个主代理：速度约快一倍",
+   "url": "https://the-decoder.com/anthropic-says-one-ai-agent-beats-many-subagents-now-that-models-can-handle-complexity-alone/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-25",
+   "tier": "影响你的",
+   "for_me": "你的多代理流程多半可以砍成一个，既省钱又更稳。",
+   "summary": "Opus 4.5 起的模型能在单循环里处理复杂计划；对比中单代理**约快一倍**。工具定义超过 30–50 个选择会变差，并行任务和上下文爆满时子代理仍有用。官方附迁移评估工具。",
+   "track": "代理工具链",
+   "id": "N03"
+  },
+  {
+   "title": "Reddit r/opensource 禁止 AI 相关项目发帖，并要求项目满一年",
+   "url": "https://the-decoder.com/reddits-r-opensource-bans-all-ai-related-projects-sparking-backlash-and-a-rival-subreddit/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-26",
+   "tier": "影响你的",
+   "for_me": "开源项目别指望在这个版发帖引流；改投 r/SideProject 或新出的 r/TrueOpenSource。",
+   "summary": "版主禁止使用、用 AI 做的或面向 AI 的项目发帖，另要求项目**满一年**、多人维护，且不收非英文帖。批评声很大，已出现不排斥 AI 的 r/TrueOpenSource。",
+   "id": "N04"
+  },
+  {
+   "title": "Google AI Pro/Ultra 订阅每月送 10/40/100 美元 Cloud 额度，可用于 AI Studio 和 Vertex AI",
+   "url": "https://x.com/testingcatalog/status/2114673426459738303",
+   "source": "TestingCatalog",
+   "source_type": "X",
+   "published": "2026-10-26",
+   "tier": "影响你的",
+   "for_me": "如果已订 Google AI Pro，别浪费这笔 API 额度，做小工具测试不用另花钱。",
+   "summary": "属于 Google 开发者计划权益，额度**每月 10、40 或 100 美元**，只能用在 Google AI Studio 与 Vertex AI。",
+   "id": "N05"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "Panniantong/Agent-Reach",
+   "url": "https://github.com/Panniantong/Agent-Reach",
+   "group": "大家都在用",
+   "why_today": "7 天内第 2 天上榜，+723 星",
+   "stars_today": 723,
+   "stars_total": 103543,
+   "license": "MIT",
+   "tags": [
+    "数据与研究",
+    "自媒体"
+   ],
+   "brief": "让 AI 读 X、小红书、B 站、YouTube 的命令行",
+   "what": "只读命令行，把 Bilibili、V2EX、GitHub、YouTube 和网页搜索接给 AI 代理，小红书、Reddit 等可选开启；X、Facebook 为实验性，可能随时失效。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "让 Claude Code 每天读小红书和 B 站同类账号的爆款标题，整理成选题清单。"
+    },
+    {
+     "area": "外贸",
+     "how": "搜 Reddit、V2EX 上买家的抱怨和需求原话，给开发信找切入点。"
+    }
+   ],
+   "setup": "部署难度 中，需 Python 环境；部分平台要借用浏览器登录",
+   "safety": "黄",
+   "safety_note": "要借用浏览器登录态，才能读小红书等平台。结论：别用主账号。依据：README 说明部分渠道复制浏览器里的登录，并提示用小号。\n防范：用专门小号；只开需要的渠道；密钥用 `agent-reach configure` 在终端填，不在聊天里贴。",
+   "risk_brief": "借用浏览器登录态，建议用小号",
+   "id": "G01"
+  },
+  {
+   "repo": "gitroomhq/postiz-app",
+   "url": "https://github.com/gitroomhq/postiz-app",
+   "group": "大家都在用",
+   "why_today": "首次上榜，+146 星",
+   "stars_today": 146,
+   "stars_total": 38427,
+   "license": "AGPL-3.0",
+   "tags": [
+    "自媒体",
+    "Agent 与自动化"
+   ],
+   "brief": "开源的多平台社媒排期工具，带 MCP",
+   "what": "排期、日历、跨平台发布、数据分析和公开 API，支持 Instagram、YouTube、LinkedIn、Reddit、TikTok、X 等 14 个平台，附 MCP 与 CLI；也有官方托管版。AGPL-3.0。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "用 MCP 让 Claude 写好一周图文后自动排期到多个账号，省掉逐个平台手动发。"
+    },
+    {
+     "area": "做产品",
+     "how": "给外贸小团队做托管社媒排期服务，注意官方已有托管版，竞争大。"
+    }
+   ],
+   "setup": "部署难度 高，需 PostgreSQL、Redis、存储，还要自己向各平台申请开发者应用（Meta、YouTube、TikTok 审核可能要数周）",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G02",
+   "images": [
+    "https://github.com/user-attachments/assets/f0d30d70-dddb-4142-8876-e9aa6ed1cb99",
+    "https://github.com/user-attachments/assets/8b9b7939-da1a-4be5-95be-42c6fce772de",
+    "https://github.com/user-attachments/assets/a27ee220-beb7-4c7e-8c1b-2c44301f82ef",
+    "https://github.com/user-attachments/assets/eb5f5f15-ed90-47fc-811c-03ccba6fa8a2"
+   ]
+  },
+  {
+   "repo": "makecindy/cindy",
+   "url": "https://github.com/makecindy/cindy",
+   "group": "刚冒出来",
+   "why_today": "7 天内第 3 天上榜，+1,268 星",
+   "stars_today": 1268,
+   "stars_total": 6435,
+   "license": "Apache-2.0",
+   "tags": [
+    "Agent 与自动化"
+   ],
+   "brief": "本地桌面 AI 代理，能切换 Claude Code 和 Codex",
+   "what": "跑在本机的桌面代理，在真实文件和已登录应用里干活，可操作浏览器、电脑和手机，接 IM 和定时任务，任务中途可切换模型。可跳过登录，匿名使用本地代理。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "定时让它在你已登录的后台里汇总数据，早上直接拿到日报。"
+    },
+    {
+     "area": "做产品",
+     "how": "把客服 IM 消息接给它起草回复，你只审核再发出。"
+    }
+   ],
+   "setup": "部署难度 中，需 Node 22、pnpm 10、Git LFS，或直接下载桌面版",
+   "safety": "黄",
+   "safety_note": "它能操作你的文件、浏览器和手机。结论：权限很大，先在不装敏感账号的机器试。依据：README 说明可用已登录应用；官方版有使用统计与登录心跳。\n防范：用单独的系统账号运行；先不登录；不放生产密钥。",
+   "risk_brief": "可操作文件、浏览器和手机，权限大",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/makecindy/cindy/HEAD/.github/assets/hero-en.webp"
+   ]
+  },
+  {
+   "repo": "alchaincyf/huashu-design",
+   "url": "https://github.com/alchaincyf/huashu-design",
+   "group": "刚冒出来",
+   "why_today": "首次上榜，+409 星",
+   "stars_today": 409,
+   "stars_total": 26721,
+   "license": "MIT",
+   "tags": [
+    "做产品",
+    "自媒体"
+   ],
+   "brief": "一句话出网页原型、PPTX、信息图的设计技能",
+   "what": "给 Claude Code、Codex 用的设计技能：一句话出可点击原型、可编辑 PPTX、信息图和动画；需求模糊时先给六个方向挑三个。核心流程本地运行，不需要 API Key。MIT。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给单功能工具站快速出落地页和原型，不用再找设计。"
+    },
+    {
+     "area": "自媒体",
+     "how": "把一篇长文变成信息图或可编辑 PPTX，当 Newsletter 配图。"
+    }
+   ],
+   "setup": "部署难度 低，`npx skills add alchaincyf/huashu-design`",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G04",
+   "images": [
+    "https://img.youtube.com/vi/m-_BlUdcIvw/maxresdefault.jpg",
+    "https://raw.githubusercontent.com/alchaincyf/huashu-design/HEAD/assets/style-specimens/sheet-east.jpg",
+    "https://raw.githubusercontent.com/alchaincyf/huashu-design/HEAD/assets/style-specimens/sheet-app.jpg"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "find-skills",
+   "url": "https://skills.sh/vercel-labs/skills/find-skills",
+   "repo": "vercel-labs/skills",
+   "hot": "长期热门",
+   "stars_total": null,
+   "installs": 4099999,
+   "popularity_note": "skills.sh 总榜第 1，约 410 万次安装（10-27 抓取）",
+   "works_with": "Claude Code / Codex",
+   "safety": "黄",
+   "safety_note": "它会替你搜索并安装别的 skill。结论：本身无害，但装第三方 skill 有风险。依据：SKILL.md 示例含 `npx skills add ... -g -y`，全局安装且跳过确认。\n防范：别让它用 `-y`；装之前看对方 SKILL.md 和附带脚本。",
+   "risk_brief": "会自动装第三方 skill，注意 `-y`",
+   "brief": "让代理自己搜索并安装别的 skill",
+   "what": "按任务查 skills.sh 榜单，用 `npx skills find` 搜索，按安装量、来源和星数筛选，再给出安装命令。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "每次做新类型的小工具前，让代理先找现成 skill，少写一半提示词。"
+    },
+    {
+     "area": "SEO",
+     "how": "让它查 SEO 与内容类 skill，快速搭起批量写页面的流程。"
+    }
+   ],
+   "install": "`npx skills add vercel-labs/skills --skill find-skills`",
+   "id": "S01"
+  },
+  {
+   "name": "grill-me",
+   "url": "https://skills.sh/mattpocock/skills/grill-me",
+   "repo": "mattpocock/skills",
+   "hot": "长期热门",
+   "stars_total": 304057,
+   "installs": 1400000,
+   "popularity_note": "skills.sh 总榜第 2，约 140 万次安装；仓库 30.4 万星（10-27）",
+   "works_with": "Claude Code / Codex",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "开工前让 AI 追问到你说清方案为止",
+   "what": "SKILL.md 只有一行，调用 `grilling` skill：按问题树分轮追问，每问带推荐答案，直到你确认双方理解一致才动手。不执行 shell，不联网。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "写新工具的需求前先被追问一轮，MVP 范围更小，少返工。"
+    },
+    {
+     "area": "外贸",
+     "how": "做开发信方案时，让它追问目标客户和卖点，避免写成泛泛模板。"
+    }
+   ],
+   "install": "`npx skills add mattpocock/skills --skill grill-me`",
+   "id": "S02",
+   "images": [
+    "https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png"
+   ]
+  },
+  {
+   "name": "last30days",
+   "url": "https://github.com/mvanhorn/last30days-skill",
+   "repo": "mvanhorn/last30days-skill",
+   "hot": "新晋热门",
+   "stars_total": 65586,
+   "installs": null,
+   "popularity_note": "GitHub 日榜 10-27 +157 星，总星 6.5 万",
+   "works_with": "Claude Code / Codex",
+   "safety": "黄",
+   "safety_note": "会执行本地脚本、写本地文件，并把查询发给外部服务。结论：功能合理，但要密钥且可读浏览器 cookie。依据：SKILL.md 用 Bash 跑 Python 引擎和 yt-dlp，简报写入 `~/Documents/Last30Days`；可选 `SCRAPECREATORS_API_KEY` 等多个密钥。\n防范：先跑 `--preflight`；不开浏览器 cookie 读取；密钥只放专用环境。",
+   "risk_brief": "跑本地脚本，可读 cookie，多个密钥",
+   "brief": "一次查 Reddit、X、YouTube 等最近 30 天讨论",
+   "what": "按互动量给 Reddit、X、YouTube、TikTok、HN、Polymarket 的近 30 天内容打分，让代理生成带引用的简报。Reddit、HN 等免密钥。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "写选题前跑一遍某个话题，拿到近 30 天最高互动的讨论和说法。"
+    },
+    {
+     "area": "外贸",
+     "how": "查目标行业近一个月的买家抱怨，作为开发信开头素材。"
+    }
+   ],
+   "install": "`npx skills add mvanhorn/last30days-skill`",
+   "id": "S03",
+   "images": [
+    "https://raw.githubusercontent.com/mvanhorn/last30days-skill/HEAD/media/pr-assets/last30days-ad.gif"
+   ]
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "教程视频加「蓝皮书」资料包：评论区暗号换资料",
+   "brief": "教程挂资料包，评论区求资料就是线索",
+   "signal": "爆款形式",
+   "track": "AI小工具",
+   "platforms": [
+    "抖音",
+    "B站"
+   ],
+   "evidence": [
+    {
+     "platform": "抖音",
+     "title": "第4集：2026全新版workbuddy保姆级教程",
+     "url": "https://www.douyin.com/video/7700563040726743690",
+     "metrics": "点赞 2798 · 收藏 3684 · 评论 706 · 粉丝 2314"
+    },
+    {
+     "platform": "抖音",
+     "title": "WorkBuddy保姆级教程 零基础入门（蓝皮书）",
+     "url": "https://www.douyin.com/video/7699802297450106146",
+     "metrics": "点赞 2509 · 收藏 3461 · 评论 269 · 粉丝 890"
+    },
+    {
+     "platform": "B站",
+     "title": "【干货分享篇】一份skill卖了一千多份，AI＋虚拟网盘是真的能做",
+     "url": "https://www.bilibili.com/video/BV1DCn16AEPG",
+     "metrics": "点赞 280 · 收藏 968 · 评论 72"
+    }
+   ],
+   "quotes": [
+    {
+     "platform": "抖音",
+     "text": "求蓝皮书，谢谢主播",
+     "likes": 1
+    }
+   ],
+   "why": "两条小号（粉丝 2314、890）靠一个新工具教程拿到 2500+ 赞，评论区几乎全是在要资料包，说明有人愿意为一份整理好的资料留联系方式。B 站同时有人在讲 skill 的卖法，国内两个平台同时出现。",
+   "how": "挑一个他自己用熟的工具（如 Claude Code 做外贸开发信），用图文或 Newsletter 发 3 篇教程，文末放资料包领取页，收邮箱；第一步先用 Claude 整理一份 10 页的模板包。",
+   "risk": "资料包要自己做过、能用；评论区暗号引流在抖音可能被限流；不要承诺收入。",
+   "id": "P01"
+  },
+  {
+   "topic": "谷歌地图找客户成为外贸获客新做法",
+   "brief": "外贸人晒用谷歌地图开发客户出业绩",
+   "signal": "新玩法",
+   "track": "外贸获客",
+   "platforms": [
+    "小红书"
+   ],
+   "evidence": [
+    {
+     "platform": "小红书",
+     "title": "本月业绩主力来自谷歌地图开发",
+     "url": "https://www.xiaohongshu.com/explore/6ad87886000000002b01e683?xsec_token=YBdzL5fW0NZOiHPJZ-gEY2pjrfaIffbcxN6Wj36tO-xrw=&xsec_source=pc_search",
+     "metrics": "点赞 225 · 收藏 128 · 评论 19"
+    },
+    {
+     "platform": "小红书",
+     "title": "外贸开发客户，这6款工具可以搭配用",
+     "url": "https://www.xiaohongshu.com/explore/6ad7377c0000000028021353?xsec_token=YBuhZw0OXViNLoLkz_k1rDXDjLs2z-hMloVh3S8j0_XYE=&xsec_source=pc_search",
+     "metrics": "点赞 193 · 收藏 214 · 评论 5"
+    }
+   ],
+   "why": "第二条收藏率 1.11，说明大家想存下来照做。10-23 已收的 `omkarcloud/google-maps-scraper` 正好对口。只在小红书一边出现，数字不大。",
+   "how": "用地图抓取工具按行业加城市导出商家，再让 Claude 按网站内容写个性化开发信。",
+   "risk": "抓取地图数据要看平台条款；开发信群发注意各国反垃圾邮件法规。",
+   "id": "P02"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-26 P01",
+   "title": "WorkBuddy 教程成了抖音新流量词",
+   "update": "追搜：抖音第 4 集教程 **2798 赞、3684 收藏、706 评论**，评论多为求资料包；小红书同类 5829 收藏。",
+   "url": "https://www.douyin.com/video/7700563040726743690",
+   "id": "F01"
+  },
+  {
+   "ref": "10-23 N03",
+   "title": "代理工具更新：Claude Code 出 v2.1.309，Codex 出 0.164 预发布版",
+   "update": "Claude Code 已到 v2.1.311；Codex 推进到 0.165 alpha。",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.311",
+   "id": "F02"
+  }
+ ],
+ "watch_next": [
+  "蓝皮书 资料包",
+  "谷歌地图 获客",
+  "GPT-6.1 Terra",
+  "Agent SDK"
+ ]
+}
