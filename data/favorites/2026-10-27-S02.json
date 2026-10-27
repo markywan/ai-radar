@@ -1,0 +1,39 @@
+{
+ "id": "2026-10-27-S02",
+ "date": "2026-10-27",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-27T02:43:34+00:00",
+ "item": {
+  "name": "grill-me",
+  "url": "https://skills.sh/mattpocock/skills/grill-me",
+  "repo": "mattpocock/skills",
+  "hot": "长期热门",
+  "stars_total": 304057,
+  "installs": 1400000,
+  "popularity_note": "skills.sh 总榜第 2，约 140 万次安装；仓库 30.4 万星（10-27）",
+  "works_with": "Claude Code / Codex",
+  "safety": "绿",
+  "safety_note": "",
+  "risk_brief": "",
+  "brief": "开工前让 AI 追问到你说清方案为止",
+  "what": "SKILL.md 只有一行，调用 `grilling` skill：按问题树分轮追问，每问带推荐答案，直到你确认双方理解一致才动手。不执行 shell，不联网。",
+  "uses": [
+   {
+    "area": "做产品",
+    "how": "写新工具的需求前先被追问一轮，MVP 范围更小，少返工。"
+   },
+   {
+    "area": "外贸",
+    "how": "做开发信方案时，让它追问目标客户和卖点，避免写成泛泛模板。"
+   }
+  ],
+  "install": "`npx skills add mattpocock/skills --skill grill-me`",
+  "id": "S02",
+  "images": [
+   "https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png"
+  ]
+ },
+ "deepdive": "pending"
+}
