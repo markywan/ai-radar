@@ -1,0 +1,36 @@
+{
+ "id": "2026-10-27-P02",
+ "date": "2026-10-27",
+ "type": "trends",
+ "library": "机会库",
+ "status": "观察",
+ "saved_at": "2026-10-27T02:39:32+00:00",
+ "item": {
+  "topic": "谷歌地图找客户成为外贸获客新做法",
+  "brief": "外贸人晒用谷歌地图开发客户出业绩",
+  "signal": "新玩法",
+  "track": "外贸获客",
+  "platforms": [
+   "小红书"
+  ],
+  "evidence": [
+   {
+    "platform": "小红书",
+    "title": "本月业绩主力来自谷歌地图开发",
+    "url": "https://www.xiaohongshu.com/explore/6ad87886000000002b01e683?xsec_token=YBdzL5fW0NZOiHPJZ-gEY2pjrfaIffbcxN6Wj36tO-xrw=&xsec_source=pc_search",
+    "metrics": "点赞 225 · 收藏 128 · 评论 19"
+   },
+   {
+    "platform": "小红书",
+    "title": "外贸开发客户，这6款工具可以搭配用",
+    "url": "https://www.xiaohongshu.com/explore/6ad7377c0000000028021353?xsec_token=YBuhZw0OXViNLoLkz_k1rDXDjLs2z-hMloVh3S8j0_XYE=&xsec_source=pc_search",
+    "metrics": "点赞 193 · 收藏 214 · 评论 5"
+   }
+  ],
+  "why": "第二条收藏率 1.11，说明大家想存下来照做。10-23 已收的 `omkarcloud/google-maps-scraper` 正好对口。只在小红书一边出现，数字不大。",
+  "how": "用地图抓取工具按行业加城市导出商家，再让 Claude 按网站内容写个性化开发信。",
+  "risk": "抓取地图数据要看平台条款；开发信群发注意各国反垃圾邮件法规。",
+  "id": "P02"
+ },
+ "deepdive": "pending"
+}
