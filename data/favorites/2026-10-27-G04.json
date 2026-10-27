@@ -1,0 +1,44 @@
+{
+ "id": "2026-10-27-G04",
+ "date": "2026-10-27",
+ "type": "tools",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-10-27T02:43:02+00:00",
+ "item": {
+  "repo": "alchaincyf/huashu-design",
+  "url": "https://github.com/alchaincyf/huashu-design",
+  "group": "刚冒出来",
+  "why_today": "首次上榜，+409 星",
+  "stars_today": 409,
+  "stars_total": 26721,
+  "license": "MIT",
+  "tags": [
+   "做产品",
+   "自媒体"
+  ],
+  "brief": "一句话出网页原型、PPTX、信息图的设计技能",
+  "what": "给 Claude Code、Codex 用的设计技能：一句话出可点击原型、可编辑 PPTX、信息图和动画；需求模糊时先给六个方向挑三个。核心流程本地运行，不需要 API Key。MIT。",
+  "uses": [
+   {
+    "area": "做产品",
+    "how": "给单功能工具站快速出落地页和原型，不用再找设计。"
+   },
+   {
+    "area": "自媒体",
+    "how": "把一篇长文变成信息图或可编辑 PPTX，当 Newsletter 配图。"
+   }
+  ],
+  "setup": "部署难度 低，`npx skills add alchaincyf/huashu-design`",
+  "safety": "绿",
+  "safety_note": "",
+  "risk_brief": "",
+  "id": "G04",
+  "images": [
+   "https://img.youtube.com/vi/m-_BlUdcIvw/maxresdefault.jpg",
+   "https://raw.githubusercontent.com/alchaincyf/huashu-design/HEAD/assets/style-specimens/sheet-east.jpg",
+   "https://raw.githubusercontent.com/alchaincyf/huashu-design/HEAD/assets/style-specimens/sheet-app.jpg"
+  ]
+ },
+ "deepdive": "pending"
+}
