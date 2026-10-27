@@ -1,0 +1,269 @@
+{
+ "date": "2026-10-28",
+ "generated_at": "2026-10-28T06:30:00+08:00",
+ "headline": [
+  "Codex 0.165.0 发布，内置 Vertex AI 提供方并默认开启记忆 v2，Claude Code 2.1.312 修了大文件被覆盖的问题，你的 VPS 脚本升级前先看一眼。",
+  "今天抖音、小红书抓取接口余额不足，平台信号只剩上期追搜的「拼豆图纸」：小红书点赞从 1270 涨到 2653。",
+  "今天最值得做的一件事：给自己的站接上 GEOInflow，先看 AI 爬虫到底抓了你哪些页面。"
+ ],
+ "stats": {
+  "scanned": 330,
+  "selected": 13,
+  "chars": 1979,
+  "read_minutes": 4
+ },
+ "actions": [
+  {
+   "minutes": 30,
+   "text": "在 VPS 上用 Docker 部署 `yaojingang/GEOInflow`，给一个自己的站挂上跟踪脚本，看 AI 爬虫和 AI 搜索来源（推断：几天后能看出哪些页面没被抓）。"
+  },
+  {
+   "minutes": 15,
+   "text": "把 Codex 升到 0.165.0、Claude Code 升到 2.1.312，先在一个小项目试，再动 VPS 上的脚本。"
+  },
+  {
+   "minutes": 5,
+   "text": "把 `elayadesign/ai-design-skills` 的 landing-page-design 装进一个测试项目，下次做落地页时对比效果。"
+  }
+ ],
+ "news": [
+  {
+   "title": "代理工具更新：Codex 0.165.0 加 Vertex AI 提供方；Claude Code 2.1.312；Cursor 设计模式加 Annotate",
+   "url": "https://github.com/openai/codex/releases/tag/rust-v0.165.0",
+   "source": "Codex Releases",
+   "source_type": "官方",
+   "published": "2026-10-27",
+   "tier": "影响你的",
+   "for_me": "Codex 记忆 v2 变默认，旧脚本升级前先在小项目试一遍。",
+   "summary": "Codex 0.165.0：内置 `gcp` 提供方、加入 GPT-6.1 Terra、**记忆 v2 对新配置默认开启**；Claude Code 2.1.312：修大 CLAUDE.md 被覆盖；Cursor：设计模式加 Annotate。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "美国银行发邮件：别把银行账号密码给 AI 助手，出事自己负责",
+   "url": "https://techcrunch.com/2026/10/27/bank-of-america-kindly-asks-that-you-dont-share-your-banking-password-with-your-ai-assistant/",
+   "source": "TechCrunch AI",
+   "source_type": "媒体",
+   "published": "2026-10-27",
+   "tier": "影响你的",
+   "for_me": "给代理的账号凭证越权，出事责任在你；收款、广告账号别直接交密码。",
+   "summary": "邮件原话：「**you're responsible for activity**」。文章称这是提醒而非新条款，多数银行协议本来就让客户为交出登录的人负责。",
+   "track": "代理工具链",
+   "id": "N02"
+  },
+  {
+   "title": "Google DeepMind 发布 Genie 4：实时世界模型，首次原生生成音频",
+   "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
+   "source": "Google DeepMind",
+   "source_type": "官方",
+   "published": "2026-10-27",
+   "tier": "行业动态",
+   "summary": "研究预览，仅限受邀测试者；计划给 AI Ultra 订阅用户和 Gemini API 早期伙伴。可用文字实时改天气、镜头，长时间会出现画面漂移。",
+   "id": "N03"
+  },
+  {
+   "title": "研究：阿里 Qwen 3.8 三个模型会把部分请求发往阿里云服务器",
+   "url": "https://the-decoder.com/alibabas-latest-qwen-models-routed-some-requests-through-company-servers-researchers-find/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-27",
+   "tier": "行业动态",
+   "summary": "Palisade Research 在 3 个 Qwen 3.8 模型里发现该行为，旧模型没有；推测是训练基础设施被模型学成了习惯。接 Agent 时要关注出网限制。",
+   "id": "N04"
+  },
+  {
+   "title": "Opera 推出 WebAI 网页标准：让用户在浏览器里本地运行 AI",
+   "url": "https://techcrunch.com/2026/10/27/opera-introduces-a-new-web-standard-to-let-users-deploy-ai-locally-in-their-browser/",
+   "source": "TechCrunch AI",
+   "source_type": "媒体",
+   "published": "2026-10-27",
+   "tier": "行业动态",
+   "summary": "WebAI 设计成可对接多种模型，目标是网页直接调用本地 AI。对做浏览器插件和小工具的人是个值得盯的入口，目前只是标准提案。",
+   "id": "N05"
+  },
+  {
+   "title": "OpenAI 的 Ted Sanders 说明怎么选 GPT 模型：Terra 技术写作强过 Astra 且便宜",
+   "url": "https://the-decoder.com/openais-ted-sanders-shares-a-rule-of-thumb-for-picking-the-right-gpt-model/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-27",
+   "tier": "行业动态",
+   "summary": "Terra 在技术写作上超过更大的 Astra，价格低很多，其他多数方面落后。模型大小、推理强度、多代理是三个独立维度。",
+   "id": "N06"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "yaojingang/GEOInflow",
+   "url": "https://github.com/yaojingang/GEOInflow",
+   "group": "刚冒出来",
+   "why_today": "建仓 2 天 593 星",
+   "stars_today": null,
+   "stars_total": 593,
+   "license": "MIT",
+   "tags": [
+    "SEO",
+    "数据与研究"
+   ],
+   "brief": "自托管的 GEO 流量分析：看 AI 爬虫和 AI 搜索来源",
+   "what": "记录访客、AI 搜索带来的流量、爬虫日志、内容覆盖率和转化，能标出哪些页面没被 AI 爬虫抓过。技术栈 Node、PostgreSQL、Redis，Docker 部署。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "挂在自己的内容站上，看 AI 爬虫抓了哪些页面，补没被抓的页面。"
+    },
+    {
+     "area": "做产品",
+     "how": "给客户做「GEO 体检」月报，数据直接来自这个面板。"
+    }
+   ],
+   "setup": "部署难度 中，需要 Docker、Postgres、Redis",
+   "safety": "黄",
+   "safety_note": "结论：建仓不到 30 天，会收集访客数据。依据：仓库 2026-10-26 创建，主要是中文团队发布，我没读完源码。防范：用独立服务器和数据库，不开公网管理端口，先只挂一个测试站。",
+   "risk_brief": "新仓库，会收访客数据",
+   "id": "G01"
+  },
+  {
+   "repo": "surendrapandar/minilytics",
+   "url": "https://github.com/surendrapandar/minilytics",
+   "group": "刚冒出来",
+   "why_today": "建仓 5 天 704 星",
+   "stars_today": null,
+   "stars_total": 704,
+   "license": "MIT",
+   "tags": [
+    "做产品",
+    "数据与研究"
+   ],
+   "brief": "看哪个来源的访客真付了钱的开源分析",
+   "what": "按收入归因的网站分析：能看推文、文章、Google、AI 助手中哪些来源带来付款。部署到自己的免费 Cloudflare 账号，用 D1 数据库；也可打开托管模式带登录和计费。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给自己的工具站看哪个渠道真正带来付费，砍掉没转化的推广。"
+    },
+    {
+     "area": "自媒体",
+     "how": "判断哪篇文章或帖子带来了付款，决定下一篇写什么。"
+    }
+   ],
+   "setup": "部署难度 低，需要 Cloudflare 账号和 Wrangler",
+   "safety": "黄",
+   "safety_note": "结论：建仓不到 30 天，会接触访客和付款数据。依据：仓库 2026-10-23 创建，只有 23 次提交。防范：先在测试站用，别接真实支付后台的密钥，等数周后再迁正式站。",
+   "risk_brief": "新仓库，会接触付款数据",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/surendrapandar/minilytics/HEAD/docs/dashboard.png"
+   ]
+  },
+  {
+   "repo": "NVIDIA/SkillSpector",
+   "url": "https://github.com/NVIDIA/SkillSpector",
+   "group": "大家都在用",
+   "why_today": "7 天内第 2 天上榜，+932 星",
+   "stars_today": 932,
+   "stars_total": 22727,
+   "license": "Apache-2.0",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "装技能前先扫描：查注入、外传数据和供应链风险",
+   "what": "NVIDIA 出的 Skills 安全扫描器，检查 Claude Code、Codex、MCP 技能里的恶意模式、提示词注入、数据外传。Python，Apache-2.0，文档在 docs.nvidia.com。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "做技能或插件合集产品时，上架前自动扫一遍，写进卖点。"
+    },
+    {
+     "area": "自媒体",
+     "how": "出「热门技能安全实测」图文，用扫描结果当素材。"
+    }
+   ],
+   "setup": "部署难度 低，需要 Python",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G03"
+  }
+ ],
+ "skills": [
+  {
+   "name": "landing-page-design",
+   "url": "https://github.com/elayadesign/ai-design-skills",
+   "repo": "elayadesign/ai-design-skills",
+   "hot": "新晋热门",
+   "stars_total": 9261,
+   "installs": null,
+   "popularity_note": "10-28 日榜单日 +1,395 星，累计 9,261 星，建仓 90 天",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "让 AI 做落地页有转化结构和统一视觉规则",
+   "what": "纯 SKILL.md：前半讲转化结构、文案、SEO，后半规定字体、间距、圆角、动效。我读了 SKILL.md，没有命令、文件读写或外部请求。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给每个小工具站生成落地页，省掉自己想结构和配色的时间。"
+    },
+    {
+     "area": "外贸",
+     "how": "给外贸独立站做产品落地页，直接要求带询盘表单。"
+    }
+   ],
+   "install": "克隆仓库，把 `skills/landing-page-design` 复制到 `.claude/skills/`",
+   "id": "S01"
+  },
+  {
+   "name": "frontend-design",
+   "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+   "repo": "anthropics/skills",
+   "hot": "长期热门",
+   "stars_total": null,
+   "installs": 1000000,
+   "popularity_note": "skills.sh 总榜第 15 名，安装量约 100 万（10-28 抓取）",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "官方前端设计技能，避开千篇一律的 AI 风格",
+   "what": "Anthropic 官方的设计指引：先定视觉方向，再选字体和排版，最后自查。我读了 SKILL.md，只有说明文字，没有命令、文件读写或外部请求。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "做小工具站和插件界面时先装它，减少千篇一律的紫色渐变。"
+    },
+    {
+     "area": "自媒体",
+     "how": "生成图文信息图和落地页时统一视觉风格。"
+    }
+   ],
+   "install": "`npx skills add anthropics/skills`，选 frontend-design",
+   "id": "S02"
+  }
+ ],
+ "opportunities": [],
+ "trends": [],
+ "followups": [
+  {
+   "ref": "10-26 P02",
+   "title": "AI 做小数字产品和小工具，门槛低、单价低",
+   "update": "小红书「1.9 元拼豆图纸 3.1 万单」点赞 1270 涨到 2653，收藏 1951 涨到 3817。",
+   "url": "https://www.xiaohongshu.com/explore/6ada206d000000002b003dc3?xsec_token=YBvh9yilllPP08QI8hVFIh0hHNcISnoSLNi5_rguNrA5yI=&xsec_source=pc_search",
+   "id": "F01"
+  },
+  {
+   "ref": "10-27 F02",
+   "title": "代理工具更新",
+   "update": "Codex 0.165.0 正式发布，Claude Code 升到 2.1.312，见今天资讯。",
+   "url": "https://github.com/openai/codex/releases/tag/rust-v0.165.0",
+   "id": "F02"
+  }
+ ],
+ "watch_next": [
+  "拼豆图纸",
+  "GEO 监测",
+  "DeepSeek Harness"
+ ]
+}
