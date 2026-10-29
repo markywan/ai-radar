@@ -1,0 +1,272 @@
+{
+ "date": "2026-10-29",
+ "generated_at": "2026-10-29T06:30:00+08:00",
+ "headline": [
+  "Google 在财报会上宣布把 AI 搜索里的广告推向海外市场，AI Mode 里的商品广告点击率已和自然结果相当，做 SEO 和投广告的渠道在变。",
+  "今天小红书、抖音、TikTok、YouTube、B站的抓取接口余额不足，没有平台信号；GitHub 上 SEO 技能 claude-seo 连续 4 天上榜、累计 23,359 星。",
+  "今天最值得做的一件事：在测试项目里装 claude-seo，对自己一个站跑一次技术 SEO 与 GEO 体检。"
+ ],
+ "stats": {
+  "scanned": 330,
+  "selected": 14,
+  "chars": 2042,
+  "read_minutes": 5
+ },
+ "actions": [
+  {
+   "minutes": 30,
+   "text": "在一个测试项目里装 `AgriciDaniel/claude-seo`，只用不需要密钥的核心体检跑自己一个站，看它给出的技术 SEO 和 GEO 问题清单（推断：能直接当给外贸客户的体检模板）。"
+  },
+  {
+   "minutes": 15,
+   "text": "打开 `blakeandersonw/ai-app-playbook` 的选题打分和成本两章，拿它的 35 分打分表给手头一个小工具点子打分；作者的收入说法是自称，不要当证据。"
+  },
+  {
+   "minutes": 5,
+   "text": "查一下自己的谷歌广告账户有没有 AI Mode 广告位的新选项，没有就先记下，等 Google 公布国家和时间再看。"
+  }
+ ],
+ "news": [
+  {
+   "title": "Google 宣布 AI 搜索广告推向全球，AI Mode 商品广告点击率已与自然结果相当",
+   "url": "https://techcrunch.com/2026/10/28/google-expands-ai-search-ads-globally-as-core-ad-growth-slows/",
+   "source": "TechCrunch AI",
+   "source_type": "媒体",
+   "published": "2026-10-28",
+   "tier": "影响你的",
+   "for_me": "AI 搜索开始变现，自然流量会被广告位挤占；SEO 站要把 GEO 和品牌词一起做。",
+   "summary": "Alphabet 财报会上宣布 AI Mode 广告进入海外市场，**未公布国家和时间**。搜索收入同比增 12%，前两季是 17%、19%。",
+   "track": "GEO",
+   "id": "N01"
+  },
+  {
+   "title": "Meta 称新商业条款可能再推迟到 11 月 20 日之后",
+   "url": "https://www.theverge.com/tech/1020769/meta-updated-business-terms-delay-indefinitely",
+   "source": "The Verge AI",
+   "source_type": "媒体",
+   "published": "2026-10-28",
+   "tier": "影响你的",
+   "for_me": "你在 Meta 投广告或做内容的话，条款暂时不会变，不用急着改；等正式通知。",
+   "summary": "出版商担心条款涉及 AI 训练，Meta 沟通负责人称**不会在未与行业团体充分协商前改政策**，实施可能晚于 11 月 20 日。",
+   "track": "外贸获客",
+   "id": "N02"
+  },
+  {
+   "title": "代理工具更新：Android Studio 开放「自带代理」，支持 40 多个编码代理含 Claude 和 Codex",
+   "url": "https://the-decoder.com/google-opens-android-development-to-third-party-ai-agents-and-unveils-new-gemini-apis/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-28",
+   "tier": "影响你的",
+   "for_me": "想做 Android 小工具或插件，可直接用你现有的 Claude Code 或 Codex 订阅，不用另买。",
+   "summary": "Google 称新终端工具让代理完成 UI 任务**快 77%**、token 最多少用 3 倍；Codex 本日仅发 0.166.0 alpha 预发布版，Claude Code 仍是 2.1.312。",
+   "track": "代理工具链",
+   "id": "N03"
+  },
+  {
+   "title": "Google 发布 Gemini 4 Carbon：Artificial Analysis 指数 v5 第一，先只开放给安全专家",
+   "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/",
+   "source": "Google DeepMind",
+   "source_type": "官方",
+   "published": "2026-10-28",
+   "tier": "行业动态",
+   "summary": "距 Argon 仅两周；指数得分 **59**，领先 Claude Opus 5.5 和 GPT-6 Astra。主打长时间代理流程和安全防御，首批只给选定的安全专家。",
+   "id": "N04"
+  },
+  {
+   "title": "Anthropic 上线企业 AI 支出可视化工具，显示钱花在了哪",
+   "url": "https://techcrunch.com/2026/10/28/anthropic-just-launched-tools-to-show-companies-what-their-ai-spending-is-buying/",
+   "source": "TechCrunch AI",
+   "source_type": "媒体",
+   "published": "2026-10-28",
+   "tier": "行业动态",
+   "summary": "面向企业客户，让用户看到模型使用花费对应的产出；报道称与 Anthropic 计划中的 IPO 有关。个人订阅用户暂无明确影响。",
+   "id": "N05"
+  },
+  {
+   "title": "英伟达开源 Nemotron 3.5 Transcribe：转写、翻译、说话人识别合一",
+   "url": "https://the-decoder.com/nvidias-open-nemotron-3-5-transcribe-combines-transcription-transl",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-28",
+   "tier": "行业动态",
+   "summary": "开放权重的多语言转写模型，可提示、可微调。做外贸客户通话或会议纪要、多语言字幕工具的人可以试，目前未看到许可证细节。",
+   "id": "N06"
+  },
+  {
+   "title": "Chrome 自动填表可以读取 Gmail 里的信息",
+   "url": "https://www.theverge.com/tech/1020626/chromes-enhanced-autofill-gmail-forms-gemini-personal-intelligence",
+   "source": "The Verge AI",
+   "source_type": "媒体",
+   "published": "2026-10-28",
+   "tier": "行业动态",
+   "summary": "增强版 Autofill 由 Gemini 个人智能驱动，可从 Gmail 提取信息填表。对做表单或询盘页转化的人，访客填写门槛会降低。",
+   "id": "N07"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "github/spec-kit",
+   "url": "https://github.com/github/spec-kit",
+   "group": "大家都在用",
+   "why_today": "7 天内第 2 天上榜，+361 星",
+   "stars_today": 361,
+   "stars_total": 143660,
+   "license": "MIT",
+   "tags": [
+    "做产品",
+    "Agent 与自动化"
+   ],
+   "brief": "先写规格再让代理写代码的开发工具包",
+   "what": "GitHub 官方的「规格驱动开发」工具包，用 CLI 生成规格、计划、任务清单，再交给 Claude Code、Codex、Copilot 等代理执行。Python，MIT，最近提交 10-28。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "每个小工具项目先出规格和任务清单，让代理按清单做，少返工。"
+    }
+   ],
+   "setup": "部署难度 低，需要 Python 和 uv",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G01"
+  },
+  {
+   "repo": "JetBrains/thinkrail",
+   "url": "https://github.com/JetBrains/thinkrail",
+   "group": "大家都在用",
+   "why_today": "7 天内第 4 天上榜，+1,068 星",
+   "stars_today": 1068,
+   "stars_total": 5016,
+   "license": "Apache-2.0",
+   "tags": [
+    "做产品",
+    "Agent 与自动化"
+   ],
+   "brief": "JetBrains 出的、会自我定制的 AI 编码 IDE",
+   "what": "基于 pi 代理的轻量 IDE，按你的工作方式自己调整界面和流程。TypeScript，Apache-2.0，建仓 112 天，259 个 fork，未决 issue 241 个，更新到 10-28。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "作为 Claude Code 之外的备选 IDE，试用后决定是否替换日常开发环境。"
+    }
+   ],
+   "setup": "部署难度 低，本机安装",
+   "safety": "黄",
+   "safety_note": "结论：IDE 代理会读写你的项目文件并执行命令。依据：我只看了仓库说明，没读源码。防范：先只打开一个测试仓库，不放含密钥的 `.env` 文件。",
+   "risk_brief": "代理可读写项目文件",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/JetBrains/thinkrail/HEAD/.github/readme-assets/workbench-light.png",
+    "https://raw.githubusercontent.com/JetBrains/thinkrail/HEAD/.github/readme-assets/specs-light.png"
+   ]
+  },
+  {
+   "repo": "blakeandersonw/ai-app-playbook",
+   "url": "https://github.com/blakeandersonw/ai-app-playbook",
+   "group": "刚冒出来",
+   "why_today": "建仓 3 天 563 星",
+   "stars_today": null,
+   "stars_total": 563,
+   "license": "MIT",
+   "tags": [
+    "做产品"
+   ],
+   "brief": "让代理读的 App 选题、技术栈、增长手册",
+   "what": "14 章手册：选题 35 分打分、12 步构建、首批 1000 用户、成本估算，附 `worker.ts`、`auth.ts` 等模板。技术栈偏 Cloudflare。作者自称做过 5 个月收入十万美元的应用，未验证。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "把仓库交给代理读 `AGENTS.md`，用选题打分表给点子排序。"
+    }
+   ],
+   "setup": "部署难度 低，克隆即用",
+   "safety": "黄",
+   "safety_note": "结论：建仓不到 30 天，且带可执行模板。依据：我读了说明页，没逐个读模板代码。防范：模板先在空项目里看过再部署，不要照单接入自己的支付密钥。",
+   "risk_brief": "新仓库，带部署模板",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/blakeandersonw/ai-app-playbook/HEAD/assets/playbook.png"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "claude-seo",
+   "url": "https://github.com/AgriciDaniel/claude-seo",
+   "repo": "AgriciDaniel/claude-seo",
+   "hot": "新晋热门",
+   "stars_total": 23359,
+   "installs": null,
+   "popularity_note": "10-29 日榜 +581 星、周榜 +3,516 星，7 天内第 4 天上榜，累计 23,359 星",
+   "works_with": "Claude Code",
+   "safety": "黄",
+   "safety_note": "结论：要执行脚本并可连多个外部服务。依据：我读了 SKILL.md，会运行附带的启动器和 Python 脚本、安装 Chromium，并可调用 Google、Moz、Bing 等 API，命令明文无混淆，核心体检不需密钥。防范：先不填任何 API 密钥，在测试项目里运行；要连 Google 账户时用只读权限。",
+   "risk_brief": "运行脚本，可连多项 API",
+   "brief": "Claude Code 的整站 SEO 与 GEO 体检技能",
+   "what": "26 个子技能加 19 个子代理：技术 SEO、结构化数据、GEO、llms.txt、反链、本地与国际 SEO，可出 PDF 报告。MIT，主页挂 Skool 社群入口。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "对自己的内容站做月度体检，直接得到可修的问题清单。"
+    },
+    {
+     "area": "外贸",
+     "how": "给外贸独立站做国际 SEO 与 GEO 检查，作为开发信的附带报告。"
+    }
+   ],
+   "install": "按仓库说明用插件方式安装，或把 `skills/seo` 复制到 `.claude/skills/`",
+   "id": "S01",
+   "images": [
+    "https://raw.githubusercontent.com/AgriciDaniel/claude-seo/HEAD/screenshots/seo-command-demo.gif",
+    "https://raw.githubusercontent.com/AgriciDaniel/claude-seo/HEAD/screenshots/seo-audit-demo.gif"
+   ]
+  },
+  {
+   "name": "tstack",
+   "url": "https://github.com/t3dotgg/tstack",
+   "repo": "t3dotgg/tstack",
+   "hot": "新晋热门",
+   "stars_total": 2256,
+   "installs": null,
+   "popularity_note": "建仓 5 天 2,256 星（10-29 新仓库榜）",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "结论：技能会执行命令，部分能自动合并 PR。依据：我读了 README，没逐个读技能文件；full-send 可无人值守合并，council 要调其他厂商模型。防范：只装 file-pr、babysit-pr 这类辅助技能，不装 full-send，并限制 `gh` 的合并权限。",
+   "risk_brief": "可自动合并 PR，新仓库",
+   "brief": "T3 作者日常用的 PR 全流程技能包",
+   "what": "9 个技能：提 PR、盯 CI、多模型互审、接手别人的 PR、自动合并。MIT，需要登录 `gh` 和 `python3`。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "让代理盯 CI 和审查机器人，一个人同时推进多个小项目的 PR。"
+    }
+   ],
+   "install": "克隆仓库，把需要的技能复制到 `~/.claude/skills/` 或 `~/.codex/skills/`",
+   "id": "S02"
+  }
+ ],
+ "opportunities": [],
+ "trends": [],
+ "followups": [
+  {
+   "ref": "10-25 S01",
+   "title": "Nutlope/hallmark",
+   "update": "累计星数 **32,063 涨到 40,671**，今日再 +2,110，连续第 5 天上榜。",
+   "url": "https://github.com/Nutlope/hallmark",
+   "id": "F01"
+  },
+  {
+   "ref": "10-26 G03",
+   "title": "debpalash/VoiceStudio",
+   "update": "累计星数 86,664 涨到 92,973，今日 +1,793，连续第 4 天上榜。",
+   "url": "https://github.com/debpalash/VoiceStudio",
+   "id": "F02"
+  }
+ ],
+ "watch_next": [
+  "拼豆图纸",
+  "GEO 监测",
+  "AI Mode 广告"
+ ]
+}
