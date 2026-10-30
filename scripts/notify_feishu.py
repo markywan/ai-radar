@@ -84,7 +84,7 @@ def unread_before(date):
 
 
 def daily_card(date):
-    """三分钟版：一句头条、今天做什么、最强的平台信号、机会一句话、影响你的资讯标题。工具和 Skills 去网站看。"""
+    """三分钟版：一句头条、今天做什么、最强的平台信号、一条 GitHub 生意线索、机会一句话、影响你的资讯标题。其余工具和 Skills 去网站看。"""
     doc = json.loads((ROOT / "data/daily" / f"{date}.json").read_text("utf-8"))
     m, d = int(date[5:7]), int(date[8:10])
     st = doc.get("stats") or {}
@@ -106,6 +106,19 @@ def daily_card(date):
         els.append(md(f"**玩法风向** {t['topic']}（{t.get('signal', '')}）：{t.get('brief', '')}"
                       + (f"\n[{ev.get('platform', '')}：{ev.get('title', '')[:30]}]({ev['url']}) {ev.get('metrics', '')}" if ev.get("url") else "")
                       + (f"\n还有 {len(trends) - 1} 条在网站上" if len(trends) > 1 else "")))
+    biz = [t for t in doc["tools"] if t.get("business")]
+    if biz:  # 2026-10-30 起工具按能做什么生意挑：挑一条，有需求证据的优先
+        t = next((t for t in biz if t.get("demand")), biz[0])
+        dm = (t.get("demand") or [{}])[0]
+        dm_title = re.sub(r"[\[\]]", "", dm.get("title") or "")  # 方括号会弄坏 markdown 链接
+        dm_title = dm_title if len(dm_title) <= 50 else dm_title[:48] + "…"
+        fid = f"{date}-{t['id']}"
+        els.append({"tag": "hr"})
+        els.append(md(f"**GitHub 生意线索** [{t['repo']}]({t['url']})" + (f"（{t['license_tier']}）" if t.get("license_tier") else "")
+                      + f"\n{re.sub(r'[*`]', '', t['business'])}"
+                      + (f"\n有人在要：[{dm_title}]({dm['url']}) {dm.get('reactions', 0)} 赞" if dm.get("url") else "")))
+        els.append(buttons(("收藏", action_link("fav", fid), "default"),
+                           ("收藏并深挖", action_link("deep", fid), "primary")))
     for b in doc["opportunities"]:
         fid = f"{date}-{b['id']}"
         els.append({"tag": "hr"})

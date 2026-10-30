@@ -11,10 +11,13 @@
 抓完会把前 7 天日报里出现过的帖子、文章、仓库标上 seen_before（哪天、哪条、当时的数字），
 前 7 天的条目清单放在 recent，前一期日报的 watch_next 会在平台上追搜。
 GitHub 日榜每天存一份快照到 data/trending/<日期>.json（随日报提交），用来算仓库前 7 天上榜几天。
+GitHub 候选仓库补许可证三档（能不能拿来做托管版卖）和最近 7 天每天的增星；
+issue 需求榜（raw.issue_demand）搜「要托管版」「愿意付钱」，再查收藏过的仓库里点赞最多的 issue。
 
 试抓 TikHub：python3 scripts/fetch.py --probe，只抓平台部分，并打印每个接口返回的结构。
 """
 import argparse
+import base64
 import datetime as dt
 import html
 import json
@@ -98,9 +101,9 @@ def fetch_feed(feed, since):
                                       or it.findtext("a:content", default="", namespaces=ns)),
             })
     out = []
-    for i in items:
+    for n, i in enumerate(items):
         d = parse_date(i["published"])
-        if d and d < since:
+        if d and d < since and n >= feed.get("keep_latest", 0):  # 月刊这类低频源，最新几条不管多旧都留
             continue
         i["published"] = d.isoformat() if d else None
         i.update(source=feed["name"], kind=feed["kind"])
@@ -142,17 +145,85 @@ def gh_headers():
     return headers
 
 
+# 许可证三档：能不能拿它做托管版来卖（2026-10-30 定）。GPL、LGPL、MPL 只在分发时要公开源码，托管不算分发；
+# AGPL 这类带网络条款的，托管也要公开改动；BUSL、Elastic、SSPL、FSL 和非商用许可不许拿来做托管服务。
+CAN_HOST, HOST_SHARE, NO_HOST = "能托管来卖", "托管要公开改动", "不能托管来卖"
+LICENSE_TIERS = {
+    CAN_HOST: {"MIT", "MIT-0", "Apache-2.0", "BSD-2-Clause", "BSD-2-Clause-Patent", "BSD-3-Clause", "BSD-3-Clause-Clear",
+               "BSD-4-Clause", "0BSD", "ISC", "Unlicense", "CC0-1.0", "CC-BY-4.0", "Zlib", "BSL-1.0", "WTFPL", "PostgreSQL",
+               "NCSA", "UPL-1.0", "MulanPSL-2.0", "BlueOak-1.0.0", "AFL-3.0", "ECL-2.0", "Artistic-2.0", "MS-PL", "MS-RL",
+               "MPL-2.0", "LGPL-2.1", "LGPL-3.0", "GPL-2.0", "GPL-3.0", "EPL-1.0", "EPL-2.0", "Vim"},
+    HOST_SHARE: {"AGPL-3.0", "EUPL-1.1", "EUPL-1.2", "OSL-3.0", "CPAL-1.0", "RPL-1.5"},
+    NO_HOST: {"BUSL-1.1", "Elastic-2.0", "SSPL-1.0", "FSL-1.1-MIT", "FSL-1.1-ALv2", "CC-BY-NC-4.0", "CC-BY-NC-SA-4.0",
+              "CC-BY-NC-ND-4.0", "PolyForm-Noncommercial-1.0.0", "PolyForm-Shield-1.0.0", "PolyForm-Perimeter-1.0.0"},
+}
+# GitHub 认不出的许可证（BUSL、Elastic、n8n 的这类多半认不出）显示 NOASSERTION：读 LICENSE 原文，按先后找这些字样
+LICENSE_HINTS = [(r"business source license", NO_HOST, "BUSL"), (r"server side public license", NO_HOST, "SSPL"),
+                 (r"elastic license", NO_HOST, "Elastic"), (r"sustainable use license", NO_HOST, "n8n Sustainable Use"),
+                 (r"functional source license", NO_HOST, "FSL"), (r"fair core license", NO_HOST, "Fair Core"),
+                 (r"commons clause", NO_HOST, "Commons Clause"), (r"polyform (noncommercial|shield|perimeter)", NO_HOST, "PolyForm"),
+                 (r"gnu affero general public license", HOST_SHARE, "AGPL"), (r"\bnon-?commercial\b", NO_HOST, "非商用")]
+
+
+def license_tier(spdx):
+    """SPDX 许可证 → 三档之一；没有、NOASSERTION 或不在表里的返回 None。"""
+    base = re.sub(r"-(only|or-later)$", "", spdx or "")
+    return next((tier for tier, ids in LICENSE_TIERS.items() if base in ids), None)
+
+
+def read_license(repo):
+    """NOASSERTION 的仓库读 LICENSE 原文猜档位，返回 (档位, 依据)；猜不出返回 (None, None)。"""
+    m = get_json(f"https://api.github.com/repos/{repo}/license", gh_headers())
+    text = base64.b64decode(m.get("content") or "").decode("utf-8", "replace").lower()
+    return next(((tier, name) for pat, tier, name in LICENSE_HINTS if re.search(pat, text)), (None, None))
+
+
+_search_at = 0.0
+
+
+def gh_search_get(kind, params):
+    """GitHub 搜索接口（repositories、issues）每分钟最多 30 次（没有令牌 10 次），两次搜索之间隔开。"""
+    global _search_at
+    gap = (2.0 if os.environ.get("GITHUB_TOKEN") else 6.5) - (time.time() - _search_at)
+    if gap > 0:
+        time.sleep(gap)
+    try:
+        return get_json(f"https://api.github.com/search/{kind}?" + urllib.parse.urlencode(params), gh_headers())
+    finally:
+        _search_at = time.time()
+
+
 def gh_search(q, per_page=30):
-    headers = gh_headers()
-    url = "https://api.github.com/search/repositories?" + urllib.parse.urlencode(
-        {"q": q, "sort": "stars", "order": "desc", "per_page": per_page})
-    data = get_json(url, headers)
-    return [{
-        "repo": r["full_name"], "url": r["html_url"], "description": (r.get("description") or "")[:300],
-        "stars_total": r.get("stargazers_count"), "created_at": r.get("created_at"),
-        "pushed_at": r.get("pushed_at"), "license": (r.get("license") or {}).get("spdx_id"),
-        "topics": r.get("topics", [])[:8], "language": r.get("language"),
-    } for r in data.get("items", [])]
+    data = gh_search_get("repositories", {"q": q, "sort": "stars", "order": "desc", "per_page": per_page})
+    out = []
+    for r in data.get("items", []):
+        lic, stars = (r.get("license") or {}).get("spdx_id"), r.get("stargazers_count") or 0
+        out.append({
+            "repo": r["full_name"], "url": r["html_url"], "description": (r.get("description") or "")[:300],
+            "stars_total": r.get("stargazers_count"), "created_at": r.get("created_at"),
+            "pushed_at": r.get("pushed_at"), "license": lic, "license_tier": license_tier(lic),
+            "fork_ratio": round(r["forks_count"] / stars, 3) if stars and r.get("forks_count") is not None else None,
+            "topics": r.get("topics", [])[:8], "language": r.get("language"),
+        })
+    return out
+
+
+def gh_issues(q, per_page, quote=False):
+    """按点赞从高到低搜 issue。quote 时附上原话：正文里查询短语前后的一段，正文没有这个短语就取开头。"""
+    data = gh_search_get("issues", {"q": q, "sort": "reactions-+1", "order": "desc", "per_page": per_page})
+    phrase = re.search(r'"([^"]+)"', q)
+    out = []
+    for i in data.get("items", []):
+        it = {"title": (i.get("title") or "")[:160], "url": i.get("html_url"),
+              "in_repo": (i.get("repository_url") or "").split("/repos/")[-1],
+              "reactions": (i.get("reactions") or {}).get("+1", 0), "comments": i.get("comments"),
+              "state": i.get("state"), "created_at": (i.get("created_at") or "")[:10]}
+        if quote:
+            body = re.sub(r"\s+", " ", i.get("body") or "").strip()
+            k = body.lower().find(phrase.group(1).lower()) if phrase else -1
+            it["quote"] = (body[max(0, k - 80):k + 160] if k >= 0 else body[:200]).strip()
+        out.append(it)
+    return out
 
 
 def screen_trending(repos, date, days=7):
@@ -194,7 +265,7 @@ def screen_trending(repos, date, days=7):
         idle = (now - pushed).days if pushed else None
         lic = (m.get("license") or {}).get("spdx_id")
         stars = m.get("stargazers_count") or 0
-        r.update(created_at=m.get("created_at"), pushed_at=m.get("pushed_at"), license=lic,
+        r.update(created_at=m.get("created_at"), pushed_at=m.get("pushed_at"), license=lic, license_tier=license_tier(lic),
                  forks=m.get("forks_count"), open_issues=m.get("open_issues_count"),
                  homepage=m.get("homepage") or None, topics=(m.get("topics") or [])[:8],
                  age_days=age, fork_ratio=round(m["forks_count"] / stars, 3) if stars and m.get("forks_count") is not None else None)
@@ -213,6 +284,58 @@ def screen_trending(repos, date, days=7):
             r["screen"] = flags
         r["skip"] = bool(m.get("archived") or not lic or (idle is not None and idle > 30))
     return repos
+
+
+def star_history(repo, today):
+    """最近 7 天每天的增星，从早到晚 [(日期, 增星)]。接口按周给，周从周日 0 点（UTC）算，第一页是最近的几周。"""
+    weeks = get_json(f"https://api.github.com/repos/{repo}/stargazers/history?per_page=2", gh_headers())
+    days = [(dt.datetime.fromtimestamp(w["week"], dt.timezone.utc).date() + dt.timedelta(days=i), n)
+            for w in weeks for i, n in enumerate(w.get("days") or [])]
+    return sorted(d for d in days if d[0] <= today)[-7:]
+
+
+def screen_more(groups, cfg):
+    """候选仓库（日榜、行业话题、新项目）再补两样，同一个仓库只查一次：
+    最近 7 天每天的增星（GitHub 2026-09-04 新出的星数历史接口），单日暴涨的在 screen 里标出来，要查是被带起来的还是刷星；
+    GitHub 认不出许可证（NOASSERTION）的，读 LICENSE 原文按字样猜档位，猜的在 screen 里写明。
+    没有 GITHUB_TOKEN 时 API 每小时只有 60 次，只补前 10 个。"""
+    repos = {}
+    for g in groups:
+        for r in g:
+            if not r.get("skip"):
+                repos.setdefault(r["repo"].lower(), []).append(r)
+    limit = cfg.get("max_repos", 200) if os.environ.get("GITHUB_TOKEN") else 10
+    today = dt.datetime.now(dt.timezone.utc).date()
+    failed, in_row, last_err = 0, 0, None
+    for same in list(repos.values())[:limit]:
+        name = same[0]["repo"]
+        if in_row < 5:  # 连续 5 个取不到就当接口用不了，不再试
+            try:
+                days = star_history(name, today)
+                in_row = 0
+            except Exception as e:  # noqa: BLE001
+                days, failed, in_row, last_err = [], failed + 1, in_row + 1, e
+            if days:
+                total = sum(n for _, n in days)
+                top_day, top = max(days, key=lambda x: x[1])
+                spike = top >= cfg.get("spike_min", 100) and top >= total * cfg.get("spike_share", 0.5)
+                for r in same:
+                    r.update(stars_7d=total, stars_by_day=" ".join(f"{d:%m-%d}:{n}" for d, n in days))
+                    if spike:
+                        r.setdefault("screen", []).append(f"单日暴涨：{top_day:%m-%d} 一天 +{top:,}，占 7 天的 {top * 100 // total}%")
+        if same[0].get("license") == "NOASSERTION" and not same[0].get("license_tier"):
+            try:
+                tier, hint = read_license(name)
+            except Exception as e:  # noqa: BLE001
+                tier, hint = None, None
+                errors.append(f"GitHub 许可证原文 {name}: {e}")
+            if tier:
+                for r in same:
+                    r["license_tier"] = tier
+                    r["screen"] = [f for f in r.get("screen", []) if not f.startswith("许可证要打开")] + [
+                        f"许可证是按 LICENSE 原文猜的（{hint}），写之前打开核对"]
+    if failed:
+        errors.append(f"GitHub 星数历史：{failed} 个仓库没取到（{last_err}）")
 
 
 def mark_also_on(repos, raw):
@@ -331,6 +454,41 @@ def fetch_topics(cfg, since_day):
                     out.append(r)
         except Exception as e:  # noqa: BLE001
             errors.append(f"GitHub 话题 {t}: {e}")
+    return out
+
+
+def favorite_repos(limit):
+    """收藏过的 GitHub 仓库（工具和 Skills），最近收藏的在前：[(仓库, 收藏编号)]。"""
+    out, seen = [], set()
+    for p in sorted((ROOT / "data/favorites").glob("*.json"), reverse=True):
+        try:
+            fav = json.loads(p.read_text("utf-8"))
+        except (OSError, ValueError):
+            continue
+        repo = str((fav.get("item") or {}).get("repo") or "").strip("/")
+        if fav.get("type") in ("tools", "skills") and re.fullmatch(r"[\w.-]+/[\w.-]+", repo) and repo.lower() not in seen:
+            seen.add(repo.lower())
+            out.append((repo, p.stem))
+    return out[:limit]
+
+
+def fetch_issue_demand(cfg, date):
+    """issue 需求榜：谁在要托管版、谁说愿意付钱（最近 window_days 天新开的，按点赞排），
+    再加收藏过的每个仓库里还开着、点赞最多的几条：维护者还没做的东西，可以做成插件、Skill、教程或托管版。"""
+    since = (dt.date.fromisoformat(date) - dt.timedelta(days=cfg.get("window_days", 30))).isoformat()
+    out = {"searches": {}, "favorites": []}
+    for qd in cfg.get("queries", []):
+        try:
+            out["searches"][qd["name"]] = gh_issues(qd["q"].replace("{since}", since), cfg.get("per_query", 10), quote=True)
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"GitHub issue 需求「{qd['name']}」: {e}")
+    for repo, fid in favorite_repos(cfg.get("max_favorites", 20)):
+        try:
+            issues = gh_issues(f"repo:{repo} is:issue is:open", cfg.get("per_favorite", 5))
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"GitHub issue 需求 {repo}: {e}")
+            continue
+        out["favorites"].append({"favorite_repo": repo, "favorite": fid, "issues": issues})
     return out
 
 
@@ -467,10 +625,12 @@ def main():
             errors.append(f"RSS {f['name']}: {e}")
 
     raw["github_trending"] = []
-    seen = set()
+    seen, zh = set(), set()
     for url in cfg["github"]["trending_pages"]:
         try:
             for r in fetch_trending(url):
+                if "spoken_language_code=zh" in url:
+                    zh.add(r["repo"])
                 if r["repo"] not in seen:
                     seen.add(r["repo"])
                     raw["github_trending"].append(r)
@@ -487,6 +647,9 @@ def main():
                     raw["github_trending"].append(r)
         except Exception as e:  # noqa: BLE001
             errors.append(f"GitHub Trending {url}: {e}")
+    for r in raw["github_trending"]:
+        if r["repo"] in zh:
+            r["zh_list"] = True  # 也在中文区日榜上
     if not raw["github_trending"]:
         errors.append("GitHub Trending 解析为空，请用 WebFetch 打开 trending 页面兜底")
     else:
@@ -498,7 +661,7 @@ def main():
 
     d0 = (dt.date.fromisoformat(args.date) - dt.timedelta(days=cfg["github"]["new_repo_days"])).isoformat()
     try:
-        raw["github_new"] = gh_search(f"created:>{d0} stars:>50")
+        raw["github_new"] = gh_search(f"created:>{d0} stars:>50 archived:false", per_page=cfg["github"].get("new_repo_limit", 100))
     except Exception as e:  # noqa: BLE001
         raw["github_new"] = []
         errors.append(f"GitHub 新项目搜索: {e}")
@@ -514,6 +677,8 @@ def main():
         errors.append(f"GitHub SKILL.md 搜索: {e}")
 
     raw["github_topics"] = fetch_topics(cfg["github"]["topic_searches"], d0) if cfg["github"].get("topic_searches") else []
+    screen_more([raw["github_trending"], raw["github_topics"], raw["github_new"]], cfg["github"].get("star_history") or {})
+    raw["issue_demand"] = fetch_issue_demand(cfg["github"]["issue_demand"], args.date) if cfg["github"].get("issue_demand") else None
     raw["skills_sh"] = fetch_skills_sh(cfg["skills_sh"]) if cfg.get("skills_sh") else {}
     tm = "".join(os.environ.get("TRUSTMRR_API_KEY", "").split())
     if tm and cfg.get("trustmrr"):
@@ -550,11 +715,15 @@ def main():
         raw["platforms"] = None
         errors.append("没有配置 TIKHUB_API_KEY，跳过抖音、小红书等平台")
 
-    mark_also_on(raw["github_trending"], raw)
+    for key in ("github_trending", "github_topics", "github_new"):
+        mark_also_on(raw[key], raw)
     seen, raw["recent"] = recent_items(args.date)
     mark_seen(raw, seen)
     raw["errors"] = errors
     raw["counts"] = {k: len(v) for k, v in raw.items() if isinstance(v, list)}
+    if raw["issue_demand"]:
+        raw["counts"]["issue_demand"] = (sum(map(len, raw["issue_demand"]["searches"].values()))
+                                         + sum(len(f["issues"]) for f in raw["issue_demand"]["favorites"]))
     out = ROOT / "data/raw" / f"{args.date}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(raw, ensure_ascii=False, indent=1), "utf-8")
