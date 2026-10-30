@@ -1,0 +1,372 @@
+{
+ "date": "2026-10-31",
+ "generated_at": "2026-10-31T06:30:00+08:00",
+ "headline": [
+  "Anthropic 把 Max 20x 改名 Ultra，已验证账号**取消 5 小时限额**，价格仍 200 美元、周额度不变；Google 和 OpenAI 同日宣布支持 robots.txt 的共用 AI 训练开关。",
+  "今天没有平台数据；X 上 Grok Bot 一类「自带电脑的云端 bot」带出两个新开源项目，一天各涨 700 到 900 星，可以拿来试做外贸跟进自动化。",
+  "今天最值得做的一件事：把 `robots.txt` 里对 AI 爬虫的态度定下来（你的站要被 AI 引用还是不要被训练）。"
+ ],
+ "stats": {
+  "scanned": 410,
+  "selected": 16,
+  "chars": 2561,
+  "read_minutes": 6
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "打开你自己的站和客户站的 `robots.txt`，列出现在对 GPTBot、Google-Extended 等的写法，决定是否加共用的 AI 训练开关（先看 Google 和 OpenAI 的公告）。"
+  },
+  {
+   "minutes": 5,
+   "text": "如果在用 Max 20x：看账号邮件是否已取消 5 小时限额，跑批量任务前不用再卡着限额拆活。"
+  },
+  {
+   "minutes": 30,
+   "text": "用 `google-maps-scraper-kit` 在本机 Docker 里跑一个外贸客户词（只限自己测试，注意它违反 Google 条款），看导出的网站和邮箱质量。"
+  }
+ ],
+ "news": [
+  {
+   "title": "Anthropic 把 Max 20x 改名 Ultra，已验证账号取消 5 小时限额",
+   "url": "https://x.com/claudeai/status/2116220869479428500",
+   "source": "Claude 官方 X",
+   "source_type": "X",
+   "published": "2026-10-30",
+   "tier": "影响你的",
+   "for_me": "跑批量脚本不再被 5 小时窗口卡住，新账号验证前仍有临时限额。",
+   "summary": "Max 5x 改叫 Max（**100 美元**），Max 20x 改叫 Ultra（**200 美元**），价格不变；周限额不变，老订阅多数当天生效。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "Google 和 OpenAI 宣布支持 robots.txt 里的共用 AI 训练开关",
+   "url": "https://developers.google.com/search/blog/2026/10/ai-training-control",
+   "source": "Google Search Central",
+   "source_type": "官方",
+   "published": "2026-10-30",
+   "tier": "影响你的",
+   "for_me": "你的站和客户站要定一次对 AI 训练的态度，改一行 robots.txt 就行。",
+   "summary": "基于 IETF AIPREF 工作组，站长**一次设置**就能对多家 AI 厂商表态；OpenAI 同日表示会遵守。The Verge 称微软、Anthropic 也会采用。",
+   "track": "GEO",
+   "id": "N02"
+  },
+  {
+   "title": "Reddit CEO：Google AI Mode 不给任何人带流量，10 月每周少 100 多万次谷歌来访",
+   "url": "https://the-decoder.com/googles-ai-mode-doesnt-drive-traffic-for-anybody-reddit-ceo-huffman-warns-the-entire-web/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-30",
+   "tier": "影响你的",
+   "for_me": "做 SEO 站别只押谷歌点击，要同时布局被 AI 引用和邮件、社媒回流。",
+   "summary": "Huffman 称 Reddit 10 月每周丢失 **100 万+** 谷歌引荐；公司股价当天跌超 25%，正在海外测试登录墙。",
+   "track": "程序化SEO",
+   "id": "N03"
+  },
+  {
+   "title": "代理工具更新：Claude Code v2.1.314 可禁止写工作目录外；Codex 0.166.0 加 `codex doctor`",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.314",
+   "source": "GitHub Releases",
+   "source_type": "官方",
+   "published": "2026-10-30",
+   "tier": "影响你的",
+   "for_me": "VPS 上无人值守的任务建议打开写入限制，防止脚本写错目录。",
+   "summary": "Claude Code 新增 `blockWritesOutsideWorkingDirectories` 权限项；Codex 0.166.0 加 GPT-6.1 Terra 和 `codex doctor --network-only`。",
+   "track": "代理工具链",
+   "id": "N04"
+  },
+  {
+   "title": "DoorDash：第三方 AI 代理只下了「几百单」，日均 300 万单",
+   "url": "https://techcrunch.com/2026/10/30/doordash-said-its-only-received-several-hundred-orders-from-ai-agents/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-30",
+   "tier": "行业动态",
+   "summary": "Q3 财报会上称代理下单量极小，多数用户仍用自家 App；亚马逊封堵个人代理，沃尔玛欢迎。",
+   "id": "N05"
+  },
+  {
+   "title": "苹果智能随 iOS 27.3 登陆中国",
+   "url": "https://www.theverge.com/tech/1023974/apple-intelligence-china-ios-27-3",
+   "source": "The Verge",
+   "source_type": "媒体",
+   "published": "2026-10-30",
+   "tier": "行业动态",
+   "summary": "iOS 27.3 将把 Apple Intelligence 带到中国市场，具体功能和合作模型以官方公告为准。",
+   "id": "N06"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "lightpanda-io/browser",
+   "url": "https://github.com/lightpanda-io/browser",
+   "group": "刚冒出来",
+   "why_today": "首次上榜 +652 星",
+   "stars_today": 652,
+   "stars_total": 38338,
+   "license": "AGPL-3.0",
+   "tags": [
+    "数据与研究",
+    "Agent 与自动化"
+   ],
+   "brief": "给 AI 和爬虫用的无头浏览器",
+   "what": "用 Zig 写的无头浏览器，兼容 Playwright、Puppeteer 的 CDP 协议，目标是比 Chrome 更省内存和更快。适合抓取和代理自动化。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "批量打开买家官网读联系方式和产品页，替代吃内存的 Chrome"
+    },
+    {
+     "area": "SEO",
+     "how": "批量抓竞品页面做内容和内链分析，一台小 VPS 多开"
+    }
+   ],
+   "setup": "部署难度 中，下载二进制，接 Playwright 或 Puppeteer",
+   "safety": "黄",
+   "safety_note": "能用，但它是浏览器自动化，会碰登录态和页面脚本；许可证是 AGPL-3.0，自己改了对外提供服务要开源。防范：只用于公开页面，不在里面登录账号，另开低权限用户跑。",
+   "risk_brief": "浏览器自动化，AGPL",
+   "id": "G01"
+  },
+  {
+   "repo": "CopilotKit/OpenBot",
+   "url": "https://github.com/CopilotKit/OpenBot",
+   "group": "刚冒出来",
+   "why_today": "两天上榜 +707 星",
+   "stars_today": 707,
+   "stars_total": 8765,
+   "license": "MIT",
+   "tags": [
+    "Agent 与自动化"
+   ],
+   "brief": "每个 AI 同事自带一台电脑",
+   "what": "开源的 AI 同事：每个 bot 有自己的浏览器、文件和工具，每步动作先审批、后留痕。可接任何 AG-UI 代理。建仓 74 天。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "让 bot 每天查询询盘邮箱、整理客户资料，动作前需你批准"
+    },
+    {
+     "area": "做产品",
+     "how": "拿它做内部运营助手的底座，审计日志可直接给客户看"
+    }
+   ],
+   "setup": "部署难度 中，需要 Node 环境和模型 Key",
+   "safety": "黄",
+   "safety_note": "有浏览器和文件权限，建仓不到半年。依据：issue 仅 64 个，说明用的人不算多。防范：只在隔离机器上跑，别给支付和主邮箱凭证。",
+   "risk_brief": "浏览器、文件权限，较新",
+   "id": "G02"
+  },
+  {
+   "repo": "lfnovo/open-notebook",
+   "url": "https://github.com/lfnovo/open-notebook",
+   "group": "大家都在用",
+   "why_today": "7 天内第 2 天上榜",
+   "stars_today": 112,
+   "stars_total": 41007,
+   "license": "MIT",
+   "tags": [
+    "数据与研究",
+    "自媒体"
+   ],
+   "brief": "开源版 NotebookLM，自己部署",
+   "what": "NotebookLM 的开源替代：把资料丢进去做问答、摘要和播客式总结，可换模型。MIT 协议，最近提交 10 月 25 日。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "把竞品文章和行业报告丢进去，出选题和摘要，再改写成图文"
+    },
+    {
+     "area": "做产品",
+     "how": "给客户做可自部署的知识库问答服务"
+    }
+   ],
+   "setup": "部署难度 中，Docker 加模型 Key",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/lfnovo/open-notebook/HEAD/docs/assets/asset_list.png",
+    "https://img.youtube.com/vi/D-760MlGwaI/0.jpg"
+   ]
+  },
+  {
+   "repo": "wangzan101/Mika",
+   "url": "https://github.com/wangzan101/Mika",
+   "group": "刚冒出来",
+   "why_today": "建仓 2 天 1.2k 星",
+   "stars_today": null,
+   "stars_total": 1233,
+   "license": "Apache-2.0",
+   "tags": [
+    "自媒体",
+    "Agent 与自动化"
+   ],
+   "brief": "手机上自己操作 App 的 AI 助理",
+   "what": "Android 本机运行的 AI 代理，通过无障碍服务替你操作 App 和上网。建仓才 2 天，Apache-2.0。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "试着让它在手机上定时发布和回复评论，先在小号测试"
+    },
+    {
+     "area": "做产品",
+     "how": "观察它的实现，评估做手机端自动化服务"
+    }
+   ],
+   "setup": "部署难度 中，安卓手机加模型 Key",
+   "safety": "黄",
+   "safety_note": "需要无障碍权限，能读屏和点击所有 App，建仓不到 30 天。防范：用备用手机，不登录银行和主账号。",
+   "risk_brief": "无障碍权限，建仓 2 天",
+   "id": "G04"
+  }
+ ],
+ "skills": [
+  {
+   "name": "marketingskills",
+   "url": "https://github.com/coreyhaines31/marketingskills",
+   "repo": "coreyhaines31/marketingskills",
+   "hot": "长期热门",
+   "stars_total": 57514,
+   "installs": null,
+   "popularity_note": "GitHub 57.5k 星、8.5k fork，10-30 仍有提交（2026-10-31 查看）",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "53 个营销 Skill：SEO、开发信、文案",
+   "what": "纯 Markdown 技能包，含 `programmatic-seo`、`seo-audit`、`ai-seo`、`cold-email` 等 53 个。读过 programmatic-seo 和 cold-email，没有 shell、写文件或发数据的指令。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "用 `programmatic-seo` 规划模板页类型和内链，再让代理批量生成"
+    },
+    {
+     "area": "外贸",
+     "how": "用 `cold-email` 写开发信序列和邮箱预热方案"
+    }
+   ],
+   "install": "`npx skills add coreyhaines31/marketingskills`",
+   "id": "S01"
+  },
+  {
+   "name": "google-maps-scraper-kit",
+   "url": "https://github.com/Mahanaicoach/google-maps-scraper-kit",
+   "repo": "Mahanaicoach/google-maps-scraper-kit",
+   "hot": "新晋热门",
+   "stars_total": 2081,
+   "installs": null,
+   "popularity_note": "GitHub 2.1k 星，10-30 有提交；10-27 谷歌地图找客户成为外贸获客新做法",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "黄",
+   "safety_note": "会跑 Docker 和抓取脚本，并访问客户官网取邮箱。作者自己说明抓取 Google Maps 违反其服务条款，且电话邮箱属个人数据。防范：只在本机用，用完 `docker stop gmaps-scraper`，对欧盟客户按 GDPR 处理。",
+   "risk_brief": "违反谷歌条款，个人数据",
+   "brief": "本地抓谷歌地图商家线索",
+   "what": "基于 gosom/google-maps-scraper 的本地工具，按关键词和地区导出商家电话、官网、邮箱和社媒到 CSV，不需要 Google 的 API Key。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "按「产品词加城市」批量抓海外经销商，拿到官网邮箱做开发信"
+    },
+    {
+     "area": "做产品",
+     "how": "把线索表做成按行业卖的数据订阅"
+    }
+   ],
+   "install": "`git clone` 后 `docker compose up -d`，或 `npx skills add mahanaicoach/google-maps-scraper-kit`",
+   "id": "S02"
+  },
+  {
+   "name": "taste-skill",
+   "url": "https://github.com/Leonxlnx/taste-skill",
+   "repo": "Leonxlnx/taste-skill",
+   "hot": "新晋热门",
+   "stars_total": 106317,
+   "installs": null,
+   "popularity_note": "GitHub 106k 星，本周榜持续上榜，10-30 有提交（2026-10-31 查看）",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "黄",
+   "safety_note": "要跑随附的 Node 脚本、写项目目录、联网下载图片，脚本源码我没读到。依据：图片只取开放授权来源，不需要 Key。防范：先读 `.mjs` 脚本再装，别在放凭证的目录运行。",
+   "risk_brief": "跑 Node 脚本，源码未核",
+   "brief": "让代理做出有设计感的落地页",
+   "what": "给编码代理加美术指导、真实图片和浏览器检查，避免千篇一律的 AI 页面。含 `draw.mjs`、`inspect.mjs` 等脚本。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "让代理做单功能工具的落地页，三种宽度自动截图检查"
+    },
+    {
+     "area": "SEO",
+     "how": "批量生成各行业落地页时统一视觉风格"
+    }
+   ],
+   "install": "`npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\"`",
+   "id": "S03",
+   "images": [
+    "https://raw.githubusercontent.com/Leonxlnx/taste-skill/HEAD/examples/v2/coffee-storefront.webp",
+    "https://raw.githubusercontent.com/Leonxlnx/taste-skill/HEAD/examples/v2/night-dates.webp",
+    "https://raw.githubusercontent.com/Leonxlnx/taste-skill/HEAD/examples/v2/coffee-roast.webp",
+    "https://raw.githubusercontent.com/Leonxlnx/taste-skill/HEAD/examples/v2/coffee-questions.webp"
+   ]
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "Grok Bot 带火「自带电脑的 bot」",
+   "brief": "能真正把事做完的云端 bot 在起量",
+   "signal": "新玩法",
+   "track": "代理工具链",
+   "platforms": [
+    "X"
+   ],
+   "evidence": [
+    {
+     "platform": "X",
+     "title": "minchoi：人们用 Grok Bot 不是因为模型最聪明，而是它真的能把事做完",
+     "url": "https://x.com/minchoi/status/2116044558975025506",
+     "metrics": "点赞 314"
+    },
+    {
+     "platform": "X",
+     "title": "vista8：让 Grok Bot 读评论，自动整理并开发成网站",
+     "url": "https://x.com/vista8/status/2115959252275876147",
+     "metrics": "点赞 25"
+    },
+    {
+     "platform": "GitHub",
+     "title": "milind-soni/OpenMausBot：开源 Grok Bot 替代，带虚拟机",
+     "url": "https://github.com/milind-soni/OpenMausBot",
+     "metrics": "今日 +899 星 · 总星 8602"
+    }
+   ],
+   "quotes": [],
+   "why": "同类开源项目（OpenMausBot、CopilotKit/OpenBot）同日各涨 700 到 900 星。一边是 X 实践者带热，一边是 GitHub 同步起量，在形成趋势。",
+   "how": "第一步：在隔离 VPS 上装 `CopilotKit/OpenBot`，只给它一个任务——每天读一个询盘邮箱并整理成表；一周后看能否替代你手动分类。",
+   "risk": "bot 有浏览器和文件权限，别给主账号和支付凭证；OpenMausBot 当前有 611 个未关 issue，稳定性存疑。",
+   "id": "P01"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-26 S01",
+   "title": "pbakaus/impeccable",
+   "update": "总星从 87,599 涨到 **97,013**，今日 +2,299，连续 7 天在榜。",
+   "url": "https://github.com/pbakaus/impeccable",
+   "id": "F01"
+  },
+  {
+   "ref": "10-25 G02",
+   "title": "thedotmack/claude-mem",
+   "update": "总星从 102,800 涨到 **106,197**，今日 +1,145，连续 7 天在榜。",
+   "url": "https://github.com/thedotmack/claude-mem",
+   "id": "F02"
+  }
+ ],
+ "watch_next": [
+  "Grok Bot",
+  "OpenBot",
+  "AI Mode 流量",
+  "谷歌地图找客户"
+ ]
+}
