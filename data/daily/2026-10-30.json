@@ -1,0 +1,384 @@
+{
+ "date": "2026-10-30",
+ "generated_at": "2026-10-30T06:30:00+08:00",
+ "headline": [
+  "OpenAI 把 Pro 100/200/500 和 Business Premium 的用量上限**翻倍**，同时给这几档订阅送等额 API 额度，和 Anthropic 的做法一样。",
+  "今天 TikHub 余额不足，小红书、抖音等平台数据没抓到；X 上只看到「一次配置、多平台同步发帖」这一个可借用的自媒体做法。",
+  "今天先花 5 分钟确认两家订阅里的 API 额度有没有领，再把 VPS 脚本的调用转到这笔额度上。"
+ ],
+ "stats": {
+  "scanned": 330,
+  "selected": 16,
+  "chars": 2854,
+  "read_minutes": 6
+ },
+ "actions": [
+  {
+   "minutes": 5,
+   "text": "打开 ChatGPT 设置的账单页，看有没有 API 额度可领（Pro 100 档以上）；Claude Max 的同类额度也一并查，把 VPS 脚本的 API 开支先走这两笔额度。"
+  },
+  {
+   "minutes": 15,
+   "text": "把 `blader/humanizer` 装进 Claude Code，拿一封外贸开发信或一篇 Newsletter 草稿跑一遍，看改完是否更像人写的。"
+  },
+  {
+   "minutes": 30,
+   "text": "用 Docker 起一个 `listmonk`，导入 20 个测试邮箱发一封，评估能否替代按订阅人数收费的邮件工具。"
+  }
+ ],
+ "news": [
+  {
+   "title": "OpenAI 把 Pro 100/200/500 和 Business Premium 用量上限翻倍，取消 Pro 200 降额",
+   "url": "https://the-decoder.com/openai-doubles-usage-limits-on-pro-plans-as-competition-with-anthropic-heats-up/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-29",
+   "tier": "影响你的",
+   "for_me": "你若用 Codex，订阅额度现在更宽松；Plus 不在名单里，价格未变。",
+   "summary": "Pro 100/200/500 和 Business Premium 的 Work 与 Codex 用量**上限翻倍**，当天生效；原定的 Pro 200 降额取消。Dots 的用量仍单独计算，Plus 不变。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "OpenAI 给 $100/$200/$500 的 ChatGPT 订阅送等额 API 额度",
+   "url": "https://simonwillison.net/2026/Oct/29/api-credits/",
+   "source": "Simon Willison",
+   "source_type": "媒体",
+   "published": "2026-10-29",
+   "tier": "影响你的",
+   "for_me": "VPS 上脚本的 API 开销可以先抵扣这笔额度，今天去账单页看有没有领取入口。",
+   "summary": "OpenAI 推出和 Anthropic Max/Team 几乎相同的福利：**$100、$200、$500** 档订阅按月送等额 API 额度，可用于其中一个 API 组织。博文未说明是否过期。",
+   "id": "N02"
+  },
+  {
+   "title": "代理工具更新：Codex 0.166.0 加入 GPT-6.1 Terra；Claude API 请求体上限提到 128 MB",
+   "url": "https://github.com/openai/codex/releases/tag/rust-v0.166.0",
+   "source": "Codex Releases",
+   "source_type": "官方",
+   "published": "2026-10-29",
+   "tier": "影响你的",
+   "for_me": "多图、长 PDF 的 API 请求不再轻易撞 32 MB 上限；Codex 里可以直接选 Terra。",
+   "summary": "Codex 0.166.0 把 GPT-6.1 Terra 加进模型目录，新增 `codex queue --resume`；Claude API 请求体上限由 32 MB 提到 **128 MB**（官方 X 号）。",
+   "track": "代理工具链",
+   "id": "N03"
+  },
+  {
+   "title": "Mistral 开源 Mistral Large 4（Le Chonk）：约 1T 参数 MoE，1M 上下文",
+   "url": "https://huggingface.co/blog/mistral-large4",
+   "source": "Hugging Face Blog",
+   "source_type": "官方",
+   "published": "2026-10-29",
+   "tier": "行业动态",
+   "summary": "多模态 MoE，总参数约 1T，激活约 50B，**1M 上下文**；Artificial Analysis 指数开源第 5。许可证限制把它做成模型即服务，自托管需要多卡。",
+   "id": "N04"
+  },
+  {
+   "title": "Reddit 将转向以登录为主的体验，本季度先在美国以外测试",
+   "url": "https://techcrunch.com/2026/10/29/as-search-traffic-dries-up-reddit-announces-its-shifting-to-a-logged-in-experience/",
+   "source": "TechCrunch",
+   "source_type": "媒体",
+   "published": "2026-10-29",
+   "tier": "行业动态",
+   "summary": "Reddit 称为防 AI 抓取、也因搜索导流 10 月平均每周少 **100 多万**次。全球推广时间未定，首页仍允许未登录访问。",
+   "id": "N05"
+  },
+  {
+   "title": "Gemini 对话里可直接生成并编辑 Google Docs 等文件",
+   "url": "https://www.theverge.com/ai-artificial-intelligence/1022519/google-gemini-file-editing-documents-pdfs",
+   "source": "The Verge",
+   "source_type": "媒体",
+   "published": "2026-10-29",
+   "tier": "行业动态",
+   "summary": "在 Gemini 里生成的文档、PDF 等文件，现在不用离开应用就能继续编辑。",
+   "id": "N06"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "HKUDS/DeepTutor",
+   "url": "https://github.com/HKUDS/DeepTutor",
+   "group": "大家都在用",
+   "why_today": "今日 +1,926 星，7 天内第 4 天上榜",
+   "stars_today": 1926,
+   "stars_total": 49989,
+   "license": "Apache-2.0",
+   "tags": [
+    "做产品",
+    "数据与研究"
+   ],
+   "brief": "自托管的 AI 辅导与学习工作台",
+   "what": "把问答、出题、研究、可视化和学习路径放在一个界面里，带知识库和跨会话记忆，也能调用 Claude Code、Codex。Docker 一条命令起，模型 Key 在网页里填。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给一个垂直行业（如外贸新人培训）喂资料，套一层自己的品牌卖给小团队。"
+    },
+    {
+     "area": "自媒体",
+     "how": "拿它把长资料整理成问答和测验，做成付费资料包的配套练习。"
+    }
+   ],
+   "setup": "部署难度 低，Docker 一条命令，需要一个模型 API Key",
+   "safety": "绿",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/HKUDS/DeepTutor/HEAD/assets/figs/web-dev/overview.png",
+    "https://raw.githubusercontent.com/HKUDS/DeepTutor/HEAD/assets/figs/web-dev/chat.png",
+    "https://raw.githubusercontent.com/HKUDS/DeepTutor/HEAD/assets/figs/web-dev/partners.png",
+    "https://raw.githubusercontent.com/HKUDS/DeepTutor/HEAD/assets/figs/system/partners-architecture.png"
+   ]
+  },
+  {
+   "repo": "hugohe3/ppt-master",
+   "url": "https://github.com/hugohe3/ppt-master",
+   "group": "大家都在用",
+   "why_today": "周榜 +4,980 星",
+   "stars_today": null,
+   "stars_total": 70818,
+   "license": "MIT",
+   "tags": [
+    "外贸",
+    "自媒体"
+   ],
+   "brief": "让代理把文档做成可编辑的 PPT",
+   "what": "作为技能装进 Claude Code、Codex 等，把 PDF 或主题生成原生 .pptx（形状、图表、表格都可改）。Python 3.10+，生图 Key 可选。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "把产品目录 PDF 自动做成给客户的报价演示稿，省掉排版。"
+    },
+    {
+     "area": "自媒体",
+     "how": "把一篇长文转成可发图文的幻灯片，改文字就能出多个版本。"
+    }
+   ],
+   "setup": "部署难度 低，`npx skills add hugohe3/ppt-master`，建议用大上下文模型",
+   "safety": "绿",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/hugohe3/ppt-master/HEAD/docs/assets/screenshots/preview_pixel_breakfast_atlas.webp",
+    "https://raw.githubusercontent.com/hugohe3/ppt-master/HEAD/docs/assets/screenshots/preview_attention_is_all_you_need.webp",
+    "https://raw.githubusercontent.com/hugohe3/ppt-master/HEAD/docs/assets/screenshots/preview_china_telecom_2025.webp",
+    "https://raw.githubusercontent.com/ai-nuts/Storage/main/ResearchStudio/ResearchStudio-Reel/docs/examples/latent_diffusion_landscape/poster.png"
+   ]
+  },
+  {
+   "repo": "vectorize-io/hindsight",
+   "url": "https://github.com/vectorize-io/hindsight",
+   "group": "大家都在用",
+   "why_today": "今日 +1,352 星，7 天内第 2 天上榜",
+   "stars_today": 1352,
+   "stars_total": 56191,
+   "license": "MIT",
+   "tags": [
+    "Agent 与自动化"
+   ],
+   "brief": "给代理用的自托管长期记忆服务",
+   "what": "提供存入、检索、反思三种操作，用 PostgreSQL 加 pgvector 存储，有 Claude Code、Codex 集成和 MCP 端口，也有托管云版本。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给自己的客服或获客代理加跨会话记忆，别每次重新交代客户背景。"
+    },
+    {
+     "area": "外贸",
+     "how": "让开发信代理记住每个客户的回复历史，跟进时不重复问。"
+    }
+   ],
+   "setup": "部署难度 中，Docker 加 PostgreSQL，需要一个模型 API Key",
+   "safety": "绿",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/vectorize-io/hindsight/HEAD/hindsight-docs/static/img/hindsight-benchmarks.png",
+    "https://raw.githubusercontent.com/vectorize-io/hindsight/HEAD/hindsight-docs/static/img/hindsight-overview.webp",
+    "https://raw.githubusercontent.com/vectorize-io/hindsight/HEAD/hindsight-docs/static/img/per-user-memory-requirements.png",
+    "https://raw.githubusercontent.com/vectorize-io/hindsight/HEAD/hindsight-docs/static/img/per-user-memory-howto.png"
+   ]
+  },
+  {
+   "repo": "knadh/listmonk",
+   "url": "https://github.com/knadh/listmonk",
+   "group": "大家都在用",
+   "why_today": "Newsletter 话题 24k 星，10-29 有提交",
+   "stars_today": null,
+   "stars_total": 24039,
+   "license": "AGPL-3.0",
+   "tags": [
+    "自媒体",
+    "外贸"
+   ],
+   "brief": "单文件部署的自托管邮件列表与群发",
+   "what": "Go 写的单个程序加 PostgreSQL，带管理后台，管理订阅者、模板和群发。邮件通过你自己的 SMTP 发出，不按订阅人数收费。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "搭 Newsletter，订阅数涨了也不用换更贵的套餐。"
+    },
+    {
+     "area": "外贸",
+     "how": "按客户分组群发产品更新，自己控制退订和发送频率。"
+    }
+   ],
+   "setup": "部署难度 低，Docker Compose，需要 SMTP 服务；AGPL 做成对外服务要公开改动",
+   "safety": "绿",
+   "id": "G04",
+   "images": [
+    "https://github.com/user-attachments/assets/689b5fbb-dd25-4956-a36f-e3226a65f9c4"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "agent-browser",
+   "url": "https://github.com/vercel-labs/agent-browser",
+   "repo": "vercel-labs/agent-browser",
+   "hot": "长期热门",
+   "stars_total": 44900,
+   "installs": 1300000,
+   "popularity_note": "skills.sh 总榜 130 万安装（10-30 抓取），仓库约 4.49 万星。",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "黄",
+   "safety_note": "它能驱动浏览器、读写 cookie，并可复用你的 Chrome 登录态。只读了仓库主页，未逐个读 SKILL.md。防范：用独立的 Chrome profile，不用 `--profile` 带入日常登录，配上域名白名单，状态文件当密码保管。",
+   "risk_brief": "能读 cookie 和复用登录态",
+   "brief": "让代理用命令行操作真实浏览器",
+   "what": "Rust 写的浏览器自动化命令行，提供打开、点击、填写、快照等命令，技能内容随命令行版本更新。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "让代理批量查客户官网、抓联系方式页，给开发信做背景调查。"
+    },
+    {
+     "area": "SEO",
+     "how": "让代理检查页面渲染和内链，生成需要修的页面清单。"
+    }
+   ],
+   "install": "`npm install -g agent-browser` 后运行 `agent-browser install`",
+   "id": "S01"
+  },
+  {
+   "name": "superpowers",
+   "url": "https://github.com/obra/superpowers",
+   "repo": "obra/superpowers",
+   "hot": "新晋热门",
+   "stars_total": 308518,
+   "installs": null,
+   "popularity_note": "GitHub 总星 30.8 万，周榜本周 +4,655 星（10-30 抓取）。",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "它用 SessionStart 钩子注入启动指令，brainstorming 的可视化会向官网请求 logo 并带上版本号，diagnosing 技能会读会话记录。scripts 和 hooks 的内容未逐个读。防范：设置 `SUPERPOWERS_DISABLE_TELEMETRY`，不用时关掉 diagnosing 技能。",
+   "risk_brief": "有钩子和遥测，会读会话记录",
+   "brief": "让代理先设计、写计划、测试驱动再写代码",
+   "what": "一套可组合的开发流程技能：先问清需求、出设计、写计划，再按测试驱动和代码审查推进，含并行子代理和 worktree。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "一人做小工具时，用它的计划与审查流程减少返工。"
+    },
+    {
+     "area": "SEO",
+     "how": "做程序化 SEO 站时，让代理先出方案再批量改，避免整站改坏。"
+    }
+   ],
+   "install": "Claude Code：`/plugin install superpowers@claude-plugins-official`；Codex：在 `/plugins` 搜索安装",
+   "id": "S02"
+  },
+  {
+   "name": "humanizer",
+   "url": "https://github.com/blader/humanizer",
+   "repo": "blader/humanizer",
+   "hot": "长期热门",
+   "stars_total": 62354,
+   "installs": null,
+   "popularity_note": "GitHub 总星 6.2 万（10-30 抓取），10-28 有提交。",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "去掉文字里的 AI 腔，同时保持原意",
+   "what": "纯说明文档，依据维基百科的「AI 写作特征」改写文字，不添加事实，不执行命令；只有你指定文件时才改那个文件。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "Newsletter 和图文发布前过一遍，去掉套话和对仗句。"
+    },
+    {
+     "area": "外贸",
+     "how": "开发信草稿过一遍，让语气更像真人写的。"
+    }
+   ],
+   "install": "把仓库的 `SKILL.md` 放进 `~/.claude/skills/humanizer/`",
+   "id": "S03"
+  }
+ ],
+ "opportunities": [],
+ "trends": [
+  {
+   "topic": "一次配置，多平台同步发帖",
+   "brief": "用 MCP 加机器人把一处发帖镜像到各平台",
+   "signal": "使用技巧",
+   "track": "AI小工具",
+   "platforms": [
+    "X"
+   ],
+   "evidence": [
+    {
+     "platform": "X",
+     "title": "jackfriks：两个月前用 Grok 机器人加 Post Bridge 把 X 的每条帖子镜像到其他平台，隔几周回看，一次设置换来持续流量",
+     "url": "https://x.com/jackfriks/status/2115838059409240535",
+     "metrics": "点赞 37"
+    },
+    {
+     "platform": "X",
+     "title": "jackfriks：用 Post Bridge 的 MCP 加 Opus 5.5 排期发帖",
+     "url": "https://x.com/jackfriks/status/2115834573414146170",
+     "metrics": "点赞 122"
+    }
+   ],
+   "why": "同一人连着两条讲同一套做法，数字不大，但是配置一次、之后不用人管的典型。",
+   "how": "第一步：选一个带 MCP 或 API 的发帖工具，把代理连上去；写一条规则，让代理把你的主账号帖子改写成各平台版本再排期。",
+   "risk": "各平台对重复内容和 AI 生成内容的标注要求不同；全文一模一样地搬运容易被限流，要让代理按平台改写。",
+   "id": "P01"
+  },
+  {
+   "topic": "卖行业专属 AI 工作流手册",
+   "brief": "给一个职业做现成的 AI 用法手册，低价卖",
+   "signal": "需求信号",
+   "track": "AI小工具",
+   "platforms": [
+    "X"
+   ],
+   "evidence": [
+    {
+     "platform": "X",
+     "title": "hyh1564069：小红书一个 3797 粉账号卖律师专属 AI 工作流手册，16.92 元一份，卖出 460 单",
+     "url": "https://x.com/hyh1564069/status/2115657476226064879",
+     "metrics": "点赞 246"
+    },
+    {
+     "platform": "X",
+     "title": "sdf302030：信息差玩法里有人只在独立站避坑文里放 Shopify 主题和插件联盟链接，一个月进账小一万",
+     "url": "https://x.com/sdf302030/status/2115663103547314436",
+     "metrics": "点赞 163"
+    }
+   ],
+   "why": "按帖子数字 460 单乘 16.92 元约 7800 元（推断，未核实平台数据）；卖点是把一个职业的具体活做成拿来就能用，而不是教通用 AI。",
+   "how": "第一步：选你熟的外贸细分岗位（如询盘回复、报关单据），把三个最费时的活做成提示词加模板手册，先在 X 或小红书放样章试水。",
+   "risk": "数据来自单个博主转述，未核实；同类内容容易被抄，平台对虚拟商品和搬运的审核也在变严。",
+   "id": "P02"
+  }
+ ],
+ "followups": [
+  {
+   "ref": "10-27 N01",
+   "title": "OpenAI GPT-6.1 Terra",
+   "update": "Codex 0.166.0 把 Terra 加进内置、Vertex AI 和 Bedrock 的模型目录。",
+   "url": "https://github.com/openai/codex/releases/tag/rust-v0.166.0",
+   "id": "F01"
+  }
+ ],
+ "watch_next": [
+  "GEO 监测",
+  "AI Mode 广告",
+  "拼豆图纸"
+ ]
+}

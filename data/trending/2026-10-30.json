@@ -1,0 +1,289 @@
+[
+{
+"repo": "HKUDS/DeepTutor",
+"stars_total": 49989,
+"stars_today": 1926,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "obra/superpowers",
+"stars_total": 308518,
+"stars_today": 1037,
+"stars_week": 4655,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "pbakaus/impeccable",
+"stars_total": 95262,
+"stars_today": 2881,
+"stars_week": 7283,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "JetBrains/thinkrail",
+"stars_total": 5985,
+"stars_today": 1116,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "milind-soni/OpenMausBot",
+"stars_total": 7453,
+"stars_today": 1190,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "nightly-labs/openbot",
+"stars_total": 3857,
+"stars_today": 705,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "elayadesign/ai-design-skills",
+"stars_total": 12111,
+"stars_today": 1178,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "thedotmack/claude-mem",
+"stars_total": 104755,
+"stars_today": 459,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "CopilotKit/OpenBot",
+"stars_total": 8120,
+"stars_today": 240,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "togg53192-cmd/jailbreaks",
+"stars_total": 8977,
+"stars_today": 1610,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "Donchitos/Claude-Code-Game-Studios",
+"stars_total": 29145,
+"stars_today": 538,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "github/spec-kit",
+"stars_total": 143915,
+"stars_today": 334,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "rohitg00/ai-engineering-from-scratch",
+"stars_total": 75591,
+"stars_today": 607,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "baidu/Unlimited-OCR",
+"stars_total": 29752,
+"stars_today": 248,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "p-e-w/heretic",
+"stars_total": 37113,
+"stars_today": 152,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "beenuar/AiSOC",
+"stars_total": 5135,
+"stars_today": 318,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "vectorize-io/hindsight",
+"stars_total": 56191,
+"stars_today": 1352,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "rlaope/oh-my-hermes",
+"stars_total": 4803,
+"stars_today": 327,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "AgriciDaniel/claude-seo",
+"stars_total": 23987,
+"stars_today": 692,
+"stars_week": 3516,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "volcengine/OpenViking",
+"stars_total": 41149,
+"stars_today": 103,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "ansible/ansible",
+"stars_total": 71158,
+"stars_today": 20,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "PurpleDoubleD/locally-uncensored",
+"stars_total": 3026,
+"stars_today": 111,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "CopilotKit/CopilotKit",
+"stars_total": 38369,
+"stars_today": 52,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "agentscope-ai/QwenPaw",
+"stars_total": 36885,
+"stars_today": 116,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "gitroomhq/postiz-app",
+"stars_total": 40108,
+"stars_today": 200,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "microsoft/playwright",
+"stars_total": 98824,
+"stars_today": 84,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "KeygraphHQ/shannon",
+"stars_total": 50398,
+"stars_today": 336,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "chthollyphile/folia-major",
+"stars_total": 10206,
+"stars_today": 241,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "openobserve/openobserve",
+"stars_total": 22597,
+"stars_today": 37,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "lfnovo/open-notebook",
+"stars_total": 40927,
+"stars_today": 185,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "anthropics/claude-code-action",
+"stars_total": 9709,
+"stars_today": 18,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "prisma/orm",
+"stars_total": 47667,
+"stars_today": 5,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "cloudflare/security-audit-skill",
+"stars_total": 52831,
+"stars_today": null,
+"stars_week": 16002,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "php/php-src",
+"stars_total": 41718,
+"stars_today": null,
+"stars_week": 1201,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "multica-ai/andrej-karpathy-skills",
+"stars_total": 226422,
+"stars_today": null,
+"stars_week": 4293,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "TauricResearch/TradingAgents",
+"stars_total": 118316,
+"stars_today": null,
+"stars_week": 5322,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "hugohe3/ppt-master",
+"stars_total": 70818,
+"stars_today": null,
+"stars_week": 4980,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "anthropics/knowledge-work-plugins",
+"stars_total": 33843,
+"stars_today": null,
+"stars_week": 2612,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "Leonxlnx/taste-skill",
+"stars_total": 105515,
+"stars_today": null,
+"stars_week": 3940,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "jakubkrehel/skills",
+"stars_total": 9171,
+"stars_today": null,
+"stars_week": 776,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "ruvnet/ruflo",
+"stars_total": 80141,
+"stars_today": null,
+"stars_week": 1930,
+"on_page": "trending?since=weekly"
+}
+]
