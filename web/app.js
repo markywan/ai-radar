@@ -296,6 +296,8 @@
       if (it.why_today) meta.push('<span class="why">' + esc(it.why_today) + "</span>");
       meta.push("<span>★ " + wan(it.stars_total) + "</span>");
       if (it.stars_today != null && !/今日/.test(it.why_today || "")) meta.push('<span class="up">今日 +' + num(it.stars_today) + "</span>");
+      if (it.stars_7d != null && !/7 ?天 ?\+/.test(it.why_today || "")) meta.push("<span>7 天 +" + num(it.stars_7d) + "</span>");
+      if (it.license_tier) meta.push("<span>" + esc(it.license_tier) + "</span>");  /* 一眼看出能不能做托管版来卖 */
     } else {
       var nm = splitName(it.name); name = nm[0]; sub = it.brief ? "" : nm[1];
       if (it.hot === "新晋热门") meta.push('<span class="hot">新晋热门</span>');
@@ -314,15 +316,20 @@
     var uses = (it.uses || []).length
       ? '<div><p class="label">一人公司能怎么用</p><dl class="uses">' + it.uses.map(function (u) { return "<dt>" + esc(u.area) + "</dt><dd>" + rich(u.how) + "</dd>"; }).join("") + "</dl></div>"
       : (it.use_for_me || it.how_i_use ? '<div><p class="label">对我有用</p><p>' + rich(it.use_for_me || it.how_i_use) + "</p></div>" : "");
+    /* 2026-10-30 起工具按能做什么生意挑：生意放在展开后第一行，需求证据是 issue 原标题和点赞数 */
+    var biz = it.business ? '<p class="forme"><b>生意</b>' + rich(it.business) + "</p>" : "";
+    var demand = (it.demand || []).length ? '<div><p class="label">需求证据</p><ul class="ev">' + it.demand.map(function (e) {
+      return '<li><span class="pf">' + (e.reactions != null ? num(e.reactions) + " 赞" : "issue") + '</span><span class="et">' + link(e.title || e.url, e.url) + "</span></li>";
+    }).join("") + "</ul></div>" : "";
     var facts = [];
     if (it.setup) facts.push(["上手", rich(it.setup)]);
     if (it.install) facts.push(["安装", rich(it.install)]);
     if (it.popularity_note) facts.push(["热度", rich(it.popularity_note)]);
-    if (kind === "tools" && it.license) facts.push(["许可证", esc(it.license)]);
+    if (kind === "tools" && (it.license || it.license_tier)) facts.push(["许可证", esc([it.license, it.license_tier].filter(Boolean).join(" · "))]);
     if (it.works_with) facts.push(["适用于", esc(it.works_with)]);
     var factsHtml = facts.length ? '<dl class="facts">' + facts.map(function (f) { return "<dt>" + f[0] + "</dt><dd>" + f[1] + "</dd>"; }).join("") + "</dl>" : "";
     var red = it.safety === "红";  /* 红色条目点开后先看风险 */
-    var body = '<div class="row-b" id="' + bid + '" hidden>' + (red ? riskBox(it) : "") + '<p class="what">' + rich(it.what) + "</p>" + strip(gid, imgs) + uses + factsHtml + (red ? "" : riskBox(it)) +
+    var body = '<div class="row-b" id="' + bid + '" hidden>' + (red ? riskBox(it) : "") + biz + '<p class="what">' + rich(it.what) + "</p>" + strip(gid, imgs) + uses + demand + factsHtml + (red ? "" : riskBox(it)) +
       actBtns(gid, true, link(kind === "tools" ? "GitHub ↗" : "看仓库 ↗", it.url, "btn")) + FOLD + "</div>";
     return '<li class="row item' + (imgs.length ? " has-img" : "") + '">' + head + risk + body + "</li>";
   }
