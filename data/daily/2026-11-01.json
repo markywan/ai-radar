@@ -1,0 +1,271 @@
+{
+ "date": "2026-11-01",
+ "generated_at": "2026-11-01T06:30:00+08:00",
+ "headline": [
+  "Claude Code v2.1.316 宣布 Opus 4.8 的 fast mode 将于 11 月 30 日移除，之后请求直接报错，不再回退，要迁到 Opus 5.5。",
+  "今天小红书、抖音、TikTok、YouTube、B站的 TikHub 抓取全部因余额不足失败，没有平台信号；X 上暂无可复制的新玩法或带收入证据的机会。",
+  "今天最值得做的一件事：搜一遍你的脚本和配置里有没有写死 Opus 4.8 或 fast mode，11 月 30 日前改成 Opus 5.5。"
+ ],
+ "stats": {
+  "scanned": 385,
+  "selected": 12,
+  "chars": 2150,
+  "read_minutes": 5
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "在 VPS 脚本、`settings.json`、CI 里搜 `opus-4-8` 和 fast mode，改成 Opus 5.5 并试跑一次"
+  },
+  {
+   "minutes": 5,
+   "text": "打开 Cursor 的扩展列表，确认近两天装的 Claude Code 扩展发布者是 Anthropic，不是的先卸载"
+  },
+  {
+   "minutes": 30,
+   "text": "在一个正在做的项目里装 Graphify，跑 `/graphify .`，看它生成的知识图能不能替你省掉读旧代码的时间"
+  }
+ ],
+ "news": [
+  {
+   "title": "代理工具更新：Claude Code v2.1.316 通知 Opus 4.8 fast mode 11 月 30 日下线；Codex 0.167.0 预发布版出现",
+   "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.316",
+   "source": "Claude Code Releases",
+   "source_type": "官方",
+   "published": "2026-10-31",
+   "tier": "影响你的",
+   "for_me": "脚本里写死 Opus 4.8 fast mode 的，11 月 30 日后会直接报错，本周先搜一遍改成 Opus 5.5。",
+   "summary": "Opus 4.8 fast mode **11-30 移除**，之后请求报错；新增 `CLAUDE_CODE_SUBAGENT_EFFORT` 设子代理强度；Codex 出 0.167.0-alpha.1 预发布。",
+   "track": "代理工具链",
+   "id": "N01"
+  },
+  {
+   "title": "Cursor 扩展市场出现被篡改的 Claude Code 扩展，上架约 11 小时，最多波及 5,000 用户",
+   "url": "https://the-decoder.com/malicious-claude-code-extension-in-cursors-marketplace-attempted-remote-access-and-data-theft/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-30",
+   "tier": "影响你的",
+   "for_me": "你若在 Cursor 里装过 Claude Code 扩展，今天检查发布者；这类扩展会拿到你的代码和凭证。",
+   "summary": "被篡改版本会收集主机名、用户名、系统、公网 IP 并尝试**建立远程访问**；Cursor 称多数机器因缺管理员权限会失败。Cursor 已下架并恢复市场，Anthropic 称未参与该扩展。",
+   "id": "N02"
+  },
+  {
+   "title": "X 新增「受限触达」检查：可看哪些帖子被限流及原因",
+   "url": "https://x.com/minchoi/status/2116389352800412061",
+   "source": "minchoi",
+   "source_type": "X",
+   "published": "2026-10-31",
+   "tier": "影响你的",
+   "for_me": "你在 X 发内容的话，这能查出哪条被限了；先查最近几条。",
+   "summary": "据 minchoi 的演示，X 现在会标出**哪些帖子触达被限制**，并显示带可见性限制标签的帖子；入口路径见原帖（来自 X 热帖，未在官方公告核实）。",
+   "track": "AI小工具",
+   "id": "N03"
+  },
+  {
+   "title": "Anthropic 给 Opus 4.7/4.6、Sonnet 4.6、Mythos 5 补加文本水印，4.6 两款改采样参数可绕过",
+   "url": "https://the-decoder.com/anthropics-watermark-rollout-leaves-a-loophole-on-two-older-claude-models/",
+   "source": "The Decoder",
+   "source_type": "媒体",
+   "published": "2026-10-31",
+   "tier": "行业动态",
+   "summary": "水印是用词模式，与欧盟 AI 法案 12 月期限有关；Opus 5.5 已带水印。Opus 4.6 和 Sonnet 4.6 仅在 `temperature`、`top_p`、`top_k` 为默认值时才加，客户无法关闭。",
+   "id": "N04"
+  },
+  {
+   "title": "OpenAI API 价格页出现 GPT-6 Astra 法律版：输入 10 美元、输出 50 美元每百万 token",
+   "url": "https://x.com/testingcatalog/status/2116443618659455284",
+   "source": "testingcatalog",
+   "source_type": "X",
+   "published": "2026-10-31",
+   "tier": "行业动态",
+   "summary": "价格页把 gpt-6-astra-law 列为「法律模型配置」，缓存输入 **1 美元**。来自新闻号对价格页的转述，未见官方发布说明。",
+   "id": "N05"
+  },
+  {
+   "title": "Grok Bot 首个稳定版上线，社区称已支持支付宝和银联卡支付",
+   "url": "https://x.com/testingcatalog/status/2116312361086624003",
+   "source": "testingcatalog",
+   "source_type": "X",
+   "published": "2026-10-30",
+   "tier": "行业动态",
+   "summary": "SpaceXSI 称在做任务总览页和短信交互；另有 op7418 发帖称 Grok Bot 现支持支付宝与银联卡付费（个人帖，未见官方说明）。",
+   "track": "代理工具链",
+   "id": "N06"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "Graphify-Labs/graphify",
+   "url": "https://github.com/Graphify-Labs/graphify",
+   "group": "大家都在用",
+   "why_today": "首次上榜 +686 星，共 14 万星",
+   "stars_today": 686,
+   "stars_total": 140016,
+   "license": "Apache-2.0 / MIT",
+   "tags": [
+    "Agent 与自动化",
+    "数据与研究"
+   ],
+   "brief": "把代码和文档变成可查询的知识图",
+   "what": "把代码库连同文档、SQL 结构、配置、PDF 转成知识图，以 `/graphify` 技能挂进 Claude Code、Codex、Cursor。代码在本机用 tree-sitter 解析，自称无遥测、不需要向量库。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "接手别人开源项目或旧站点代码时先生成图，再让代理改，省掉读代码的几小时"
+    },
+    {
+     "area": "SEO",
+     "how": "把自己的内容站、配置和 SQL 结构喂进去，让代理按图批量改模板"
+    }
+   ],
+   "setup": "低：Python 3.10+，`uv tool install graphifyy` 后 `graphify install`",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/Graphify-Labs/graphify/v8/docs/graph-hero.png"
+   ]
+  },
+  {
+   "repo": "Orkas-AI/Orkas",
+   "url": "https://github.com/Orkas-AI/Orkas",
+   "group": "刚冒出来",
+   "why_today": "首次上榜 +1,118 星",
+   "stars_today": 1118,
+   "stars_total": 6109,
+   "license": "MIT",
+   "tags": [
+    "Agent 与自动化"
+   ],
+   "brief": "桌面端本地优先的 AI 团队，带 16 个专员",
+   "what": "桌面应用，一个 Commander 代理拆目标，调度 16 个内置专员和 Claude Code、Codex 等外部命令行代理；支持 Gmail、Slack 等连接器，发送和删除默认要确认。自带 500 积分免费额度。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "把选题、写稿、排版分给不同专员，一人跑完一条图文流水线"
+    },
+    {
+     "area": "外贸",
+     "how": "接入邮箱连接器起草开发信，发送前人工确认"
+    }
+   ],
+   "setup": "中：下载安装包或 Node 22.12+ 源码运行，需配模型密钥",
+   "safety": "黄",
+   "safety_note": "结论：会拿到邮箱等账号权限，且首次上榜。依据：连接器可发信、发帖、删除；语音输入会把音频传给 Orkas 服务。防范：连接器只授权专用小号，保持默认发送前确认，不开语音输入。",
+   "risk_brief": "连接器权限大，用小号",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/Orkas-AI/Orkas/HEAD/resources/app-ui/task-en.png"
+   ]
+  },
+  {
+   "repo": "melgarafael/DeskcommCRM",
+   "url": "https://github.com/melgarafael/DeskcommCRM",
+   "group": "刚冒出来",
+   "why_today": "首次上榜，建仓半年 5.0k 星",
+   "stars_today": 44,
+   "stars_total": 5008,
+   "license": "MIT",
+   "tags": [
+    "外贸",
+    "做产品"
+   ],
+   "brief": "自托管 AI 销售 CRM，接 WhatsApp",
+   "what": "Next.js + Supabase 的多租户聊天销售 CRM，内置 AI 代理和 MCP，通过 WAHA 或 Meta 官方接口连 WhatsApp。VPS 加 Docker 一键安装脚本，README 主要是葡萄牙语场景。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "拿它自动回复 WhatsApp 询盘并记录客户阶段，海外客户常用 WhatsApp"
+    },
+    {
+     "area": "做产品",
+     "how": "给垂直行业小商家部署托管版收月费（推断，需先验证需求）"
+    }
+   ],
+   "setup": "中：VPS 4GB + Docker + 域名，要 Supabase 与 AI 模型密钥",
+   "safety": "黄",
+   "safety_note": "结论：要账号凭证，WhatsApp 扫码方式有封号风险。依据：需 Supabase 密钥和 WhatsApp 号；README 只提到节流等防封措施，并建议规模化用 Meta 官方渠道。防范：用 Meta 官方接口，不用主力号扫码，定期运行 `backup.sh`。",
+   "risk_brief": "扫码连 WhatsApp 易封号",
+   "id": "G03"
+  }
+ ],
+ "skills": [
+  {
+   "name": "agent-skills",
+   "url": "https://github.com/addyosmani/agent-skills",
+   "repo": "addyosmani/agent-skills",
+   "hot": "新晋热门",
+   "stars_total": 112246,
+   "installs": null,
+   "popularity_note": "GitHub 11.2 万星，2026-10-31 仍有提交；skills.sh 总榜前 40 内未见",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "Addy Osmani 的 25 个工程流程技能",
+   "what": "25 个技能加 9 个斜杠命令，覆盖定义、计划、构建、验证、评审、上线。我读了 `using-agent-skills` 和 `test-driven-development` 的 SKILL.md：纯文字，无脚本、无网络请求、无密钥；仓库另有 `hooks/` 和 `scripts/` 目录未逐个读。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "让代理先写失败测试再改代码，减少自动改完又坏掉的情况"
+    },
+    {
+     "area": "SEO",
+     "how": "给程序化页面生成脚本加测试和验收清单，批量发布前先过一遍"
+    }
+   ],
+   "install": "`npx skills add addyosmani/agent-skills`",
+   "id": "S01",
+   "images": [
+    "https://addyosmani.com/assets/images/addys-agent-skills.jpg"
+   ]
+  },
+  {
+   "name": "grill-me",
+   "url": "https://skills.sh/mattpocock/skills/grill-me",
+   "repo": "mattpocock/skills",
+   "hot": "长期热门",
+   "stars_total": 308333,
+   "installs": 1500000,
+   "popularity_note": "skills.sh 总榜第 2，150 万安装（2026-11-01）；所在仓库 30.8 万星",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "动手前让代理连环追问，磨清方案",
+   "what": "我读了它的 SKILL.md：设为只能手动触发，唯一动作是调用 `grilling` 技能（该技能内容我没读到）。本身无 shell、网络、写文件和密钥。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "写 MVP 需求前先被追问一轮，把范围砍到一周能做完"
+    },
+    {
+     "area": "自媒体",
+     "how": "写长文或专题前让它追问受众和角度，再出提纲"
+    }
+   ],
+   "install": "`npx skills@latest add mattpocock/skills -a claude-code`",
+   "id": "S02",
+   "images": [
+    "https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png"
+   ]
+  }
+ ],
+ "opportunities": [],
+ "followups": [
+  {
+   "ref": "10-31 N01",
+   "title": "Anthropic Max 20x 改名 Ultra，取消 5 小时限额",
+   "update": "量子位称大多数 Ultra 订阅者已收到；到「设置→用量」看 5 小时进度条是否消失，新账号需先验证。",
+   "url": "https://www.qbitai.com/2026/10/506855.html",
+   "id": "F01"
+  }
+ ],
+ "watch_next": [
+  "Graphify",
+  "Orkas",
+  "WhatsApp CRM"
+ ]
+}
