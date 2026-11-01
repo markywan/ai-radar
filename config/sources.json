@@ -1,5 +1,5 @@
 {
-  "_说明": "日报的抓取来源。改这里就能增删信源，不用改代码。抓不到的来源会记进 errors，不会让整个任务失败。kind 的含义：官方＝厂商官网，媒体＝大媒体（Techmeme 只用来发现线索，收录时必须换成它指向的原文），政策＝平台规则和创作者政策，社区＝只用来发现线索，机会＝一人公司项目线索。",
+  "_说明": "日报的抓取来源。改这里就能增删信源，不用改代码。抓不到的来源会记进 errors，不会让整个任务失败。kind 的含义：官方＝厂商官网，媒体＝大媒体（Techmeme 只用来发现线索，收录时必须换成它指向的原文），政策＝平台规则和创作者政策，社区＝只用来发现线索，机会＝一人公司项目线索。RSS 只留最近 48 小时的条目；keep_latest 是低频源（如月刊）不管多久以前都保留的最新几条。Reddit 2026-11-13 停 RSS，r/SideProject、r/microsaas 两个源 10-30 去掉了，机会候选改从 Show HN、Product Hunt、V2EX 和 acquire 找。",
   "feeds": [
     {"name": "OpenAI", "url": "https://openai.com/news/rss.xml", "kind": "官方"},
     {"name": "Google DeepMind", "url": "https://deepmind.google/blog/rss.xml", "kind": "官方"},
@@ -19,8 +19,7 @@
     {"name": "Google Search Central", "url": "https://feeds.feedburner.com/blogspot/amDG", "kind": "政策"},
     {"name": "Product Hunt", "url": "https://www.producthunt.com/feed", "kind": "机会"},
     {"name": "V2EX 分享创造", "url": "https://www.v2ex.com/feed/create.xml", "kind": "机会"},
-    {"name": "Reddit r/SideProject", "url": "https://www.reddit.com/r/SideProject/top/.rss?t=day", "kind": "机会"},
-    {"name": "Reddit r/microsaas", "url": "https://www.reddit.com/r/microsaas/top/.rss?t=day", "kind": "机会"}
+    {"name": "HelloGitHub 月刊", "url": "https://hellogithub.com/rss", "kind": "社区", "keep_latest": 1}
   ],
   "official_pages_without_rss": [
     "https://www.anthropic.com/news",
@@ -56,19 +55,39 @@
     ]
   },
   "github": {
+    "_说明": "trending_pages 里的中文区日榜（spoken_language_code=zh）放最后，上面也有的仓库标 zh_list，用来对照海外在火、中文圈还没写的。new_repo_limit 是新项目雷达一次取多少个（最近 new_repo_days 天新建、50 星以上、没归档，按星数排）。",
     "trending_pages": [
       "https://github.com/trending?since=daily",
       "https://github.com/trending/python?since=daily",
-      "https://github.com/trending/typescript?since=daily"
+      "https://github.com/trending/typescript?since=daily",
+      "https://github.com/trending?since=daily&spoken_language_code=zh"
     ],
     "weekly_pages": ["https://github.com/trending?since=weekly"],
     "new_repo_days": 7,
+    "new_repo_limit": 100,
     "skill_topics": ["claude-skills", "agent-skills", "codex-skills", "claude-code-skills"],
     "topic_searches": {
-      "_说明": "他行业里的话题：最近 7 天有提交、星数 200 以上的仓库，补总榜看不到的外贸、SEO、电商工具。",
-      "topics": ["shopify", "seo-tools", "programmatic-seo", "amazon-seller", "cold-email", "newsletter", "lead-generation", "dropshipping"],
+      "_说明": "他五个方向里的话题：最近 7 天有提交、星数 200 以上的仓库，补总榜看不到的外贸、SEO、获客、邮件和 AI 可见度工具。2026-10-30 去掉要囤货的 dropshipping、amazon-seller，加了他收藏过的 whatsapp-api、ai-visibility。",
+      "topics": ["shopify", "seo-tools", "programmatic-seo", "cold-email", "newsletter", "lead-generation", "whatsapp-api", "ai-visibility"],
       "min_stars": 200,
       "per_topic": 8
+    },
+    "issue_demand": {
+      "_说明": "issue 需求榜：用户在 issue 里写的需求原话比星数更接近生意。queries 每天跑，{since} 换成 window_days 天前的日期，按点赞从高到低取 per_query 条；短语要配 in:title（只搜正文会混进大量无关结果），「愿意付钱」排除了 Claude Code、Codex 的额度抱怨。另外查收藏过的仓库（工具和 Skills，最近收藏的前 max_favorites 个）里还开着、点赞最多的 per_favorite 条。搜索接口每分钟最多 30 次，脚本每次搜索之间隔 2 秒。",
+      "window_days": 30,
+      "per_query": 10,
+      "queries": [
+        {"name": "要托管版", "q": "\"hosted version\" in:title is:issue created:>{since}"},
+        {"name": "愿意付钱", "q": "\"willing to pay\" in:title,body is:issue created:>{since} -repo:anthropics/claude-code -repo:openai/codex"}
+      ],
+      "per_favorite": 5,
+      "max_favorites": 20
+    },
+    "star_history": {
+      "_说明": "用 GitHub 2026-09-04 新出的星数历史接口（/repos/{owner}/{repo}/stargazers/history，按天给增星）给候选仓库补最近 7 天每天的增星：日榜（skip 的不补）、行业话题、新项目，最多 max_repos 个。单日增星不少于 spike_min、又占 7 天总数 spike_share 以上的，在 screen 里标「单日暴涨」，要查是 HN、X 带起来的还是刷星。",
+      "max_repos": 200,
+      "spike_min": 100,
+      "spike_share": 0.5
     }
   },
   "skills_sh": {

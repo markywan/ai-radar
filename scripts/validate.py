@@ -25,8 +25,11 @@ VERDICTS = {"值得验证", "放进观察", "只是灵感"}
 SIGNALS = {"爆款形式", "需求信号", "新玩法", "使用技巧"}
 TIERS = {"影响你的", "行业动态"}
 GROUPS = {"大家都在用", "刚冒出来"}
-# 用法只写他的四个方向，其他方向不写：三期里 66 条用法只有 31 条在这四个方向里，其余他不会去做
-AREAS = {"外贸", "SEO", "自媒体", "做产品"}
+# 用法只写他的方向，其他方向不写：三期里 66 条用法只有 31 条在原来的四个方向里，其余他不会去做。
+# 2026-10-30 他转做海外生意，从四个扩到六个：加了供需（供需撮合）和宣传（海外宣传）
+AREAS = {"外贸", "SEO", "自媒体", "供需", "宣传", "做产品"}
+# 许可证三档：能不能拿它做托管版来卖（fetch.py 按 SPDX 先定档，认不出的由模型读 LICENSE 定）
+LICENSE_TIERS = {"能托管来卖", "托管要公开改动", "不能托管来卖"}
 # 资讯只取官方网站、大媒体和 X；其他社交和自媒体平台上的内容只用于玩法风向和机会
 SOURCE_TYPES = {"官方", "媒体", "X"}
 SOCIAL = ("xiaohongshu.com", "xhslink.com", "douyin.com", "iesdouyin.com", "tiktok.com",
@@ -40,7 +43,7 @@ READ_SPEED = 500        # 每分钟读多少字，算「读完约 N 分钟」
 SKIP_KEYS = {"url", "id", "repo", "published", "platform", "platforms", "source_type", "safety", "hot", "verdict",
              "category", "tier", "group", "track", "works_with", "license", "area", "minutes", "images", "ref",
              "stars_total", "stars_today", "installs", "generated_at", "date", "signal", "name",
-             "safety_note", "tags"}  # 安全依据默认折叠，不算阅读量，但单条限 200 字
+             "safety_note", "tags", "license_tier", "stars_7d", "reactions"}  # 安全依据默认折叠，不算阅读量，但单条限 200 字
 
 
 def host_of(url):
@@ -102,9 +105,32 @@ def check_uses(i, it, key, problems):
         if not (isinstance(u, dict) and u.get("area") and u.get("how")):
             problems.append(f"{i} 的 uses 每条都要有 area 和 how")
         elif u["area"] not in AREAS:
-            problems.append(f"{i} 的用法方向「{u['area']}」不在他的四个方向里（{'/'.join(sorted(AREAS))}），换一条或删掉")
+            problems.append(f"{i} 的用法方向「{u['area']}」不在他的六个方向里（{'/'.join(sorted(AREAS))}），换一条或删掉")
         elif width(u["how"]) > 60:
             problems.append(f"{i} 的用法「{u['area']}」要在 60 字以内：{plain(u['how'])[:30]}…")
+
+
+def check_business(i, it, problems):
+    """工具卡按能做什么生意挑（2026-10-30 起）：生意一句话、许可证档、需求证据。"""
+    biz = it.get("business") or ""
+    if not biz:
+        problems.append(f"{i} 缺少 business（能拿它做什么生意：卖什么、卖给谁、怎么收钱）；想不出生意的工具不要选")
+    elif width(biz) > 40:
+        problems.append(f"{i} 的 business 要在 40 字以内：{plain(biz)[:30]}…")
+    if it.get("license_tier") not in LICENSE_TIERS:
+        problems.append(f"{i} 的 license_tier 只能是 {'/'.join(sorted(LICENSE_TIERS))}：照抄素材，素材里是 null 就打开 LICENSE 看完再定")
+    demand = it.get("demand")
+    if demand is not None:
+        if not isinstance(demand, list) or len(demand) > 3:
+            problems.append(f"{i} 的 demand 是最多 3 条的数组（issue 标题、链接、点赞数），没有就不写")
+        else:
+            for e in demand:
+                if not (isinstance(e, dict) and e.get("title") and URL.match(str(e.get("url", ""))) and host_in(e["url"], ("github.com",))):
+                    problems.append(f"{i} 的 demand 每条都要有 title 和 GitHub 上的 url：{e}")
+                elif not isinstance(e.get("reactions"), int):
+                    problems.append(f"{i} 的 demand「{e['title'][:20]}」要写 reactions（点赞数，整数）")
+    if it.get("stars_7d") is not None and not isinstance(it["stars_7d"], int):
+        problems.append(f"{i} 的 stars_7d 是素材里的整数，没有就不写")
 
 
 def check_card(key, it, problems):
@@ -120,6 +146,7 @@ def check_card(key, it, problems):
         wt = it.get("why_today") or ""
         if wt and (width(wt) > 20 or "**" in wt):
             problems.append(f"{i} 的 why_today 要在 20 个字以内，不加粗，写数字：{wt}")
+        check_business(i, it, problems)
     if it.get("safety") in ("黄", "红"):
         rb = it.get("risk_brief") or ""
         if not rb:
@@ -216,7 +243,7 @@ def main(path):
     p = Path(path)
     doc = json.loads(p.read_text("utf-8"))
     problems = []
-    tracks = load_tracks()
+    tracks = {re.sub(r"\s+", "", t): t for t in load_tracks()}  # 「SEO 与 GEO」和「SEO与GEO」算同一条
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(doc.get("date", ""))):
         problems.append("date 必须是 YYYY-MM-DD")
     if not isinstance(doc.get("headline"), list) or len(doc["headline"]) != 3:
@@ -239,8 +266,12 @@ def main(path):
                 problems.append(f"{it['id']} 的 url 不是合法链接: {it['url']}")
             if "safety" in required and it.get("safety") not in SAFETY:
                 problems.append(f"{it['id']} 的 safety 只能是 绿/黄/红")
-            if it.get("track") and tracks and it["track"] not in tracks:
-                problems.append(f"{it['id']} 的 track 只能是 {'/'.join(sorted(tracks))}，或者不写")
+            if it.get("track") and tracks:
+                t = tracks.get(re.sub(r"\s+", "", str(it["track"])))
+                if t:
+                    it["track"] = t
+                else:
+                    problems.append(f"{it['id']} 的 track 只能是 {'/'.join(sorted(tracks.values()))}，或者不写")
             if key in ("tools", "skills"):
                 check_card(key, it, problems)
             elif key == "news":
