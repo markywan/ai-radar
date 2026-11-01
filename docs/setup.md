@@ -12,7 +12,6 @@
 | `FEISHU_WEBHOOK` | GitHub 仓库 Secrets | 第 4 步，飞书自定义机器人 | 不填就不推送 |
 | `FEISHU_SECRET` | GitHub 仓库 Secrets | 第 4 步，签名校验密钥 | 建议 |
 | `TWITTERAPI_IO_KEY` | GitHub 仓库 Secrets | 第 5 步，twitterapi.io 后台 | 不填就不抓 X |
-| `TIKHUB_API_KEY` | GitHub 仓库 Secrets | 第 5 步，TikHub 用户后台 | 不填就不抓抖音、小红书等平台 |
 | `TRUSTMRR_API_KEY` | GitHub 仓库 Secrets | 第 5 步，trustmrr.com 免费申请 | 可选 |
 | `ACTION_KEY` | GitHub 仓库 Secrets **和** Cloudflare Worker | 第 6 步，自己生成 | 要收藏按钮时必填 |
 | `GITHUB_TOKEN` | Cloudflare Worker | 第 7 步 | 要收藏按钮时必填 |
@@ -34,13 +33,13 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 
 三选一（都填了时优先用订阅，其次 Anthropic API，最后 OpenRouter）：
 
-- **用 Claude 订阅（Pro 或 Max）**：在自己电脑上装好 Claude Code，终端运行 `claude setup-token`，按提示在浏览器登录，得到一串以 `sk-ant-oat` 开头的令牌，存为 `CLAUDE_CODE_OAUTH_TOKEN`。日报和深挖会占用订阅额度。从终端复制时被折成两行也没关系，工作流会去掉空白。
+- **用 Claude 订阅（Pro 或 Max）**：在自己电脑上装好 Claude Code，终端运行 `claude setup-token`，按提示在浏览器登录，得到一串以 `sk-ant-oat` 开头的令牌，存为 `CLAUDE_CODE_OAUTH_TOKEN`。写日报、每天深挖今日机会和收藏后的深挖都会占用订阅额度。从终端复制时被折成两行也没关系，工作流会去掉空白。
 - **用 Anthropic API 按量付费**：console.anthropic.com → API Keys → Create Key，存为 `ANTHROPIC_API_KEY`。
 - **用 OpenRouter 按量付费**：OpenRouter 后台建一个 API Key，存为 `OPENROUTER_API_KEY`。按 OpenRouter 官方的 Claude Code 接法调用 Claude，花 OpenRouter 余额。
 
 想换成别家的 AI（Codex、Gemini 等）见 `AGENTS.md` 的「换成别的 AI」。
 
-可选的仓库变量（Settings → Secrets and variables → Actions → **Variables**）：`DAILY_MODEL`（写日报的模型，默认 `sonnet`）、`DEEPDIVE_MODEL`（深挖的模型，默认 `opus`）。
+可选的仓库变量（Settings → Secrets and variables → Actions → **Variables**）：`DAILY_MODEL`（写日报的模型，默认 `sonnet`）、`DEEPDIVE_MODEL`（每天深挖今日机会和收藏后深挖的模型，默认 `opus`；订阅额度紧时可以改成 `sonnet`）。
 
 ## 第 4 步：飞书机器人
 
@@ -52,9 +51,9 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 
 ## 第 5 步：抓取用的 API
 
-- **X（twitterapi.io）**：注册后后台首页有 API Key，充几美元，存为 `TWITTERAPI_IO_KEY`。每天最多抓 600 条推文，约 1–3 美元/月；想更省调小 `config/sources.json` 的 `x.max_tweets`。
-- **TikHub（抖音、小红书、TikTok、YouTube、B站）**：tikhub.io 注册，用户后台创建 API Token（要选接口权限时把这几个平台都勾上），Add credit 页充值（最低 5 美元，支持支付宝、PayPal、USDT），存为 `TIKHUB_API_KEY`。每天约 31 次请求、上限 40 次，约 1 美元/月。配好后 Actions → **TikHub 试抓** → Run workflow（约 0.03 美元），看日志确认各平台字段认对了。
-- **TrustMRR（可选）**：trustmrr.com 免费申请 API Key，存为 `TRUSTMRR_API_KEY`。有它时机会卡的收入证据由脚本抓；没有时 AI 自己去页面找。
+- **X（twitterapi.io）**：注册后后台首页有 API Key，充几美元，存为 `TWITTERAPI_IO_KEY`。只抓实践者账号和机会、Skills 相关的搜索，每天上限 600 条推文，实际约 250 条，约 1 美元/月；想更省调小 `config/sources.json` 的 `x.max_tweets`。
+- **TrustMRR（可选）**：trustmrr.com 免费申请 API Key，存为 `TRUSTMRR_API_KEY`。有它时机会候选的收入证据由脚本抓；没有时 AI 自己去页面找。
+- TikHub（抖音、小红书等平台）2026-11-01 起不用了，以前填过的 `TIKHUB_API_KEY` 可以删掉。
 
 ## 第 6 步：生成收藏口令
 
@@ -81,12 +80,14 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 
 1. Actions → **每日日报** → Run workflow。之后每天北京时间 4:23 起自动运行（5:23、6:23 补跑），7 点推送飞书。第一步会检查密钥，缺什么写在那次运行的摘要页；没有 AI 密钥会直接停下。
 2. 飞书收到卡片后点 **打开今日日报**：这一下会把口令存进手机浏览器，之后网站上的收藏按钮就能用。换手机或浏览器时从飞书卡片再进一次。
-3. 点任一机会的 **收藏并深挖** 试一下：确认页显示「已收藏，开始深挖」，写完后飞书再推一张卡片，报告在网站的「收藏」页。
+3. 日报写好后会接着深挖今日机会（约 10–30 分钟），飞书卡片和网站上能看到深挖结论。
+4. 点任一机会候选的 **收藏并深挖** 试一下：确认页显示「已收藏，开始深挖」，写完后飞书再推一张卡片，报告在网站的「收藏」页。
 
 ## 出问题时
 
 - **飞书没收到**：看 Actions 里那次运行哪一步红了；失败时机器人会推一张带运行记录链接的卡片。什么卡片都收不到，多半是 `FEISHU_WEBHOOK` 或 `FEISHU_SECRET` 填错。
 - **AI 那一步红了**：日志里「查 Claude 出错原因」一步打印了原因，常见是令牌过期或额度用完。
+- **卡片上写「深挖报告没写出来」**：深挖那一步失败或超时，日报照常发。原因在那次运行的「查深挖出错原因」一步；点卡片上的「收藏并深挖」能补一份。
 - **点收藏提示「口令不对」**：Worker 里的 `ACTION_KEY` 和 GitHub 里的不一致。
 - **提示「GitHub 没有接受请求」**：Worker 的 `GITHUB_TOKEN` 没有 Contents 写权限，或生成时没选中 `ai-radar`。
 - **网站提示「收藏接口还没部署」**：第 7、8 步没做完，Worker 没部署或地址没填；每次日报运行的「检查配置」摘要也会标出来。

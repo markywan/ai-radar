@@ -59,10 +59,13 @@ def main():
         "id": a.id, "date": date, "type": KEYS[prefix], "library": LIBRARY[prefix],
         "status": DEFAULT_STATUS[prefix], "saved_at": now(), "item": item, "deepdive": None,
     }
-    if a.deep and fav.get("deepdive") != "done":
+    if (ROOT / "data/deepdive" / f"{a.id}.md").is_file() and fav.get("deepdive") != "done":
+        # 今日机会每天自动深挖过（daily.yml），收藏时直接接上那份报告，不再重挖
+        fav["deepdive"], fav["deepdive_at"] = "done", now()
+    elif a.deep and fav.get("deepdive") != "done":
         fav["deepdive"] = "pending"
     path.write_text(json.dumps(fav, ensure_ascii=False, indent=1), "utf-8")
-    print(f"已收藏：{a.id}" + ("，等待深挖" if a.deep else ""))
+    print(f"已收藏：{a.id}" + ("，已有深挖报告" if fav["deepdive"] == "done" else "，等待深挖" if a.deep else ""))
     return 0
 
 

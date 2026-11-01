@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """往飞书群推送卡片（群自定义机器人 webhook）。
 
-  python3 scripts/notify_feishu.py daily 2026-10-15
-  python3 scripts/notify_feishu.py deepdive 2026-10-15-B01
+  python3 scripts/notify_feishu.py daily 2026-11-02
+  python3 scripts/notify_feishu.py deepdive 2026-11-02-B03
   python3 scripts/notify_feishu.py error "说明文字"
 
 环境变量：FEISHU_WEBHOOK（必填）、FEISHU_SECRET（开了签名校验才要）、
@@ -83,30 +83,63 @@ def unread_before(date):
     return [d for d in past if not (read.get(d) or {}).get("v")]
 
 
+def report_lead(fid, limit=200):
+    """深挖报告开头那段结论（第一段不是标题的文字），去掉 Markdown 标记，太长时在句号处截断。"""
+    path = ROOT / "data/deepdive" / f"{fid}.md"
+    if not path.is_file():
+        return ""
+    for line in path.read_text("utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith(("#", "|", ">", "---")):
+            text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", line)  # 链接只留文字
+            text = re.sub(r"[*`]", "", text)
+            if len(text) <= limit:
+                return text
+            cut = text[:limit].rfind("。")
+            return text[:cut + 1] if cut >= 40 else text[:limit - 1] + "…"
+    return ""
+
+
+def opp_numbers(b):
+    f, a = b.get("fit") or {}, b.get("automation") or {}
+    return f"起步 ${f.get('startup_cost_usd')} · MVP {f.get('mvp_days')} 天 · 每周 {a.get('weekly_hours')} 小时"
+
+
 def daily_card(date):
-    """三分钟版：一句头条、今天做什么、最强的平台信号、一条 GitHub 生意线索、机会一句话、影响你的资讯标题。其余工具和 Skills 去网站看。"""
+    """三分钟版：一句头条、今天做什么、今日机会（深挖结论和报告按钮）、其他候选、一条 GitHub 生意线索。
+    2026-11-01 起日报只有机会候选、GitHub 工具和 Skills 三栏，资讯、玩法风向和跟进不再推。"""
     doc = json.loads((ROOT / "data/daily" / f"{date}.json").read_text("utf-8"))
     m, d = int(date[5:7]), int(date[8:10])
     st = doc.get("stats") or {}
+    opps, tools, skills = doc.get("opportunities") or [], doc.get("tools") or [], doc.get("skills") or []
     head = re.sub(r"[*`]", "", (doc.get("headline") or [""])[0])
     els = [md(f"**{head}**" if head else ""),
            md("　".join(x for x in [f"读完约 {st['read_minutes']} 分钟" if st.get("read_minutes") else "",
-                                   f"资讯 {len(doc['news'])} · 工具 {len(doc['tools'])} · Skills {len(doc['skills'])}"
-                                   + (f" · 玩法 {len(doc['trends'])}" if doc.get("trends") else "")
-                                   + (f" · 跟进 {len(doc['followups'])}" if doc.get("followups") else "")] if x))]
+                                   f"机会候选 {len(opps)} · Skills {len(skills)} · GitHub {len(tools)}"] if x))]
     acts = doc.get("actions") or []
     if acts:
         els.append({"tag": "hr"})
         els.append(md("**今天做什么**\n" + "\n".join(f"{i}. {a['text']}（{a.get('minutes')} 分钟）" for i, a in enumerate(acts, 1))))
-    trends = doc.get("trends") or []
-    if trends:
-        t = trends[0]
-        ev = (t.get("evidence") or [{}])[0]
+    pick = next((b for b in opps if b.get("id") == doc.get("pick")), None)
+    if pick:
+        fid = f"{date}-{pick['id']}"
+        lead = report_lead(fid, 120)
         els.append({"tag": "hr"})
-        els.append(md(f"**玩法风向** {t['topic']}（{t.get('signal', '')}）：{t.get('brief', '')}"
-                      + (f"\n[{ev.get('platform', '')}：{ev.get('title', '')[:30]}]({ev['url']}) {ev.get('metrics', '')}" if ev.get("url") else "")
-                      + (f"\n还有 {len(trends) - 1} 条在网站上" if len(trends) > 1 else "")))
-    biz = [t for t in doc["tools"] if t.get("business")]
+        els.append(md(f"**今日机会**\n**{pick['name']}**（{pick.get('verdict', '')}）{re.sub(r'[*`]', '', pick.get('one_liner', ''))}\n{opp_numbers(pick)}"
+                      + (f"\n**深挖结论**　{lead}" if lead else "\n深挖报告没写出来，点「收藏并深挖」补一份。")))
+        els.append(buttons(("看深挖报告", site_link(date=date, id=fid) if lead else None, "primary"),
+                           ("收藏", action_link("fav", fid), "default"),
+                           ("收藏并深挖", None if lead else action_link("deep", fid), "primary")))
+    others = [b for b in opps if b is not pick]
+    if others:
+        els.append({"tag": "hr"})
+        els.append(md("**其他候选**"))
+        for b in others[:3]:
+            els.append(md(f"**{b['name']}**（{b.get('verdict', '')}）{re.sub(r'[*`]', '', b.get('one_liner', ''))}"))
+            els.append(buttons(("收藏并深挖", action_link("deep", f"{date}-{b['id']}"), "default")))
+        if len(others) > 3:
+            els.append(md(f"还有 {len(others) - 3} 个在网站上"))
+    biz = [t for t in tools if t.get("business")]
     if biz:  # 2026-10-30 起工具按能做什么生意挑：挑一条，有需求证据的优先
         t = next((t for t in biz if t.get("demand")), biz[0])
         dm = (t.get("demand") or [{}])[0]
@@ -119,21 +152,6 @@ def daily_card(date):
                       + (f"\n有人在要：[{dm_title}]({dm['url']}) {dm.get('reactions', 0)} 赞" if dm.get("url") else "")))
         els.append(buttons(("收藏", action_link("fav", fid), "default"),
                            ("收藏并深挖", action_link("deep", fid), "primary")))
-    for b in doc["opportunities"]:
-        fid = f"{date}-{b['id']}"
-        els.append({"tag": "hr"})
-        els.append(md(f"**机会：{b['name']}**（{b['verdict']}）\n{b['one_liner']}\n"
-                      f"起步 ${b['fit'].get('startup_cost_usd')} · MVP {b['fit'].get('mvp_days')} 天 · "
-                      f"每周 {b['automation'].get('weekly_hours')} 小时"))
-        els.append(buttons(("收藏", action_link("fav", fid), "default"),
-                           ("收藏并深挖", action_link("deep", fid), "primary")))
-    top = [n for n in doc["news"] if n.get("tier") == "影响你的"] or doc["news"][:3]
-    if top:
-        els.append({"tag": "hr"})
-        els.append(md("**影响你的资讯**\n" + "\n".join(f"- [{n['title']}]({n['url']})" for n in top[:6])))
-    fus = doc.get("followups") or []
-    if fus:
-        els.append(md("**跟进** " + "；".join(f"{f['title']}：{re.sub(r'[*`]', '', f['update']).rstrip('。；;')}" for f in fus[:3])))
     els.append({"tag": "hr"})
     backlog = unread_before(date)
     if backlog:
@@ -148,15 +166,8 @@ def deepdive_card(fid):
     fav = json.loads((ROOT / "data/favorites" / f"{fid}.json").read_text("utf-8"))
     it = fav["item"]
     name = it.get("name") or it.get("repo") or it.get("title")
-    md_path = ROOT / "data/deepdive" / f"{fid}.md"
-    lead = ""
-    if md_path.exists():
-        for line in md_path.read_text("utf-8").splitlines():
-            if line.strip() and not line.startswith("#"):
-                lead = line.strip()[:200]
-                break
     return card(f"深挖完成：{name}", "green", [
-        md(lead or "分析已经放进网站的收藏页。"),
+        md(report_lead(fid) or "分析已经放进网站的收藏页。"),
         buttons(("查看深挖", site_link(tab="fav", id=fid), "primary"))])
 
 

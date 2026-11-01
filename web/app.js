@@ -5,9 +5,17 @@
   var EMBED = window.__RADAR__ || null;
   var app = document.getElementById("app");
   var toastEl = document.getElementById("toast");
-  var state = { index: null, config: {}, daily: {}, deep: {}, tab: "today", date: null, focus: null, gallery: {} };
-  /* 栏目顺序：先看今天做什么，再看平台信号和机会，资讯、工具、Skills 放后面 */
-  var SEC = [
+  var state = { index: null, config: {}, daily: {}, tab: "today", date: null, focus: null, gallery: {} };
+  /* 栏目顺序。2026-11-01 起日报只有三样：今日机会（第一个候选和它的深挖报告）和其他候选、Skills、GitHub 工具；
+     日报里有 pick 字段的按新版排。老日报还有玩法风向、跟进和 AI 资讯，照原来的样子排 */
+  var SEC_NEW = [
+    { key: "actions", title: "今天做什么", short: "做什么" },
+    { key: "pick", title: "今日机会", short: "今日机会" },
+    { key: "opportunities", title: "机会候选", short: "候选" },
+    { key: "skills", title: "Skills", short: "Skills" },
+    { key: "tools", title: "GitHub 工具", short: "GitHub" }
+  ];
+  var SEC_OLD = [
     { key: "actions", title: "今天做什么", short: "做什么" },
     { key: "trends", title: "玩法风向", short: "玩法" },
     { key: "opportunities", title: "一人公司机会", short: "机会" },
@@ -16,7 +24,8 @@
     { key: "tools", title: "GitHub 工具", short: "工具" },
     { key: "skills", title: "Skills", short: "Skills" }
   ];
-  var LEAD_KEYS = ["news", "trends", "actions"];
+  /* 刊头三句话各对应哪个栏目的颜色 */
+  var LEAD_NEW = ["pick", "tools", "actions"], LEAD_OLD = ["news", "trends", "actions"];
   var TIER_TOP = "影响你的", GROUP_ORDER = ["大家都在用", "刚冒出来"];
 
   /* ---------- 小工具 ---------- */
@@ -131,6 +140,13 @@
       out.push("<p>" + inline(p.join(" ")) + "</p>");
     }
     return out.join("\n");
+  }
+
+  /* 深挖报告开头的结论：第一段不是标题、表格、引用的文字 */
+  function firstPara(src) {
+    var lines = String(src || "").replace(/\r/g, "").split("\n");
+    for (var i = 0; i < lines.length; i++) { var l = lines[i].trim(); if (l && !/^(#|\||>|---)/.test(l)) return l; }
+    return "";
   }
 
   /* ---------- 已读状态：存在本机，配了 Worker 存储时多设备同步 ---------- */
@@ -346,22 +362,45 @@
       return groups.filter(function (g) { return g[1].length; }).map(function (g) { return '<p class="grp-l">' + esc(g[0]) + "</p>" + rows(g[1]); }).join("");
     };
   }
+  /* 机会卡。有深挖报告的多一个「完整深挖报告」折叠块；今日机会还把报告开头的结论直接露出来 */
+  function hasDeep(fid) { return ((state.index && state.index.deepdives) || []).indexOf(fid) >= 0; }
+  function oppCard(d, b, isPick) {
+    var a = b.automation || {}, m = b.market || {}, f = b.fit || {}, nm = splitName(b.name);
+    var fid = d.date + "-" + b.id, deep = hasDeep(fid);
+    var ev = (m.evidence_links || []).map(function (e) { return "<li>" + link(e.title, e.url) + "</li>"; }).join("");
+    var dl = function (rows) { return '<dl class="facts">' + rows.filter(function (r) { return r[1]; }).map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + rich(r[1]) + "</dd>"; }).join("") + "</dl>"; };
+    var lead = isPick && deep ? '<div class="deep-lead" hidden><b>深挖结论</b><p id="lead-' + esc(fid) + '"></p></div>' : "";
+    var note = isPick && !deep ? '<p class="note">深挖报告还没出来：日报写好后还要十来分钟，过一会儿刷新；一直没有的话点「收藏并深挖」补一份。</p>' : "";
+    var report = deep ? '<details data-deep="' + esc(fid) + '"><summary>完整深挖报告</summary><div class="deep" id="deep-' + esc(fid) + '"><p class="empty">加载中……</p></div></details>' : "";
+    return '<article class="opp" id="opp-' + esc(fid) + '"><div class="top">' + verdictPill(b.verdict) + (b.category ? "<span>" + esc(b.category) + "</span>" : "") + trackTag(b) + "</div>" +
+      "<h3>" + esc(nm[0]) + (nm[1] ? '<span class="sub">' + esc(nm[1]) + "</span>" : "") + "</h3>" +
+      '<p class="one">' + rich(b.one_liner) + "</p>" + lead + note +
+      '<div class="metrics"><div><b>$' + num(f.startup_cost_usd) + "</b><small>起步资金</small></div><div><b>" + num(f.mvp_days) + " 天</b><small>做出 MVP</small></div><div><b>" + num(a.weekly_hours) + " 小时</b><small>稳定后每周</small></div></div>" +
+      (f.match ? '<p class="match"><b>适不适合我</b>' + rich(f.match) + "</p>" : "") +
+      '<div class="fold-g">' + report + "<details><summary>证据" + (ev ? '<small>' + (m.evidence_links || []).length + " 条链接</small>" : "") + "</summary>" + dl([["需求", m.demand], ["收入证据", m.revenue_evidence], ["竞争", m.competition]]) + (ev ? '<ul class="evidence">' + ev + "</ul>" : "") + "</details>" +
+      "<details><summary>怎么做</summary>" + dl([["获客", a.acquisition], ["生产交付", a.production], ["收款客服", a.payment_support], ["仍要我做", a.manual], ["要用的服务", f.services], ["最大风险", f.biggest_risk]]) + "</details></div>" +
+      (b.source && b.source.url ? '<p class="src">灵感来源：' + link(b.source.title || b.source.url, b.source.url) + "</p>" : "") +
+      actBtns(fid, !deep) + "</article>";
+  }
+  function pickOf(d) {
+    var list = d.opportunities || [];
+    for (var i = 0; i < list.length; i++) if (list[i].id === d.pick) return list[i];
+    return null;
+  }
+  function cands(d) { var p = pickOf(d); return (d.opportunities || []).filter(function (b) { return b !== p; }); }
+  function renderPick(d) {
+    var b = pickOf(d);
+    return b ? '<div class="opps">' + oppCard(d, b, true) + "</div>" : '<p class="empty">今天没有机会候选。</p>';
+  }
+  function renderCands(d) {
+    var list = cands(d);
+    if (!list.length) return '<p class="empty">今天只有上面这一个候选。</p>';
+    return '<div class="opps">' + list.map(function (b) { return oppCard(d, b, false); }).join("") + "</div>";
+  }
+  /* 老日报的「一人公司机会」 */
   function renderOpps(d) {
     if (!d.opportunities.length) return '<p class="empty">今天没有合格的机会，不凑数。</p>';
-    return '<div class="opps">' + d.opportunities.map(function (b) {
-      var a = b.automation || {}, m = b.market || {}, f = b.fit || {}, nm = splitName(b.name);
-      var ev = (m.evidence_links || []).map(function (e) { return "<li>" + link(e.title, e.url) + "</li>"; }).join("");
-      var dl = function (rows) { return '<dl class="facts">' + rows.filter(function (r) { return r[1]; }).map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + rich(r[1]) + "</dd>"; }).join("") + "</dl>"; };
-      return '<article class="opp"><div class="top">' + verdictPill(b.verdict) + (b.category ? "<span>" + esc(b.category) + "</span>" : "") + trackTag(b) + "</div>" +
-        "<h3>" + esc(nm[0]) + (nm[1] ? '<span class="sub">' + esc(nm[1]) + "</span>" : "") + "</h3>" +
-        '<p class="one">' + rich(b.one_liner) + "</p>" +
-        '<div class="metrics"><div><b>$' + num(f.startup_cost_usd) + "</b><small>起步资金</small></div><div><b>" + num(f.mvp_days) + " 天</b><small>做出 MVP</small></div><div><b>" + num(a.weekly_hours) + " 小时</b><small>稳定后每周</small></div></div>" +
-        (f.match ? '<p class="match"><b>适不适合我</b>' + rich(f.match) + "</p>" : "") +
-        '<div class="fold-g"><details><summary>证据' + (ev ? '<small>' + (m.evidence_links || []).length + " 条链接</small>" : "") + "</summary>" + dl([["需求", m.demand], ["收入证据", m.revenue_evidence], ["竞争", m.competition]]) + (ev ? '<ul class="evidence">' + ev + "</ul>" : "") + "</details>" +
-        "<details><summary>怎么做</summary>" + dl([["获客", a.acquisition], ["生产交付", a.production], ["收款客服", a.payment_support], ["仍要我做", a.manual], ["要用的服务", f.services], ["最大风险", f.biggest_risk]]) + "</details></div>" +
-        (b.source && b.source.url ? '<p class="src">灵感来源：' + link(b.source.title || b.source.url, b.source.url) + "</p>" : "") +
-        actBtns(d.date + "-" + b.id, true) + "</article>";
-    }).join("") + "</div>";
+    return '<div class="opps">' + d.opportunities.map(function (b) { return oppCard(d, b, false); }).join("") + "</div>";
   }
   /* 玩法风向：X、小红书、抖音、TikTok 等平台上的新玩法、使用技巧、爆款形式和需求原话，证据带数字和链接 */
   function renderTrends(d) {
@@ -406,26 +445,34 @@
   function hasSec(d, key) {
     if (key === "trends") return Array.isArray(d.trends);
     if (key === "actions" || key === "followups") return (d[key] || []).length > 0;
+    if (key === "news") return !d.pick || (d.news || []).length > 0;
     return true;
+  }
+  function secCount(d, key) {
+    if (key === "pick") return pickOf(d) ? 1 : 0;
+    if (key === "opportunities" && d.pick) return cands(d).length;
+    return (d[key] || []).length;
   }
   function renderToday(d) {
     state.gallery = {};
+    var isNew = !!d.pick, leadKeys = isNew ? LEAD_NEW : LEAD_OLD;
     var isLatest = d.date === latest(), no = issueNo(d.date), st = d.stats || {};
     var lead = (d.headline || []).map(function (h, i) {
-      return '<li data-k="' + (LEAD_KEYS[i] || "news") + '"><span class="n">' + (i + 1) + "</span><p>" + rich(h) + "</p></li>";
+      return '<li data-k="' + (leadKeys[i] || "actions") + '"><span class="n">' + (i + 1) + "</span><p>" + rich(h) + "</p></li>";
     }).join("");
     /* 没接平台数据的旧日报不显示「玩法风向」；没有跟进的那天不显示「跟进」 */
-    var secs = SEC.filter(function (s) { return hasSec(d, s.key); });
+    var secs = (isNew ? SEC_NEW : SEC_OLD).filter(function (s) { return hasSec(d, s.key); });
     var tocSecs = secs.filter(function (s) { return s.key !== "actions"; });  /* 今天做什么就在刊头下面，不用导航 */
     var toc = tocSecs.map(function (s) {
-      return '<a href="#sec-' + s.key + '" data-k="' + s.key + '"><b>' + (d[s.key] || []).length + "</b><small>" + s.short + "</small></a>";
+      return '<a href="#sec-' + s.key + '" data-k="' + s.key + '"><b>' + secCount(d, s.key) + "</b><small>" + s.short + "</small></a>";
     }).join("");
     var back = isLatest ? unreadPast() : [];
     var backlog = back.length ? '<div class="backlog"><span>还有 ' + back.length + " 期没看</span>" + back.slice(0, 6).map(function (x) { return '<button data-date="' + esc(x.date) + '">' + shortDate(x.date) + "</button>"; }).join("") + "</div>" : "";
-    var fns = { actions: renderActions, trends: renderTrends, opportunities: renderOpps, followups: renderFollowups, news: renderNews, tools: renderItems("tools"), skills: renderItems("skills") };
-    var noTool = { actions: 1, opportunities: 1, followups: 1 };
+    var fns = { actions: renderActions, pick: renderPick, trends: renderTrends, opportunities: isNew ? renderCands : renderOpps,
+      followups: renderFollowups, news: renderNews, tools: renderItems("tools"), skills: renderItems("skills") };
+    var noTool = { actions: 1, pick: 1, opportunities: 1, followups: 1 };
     var body = secs.map(function (s) {
-      var n = (d[s.key] || []).length;
+      var n = secCount(d, s.key);
       var tool = !noTool[s.key] && n ? expandTool(s.key) : "";
       return '<section class="sec" id="sec-' + s.key + '" data-k="' + s.key + '">' + secHead(s, n, tool) + fns[s.key](d) + "</section>";
     }).join("");
@@ -438,15 +485,30 @@
       '<nav class="toc" aria-label="栏目" style="--cols:' + tocSecs.length + '">' + toc + "</nav></div>" + body + todo +
       '<div class="foot" id="foot"><span>生成于 ' + esc((d.generated_at || "").replace("T", " ").slice(0, 16)) + "。</span><span>看到这里，这一期就算看过了。</span></div>";
     watchFoot(d.date);
+    /* 深挖报告点开才加载；今日机会的结论直接加载出来；从飞书「看深挖报告」进来的，展开那份报告并滚过去 */
+    Array.prototype.forEach.call(app.querySelectorAll("details[data-deep]"), function (el) {
+      el.addEventListener("toggle", function () { if (el.open) loadDeep(el.getAttribute("data-deep")); });
+    });
+    var p = pickOf(d);
+    if (p && hasDeep(d.date + "-" + p.id)) loadDeep(d.date + "-" + p.id);
+    if (state.focus) {
+      var card = document.getElementById("opp-" + state.focus), det = card && card.querySelector("details[data-deep]");
+      if (det) det.open = true;
+      if (card) setTimeout(function () { card.scrollIntoView(); }, 0);
+      state.focus = null;
+    }
   }
 
   /* ---------- 历史：没看的和看过的分开 ---------- */
   function dayItem(x) {
     var c = x.counts || {}, r = isRead(x.date);
+    var parts = [["机会", c.opportunities || 0], ["Skills", c.skills || 0], ["工具", c.tools || 0]];
+    if (c.news) parts.push(["资讯", c.news]);  /* 老日报才有 */
+    if (c.trends) parts.push(["风向", c.trends]);
     return '<li class="row day ' + (r ? "read" : "unread") + '"><button class="row-h" data-date="' + esc(x.date) + '">' +
       '<span class="t">' + longDate(x.date) + (r ? "" : '<span class="tag">未读</span>') + "</span>" +
       '<span class="brief">' + esc(plain(x.headline)) + "</span>" +
-      '<span class="m"><span>资讯 ' + (c.news || 0) + "</span><span>工具 " + (c.tools || 0) + "</span><span>Skills " + (c.skills || 0) + "</span><span>机会 " + (c.opportunities || 0) + "</span>" + (c.trends ? "<span>风向 " + c.trends + "</span>" : "") + "</span></button></li>";
+      '<span class="m">' + parts.map(function (q) { return "<span>" + q[0] + " " + q[1] + "</span>"; }).join("") + "</span></button></li>";
   }
   function renderHistory() {
     var past = dates().slice(1);
@@ -491,12 +553,20 @@
     });
     if (state.focus) { var t = document.getElementById("fav-" + state.focus); if (t) t.scrollIntoView(); }
   }
+  /* 深挖报告：每份只取一次；放进报告框，有结论框（今日机会）的同时填上开头那段结论 */
+  var deepReq = {};
   function loadDeep(id) {
-    var box = document.getElementById("deep-" + id);
-    var put = function (md) { if (box) box.innerHTML = markdown(md); };
-    if (state.deep[id]) return put(state.deep[id]);
-    if (EMBED) return put((EMBED.deepdive || {})[id] || "没有找到深挖内容。");
-    getText("data/deepdive/" + id + ".md").then(function (t) { state.deep[id] = t; put(t); }).catch(function () { put("没有找到深挖内容。"); });
+    if (!deepReq[id]) {
+      deepReq[id] = EMBED ? Promise.resolve((EMBED.deepdive || {})[id] || null)
+        : getText("data/deepdive/" + id + ".md").catch(function () { return null; });
+    }
+    deepReq[id].then(function (md) {
+      var box = document.getElementById("deep-" + id);
+      if (box) box.innerHTML = md ? markdown(md) : '<p class="empty">没有找到深挖内容。</p>';
+      var lead = document.getElementById("lead-" + id), p = plain(firstPara(md)).replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+      if (p.length > 160) { var cut = p.slice(0, 160).lastIndexOf("。"); p = cut >= 40 ? p.slice(0, cut + 1) : p.slice(0, 159) + "…"; }
+      if (lead && p) { lead.textContent = p; lead.parentNode.hidden = false; }  /* 结论只露一两句，全文在「完整深挖报告」里 */
+    });
   }
 
   /* ---------- 路由 ---------- */
