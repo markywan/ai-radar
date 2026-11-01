@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """校验并规整一期日报 JSON：补编号、检查必填字段和链接、算阅读时长、统计条数。
 
-用法：python3 scripts/validate.py data/daily/2026-10-15.json
+用法：python3 scripts/validate.py data/daily/2026-11-02.json
 有错误时退出码为 1，并打印要修的地方（Claude 在 Actions 里会据此改正）。
+
+2026-11-01 起日报只有三个栏目：GitHub 工具、Skills、一人公司出海机会候选。资讯、玩法风向、跟进停了。
+第一个候选（B01）是今日机会：日报写好后由更强的模型深挖，脚本在 pick 字段记下它的编号。
 """
 import json
 import math
@@ -12,32 +15,22 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SECTIONS = {
-    # 栏目键: (编号前缀, 必填字段, 数量范围)
-    "news": ("N", ["title", "url", "source_type", "summary", "tier"], (5, 15)),
+    # 栏目键: (编号前缀, 必填字段, 数量范围)。编号前缀 N（资讯）、P（玩法风向）、F（跟进）留给老日报，不再用
     "tools": ("G", ["repo", "url", "what", "safety", "group", "why_today"], (3, 8)),
-    "skills": ("S", ["name", "url", "what", "safety"], (0, 5)),
-    "opportunities": ("B", ["name", "one_liner", "automation", "market", "fit", "verdict"], (0, 2)),
-    "trends": ("P", ["topic", "brief", "evidence", "how"], (0, 6)),
-    "followups": ("F", ["title", "update", "url"], (0, 6)),
+    "skills": ("S", ["name", "url", "what", "safety"], (3, 6)),
+    # 机会候选：目标 3–5 个，至少 1 个。10-17 到 11-01 连续 16 期一个都没有，所以不再允许空着
+    "opportunities": ("B", ["name", "one_liner", "automation", "market", "fit", "verdict"], (1, 5)),
 }
 SAFETY = {"绿", "黄", "红"}
 VERDICTS = {"值得验证", "放进观察", "只是灵感"}
-SIGNALS = {"爆款形式", "需求信号", "新玩法", "使用技巧"}
-TIERS = {"影响你的", "行业动态"}
 GROUPS = {"大家都在用", "刚冒出来"}
 # 用法只写他的方向，其他方向不写：三期里 66 条用法只有 31 条在原来的四个方向里，其余他不会去做。
 # 2026-10-30 他转做海外生意，从四个扩到六个：加了供需（供需撮合）和宣传（海外宣传）
 AREAS = {"外贸", "SEO", "自媒体", "供需", "宣传", "做产品"}
 # 许可证三档：能不能拿它做托管版来卖（fetch.py 按 SPDX 先定档，认不出的由模型读 LICENSE 定）
 LICENSE_TIERS = {"能托管来卖", "托管要公开改动", "不能托管来卖"}
-# 资讯只取官方网站、大媒体和 X；其他社交和自媒体平台上的内容只用于玩法风向和机会
-SOURCE_TYPES = {"官方", "媒体", "X"}
-SOCIAL = ("xiaohongshu.com", "xhslink.com", "douyin.com", "iesdouyin.com", "tiktok.com",
-          "youtube.com", "youtu.be", "bilibili.com", "b23.tv", "weibo.com", "weibo.cn", "zhihu.com", "reddit.com",
-          "v2ex.com", "news.ycombinator.com", "threads.net", "mp.weixin.qq.com", "medium.com", "substack.com")
-AGGREGATORS = ("techmeme.com", "news.smol.ai", "smol.ai")  # 只用来发现线索，收录时要换成原文
 URL = re.compile(r"^https?://[^\s<>\"']+$")
-MAX_WIDTH = 7000        # 全文字数上限（中文算 1，英文数字算 0.5），约 14 分钟读完；目标是 6000 字以内
+MAX_WIDTH = 7000        # 全文字数上限（中文算 1，英文数字算 0.5），约 14 分钟读完；目标是 5000 字以内（深挖报告另算）
 READ_SPEED = 500        # 每分钟读多少字，算「读完约 N 分钟」
 # 不算进阅读量的字段：链接、编号、枚举值
 SKIP_KEYS = {"url", "id", "repo", "published", "platform", "platforms", "source_type", "safety", "hot", "verdict",
@@ -53,10 +46,6 @@ def host_of(url):
 def host_in(url, domains):
     host = host_of(url)
     return any(host == d or host.endswith("." + d) for d in domains)
-
-
-def social(url):
-    return host_in(url, SOCIAL)
 
 
 def popular(it):
@@ -90,6 +79,27 @@ def load_tracks():
         return {t["name"] for t in json.loads((ROOT / "config/tracks.json").read_text("utf-8"))["tracks"]}
     except (OSError, ValueError, KeyError):
         return set()
+
+
+def norm(s):
+    return re.sub(r"^https?://(www\.)?|/+$", "", re.sub(r"\s+", "", str(s or "").lower()))
+
+
+def deepdived_opps(date):
+    """以前深挖过的机会（名字和来源链接）：今日机会不要重复挖。"""
+    seen = set()
+    for p in (ROOT / "data/deepdive").glob("*-B[0-9][0-9].md"):
+        day, bid = p.stem[:10], p.stem[11:]
+        if day >= date:
+            continue
+        try:
+            doc = json.loads((ROOT / "data/daily" / f"{day}.json").read_text("utf-8"))
+        except (OSError, ValueError):
+            continue
+        for b in doc.get("opportunities") or []:
+            if b.get("id") == bid:
+                seen |= {norm(b.get("name")), norm((b.get("source") or {}).get("url"))} - {""}
+    return seen
 
 
 def check_uses(i, it, key, problems):
@@ -174,69 +184,31 @@ def check_card(key, it, problems):
             it["images"] = imgs[:6]
 
 
-def check_news(it, problems):
-    i = it["id"]
-    if it.get("source_type") not in SOURCE_TYPES:
-        problems.append(f"{i} 的 source_type 只能是 {'/'.join(sorted(SOURCE_TYPES))}（资讯只取官方网站、大媒体和 X）")
-    url = it.get("url") or ""
-    if social(url):
-        problems.append(f"{i} 的链接是 X 以外的社交或自媒体平台：{url}。资讯要换成官方原文、大媒体报道或 X 帖子，找不到就删掉这条")
-    if host_in(url, AGGREGATORS):
-        problems.append(f"{i} 的链接是聚合页：{url}。换成它指向的原文链接")
-    if it.get("tier") not in TIERS:
-        problems.append(f"{i} 的 tier 只能是 影响你的 / 行业动态")
-    if width(it.get("summary") or "") > 80:
-        problems.append(f"{i} 的 summary 要在 80 字以内（现在 {int(width(it.get('summary')))} 字），细节让他去读原文")
-    if it.get("tier") == "影响你的":
-        fm = it.get("for_me") or ""
-        if not fm:
-            problems.append(f"{i} 是「影响你的」，要写 for_me：一句话说对他意味着什么、该做什么")
-        elif width(fm) > 60:
-            problems.append(f"{i} 的 for_me 要在 60 字以内：{plain(fm)[:30]}…")
-
-
-def check_trend(it, problems):
-    i = it["id"]
-    brief = it.get("brief") or ""
-    if brief and (width(brief) > 26 or "**" in brief):
-        problems.append(f"{i} 的 brief 要在 26 个字以内，不加粗：{brief}")
-    if it.get("signal") not in SIGNALS:
-        problems.append(f"{i} 的 signal 只能是 {'/'.join(sorted(SIGNALS))}")
-    ev = it.get("evidence")
-    if not isinstance(ev, list) or not ev:
-        problems.append(f"{i} 的 evidence 要写成数组，至少 1 条")
-        return
-    for e in ev:
-        if not isinstance(e, dict) or not e.get("platform") or not e.get("title") or not URL.match(str(e.get("url", ""))):
-            problems.append(f"{i} 的每条证据都要有 platform、title 和合法的 url：{e}")
-        elif not e.get("metrics"):
-            problems.append(f"{i} 的证据「{e['title'][:20]}」缺少 metrics（点赞、收藏、播放等数字）")
-    if len(ev) < 2 and not it.get("quotes"):
-        problems.append(f"{i} 证据太少：至少 2 条帖子，或者 1 条加用户原话")
-    for q in it.get("quotes") or []:
-        if not isinstance(q, dict) or not q.get("text"):
-            problems.append(f"{i} 的 quotes 每条都要有 text（评论原话）")
-
-
 def check_opp(it, problems):
+    """机会候选：有打开过的收入证据就收，竞品和怎么做留给深挖。首选（B01）当天会被深挖。"""
     i = it["id"]
     if it.get("verdict") not in VERDICTS:
         problems.append(f"{i} 的 verdict 只能是 {'/'.join(VERDICTS)}")
+    if width(it.get("one_liner") or "") > 60:
+        problems.append(f"{i} 的 one_liner 要在 60 字以内：卖什么、卖给海外的谁、怎么收钱")
     cost = (it.get("fit") or {}).get("startup_cost_usd")
     if not isinstance(cost, (int, float)) or cost > 500:
         problems.append(f"{i} 的 fit.startup_cost_usd 必须是不超过 500 的数字")
+    hours = (it.get("automation") or {}).get("weekly_hours")
+    if not isinstance(hours, (int, float)):
+        problems.append(f"{i} 的 automation.weekly_hours 要写稳定后每周要他花几小时（数字）")
     m = it.get("market") or {}
     links = m.get("evidence_links") or []
     for link in links:
-        if not isinstance(link, dict) or not URL.match(link.get("url", "")):
-            problems.append(f"{i} 的证据链接不合法: {link}")
-    if len(links) < 5:
-        problems.append(f"{i} 的 market.evidence_links 只有 {len(links)} 条，机会卡至少要 5 条你打开过的链接（收入页、竞品、需求帖）；凑不够就删掉这个机会，不凑数")
+        if not isinstance(link, dict) or not link.get("title") or not URL.match(str(link.get("url", ""))):
+            problems.append(f"{i} 的证据链接要有 title 和合法的 url: {link}")
+    if len(links) < 2:
+        problems.append(f"{i} 的 market.evidence_links 只有 {len(links)} 条，候选至少要 2 条你打开过的链接（收入证据页，加上来源、竞品或需求帖）")
     rev = plain(m.get("revenue_evidence") or "")
-    if not re.search(r"\d", rev) or not re.search(r"\$|美元|元|MRR|月入|收入|营收|revenue", rev, re.I):
-        problems.append(f"{i} 的 market.revenue_evidence 要有你打开过的收入数字（MRR、月入、售价之类，带数字）；没有收入证据的机会不收")
-    if width(m.get("competition") or "") < 20:
-        problems.append(f"{i} 的 market.competition 要点名至少 3 个竞品并说它们怎么样，现在太短")
+    if not re.search(r"\d", rev) or not re.search(r"\$|美元|元|MRR|ARR|月入|收入|营收|售价|revenue|sales", rev, re.I):
+        problems.append(f"{i} 的 market.revenue_evidence 要有你打开过的收入数字（MRR、月入、售价、付费用户数之类，带数字和出处）；找不到收入证据的换一个候选")
+    if not m.get("competition"):
+        problems.append(f"{i} 缺少 market.competition：点名 1–3 个在做同样事的产品，深挖时再细看")
 
 
 def main(path):
@@ -247,15 +219,20 @@ def main(path):
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(doc.get("date", ""))):
         problems.append("date 必须是 YYYY-MM-DD")
     if not isinstance(doc.get("headline"), list) or len(doc["headline"]) != 3:
-        problems.append("headline 必须是 3 句话的数组：影响他的一条资讯、最强的平台信号、今天最值得做的一件事")
+        problems.append("headline 必须是 3 句话的数组：今天首选的机会（B01）、最值得看的 GitHub 或 Skills 线索、今天最值得做的一件事")
+    for old in ("news", "trends", "followups", "watch_next"):
+        if doc.get(old):
+            problems.append(f"{old} 栏目 2026-11-01 停了（不写 AI 资讯、玩法风向、跟进和追搜词），脚本已经删掉，以后不要写")
+        doc.pop(old, None)
 
     total = 0
     for key, (prefix, required, (lo, hi)) in SECTIONS.items():
-        if key == "trends" and doc.get("trends") is None:
-            continue  # 没抓平台数据的那天可以不写这个栏目
         items = doc.get(key) or []
         doc[key] = items
-        if not (lo <= len(items) <= hi):
+        if key == "opportunities" and not items:
+            problems.append("opportunities 至少要 1 个机会候选（目标 3–5 个）：去 TrustMRR、acquire.com、X 实践者帖、Show HN、"
+                            "Product Hunt 和 issue_demand 找有收入证据、一个人能自动化的出海生意，这是今天最重要的栏目")
+        elif not (lo <= len(items) <= hi):
             problems.append(f"{key} 条数 {len(items)} 不在 {lo}–{hi} 之间")
         for i, it in enumerate(items, 1):
             it["id"] = f"{prefix}{i:02d}"
@@ -274,20 +251,17 @@ def main(path):
                     problems.append(f"{it['id']} 的 track 只能是 {'/'.join(sorted(tracks.values()))}，或者不写")
             if key in ("tools", "skills"):
                 check_card(key, it, problems)
-            elif key == "news":
-                check_news(it, problems)
-            elif key == "trends":
-                check_trend(it, problems)
             elif key == "opportunities":
                 check_opp(it, problems)
-            elif key == "followups" and width(it.get("update") or "") > 60:
-                problems.append(f"{it['id']} 的 update 要在 60 字以内：只写变化（数字从多少到多少、出了什么新东西）")
         total += len(items)
-
-    if doc["news"] and not any(n.get("tier") == "影响你的" for n in doc["news"]):
-        problems.append("news 里至少要有 1 条「影响你的」；实在没有就把最接近他业务的一条升上去并写 for_me")
-    if sum(1 for n in doc["news"] if n.get("tier") == "影响你的") > 8:
-        problems.append("「影响你的」资讯最多 8 条，其余降为行业动态")
+    # 今日机会：第一个候选，日报写好后由更强的模型深挖（daily.yml「Claude 深挖今日机会」）
+    if doc["opportunities"]:
+        first = doc["opportunities"][0]
+        doc["pick"] = first["id"]
+        if {norm(first.get("name")), norm((first.get("source") or {}).get("url"))} & deepdived_opps(str(doc.get("date"))):
+            problems.append(f"B01「{first.get('name')}」以前深挖过（见素材里的 deepdived），换一个没挖过的放第一个")
+    else:
+        doc.pop("pick", None)
 
     repos = {}
     for key in ("tools", "skills"):
@@ -303,26 +277,21 @@ def main(path):
     for a in actions:
         if not isinstance(a, dict) or a.get("minutes") not in (5, 15, 30) or not a.get("text"):
             problems.append(f"actions 每条要有 minutes（5/15/30）和 text：{a}")
-    watch = doc.get("watch_next")
-    if watch is not None:
-        if not isinstance(watch, list) or len(watch) > 4 or any(not isinstance(w, str) or not 1 <= len(w) <= 20 for w in watch):
-            problems.append("watch_next 是最多 4 个词的数组（明天要在平台上追搜的工具名或玩法），每个 20 字以内")
 
-    w = text_width({k: doc.get(k) for k in ("headline", "news", "tools", "skills", "opportunities", "trends", "followups", "actions")})
+    w = text_width({k: doc.get(k) for k in ("headline", "tools", "skills", "opportunities", "actions")})
     stats = doc.setdefault("stats", {})
     stats["selected"] = total
     stats["chars"] = int(w)
     stats["read_minutes"] = max(1, math.ceil(w / READ_SPEED))
     if w > MAX_WIDTH:
-        problems.append(f"全文约 {int(w)} 字，读完要 {stats['read_minutes']} 分钟，超过 {MAX_WIDTH} 字的上限：先删行业动态和工具的细节，再压缩机会卡")
+        problems.append(f"全文约 {int(w)} 字，读完要 {stats['read_minutes']} 分钟，超过 {MAX_WIDTH} 字的上限：先压缩工具和 Skills 的细节，再压缩候选（深挖会写全）")
     p.write_text(json.dumps(doc, ensure_ascii=False, indent=1), "utf-8")
 
     if problems:
         print("需要修改：\n- " + "\n- ".join(problems))
         return 1
-    print(f"通过：共 {total} 条（资讯 {len(doc['news'])}，工具 {len(doc['tools'])}，Skills {len(doc['skills'])}，"
-          f"机会 {len(doc['opportunities'])}，玩法风向 {len(doc.get('trends') or [])}，跟进 {len(doc['followups'])}），"
-          f"约 {int(w)} 字、读完 {stats['read_minutes']} 分钟")
+    print(f"通过：共 {total} 条（机会候选 {len(doc['opportunities'])}，Skills {len(doc['skills'])}，工具 {len(doc['tools'])}），"
+          f"今日机会 {doc['pick']} 待深挖，约 {int(w)} 字、读完 {stats['read_minutes']} 分钟")
     return 0
 
 

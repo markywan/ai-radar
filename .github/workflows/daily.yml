@@ -4,6 +4,7 @@ on:
   # 目标：北京时间 7 点前日报已经做好、飞书准时推送。
   # GitHub 的定时任务经常晚到一两个小时，所以排三次（北京时间 4:23、5:23、6:23），
   # 当天已经有日报的就直接跳过；做好后飞书推送等到 7 点再发。
+  # 2026-11-01 起日报只有 GitHub 工具、Skills 和一人公司出海机会候选三栏，写好后再深挖第一个候选（今日机会）。
   schedule:
     - cron: "23 20 * * *"
     - cron: "23 21 * * *"
@@ -22,7 +23,7 @@ concurrency:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 110
     outputs:
       date: ${{ steps.day.outputs.date }}
       made: ${{ steps.day.outputs.skip != 'true' }}
@@ -50,7 +51,6 @@ jobs:
           HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' || secrets.ANTHROPIC_API_KEY != '' }}
           OR_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           HAS_X: ${{ secrets.TWITTERAPI_IO_KEY != '' }}
-          HAS_TIKHUB: ${{ secrets.TIKHUB_API_KEY != '' }}
           HAS_TRUSTMRR: ${{ secrets.TRUSTMRR_API_KEY != '' }}
           HAS_FEISHU: ${{ secrets.FEISHU_WEBHOOK != '' }}
           HAS_KEY: ${{ secrets.ACTION_KEY != '' }}
@@ -70,8 +70,7 @@ jobs:
             elif [ -n "$OR_KEY" ]; then echo "- ✅ Claude 经 OpenRouter 调用（按量计费）"
             else echo "- ⚠️ 缺少 CLAUDE_CODE_OAUTH_TOKEN（或 ANTHROPIC_API_KEY、OPENROUTER_API_KEY）：日报写不出来"; fi
             ok "$HAS_X" "X 抓取密钥" "缺少 TWITTERAPI_IO_KEY：今天不抓 X，其他来源照常"
-            ok "$HAS_TIKHUB" "TikHub 抓取密钥" "缺少 TIKHUB_API_KEY：今天不抓抖音、小红书等平台，其他来源照常"
-            ok "$HAS_TRUSTMRR" "TrustMRR 密钥" "缺少 TRUSTMRR_API_KEY（可选）：机会卡的收入证据由模型自己打开页面找"
+            ok "$HAS_TRUSTMRR" "TrustMRR 密钥" "缺少 TRUSTMRR_API_KEY（可选）：机会候选的收入证据由模型自己打开页面找"
             ok "$HAS_FEISHU" "飞书机器人" "缺少 FEISHU_WEBHOOK：不推送飞书"
             ok "$HAS_KEY" "收藏口令" "缺少 ACTION_KEY：飞书卡片上没有收藏按钮"
             w="${WORKER_URL:-$(python3 -c 'import json;print(json.load(open("config/site.json")).get("worker_url",""))')}"
@@ -91,7 +90,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TWITTERAPI_IO_KEY: ${{ secrets.TWITTERAPI_IO_KEY }}
-          TIKHUB_API_KEY: ${{ secrets.TIKHUB_API_KEY }}
           TRUSTMRR_API_KEY: ${{ secrets.TRUSTMRR_API_KEY }}
 
       - name: Claude 写日报
@@ -133,6 +131,56 @@ jobs:
           git commit -m "日报 ${{ steps.day.outputs.date }}" || exit 0
           for i in 1 2 3 4; do
             git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
+
+      # 今日机会：日报里第一个候选（validate.py 记在 pick 字段），用更强的模型按 prompts/deepdive.md 深挖。
+      # 日报已经先提交了；深挖失败或超时不影响日报发布和推送，飞书卡片上会写「深挖没写出来」。
+      - name: 找今日机会
+        id: pick
+        if: steps.day.outputs.skip != 'true'
+        run: python3 scripts/today_pick.py "${{ steps.day.outputs.date }}" >> "$GITHUB_OUTPUT" || echo "::warning::找今日机会出错，今天不深挖"
+
+      - name: Claude 深挖今日机会
+        id: deep
+        if: steps.pick.outputs.id != ''
+        continue-on-error: true
+        timeout-minutes: 40
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ env.CLAUDE_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY || (env.ANTHROPIC_BASE_URL != '' && secrets.OPENROUTER_API_KEY) || '' }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            今天是 ${{ steps.day.outputs.date }}（北京时间）。请按 prompts/deepdive.md 深挖今天日报的今日机会 ${{ steps.pick.outputs.pick }}。
+            条目在 data/daily/${{ steps.day.outputs.date }}.json 的 opportunities 里（id 是 ${{ steps.pick.outputs.pick }} 的那条），结果写到 data/deepdive/${{ steps.pick.outputs.id }}.md。
+          claude_args: >-
+            --model ${{ vars.DEEPDIVE_MODEL || 'opus' }}
+            --max-turns 80
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch"
+
+      - name: 查深挖出错原因
+        if: steps.deep.outcome == 'failure'
+        run: python3 scripts/claude_error.py "${{ steps.deep.outputs.execution_file }}" || true
+
+      - name: 提交深挖
+        if: steps.pick.outputs.id != ''
+        continue-on-error: true  # 推不上去也不挡日报发布；网站上今日机会会显示「深挖没写出来」
+        run: |
+          f="data/deepdive/${{ steps.pick.outputs.id }}.md"
+          if [ ! -s "$f" ]; then
+            echo "::warning::今天的深挖没写出来，日报照常发布"
+            echo "今日机会 ${{ steps.pick.outputs.id }} 的深挖没写出来，日报照常发布。" >> "$GITHUB_STEP_SUMMARY"
+          fi
+          # 只提交这一个文件；重跑时删掉的旧深挖（today_pick.py 删的）也一起提交
+          git add -A -- "$f" 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          if [ -s "$f" ]; then msg="深挖 ${{ steps.pick.outputs.id }}"; else msg="删掉 ${{ steps.pick.outputs.id }} 的旧深挖（第一个候选换了）"; fi
+          git commit -m "$msg"
+          for i in 1 2 3 4; do
+            # --autostash：深挖只该写这一个文件，万一改了别的也不挡住提交（别的改动不提交）
+            git pull --rebase --autostash origin main && git push origin HEAD:main && exit 0
             sleep $((i * 5))
           done
           exit 1

@@ -2,19 +2,19 @@
 """抓取日报的原始素材，写到 data/raw/<日期>.json。
 
 只用标准库。每个来源单独 try，抓不到就记进 errors，不影响其他来源。
+2026-11-01 起只抓三样东西的素材：GitHub 热门仓库、Skills、一人公司出海机会的线索。
+AI 资讯（厂商官网、媒体、政策页、Hugging Face、X 新闻号）和 TikHub 平台搜索都停了。
+
 环境变量：
   GITHUB_TOKEN       可选，提高 GitHub 搜索 API 的额度（Actions 里自动有）
-  TWITTERAPI_IO_KEY  可选，有它才抓 X
-  TIKHUB_API_KEY     可选，有它才抓抖音、小红书、TikTok、YouTube、B站（见 platforms.py）
-  TRUSTMRR_API_KEY   可选，有它才抓 TrustMRR 的收入榜（机会卡的收入证据）
+  TWITTERAPI_IO_KEY  可选，有它才抓 X（实践者账号和机会、Skills 相关的搜索）
+  TRUSTMRR_API_KEY   可选，有它才抓 TrustMRR 的收入榜（机会候选的收入证据）
 
-抓完会把前 7 天日报里出现过的帖子、文章、仓库标上 seen_before（哪天、哪条、当时的数字），
-前 7 天的条目清单放在 recent，前一期日报的 watch_next 会在平台上追搜。
+抓完会把前 7 天日报里出现过的仓库、Skills、机会标上 seen_before（哪天、哪条、当时的数字），
+前 7 天的条目清单放在 recent，深挖过的条目放在 deepdived。
 GitHub 日榜每天存一份快照到 data/trending/<日期>.json（随日报提交），用来算仓库前 7 天上榜几天。
 GitHub 候选仓库补许可证三档（能不能拿来做托管版卖）和最近 7 天每天的增星；
 issue 需求榜（raw.issue_demand）搜「要托管版」「愿意付钱」，再查收藏过的仓库里点赞最多的 issue。
-
-试抓 TikHub：python3 scripts/fetch.py --probe，只抓平台部分，并打印每个接口返回的结构。
 """
 import argparse
 import base64
@@ -30,8 +30,6 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
-
-from platforms import fetch_platforms
 
 ROOT = Path(__file__).resolve().parent.parent
 UA = "Mozilla/5.0 (compatible; ai-radar/1.0; +https://github.com)"
@@ -338,9 +336,10 @@ def screen_more(groups, cfg):
         errors.append(f"GitHub 星数历史：{failed} 个仓库没取到（{last_err}）")
 
 
-def mark_also_on(repos, raw):
-    """榜单仓库同时出现在 HN、X 上的，标出 also_on，说明它为什么上榜。"""
-    blobs = {"HN": json.dumps([raw.get("hn_front"), raw.get("hn_show")], ensure_ascii=False).lower(),
+def mark_also_on(repos, raw, hn_front):
+    """榜单仓库同时出现在 HN（首页或 Show HN）、X 上的，标出 also_on，说明它为什么上榜。
+    HN 首页只用在这里，不放进素材：日报不写新闻。"""
+    blobs = {"HN": json.dumps([hn_front, raw.get("hn_show")], ensure_ascii=False).lower(),
              "X": json.dumps(raw.get("x") or {}, ensure_ascii=False).lower()}
     for r in repos:
         hit = [k for k, b in blobs.items() if f"github.com/{r['repo'].lower()}" in b]
@@ -359,12 +358,6 @@ def fetch_hn(cfg):
                 "hn_url": f"https://news.ycombinator.com/item?id={h['objectID']}",
                 "points": h.get("points"), "comments": h.get("num_comments")}
     return [slim(h) for h in front.get("hits", [])], [slim(h) for h in show.get("hits", [])]
-
-
-def fetch_hf(limit):
-    data = get_json(f"https://huggingface.co/api/models?sort=trendingScore&direction=-1&limit={limit}")
-    return [{"model": m.get("id"), "url": f"https://huggingface.co/{m.get('id')}", "likes": m.get("likes"),
-             "downloads": m.get("downloads"), "pipeline": m.get("pipeline_tag")} for m in data]
 
 
 class XBudget:
@@ -552,7 +545,7 @@ def recent_items(date, days=7):
         if not (d0 - dt.timedelta(days=days) <= d < d0):
             continue
         doc = json.loads(p.read_text("utf-8"))
-        for key in ("news", "tools", "skills", "opportunities", "trends", "followups"):
+        for key in ("tools", "skills", "opportunities"):  # 资讯、玩法风向、跟进 2026-11-01 停了
             for it in doc.get(key) or []:
                 base = {"date": p.stem, "id": it.get("id"), "section": key,
                         "title": it.get("title") or it.get("repo") or it.get("name") or it.get("topic") or ""}
@@ -591,31 +584,36 @@ def mark_seen(node, seen, depth=0):
             mark_seen(v, seen, depth + 1)
 
 
-def watch_words(date):
-    """前一期日报里模型写的 watch_next：明天要在平台上追搜的工具名或玩法。"""
-    past = sorted(p for p in (ROOT / "data/daily").glob("*.json") if p.stem < date)
-    if not past:
-        return []
-    try:
-        doc = json.loads(past[-1].read_text("utf-8"))
-        return [str(w)[:30] for w in (doc.get("watch_next") or []) if str(w).strip()]
-    except (OSError, ValueError):
-        return []
+SECTION_OF = {"N": "news", "G": "tools", "S": "skills", "B": "opportunities", "P": "trends"}
+
+
+def deepdived():
+    """深挖过的条目（收藏后点了深挖的，和每天自动深挖的今日机会），机会候选不要再选这些。"""
+    out, docs = [], {}
+    for p in sorted((ROOT / "data/deepdive").glob("*.md")):
+        m = re.fullmatch(r"(\d{4}-\d{2}-\d{2})-([A-Z])\d{2}", p.stem)
+        if not m:
+            continue
+        date, key = m.group(1), SECTION_OF.get(m.group(2))
+        try:
+            doc = docs.get(date) or docs.setdefault(date, json.loads((ROOT / "data/daily" / f"{date}.json").read_text("utf-8")))
+            it = next(x for x in doc.get(key) or [] if x.get("id") == p.stem[11:])
+        except (OSError, ValueError, StopIteration):
+            continue
+        out.append({"id": p.stem, "section": key, "url": it.get("url") or (it.get("source") or {}).get("url"),
+                    "name": it.get("name") or it.get("repo") or it.get("topic") or it.get("title")})
+    return out
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", default=dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d"))
     ap.add_argument("--hours", type=int, default=48, help="RSS 只保留最近多少小时")
-    ap.add_argument("--probe", action="store_true", help="只抓 TikHub，并打印每个接口返回的结构")
     args = ap.parse_args()
-    if args.probe:
-        return probe(args.date)
 
     cfg = json.loads((ROOT / "config/sources.json").read_text("utf-8"))
     since = dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=args.hours)
-    raw = {"date": args.date, "fetched_at": dt.datetime.now(dt.timezone.utc).isoformat(),
-           "official_pages_without_rss": cfg["official_pages_without_rss"]}
+    raw = {"date": args.date, "fetched_at": dt.datetime.now(dt.timezone.utc).isoformat()}
 
     raw["feeds"] = []
     for f in cfg["feeds"]:
@@ -686,19 +684,13 @@ def main():
     else:
         raw["trustmrr"] = None
         errors.append("没有配置 TRUSTMRR_API_KEY，收入证据请打开 config/sources.json 里 evidence_pages 的页面找")
-    raw["policy_pages_without_rss"] = (cfg.get("policy_pages_without_rss") or {}).get("pages", [])
     raw["evidence_pages"] = (cfg.get("evidence_pages") or {}).get("pages", [])
 
     try:
-        raw["hn_front"], raw["hn_show"] = fetch_hn(cfg["hackernews"])
+        hn_front, raw["hn_show"] = fetch_hn(cfg["hackernews"])  # 首页只用来标 also_on，不放进素材
     except Exception as e:  # noqa: BLE001
-        raw["hn_front"], raw["hn_show"] = [], []
+        hn_front, raw["hn_show"] = [], []
         errors.append(f"Hacker News: {e}")
-    try:
-        raw["hf_trending"] = fetch_hf(cfg["huggingface_trending_limit"])
-    except Exception as e:  # noqa: BLE001
-        raw["hf_trending"] = []
-        errors.append(f"Hugging Face: {e}")
 
     key = "".join(os.environ.get("TWITTERAPI_IO_KEY", "").split())  # 复制时折行、多出的空格都去掉
     if key:
@@ -707,18 +699,11 @@ def main():
         raw["x"] = None
         errors.append("没有配置 TWITTERAPI_IO_KEY，跳过 X")
 
-    raw["watch_next_from_yesterday"] = watch_words(args.date)
-    tk = "".join(os.environ.get("TIKHUB_API_KEY", "").split())
-    if tk:
-        raw["platforms"] = fetch_platforms(cfg["tikhub"], tk, args.date, errors, fresh=raw["watch_next_from_yesterday"])
-    else:
-        raw["platforms"] = None
-        errors.append("没有配置 TIKHUB_API_KEY，跳过抖音、小红书等平台")
-
     for key in ("github_trending", "github_topics", "github_new"):
-        mark_also_on(raw[key], raw)
+        mark_also_on(raw[key], raw, hn_front)
     seen, raw["recent"] = recent_items(args.date)
     mark_seen(raw, seen)
+    raw["deepdived"] = deepdived()
     raw["errors"] = errors
     raw["counts"] = {k: len(v) for k, v in raw.items() if isinstance(v, list)}
     if raw["issue_demand"]:
@@ -728,35 +713,8 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(raw, ensure_ascii=False, indent=1), "utf-8")
     print(json.dumps({"out": str(out.relative_to(ROOT)), "counts": raw["counts"],
-                      "x_tweets": (raw["x"] or {}).get("tweets_used"),
-                      "tikhub_requests": (raw["platforms"] or {}).get("requests_used"), "errors": errors},
+                      "x_tweets": (raw["x"] or {}).get("tweets_used"), "errors": errors},
                      ensure_ascii=False, indent=1))
-
-
-def probe(date):
-    """试抓：只跑 TikHub，打印每个请求认出了几条、返回的结构，原始结果写到 data/raw/<日期>-tikhub.json。"""
-    key = "".join(os.environ.get("TIKHUB_API_KEY", "").split())
-    if not key:
-        print("没有配置 TIKHUB_API_KEY")
-        return 1
-    cfg = json.loads((ROOT / "config/sources.json").read_text("utf-8"))
-    shapes = []
-    res = fetch_platforms(cfg["tikhub"], key, date, errors, probe=shapes)
-    for s in shapes:
-        print(f"\n===== {s['request']}：认出 {s['found']} 条")
-        print("列表：", "  ".join(s["lists"]))
-        for item in s["parsed"]:
-            print("认出：", json.dumps(item, ensure_ascii=False)[:600])
-        print("结构：", json.dumps(s["shape"], ensure_ascii=False)[:1500])
-    out = ROOT / "data/raw" / f"{date}-tikhub.json"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(res, ensure_ascii=False, indent=1), "utf-8")
-    print("\n===== 汇总")
-    print(json.dumps({"requests_used": res["requests_used"], "hot_lists": {k: len(v) for k, v in res["hot_lists"].items()},
-                      "searches": [f"{x['platform']}「{x['keyword']}」{x['found']}" for x in res["searches"]],
-                      "comments": [f"{x['platform']} {len(x['comments'])}" for x in res["comments"]],
-                      "notes": res.get("notes"), "errors": errors}, ensure_ascii=False, indent=1))
-    return 0
 
 
 if __name__ == "__main__":

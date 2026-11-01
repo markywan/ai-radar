@@ -76,7 +76,7 @@ p { margin: 0; }
 [data-k="news"] { --c: var(--n); --c-soft: var(--n-soft); --c-band: var(--n-band); }
 [data-k="tools"] { --c: var(--g); --c-soft: var(--g-soft); --c-band: var(--g-band); }
 [data-k="skills"] { --c: var(--s); --c-soft: var(--s-soft); --c-band: var(--s-band); }
-[data-k="opportunities"] { --c: var(--b); --c-soft: var(--b-soft); --c-band: var(--b-band); }
+[data-k="opportunities"], [data-k="pick"] { --c: var(--b); --c-soft: var(--b-soft); --c-band: var(--b-band); }
 [data-k="trends"] { --c: var(--p); --c-soft: var(--p-soft); --c-band: var(--p-band); }
 [data-k="actions"], [data-k="todo"] { --c: var(--t); --c-soft: var(--t-soft); --c-band: var(--t-band); }
 [data-k="followups"] { --c: var(--f); --c-soft: var(--f-soft); --c-band: var(--f-band); }
@@ -287,7 +287,8 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
 
 /* 一人公司机会：信息多，每个机会一张卡片 */
 .opps { display: grid; gap: 12px; }
-.opp { border-radius: 16px; box-shadow: 0 0 0 1px var(--card-line), var(--shadow); padding: 16px; display: grid; gap: 12px; min-width: 0; }
+.opp { border-radius: 16px; box-shadow: 0 0 0 1px var(--card-line), var(--shadow); padding: 16px; display: grid; gap: 12px; min-width: 0;
+  scroll-margin-top: calc(var(--bar-h, 53px) + 60px); /* 从飞书「看深挖报告」跳过来时，卡片顶不被顶栏和栏目标题挡住 */ }
 .opp > * { min-width: 0; }
 .opp .top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 13px; color: var(--muted); }
 .opp h3 { margin: 0; font-size: 18px; line-height: 1.4; font-weight: 750; }
@@ -315,6 +316,11 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
 .opp .src { font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
 .evidence { margin: 0; padding-left: 18px; font-size: 13.5px; }
 .opp details .evidence { padding-left: 34px; }
+/* 今日机会：深挖报告开头的结论直接露出来，完整报告折在「完整深挖报告」里 */
+.opp .deep-lead { font-size: 15px; line-height: 1.7; color: var(--ink); padding: 10px 12px; border-radius: 12px; background: var(--c-soft); box-shadow: inset 3px 0 0 var(--c); }
+.opp .deep-lead b { display: block; font-size: 12.5px; font-weight: 650; color: var(--c); letter-spacing: .05em; margin-bottom: 2px; }
+.opp .note { font-size: 13.5px; color: var(--muted); }
+.opp details .deep { margin: 0 12px 12px 15px; background: var(--surface); }
 
 /* 平台风向：证据一行一条（平台 + 标题 + 数字），用户原话用引用样式 */
 .ev, .quotes { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }

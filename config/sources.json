@@ -1,45 +1,12 @@
 {
-  "_说明": "日报的抓取来源。改这里就能增删信源，不用改代码。抓不到的来源会记进 errors，不会让整个任务失败。kind 的含义：官方＝厂商官网，媒体＝大媒体（Techmeme 只用来发现线索，收录时必须换成它指向的原文），政策＝平台规则和创作者政策，社区＝只用来发现线索，机会＝一人公司项目线索。RSS 只留最近 48 小时的条目；keep_latest 是低频源（如月刊）不管多久以前都保留的最新几条。Reddit 2026-11-13 停 RSS，r/SideProject、r/microsaas 两个源 10-30 去掉了，机会候选改从 Show HN、Product Hunt、V2EX 和 acquire 找。",
+  "_说明": "日报的抓取来源。2026-11-01 起日报只做三样：GitHub 热门仓库、Skills、一人公司出海机会（几个候选，再每天深挖一个）；AI 资讯（厂商官网、媒体、政策页、Hugging Face、X 新闻号和 AI 热议）和 TikHub 平台搜索都停了（仓库主人定）。改这里就能增删信源，不用改代码。抓不到的来源会记进 errors，不会让整个任务失败。kind 的含义：机会＝一人公司项目线索，社区＝只用来发现线索。RSS 只留最近 48 小时的条目；keep_latest 是低频源（如月刊）不管多久以前都保留的最新几条。Reddit 2026-11-13 停 RSS，r/SideProject、r/microsaas 两个源 10-30 去掉了。",
   "feeds": [
-    {"name": "OpenAI", "url": "https://openai.com/news/rss.xml", "kind": "官方"},
-    {"name": "Google DeepMind", "url": "https://deepmind.google/blog/rss.xml", "kind": "官方"},
-    {"name": "Google AI Blog", "url": "https://blog.google/technology/ai/rss/", "kind": "官方"},
-    {"name": "Hugging Face Blog", "url": "https://huggingface.co/blog/feed.xml", "kind": "官方"},
-    {"name": "Claude Code Releases", "url": "https://github.com/anthropics/claude-code/releases.atom", "kind": "官方"},
-    {"name": "Codex Releases", "url": "https://github.com/openai/codex/releases.atom", "kind": "官方"},
-    {"name": "AI News (smol.ai)", "url": "https://news.smol.ai/rss.xml", "kind": "社区"},
-    {"name": "Simon Willison", "url": "https://simonwillison.net/atom/everything/", "kind": "社区"},
-    {"name": "Techmeme", "url": "https://www.techmeme.com/feed.xml", "kind": "媒体"},
-    {"name": "TechCrunch AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "kind": "媒体"},
-    {"name": "The Verge AI", "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", "kind": "媒体"},
-    {"name": "The Decoder", "url": "https://the-decoder.com/feed/", "kind": "媒体"},
-    {"name": "量子位", "url": "https://www.qbitai.com/feed", "kind": "媒体"},
-    {"name": "YouTube 官方博客", "url": "https://blog.youtube/rss/", "kind": "政策"},
-    {"name": "Meta Newsroom", "url": "https://about.fb.com/news/feed/", "kind": "政策"},
-    {"name": "Google Search Central", "url": "https://feeds.feedburner.com/blogspot/amDG", "kind": "政策"},
     {"name": "Product Hunt", "url": "https://www.producthunt.com/feed", "kind": "机会"},
     {"name": "V2EX 分享创造", "url": "https://www.v2ex.com/feed/create.xml", "kind": "机会"},
     {"name": "HelloGitHub 月刊", "url": "https://hellogithub.com/rss", "kind": "社区", "keep_latest": 1}
   ],
-  "official_pages_without_rss": [
-    "https://www.anthropic.com/news",
-    "https://x.ai/news",
-    "https://mistral.ai/news",
-    "https://ai.meta.com/blog/",
-    "https://api-docs.deepseek.com/news/news",
-    "https://qwenlm.github.io/blog/"
-  ],
-  "policy_pages_without_rss": {
-    "_说明": "平台规则、创作者政策和卖家公告，没有 RSS。写「影响你的」资讯时打开看最近 3 天有没有和 AI 内容、矩阵号、搜索流量、卖家规则相关的新公告；没有就不用提。",
-    "pages": [
-      {"name": "TikTok Newsroom", "url": "https://newsroom.tiktok.com/en-us/"},
-      {"name": "抖音创作者公告", "url": "https://creator.douyin.com/creator-micro/content/announcement"},
-      {"name": "小红书规则中心", "url": "https://www.xiaohongshu.com/crown/community/rules"},
-      {"name": "Amazon Seller Central 公告", "url": "https://sellercentral.amazon.com/forums/c/news/"}
-    ]
-  },
   "evidence_pages": {
-    "_说明": "写一人公司机会时找收入证据和竞品的地方。机会卡要求至少一条你打开过的收入证据，优先从这里找。配了 TRUSTMRR_API_KEY 时脚本会直接抓 TrustMRR 的榜单放进 raw.trustmrr。",
+    "_说明": "找机会候选的收入证据和竞品的地方，写日报时用 WebFetch 打开。每个候选至少要一条打开过的收入证据。配了 TRUSTMRR_API_KEY 时脚本会直接抓 TrustMRR 的榜单放进 raw.trustmrr。",
     "pages": [
       {"name": "TrustMRR 一人团队增长榜", "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"},
       {"name": "TrustMRR 在售项目", "url": "https://trustmrr.com/?onSale=true"},
@@ -94,20 +61,17 @@
     "_说明": "每天解析 skills.sh 首页的总榜（接口要 Vercel 令牌，用不了），Skills 栏目的安装量从这里来；趋势榜由模型用 WebFetch 看。",
     "limit": 40
   },
-  "huggingface_trending_limit": 15,
-  "hackernews": {"front_page_limit": 30, "show_hn_min_points": 40},
+  "hackernews": {
+    "_说明": "Show HN 是机会候选的来源（36 小时内、show_hn_min_points 分以上）。首页的 front_page_limit 条只用来标 GitHub 仓库是不是被 HN 带起来的（also_on），不放进素材，日报不写新闻。",
+    "front_page_limit": 30,
+    "show_hn_min_points": 40
+  },
   "x": {
-    "_说明": "用 twitterapi.io 抓。没配置 TWITTERAPI_IO_KEY 时自动跳过。账号分两组：新闻号（AI 公司、媒体、官方发布的人）给资讯用；实践者（晒用法、晒做法、晒收入的人）给玩法风向和机会用，抓回来的帖子带 group 字段。实践者组还缺中文外贸和跨境电商的人，想到了就加。max_tweets 是每天的上限，按每千条约 0.15 美元算，600 条约 0.09 美元。min_interval_s 是两次请求的最小间隔（免费额度约 5 秒一次，充值后可以调小）。",
+    "_说明": "用 twitterapi.io 抓，没配置 TWITTERAPI_IO_KEY 时自动跳过。2026-11-01 起只抓「实践者」组（晒做法、晒收入的人）和机会、Skills 相关的搜索，给机会候选和 Skills 用；AI 新闻号、AI 热议和 AI 玩法搜索停了。实践者组还缺中文外贸和跨境电商的人，想到了就加。max_tweets 是每天的上限，按每千条约 0.15 美元算。min_interval_s 是两次请求的最小间隔（免费额度约 5 秒一次，充值后可以调小）。",
     "max_tweets": 600,
     "min_interval_s": 5.2,
     "account_window": "within_time:24h",
     "accounts": {
-      "新闻号": [
-        "OpenAI", "OpenAIDevs", "AnthropicAI", "claudeai", "ClaudeDevs", "GoogleDeepMind", "GoogleAI", "AIatMeta", "xai",
-        "MistralAI", "deepseek_ai", "Alibaba_Qwen", "Kimi_Moonshot", "Zai_org", "MiniMax__AI", "huggingface", "NVIDIAAI", "cursor_ai",
-        "TechCrunch", "verge", "TheRundownAI", "rowancheung", "testingcatalog",
-        "sama", "_akhaliq", "OfficialLoganK", "alexalbert__", "thsottiaux", "bcherny"
-      ],
       "实践者": [
         "rauchg", "karpathy", "simonw", "swyx", "mckaywrigley", "minchoi", "rileybrown_ai", "LinusEkenstam", "heyBarsee",
         "levelsio", "marc_louvion", "dannypostmaa", "tdinh_me", "arvidkahl", "thepatwalls", "gregisenberg",
@@ -117,68 +81,12 @@
     },
     "accounts_per_query": 10,
     "hot_queries": [
-      {"name": "AI 热议（英文）", "query": "(AI OR LLM OR GPT OR Claude OR Gemini OR \"AI agent\") min_faves:2000 lang:en -filter:replies within_time:24h", "type": "Top"},
-      {"name": "AI 热议（中文）", "query": "(AI OR 大模型 OR 智能体 OR Claude OR Cursor OR Codex) min_faves:300 lang:zh -filter:replies within_time:24h", "type": "Top"},
-      {"name": "AI 玩法与技巧（英文）", "query": "(\"Claude Code\" OR Cursor OR Codex OR ChatGPT OR Claude OR Gemini OR \"AI agent\" OR n8n) (tips OR workflow OR \"how I\" OR \"here's how\" OR prompt OR \"use case\" OR hack) min_faves:500 lang:en -filter:replies within_time:48h", "type": "Top"},
-      {"name": "AI 玩法与技巧（中文）", "query": "(AI OR Claude OR Cursor OR Codex OR ChatGPT OR 智能体 OR 提示词) (技巧 OR 教程 OR 玩法 OR 工作流 OR 用法 OR 实测) min_faves:200 lang:zh -filter:replies within_time:48h", "type": "Top"},
-      {"name": "Claude Code / Codex / Skills", "query": "(\"Claude Code\" OR Codex OR \"agent skills\" OR \"SKILL.md\" OR MCP) min_faves:500 -filter:replies within_time:24h", "type": "Top"},
+      {"name": "Skills", "query": "(\"agent skills\" OR \"SKILL.md\" OR \"Claude skills\" OR \"Codex skills\" OR \"skills.sh\") min_faves:100 -filter:replies within_time:48h", "type": "Top"},
       {"name": "一人公司（英文）", "query": "(solopreneur OR \"one person business\" OR \"indie hacker\" OR \"solo founder\" OR \"side project\") (MRR OR revenue OR \"per month\") min_faves:200 lang:en -filter:replies within_time:48h", "type": "Top"},
       {"name": "一人公司（中文）", "query": "(一人公司 OR 独立开发 OR 副业 OR 出海 OR 被动收入 OR 月入) min_faves:100 lang:zh -filter:replies within_time:48h", "type": "Top"},
       {"name": "AI 小工具与插件", "query": "(\"micro SaaS\" OR \"Chrome extension\" OR \"AI wrapper\" OR \"directory site\" OR 工具站 OR 小工具 OR 浏览器插件) (MRR OR revenue OR users OR 收入 OR 用户) min_faves:200 -filter:replies within_time:48h", "type": "Top"},
-      {"name": "外贸与跨境 AI", "query": "(外贸 OR 跨境 OR 独立站 OR Shopify OR \"cold email\" OR \"lead gen\" OR Amazon FBA) (AI OR Claude OR ChatGPT OR 自动化 OR automation) min_faves:100 -filter:replies within_time:48h", "type": "Top"}
+      {"name": "外贸与跨境 AI", "query": "(外贸 OR 跨境 OR 独立站 OR Shopify OR \"cold email\" OR \"lead gen\" OR Amazon FBA) (AI OR Claude OR ChatGPT OR 自动化 OR automation) min_faves:100 -filter:replies within_time:48h", "type": "Top"},
+      {"name": "出海自动化生意（英文）", "query": "(\"programmatic SEO\" OR \"directory site\" OR newsletter OR \"cold email\" OR \"lead gen\" OR B2B OR \"data API\" OR scraper OR \"press release\") (MRR OR revenue OR \"per month\" OR \"a month\") min_faves:100 lang:en -filter:replies within_time:48h", "type": "Top"}
     ]
-  },
-  "tikhub": {
-    "_说明": "用 TikHub 抓小红书、抖音、TikTok、YouTube、B站。只找 AI 新玩法、使用技巧、爆款形式和一人公司需求，不当新闻源；他不做视频内容创业，所以关键词不搜漫剧、faceless、数字人、AI UGC 这类视频生意，所以不抓热搜榜（原配置在 _停用的热搜榜）。没配置 TIKHUB_API_KEY 时自动跳过。按每次请求约 0.001 美元算，max_requests 是每天上限（失败的请求不收费，也不计数）。每个平台的关键词分三组：monitor 是长期监测，每天都搜，但日报只报新增的帖子和数字变化（脚本会把前 7 天出现过的帖子标上 seen_before）；probe 是轮换探针，每天按顺序取 probe_per_day 个，一周左右轮一遍；追搜词来自前一天日报的 watch_next（模型写的「明天追搜」工具名），只在 fresh_platforms 上搜。params 里 {week_ago}、{now} 会换成时间戳；relax 列出的参数在请求被拒时去掉再试一次。",
-    "max_requests": 50,
-    "keep_per_search": 10,
-    "fresh_platforms": ["小红书", "抖音", "YouTube"],
-    "fresh_max": 3,
-    "hot_lists": [],
-    "_停用的热搜榜": [
-      {"name": "抖音热搜", "platform": "抖音", "path": "/api/v1/douyin/app/v3/fetch_hot_search_list"},
-      {"name": "微博热搜", "platform": "微博", "path": "/api/v1/weibo/web_v2/fetch_hot_search"},
-      {"name": "知乎热榜", "platform": "知乎", "path": "/api/v1/zhihu/web/fetch_hot_list", "params": {"limit": "50"}},
-      {"name": "B站热搜", "platform": "B站", "path": "/api/v1/bilibili/web/fetch_hot_search", "params": {"limit": "50"}},
-      {"name": "TikTok 趋势搜索词", "platform": "TikTok", "path": "/api/v1/tiktok/web/fetch_trending_searchwords"}
-    ],
-    "searches": [
-      {"platform": "小红书", "path": "/api/v1/xiaohongshu/app_v2/search_notes", "keyword_param": "keyword",
-       "params": {"page": 1, "sort_type": "popularity_descending", "time_filter": "一周内", "note_type": "不限"},
-       "relax": ["time_filter", "note_type"],
-       "monitor": ["AI副业", "AI工作流"], "probe_per_day": 2,
-       "probe": ["外贸获客", "跨境电商 AI", "AI使用技巧", "AI提示词", "Claude Code", "AI做小红书", "AI写作变现", "一人公司", "AI接单", "AI知识付费", "独立站 AI", "亚马逊 AI 工具", "AI SEO", "智能体教程", "AI效率神器", "AI小工具", "浏览器插件"]},
-      {"platform": "抖音", "path": "/api/v1/douyin/search/fetch_video_search_v2", "method": "POST", "keyword_param": "keyword",
-       "params": {"cursor": 0, "sort_type": "0", "publish_time": "7", "filter_duration": "0", "content_type": "0", "search_id": ""},
-       "relax": ["publish_time", "content_type"],
-       "monitor": ["AI工具推荐", "AI智能体"], "probe_per_day": 2,
-       "probe": ["AI副业", "AI新玩法", "AI办公", "AI编程", "一人公司", "独立开发", "AI变现", "外贸 AI", "跨境电商 AI", "AI使用技巧", "AI SEO"]},
-      {"platform": "TikTok", "path": "/api/v1/tiktok/app/v3/fetch_video_search_result", "keyword_param": "keyword",
-       "params": {"offset": 0, "count": 20, "sort_type": 1, "publish_time": 7, "region": "US"},
-       "relax": ["publish_time", "region"],
-       "monitor": ["AI tools", "AI side hustle"], "probe_per_day": 2,
-       "probe": ["AI hacks", "ChatGPT tips", "Claude tips", "AI automation", "micro SaaS", "make money online AI", "AI business ideas", "AI dropshipping", "print on demand AI", "Chrome extension AI"]},
-      {"platform": "YouTube", "path": "/api/v1/youtube/web/search_video", "keyword_param": "search_query",
-       "params": {"language_code": "en", "country_code": "us"},
-       "monitor": ["micro SaaS AI", "AI automation agency"], "probe_per_day": 2,
-       "probe": ["Claude Code tips", "one person business AI", "n8n automation", "AI SEO", "AI agents make money", "vibe coding", "AI workflow tutorial", "programmatic SEO AI", "AI cold email", "Shopify AI automation", "ChatGPT hacks"]},
-      {"platform": "B站", "path": "/api/v1/bilibili/web/fetch_general_search", "keyword_param": "keyword",
-       "params": {"order": "click", "page": 1, "page_size": 20, "pubtime_begin_s": "{week_ago}", "pubtime_end_s": "{now}"},
-       "relax": ["pubtime_begin_s", "pubtime_end_s"],
-       "monitor": ["AI 副业", "Claude Code"], "probe_per_day": 2,
-       "probe": ["AI 编程", "AI 工作流", "n8n", "AI 自媒体", "AI 技巧", "Cursor 教程", "AI 跨境电商", "AI 外贸"]}
-    ],
-    "comments": {
-      "_说明": "每个平台挑评论最多的 per_platform 条，抓第一页评论，找求助、问价、要教程这类需求原话。",
-      "per_platform": 3,
-      "keep": 20,
-      "endpoints": {
-        "抖音": {"path": "/api/v1/douyin/app/v3/fetch_video_comments", "id_param": "aweme_id", "params": {"cursor": 0, "count": 20}},
-        "TikTok": {"path": "/api/v1/tiktok/app/v3/fetch_video_comments", "id_param": "aweme_id", "params": {"cursor": 0, "count": 20}},
-        "小红书": {"path": "/api/v1/xiaohongshu/app_v2/get_note_comments", "id_param": "note_id"},
-        "B站": {"path": "/api/v1/bilibili/web/fetch_video_comments", "id_param": "bv_id"},
-        "YouTube": {"path": "/api/v1/youtube/web_v2/get_video_comments", "id_param": "video_id"}
-      }
-    }
   }
 }
