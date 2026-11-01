@@ -1,0 +1,408 @@
+{
+ "date": "2026-11-02",
+ "generated_at": "2026-11-02T05:30:00+08:00",
+ "headline": [
+  "今日机会：单功能表单 API 服务 Web3Forms，创始人个人运营，TrustMRR 显示 **MRR $43,692、3,174 个付费订阅**，卖给全球开发者。",
+  "最值得看的 GitHub 线索：Scrapling 近 7 天 +2,041 星、BSD 许可，可做数据订阅类生意；Skills 里 baoyu-skills 适合做英文图文。",
+  "今天最值得做的一件事：打开 Web3Forms 和两个同类产品的定价页，记下每档价格和提交量上限。"
+ ],
+ "stats": {
+  "scanned": 260,
+  "selected": 11,
+  "chars": 2616,
+  "read_minutes": 6
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "打开 Web3Forms、Formspree、Getform 的定价页，记下每档价格、提交量上限和免费额度，算出你能压在哪一档。"
+  },
+  {
+   "minutes": 15,
+   "text": "用 TrustMRR 一人团队榜，把 RankAI 的自助档和 AEO Engine 的 $1,597 档对比，写下小品牌愿意付多少的 GEO 监测。"
+  },
+  {
+   "minutes": 5,
+   "text": "给 Scrapling 的 README 里「Docker、反爬」一节加书签，周末决定要不要抓一份跨境卖家数据做周报。"
+  }
+ ],
+ "opportunities": [
+  {
+   "name": "单功能表单 API 服务（Web3Forms 类）",
+   "category": "API 服务",
+   "one_liner": "卖表单提交转邮件的 API 给全球开发者和建站者，按月订阅收美元",
+   "track": "供需撮合",
+   "source": {
+    "title": "TrustMRR 一人团队增长榜",
+    "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+   },
+   "automation": {
+    "acquisition": "靠 SEO 文档页和集成教程（WordPress、Webflow、Astro）长尾流量，免费档引流",
+    "production": "产品只是一个接口，部署在 Cloudflare Workers 或 VPS，不需要日常生产",
+    "payment_support": "Stripe 或 Creem 订阅自动扣款，常见问题用文档加 AI 邮件回复",
+    "manual": "垃圾提交和滥用处理、偶尔的账单纠纷",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "静态站、Jamstack 站点没有后端，却要收联系表单；页面称有约 41.2 万用户",
+    "revenue_evidence": "TrustMRR 页面：**MRR $43,692，3,174 个活跃订阅**，近 30 天收入 $44,932，累计 $353,298；创始人 Surjith S M，2020 年 12 月成立",
+    "competition": "Formspree、Getform（推断，未打开）；Web3Forms 靠免费 250 次提交引流",
+    "evidence_links": [
+     {
+      "title": "TrustMRR：Web3Forms",
+      "url": "https://trustmrr.com/startup/web3forms"
+     },
+     {
+      "title": "TrustMRR 一人团队增长榜",
+      "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 100,
+    "mvp_days": 10,
+    "services": "Cloudflare Workers、邮件发送服务、Stripe 或 Creem",
+    "match": "你做过外贸建站和 SEO，懂独立站没有后端时怎么收询盘，可以换一个更窄的角度：外贸独立站的询盘表单加自动转 WhatsApp 和邮件",
+    "biggest_risk": "对手已做了 5 年，通用表单拿不到流量；垃圾提交导致邮件被封"
+   },
+   "verdict": "值得验证",
+   "id": "B01"
+  },
+  {
+   "name": "自动化 SEO 与 AI 搜索可见度服务（RankAI、AEO Engine 类）",
+   "category": "产品化服务",
+   "one_liner": "替海外中小品牌监测并持续产出能被 Google 和 ChatGPT 引用的内容，按月订阅",
+   "track": "SEO与GEO",
+   "source": {
+    "title": "TrustMRR 一人团队增长榜",
+    "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+   },
+   "automation": {
+    "acquisition": "用自己的案例站做 GEO 数据对比，冷邮件加 X 帖子获客",
+    "production": "用 Claude Code 加 SEO 类 Skill 批量出稿、改稿、监测引用",
+    "payment_support": "Stripe 订阅，报告自动发邮件",
+    "manual": "审稿、客户沟通、判断引用是否真的涨了",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "品牌想出现在 ChatGPT、AI Overviews 的回答里；两个产品都靠这个定位收费",
+    "revenue_evidence": "TrustMRR：RankAI **MRR $56,533（155 个订阅）**，但页面标明数据更新到 7 月 30 日、Stripe 密钥已过期；AEO Engine **MRR $180,116（62 个订阅）**，档位 $1,597 到 $10,000/月",
+    "competition": "RankAI（自助档，价格页未写）、AEO Engine（高客单代理，需要销售）",
+    "evidence_links": [
+     {
+      "title": "TrustMRR：RankAI",
+      "url": "https://trustmrr.com/startup/rankai"
+     },
+     {
+      "title": "TrustMRR：AEO Engine",
+      "url": "https://trustmrr.com/startup/aeo-engine"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 150,
+    "mvp_days": 14,
+    "services": "Claude Code、SEO 数据 API、Stripe",
+    "match": "正好是你的 SEO 与 GEO 主线，做低客单自助版，避开 AEO Engine 那种要销售的高价档",
+    "biggest_risk": "效果难证明，退订率高；RankAI 数据已过期，不能当最新证据"
+   },
+   "verdict": "放进观察",
+   "id": "B02"
+  },
+  {
+   "name": "社媒监听式 B2B 线索名单（traxy.ai 类）",
+   "category": "数据与情报订阅",
+   "one_liner": "从社媒讨论里找出正在找方案的买家，做成线索名单卖给海外销售团队",
+   "track": "供需撮合",
+   "source": {
+    "title": "TrustMRR 一人团队增长榜",
+    "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+   },
+   "automation": {
+    "acquisition": "冷邮件加 LinkedIn 内容，示例名单当引流品",
+    "production": "定时任务抓取、AI 判断意向、生成名单",
+    "payment_support": "Stripe 订阅，名单自动发送",
+    "manual": "名单质量抽查、抓取源失效时修复",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "B2B 销售团队的老线索不活跃，要找正在被市场讨论的买家（页面原话）",
+    "revenue_evidence": "TrustMRR：**MRR $52,736，244 个订阅**，Pro 档 $149/月，2026 年 1 月成立，累计 $156,221；团队 2–5 人，不是单人",
+    "competition": "traxy.ai；GojiberryAI 榜上 MRR $424,368（页面 404，未打开详情）",
+    "evidence_links": [
+     {
+      "title": "TrustMRR：traxy.ai",
+      "url": "https://trustmrr.com/startup/traxy-ai"
+     },
+     {
+      "title": "TrustMRR 一人团队增长榜",
+      "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 200,
+    "mvp_days": 14,
+    "services": "抓取工具（如 Scrapling）、LLM API、Stripe",
+    "match": "和你做外贸找客户的经验直接相通，可以只做跨境电商或外贸这一个垂直",
+    "biggest_risk": "抓取社媒违反平台条款，LinkedIn 和 X 会封号；还有数据隐私合规"
+   },
+   "verdict": "放进观察",
+   "id": "B03"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "D4Vinci/Scrapling",
+   "url": "https://github.com/D4Vinci/Scrapling",
+   "group": "大家都在用",
+   "why_today": "今日 +844 星，7 天 +2,041",
+   "stars_today": 844,
+   "stars_7d": 2041,
+   "stars_total": 91734,
+   "license": "BSD-3-Clause",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "数据与研究",
+    "供需"
+   ],
+   "brief": "能应付反爬的 Python 网页抓取框架",
+   "what": "从单次请求到整站爬取都能做的抓取框架，带自适应解析和 AI 抓取模式。最近一次提交在 11 月 1 日。",
+   "business": "抓跨境卖家或供应商数据做周报，卖给海外买家，按月收费",
+   "uses": [
+    {
+     "area": "供需",
+     "how": "定时抓目录站供应商信息，整理成需求情报名单"
+    },
+    {
+     "area": "外贸",
+     "how": "抓目标行业公司官网联系方式，省掉手工找客户"
+    }
+   ],
+   "setup": "低，Python 环境即可",
+   "safety": "黄",
+   "safety_note": "爬虫类工具会访问大量外部站点，可能碰到对方条款和账号封禁。依据：本身不要凭证，但常配合代理和登录态使用。防范：只抓公开页面，别在抓取机里放主账号 Cookie，遵守 robots.txt。",
+   "risk_brief": "爬虫可能违反站点条款",
+   "id": "G01"
+  },
+  {
+   "repo": "Renhuai123/ziwei-doushu",
+   "url": "https://github.com/Renhuai123/ziwei-doushu",
+   "group": "刚冒出来",
+   "why_today": "7 天内第 5 天上榜，今日 +953",
+   "stars_today": 953,
+   "stars_total": 13064,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "自媒体",
+    "做产品"
+   ],
+   "brief": "紫微斗数开源排盘引擎",
+   "what": "含完整排盘算法、四化系统、格局知识库和古籍原文数据，TypeScript 写的，2026 年 5 月建仓。",
+   "business": "做英文版东方命理排盘站，卖报告给海外兴趣用户",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "出英文图文，介绍排盘结果，挂付费报告链接"
+    },
+    {
+     "area": "做产品",
+     "how": "包一层英文界面做成按次付费的小工具"
+    }
+   ],
+   "setup": "低，Next.js 项目",
+   "safety": "黄",
+   "safety_note": "建仓不到 30 天以外的项目也应核对数据来源。依据：建仓 184 天，但古籍原文版权未确认。防范：上线前确认原文数据的授权，只用算法部分。",
+   "risk_brief": "古籍数据版权未确认",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/Renhuai123/ziwei-doushu/HEAD/docs/update-20261015.png",
+    "https://raw.githubusercontent.com/Renhuai123/ziwei-doushu/HEAD/docs/update-20260921.png"
+   ]
+  },
+  {
+   "repo": "paperclipai/paperclip",
+   "url": "https://github.com/paperclipai/paperclip",
+   "group": "大家都在用",
+   "why_today": "总星 10.9 万，7 天内第 2 天上榜",
+   "stars_today": 505,
+   "stars_total": 109899,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "用来管理多个 AI 代理的开源应用",
+   "what": "给小团队管理多个 Agent 的控制台，带治理和技能编排。最近一次提交在 11 月 1 日，fork 约 1.8 万。",
+   "business": "做托管版卖给不会部署的小团队，按席位月费",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "用来给自己的多个小项目统一调度 Agent"
+    }
+   ],
+   "setup": "中，需要 Node 和模型密钥",
+   "safety": "黄",
+   "safety_note": "要给 Agent 执行权限和模型密钥。依据：开放 issue 6,664 个，成熟度参差。防范：放在隔离的 VPS，密钥用最小权限的专用 key。",
+   "risk_brief": "Agent 执行权限和密钥",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/paperclipai/paperclip/1ec33ffd8b597f7e36aac3e2fbb4665b8c42dc3c/doc/assets/four-pillars-light.png",
+    "https://raw.githubusercontent.com/paperclipai/paperclip/HEAD/doc/assets/banner.jpg"
+   ]
+  },
+  {
+   "repo": "wangzan101/Mika",
+   "url": "https://github.com/wangzan101/Mika",
+   "group": "刚冒出来",
+   "why_today": "建仓 4 天 3.8k 星",
+   "stars_total": 3798,
+   "license": "Apache-2.0",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "装在安卓手机上自己操作 App 的 AI 代理",
+   "what": "在手机上操作 App 和网页完成任务的本地代理，2026 年 10 月 29 日建仓。",
+   "business": "做成海外社媒运营自动化手机方案，按月订阅",
+   "uses": [
+    {
+     "area": "宣传",
+     "how": "让手机自动完成海外账号的日常养号和发布"
+    }
+   ],
+   "setup": "中，需要安卓手机和模型 API",
+   "safety": "黄",
+   "safety_note": "建仓不到 30 天，且要读屏、操作你的账号。防范：用专门的测试手机和小号，不登录主账号和支付 App。",
+   "risk_brief": "新项目，能操作账号",
+   "id": "G04"
+  }
+ ],
+ "skills": [
+  {
+   "name": "unslop",
+   "url": "https://github.com/heydamir/unslop",
+   "repo": "heydamir/unslop",
+   "hot": "新晋热门",
+   "stars_total": 4820,
+   "installs": null,
+   "popularity_note": "10 月 29 日建仓，到 11 月 1 日 4,820 星，10-30、10-31 各涨 1,643、2,168",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "建仓不到 30 天，会跑 Node 脚本抓页面并写文件。依据：我读了 SKILL.md，没有混淆命令，也不要 Key，可选的图片服务会外发提示词。防范：只让它抓你自己的页面，付费生成前看它给出的提示。",
+   "risk_brief": "新项目，会跑脚本抓页面",
+   "brief": "把一眼 AI 味的界面改成有设计感的页面",
+   "what": "先审查页面，给方向，再分几轮改界面，需要时用 Playwright 截图。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "改你做的小工具落地页，让它不像模板"
+    },
+    {
+     "area": "SEO",
+     "how": "批量改程序化页面的版式，降低重复感"
+    }
+   ],
+   "install": "复制 `skills/unslop` 到 `~/.claude/skills/`；Codex 用 `$skill-installer install https://github.com/heydamir/unslop/tree/main/skills/unslop`",
+   "id": "S01",
+   "images": [
+    "https://raw.githubusercontent.com/heydamir/unslop/HEAD/skills/unslop/references/refs/story-dashboard-frames.webp"
+   ]
+  },
+  {
+   "name": "baoyu-skills",
+   "url": "https://github.com/JimLiu/baoyu-skills",
+   "repo": "JimLiu/baoyu-skills",
+   "hot": "长期热门",
+   "stars_total": 27160,
+   "installs": null,
+   "popularity_note": "GitHub 27,160 星，11 月 1 日仍有提交",
+   "works_with": "Claude Code / Codex",
+   "safety": "黄",
+   "safety_note": "有的子 Skill 要图片 API Key，有的用 Chrome CDP 和 Cookie 发帖。依据：我读了 baoyu-infographic 的 SKILL.md，只写文件并调用图片后端；README 标明 danger 系列用浏览器 Cookie。防范：只装用得着的子 Skill，不装带 danger 的。",
+   "risk_brief": "部分子 Skill 用 Cookie 和 Key",
+   "brief": "一组做文章配图、信息图、翻译的图文 Skill",
+   "what": "含文章配图、封面、信息图、Markdown 排版和翻译等子 Skill。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "把英文长文自动配上封面和信息图再发布"
+    },
+    {
+     "area": "宣传",
+     "how": "把新闻稿翻译并排版成多语言版本"
+    }
+   ],
+   "install": "`npx skills add jimliu/baoyu-skills`，只装需要的",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/JimLiu/baoyu-skills/HEAD/screenshots/update-plugins.png",
+    "https://raw.githubusercontent.com/JimLiu/baoyu-skills/HEAD/screenshots/xhs-images-styles/cute.webp",
+    "https://raw.githubusercontent.com/JimLiu/baoyu-skills/HEAD/screenshots/xhs-images-styles/fresh.webp",
+    "https://raw.githubusercontent.com/JimLiu/baoyu-skills/HEAD/screenshots/xhs-images-styles/warm.webp"
+   ]
+  },
+  {
+   "name": "planning-with-files",
+   "url": "https://github.com/OthmanAdi/planning-with-files",
+   "repo": "OthmanAdi/planning-with-files",
+   "hot": "长期热门",
+   "stars_total": 27811,
+   "installs": null,
+   "popularity_note": "GitHub 27,811 星，10 月 30 日仍有提交",
+   "works_with": "Claude Code / Codex",
+   "safety": "黄",
+   "safety_note": "带钩子，会在每轮调用 shell 脚本，并写 `.planning/` 状态文件。依据：我读了 SKILL.md 的前置声明，没有 Key 和外发，也没有混淆命令；`session-catchup.py` 在你要求时读本地会话记录。防范：不要打开 `--replay`，只在项目目录里用。",
+   "risk_brief": "钩子会跑 shell，可读会话记录",
+   "brief": "把长任务计划写进文件，清上下文后不丢",
+   "what": "在项目里写 `task_plan.md`、`findings.md`、`progress.md`，中断后能接着做。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "跑多天的建站任务时保持进度，不怕上下文被清"
+    },
+    {
+     "area": "SEO",
+     "how": "批量生成页面的长任务拆成清单逐项勾掉"
+    }
+   ],
+   "install": "`npx skills add OthmanAdi/planning-with-files --skill planning-with-files -g`",
+   "id": "S03",
+   "images": [
+    "https://raw.githubusercontent.com/OthmanAdi/planning-with-files/HEAD/media/pwf-banner-v5.webp",
+    "https://raw.githubusercontent.com/OthmanAdi/planning-with-files/HEAD/media/pwf-context-story-v1.gif"
+   ]
+  },
+  {
+   "name": "frontend-design",
+   "url": "https://skills.sh/anthropics/skills/frontend-design",
+   "repo": "anthropics/skills",
+   "hot": "长期热门",
+   "stars_total": 0,
+   "installs": 1100000,
+   "popularity_note": "skills.sh 总榜第 15，安装 110 万",
+   "works_with": "Claude Code / Codex",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "让 Agent 做出有设计感而不是模板味的网页",
+   "what": "纯文字指引：先写设计计划，再自查是否太套路，最后写代码。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "做英文落地页和小工具界面时少改几轮"
+    },
+    {
+     "area": "外贸",
+     "how": "给独立站做更像品牌的产品页"
+    }
+   ],
+   "install": "`npx skills add anthropics/skills --skill frontend-design`",
+   "id": "S04"
+  }
+ ],
+ "pick": "B01"
+}
