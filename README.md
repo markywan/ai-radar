@@ -19,7 +19,7 @@
 ## 怎么运转
 
 ```
-每天 04:23 起 ─ daily.yml（5:23、6:23 补跑，7 点推飞书） ─ fetch.py 抓素材（GitHub 日榜周榜、中文区日榜、他行业的话题、新项目、许可证三档、7 天增星和 issue 需求榜；skills.sh 榜和 Skills 仓库；机会线索：Product Hunt、V2EX、Show HN、X 实践者和一人公司搜索、TrustMRR；前 7 天写过的标 seen_before，深挖过的列在 deepdived）
+每天 01:23 起 ─ daily.yml（到 6:23 每小时补跑一次，7 点推飞书） ─ fetch.py 抓素材（GitHub 日榜周榜、中文区日榜、他行业的话题、新项目、许可证三档、7 天增星和 issue 需求榜；skills.sh 榜和 Skills 仓库；机会线索：Product Hunt、V2EX、Show HN、X 实践者和一人公司搜索、TrustMRR；前 7 天写过的标 seen_before，深挖过的列在 deepdived）
                          └ Claude（Sonnet）按 prompts/daily.md 写日报 → enrich.py 从 README 配图 → validate.py 校验 → 提交 data/daily/日期.json
                          └ Claude（Opus）按 prompts/deepdive.md 深挖今日机会（第一个候选）→ 提交 data/deepdive/日期-B01.md
                          └ publish.yml 发布网站 → 飞书卡片
