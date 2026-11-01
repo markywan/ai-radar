@@ -1,0 +1,41 @@
+{
+ "id": "2026-11-01-G02",
+ "date": "2026-11-01",
+ "type": "tools",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-11-01T05:04:28+00:00",
+ "item": {
+  "repo": "Orkas-AI/Orkas",
+  "url": "https://github.com/Orkas-AI/Orkas",
+  "group": "刚冒出来",
+  "why_today": "首次上榜 +1,118 星",
+  "stars_today": 1118,
+  "stars_total": 6109,
+  "license": "MIT",
+  "tags": [
+   "Agent 与自动化"
+  ],
+  "brief": "桌面端本地优先的 AI 团队，带 16 个专员",
+  "what": "桌面应用，一个 Commander 代理拆目标，调度 16 个内置专员和 Claude Code、Codex 等外部命令行代理；支持 Gmail、Slack 等连接器，发送和删除默认要确认。自带 500 积分免费额度。",
+  "uses": [
+   {
+    "area": "自媒体",
+    "how": "把选题、写稿、排版分给不同专员，一人跑完一条图文流水线"
+   },
+   {
+    "area": "外贸",
+    "how": "接入邮箱连接器起草开发信，发送前人工确认"
+   }
+  ],
+  "setup": "中：下载安装包或 Node 22.12+ 源码运行，需配模型密钥",
+  "safety": "黄",
+  "safety_note": "结论：会拿到邮箱等账号权限，且首次上榜。依据：连接器可发信、发帖、删除；语音输入会把音频传给 Orkas 服务。防范：连接器只授权专用小号，保持默认发送前确认，不开语音输入。",
+  "risk_brief": "连接器权限大，用小号",
+  "id": "G02",
+  "images": [
+   "https://raw.githubusercontent.com/Orkas-AI/Orkas/HEAD/resources/app-ui/task-en.png"
+  ]
+ },
+ "deepdive": "pending"
+}
