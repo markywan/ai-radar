@@ -1,0 +1,492 @@
+[
+{
+"repo": "vercel-labs/agent-desktop",
+"stars_total": 9992,
+"stars_today": 2275,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "thedotmack/claude-mem",
+"stars_total": 110808,
+"stars_today": 1803,
+"stars_week": 7255,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "D4Vinci/Scrapling",
+"stars_total": 93005,
+"stars_today": 706,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "hyprwm/Hyprland",
+"stars_total": 39974,
+"stars_today": 509,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "Donchitos/Claude-Code-Game-Studios",
+"stars_total": 33636,
+"stars_today": 1379,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "FlashML-org/FreeToken",
+"stars_total": 16120,
+"stars_today": 653,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "pingdotgg/t3code",
+"stars_total": 42118,
+"stars_today": 3229,
+"stars_week": 9770,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "shiyu-coder/Kronos",
+"stars_total": 46038,
+"stars_today": 857,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "kornia/kornia",
+"stars_total": 12151,
+"stars_today": 412,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "JustVugg/colibri",
+"stars_total": 46620,
+"stars_today": 675,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "mattpocock/skills",
+"stars_total": 310296,
+"stars_today": 858,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "max-sixty/worktrunk",
+"stars_total": 10070,
+"stars_today": 77,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "paperclipai/paperclip",
+"stars_total": 110437,
+"stars_today": 412,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "karpathy/nanochat",
+"stars_total": 59929,
+"stars_today": 321,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "p-e-w/heretic",
+"stars_total": 38139,
+"stars_today": 420,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "github/spec-kit",
+"stars_total": 145595,
+"stars_today": 540,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "beenuar/AiSOC",
+"stars_total": 6711,
+"stars_today": 659,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "public-apis/public-apis",
+"stars_total": 495550,
+"stars_today": 1311,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "calesthio/OpenMontage",
+"stars_total": 75359,
+"stars_today": 693,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "derv82/wifit3",
+"stars_total": 3054,
+"stars_today": 217,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "mealie-recipes/mealie",
+"stars_total": 13783,
+"stars_today": 17,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "NanmiCoder/MediaCrawler",
+"stars_total": 69928,
+"stars_today": 294,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "mvanhorn/last30days-skill",
+"stars_total": 66382,
+"stars_today": 136,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "milind-soni/OpenMausBot",
+"stars_total": 11281,
+"stars_today": 823,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "CNCKitchen/ScanRuler",
+"stars_total": 742,
+"stars_today": 222,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "Crosstalk-Solutions/project-nomad",
+"stars_total": 41895,
+"stars_today": 255,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "koala73/worldmonitor",
+"stars_total": 90029,
+"stars_today": 87,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "mvschwarz/openrig",
+"stars_total": 8562,
+"stars_today": 19,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "cheaper-inference/OmniRoute",
+"stars_total": 84004,
+"stars_today": 402,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "mksglu/context-mode",
+"stars_total": 33292,
+"stars_today": 151,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "vercel-labs/scriptc",
+"stars_total": 6479,
+"stars_today": 17,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "hieunc229/mailflare",
+"stars_total": 5510,
+"stars_today": 168,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "vercel-labs/skills",
+"stars_total": 37816,
+"stars_today": 244,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "kgoedecke/doop",
+"stars_total": 1567,
+"stars_today": 125,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "lfnovo/open-notebook",
+"stars_total": 41420,
+"stars_today": 106,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "sngyai/Sequoia-X",
+"stars_total": 8481,
+"stars_today": 23,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "MaaAssistantArknights/MaaAssistantArknights",
+"stars_total": 24237,
+"stars_today": 37,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "aoaostar/legado",
+"stars_total": 7165,
+"stars_today": 30,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "ruanyf/weekly",
+"stars_total": 107448,
+"stars_today": 88,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "xifangczy/cat-catch",
+"stars_total": 22732,
+"stars_today": 50,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "ProletRevDicta/Prolet",
+"stars_total": 1856,
+"stars_today": 13,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "XIU2/CloudflareSpeedTest",
+"stars_total": 29793,
+"stars_today": 25,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "OI-wiki/OI-wiki",
+"stars_total": 27103,
+"stars_today": 14,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "ryanhanwu/How-To-Ask-Questions-The-Smart-Way",
+"stars_total": 36060,
+"stars_today": 16,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "maotoumao/MusicFree",
+"stars_total": 28200,
+"stars_today": 46,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "gdy666/lucky",
+"stars_total": 8308,
+"stars_today": 9,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "soybeanjs/soybean-admin",
+"stars_total": 15244,
+"stars_today": 11,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "JoeanAmier/TikTokDownloader",
+"stars_total": 17325,
+"stars_today": 33,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "coolsnowwolf/lede",
+"stars_total": 31610,
+"stars_today": 10,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "hiroi-sora/Umi-OCR",
+"stars_total": 48380,
+"stars_today": 39,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "nilaoda/N_m3u8DL-RE",
+"stars_total": 9025,
+"stars_today": 5,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "Anduin2017/HowToCook",
+"stars_total": 103471,
+"stars_today": 47,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "521xueweihan/HelloGitHub",
+"stars_total": 186432,
+"stars_today": 246,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "langbot-app/LangBot",
+"stars_total": 18692,
+"stars_today": 27,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "xiaojieonly/Ehviewer_CN_SXJ",
+"stars_total": 28581,
+"stars_today": 63,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "forthespada/CS-Books",
+"stars_total": 27852,
+"stars_today": 39,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "Nutlope/hallmark",
+"stars_total": 46064,
+"stars_today": null,
+"stars_week": 10517,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "pbakaus/impeccable",
+"stars_total": 100558,
+"stars_today": null,
+"stars_week": 11754,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "AgriciDaniel/claude-seo",
+"stars_total": 26016,
+"stars_today": null,
+"stars_week": 4091,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "obra/superpowers",
+"stars_total": 311278,
+"stars_today": null,
+"stars_week": 5956,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "JetBrains/thinkrail",
+"stars_total": 7195,
+"stars_today": null,
+"stars_week": 4812,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "cloudflare/security-audit-skill",
+"stars_total": 57449,
+"stars_today": null,
+"stars_week": 9155,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "jakubkrehel/skills",
+"stars_total": 10379,
+"stars_today": null,
+"stars_week": 1707,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "multica-ai/andrej-karpathy-skills",
+"stars_total": 228567,
+"stars_today": null,
+"stars_week": 4397,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "anthropics/skills",
+"stars_total": 186793,
+"stars_today": null,
+"stars_week": 2828,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "Leonxlnx/taste-skill",
+"stars_total": 108792,
+"stars_today": null,
+"stars_week": 5729,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "TauricResearch/TradingAgents",
+"stars_total": 119993,
+"stars_today": null,
+"stars_week": 4603,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "ghostty-org/ghostty",
+"stars_total": 63323,
+"stars_today": null,
+"stars_week": 687,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "affaan-m/ECC",
+"stars_total": 295712,
+"stars_today": null,
+"stars_week": 6201,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "heygen-com/hyperframes",
+"stars_total": 77772,
+"stars_today": null,
+"stars_week": 4924,
+"on_page": "trending?since=weekly"
+}
+]
