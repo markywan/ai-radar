@@ -1,0 +1,385 @@
+{
+ "date": "2026-11-04",
+ "generated_at": "2026-11-04T05:30:00+08:00",
+ "headline": [
+  "今日机会：做面向 B2B 创作者的 LinkedIn 图文工具（LinkPost 类），TrustMRR 页显示 **MRR $4,727、87 个订阅**，定价 $79/月。",
+  "GitHub 线索：`vercel-labs/agent-desktop` 单日 +3,791 星，是让 AI 操作桌面软件的命令行；Skills 里 `wondelai/skills` 有现成的开发信和报价框架。",
+  "今天最值得做的一件事：打开 Taplio 和 LinkPost 的定价页，记下各档卖多少、给谁。"
+ ],
+ "stats": {
+  "scanned": 420,
+  "selected": 10,
+  "chars": 2730,
+  "read_minutes": 6
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "打开 Taplio 定价页和 LinkPost 的 TrustMRR 页，记下各档价格、功能差别，列出 LinkPost 没做的一个外贸 B2B 场景。"
+  },
+  {
+   "minutes": 15,
+   "text": "打开 SEO Skills by PENRA 的售卖页，对照 `claude-seo` 的免费功能，记下它收费包比免费版多了什么。"
+  },
+  {
+   "minutes": 5,
+   "text": "在 TrustMRR 在售页看 LinkPost 的挂牌说明，确认 $99,000 的报价对应哪些资产。"
+  }
+ ],
+ "opportunities": [
+  {
+   "name": "B2B 创作者 LinkedIn 图文与轮播工具（LinkPost 类）",
+   "category": "单功能 AI 工具站",
+   "one_liner": "卖 AI 写 LinkedIn 选题、帖子、轮播图给海外自由职业者和 B2B 创始人，按月订阅收款",
+   "track": "图文自媒体",
+   "source": {
+    "title": "TrustMRR 在售项目：LinkPost",
+    "url": "https://trustmrr.com/startup/linkpost"
+   },
+   "automation": {
+    "acquisition": "在 LinkedIn 自己账号发案例帖加 SEO 落地页，引导试用",
+    "production": "AI 出选题、草稿、轮播图，用户确认后定时发布",
+    "payment_support": "Stripe 订阅，FAQ 加机器人答复",
+    "manual": "每周看一次留存和退款，处理少量工单",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "目标人群是自由职业者、咨询师、创始人这类要靠 LinkedIn 获客的海外 B2B 人群；Taplio 这类同类产品已有三档付费价。",
+    "revenue_evidence": "TrustMRR 页：**MRR $4,727，87 个有效订阅**，近 30 天收入 $3,912，累计 $179,618，Stripe 数据（2026-11-04 更新）；注意团队 2–5 人，且页面说六个账号的数据未合并。",
+    "competition": "Taplio（$39/$69/$199 每月，含 AI 写帖和自动外联）；LinkPost 自己（€/$79 月付，或 $490 年付，含 MCP 连接器）。更多竞品没逐个核对。",
+    "evidence_links": [
+     {
+      "title": "LinkPost 的 TrustMRR 页（MRR、定价）",
+      "url": "https://trustmrr.com/startup/linkpost"
+     },
+     {
+      "title": "Taplio 定价页",
+      "url": "https://taplio.com/pricing"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 150,
+    "mvp_days": 14,
+    "services": "Claude API、Supabase、Stripe、Vercel",
+    "match": "做外贸和自媒体时写过大量英文图文，换成产品卖给同类人。",
+    "biggest_risk": "LinkedIn 对自动发布和爬取限制严，只做内容生成和手动复制发布最稳；团队版数据未合并，实际 MRR 可能低。"
+   },
+   "verdict": "值得验证",
+   "id": "B01"
+  },
+  {
+   "name": "SEO 技能包卖给小站站长（SEO Skills by PENRA 类）",
+   "category": "数字产品与模板",
+   "one_liner": "把 SEO 审计、页面模板做成 Claude 技能包，一次性买断卖给海外小站站长",
+   "track": "SEO与GEO",
+   "source": {
+    "title": "TrustMRR 在售项目：SEO Skills by PENRA",
+    "url": "https://trustmrr.com/startup/seo-skills-by-penra"
+   },
+   "automation": {
+    "acquisition": "SEO 落地页加 Reddit、论坛发实操帖",
+    "production": "技能包做一次，每月用脚本更新模板和参考资料",
+    "payment_support": "Polar 或 Stripe 代收，邮件自动发下载链接",
+    "manual": "每月更新一次内容，处理少量退款问题",
+    "weekly_hours": 2
+   },
+   "market": {
+    "demand": "小站站长想免费工具之外有现成的 SEO 流程，用 Claude 说话就能跑；免费开源版已有人用，说明有需求，也有替代品。",
+    "revenue_evidence": "TrustMRR 页：累计收入 **$363**，近 30 天 $363，无订阅；售卖页写 **€25 买断，32 人购买**（2026-10-16 数字），2026-11-18 起涨到 €99。规模很小，只证明有人付费。",
+    "competition": "`AgriciDaniel/claude-seo`（MIT，免费，页面显示 26.3k 星，26 个子技能）；`coreyhaines31/marketingskills`（免费）。",
+    "evidence_links": [
+     {
+      "title": "TrustMRR 页",
+      "url": "https://trustmrr.com/startup/seo-skills-by-penra"
+     },
+     {
+      "title": "售卖页 seoskills.click",
+      "url": "https://seoskills.click"
+     },
+     {
+      "title": "免费竞品 claude-seo",
+      "url": "https://github.com/AgriciDaniel/claude-seo"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 50,
+    "mvp_days": 7,
+    "services": "Polar 或 Stripe、Claude Code、一个落地页",
+    "match": "做过 SEO，能把自己的流程写成技能包。",
+    "biggest_risk": "免费开源版功能多，竞争靠行业细分（比如外贸站或 Shopify）；规模很小，不能当主业。"
+   },
+   "verdict": "放进观察",
+   "id": "B02"
+  },
+  {
+   "name": "开源社交排期工具的行业托管版（Postiz 模式）",
+   "category": "开源项目托管版",
+   "one_liner": "把开源工具包成面向某个行业的托管版，卖给不会部署的海外团队，按月订阅",
+   "track": "海外宣传",
+   "source": {
+    "title": "TrustMRR 增长榜：Postiz",
+    "url": "https://trustmrr.com/startup/postiz"
+   },
+   "automation": {
+    "acquisition": "做行业模板页和对比页拿搜索流量",
+    "production": "Docker 部署脚本、自动备份和升级",
+    "payment_support": "Stripe 订阅，文档加机器人答复",
+    "manual": "每周看一次告警和升级",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "Postiz 页面写面向社媒经理、开发者和自动化团队，说明有人愿意为托管版付费。",
+    "revenue_evidence": "TrustMRR 页：Postiz **MRR $361,752，10,625 个有效订阅**，近 30 天收入 $396,655，Stripe 验证（2026-11-03 更新）；定价页 $29–99/月，同时提供自托管。这是 Postiz 官方数字，不是别人做托管版的数字。",
+    "competition": "Postiz 官方托管版（$29/$39/$49/$99 每月，7 天试用）本身就是最大对手。",
+    "evidence_links": [
+     {
+      "title": "Postiz 的 TrustMRR 页",
+      "url": "https://trustmrr.com/startup/postiz"
+     },
+     {
+      "title": "Postiz 定价页",
+      "url": "https://postiz.com/pricing"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 100,
+    "mvp_days": 10,
+    "services": "VPS、Docker、Stripe",
+    "match": "会用 VPS 和 API，外贸业务本身要做社媒宣传。",
+    "biggest_risk": "官方自己做托管版，只能做行业细分；社媒平台 API 审批要自己搞定。"
+   },
+   "verdict": "只是灵感",
+   "id": "B03"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "vercel-labs/agent-desktop",
+   "url": "https://github.com/vercel-labs/agent-desktop",
+   "group": "刚冒出来",
+   "why_today": "今日 +3,791 星，上榜第 2 天",
+   "stars_today": 3791,
+   "stars_7d": 10916,
+   "stars_total": 12729,
+   "license": "Apache-2.0",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "让 AI 操作桌面软件的命令行",
+   "what": "读取应用的无障碍树并返回 JSON，AI 按编号点击、输入，再读回结果；支持 macOS、Windows、Linux，也能当 MCP 服务器。",
+   "business": "给没有 API 的老软件做自动化服务，按流程收月费",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "让 AI 在没有 API 的桌面报关或 ERP 软件里录单。"
+    },
+    {
+     "area": "做产品",
+     "how": "给客户做桌面软件自动化，按流程订阅收费。"
+    }
+   ],
+   "setup": "低：npm 全局安装，macOS 要给辅助功能权限",
+   "safety": "黄",
+   "safety_note": "能操作整台电脑，权限很高。README 要求开启辅助功能权限，AI 误操作会直接点到真实软件。防范：在独立账户或虚拟机里运行，只开要用的应用，重要操作要人工确认。",
+   "risk_brief": "能操控整台电脑，权限高",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/vercel-labs/agent-desktop/HEAD/assets/architecture-light.png"
+   ]
+  },
+  {
+   "repo": "hieunc229/mailflare",
+   "url": "https://github.com/hieunc229/mailflare",
+   "group": "刚冒出来",
+   "why_today": "建仓 5 个月，7 天 +369 星",
+   "stars_today": 74,
+   "stars_7d": 369,
+   "stars_total": 5581,
+   "license": "AGPL-3.0",
+   "license_tier": "托管要公开改动",
+   "tags": [
+    "外贸",
+    "做产品"
+   ],
+   "brief": "跑在 Cloudflare 上的团队邮箱",
+   "what": "自托管的 Google Workspace 替代：自定义域名邮箱、日历、预约链接、文件和 AI 代理，用 Cloudflare Workers 或 Docker 部署。",
+   "business": "给外贸小团队代搭自有域名邮箱，按年收服务费",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "给每个海外项目配独立域名邮箱，不用付 Workspace 席位费。"
+    },
+    {
+     "area": "宣传",
+     "how": "用预约链接收海外客户的会面请求。"
+    }
+   ],
+   "setup": "中：要 Cloudflare 令牌，发信要 Resend 或 SES",
+   "safety": "黄",
+   "safety_note": "要保存 Cloudflare 令牌，还处理全部邮件。README 要求令牌有指定权限。防范：令牌只给必要权限，发信用独立域名，AGPL 要公开改动。",
+   "risk_brief": "存 Cloudflare 令牌，处理全部邮件",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/hieunc229/mailflare/HEAD/screenshots/1.png",
+    "https://raw.githubusercontent.com/hieunc229/mailflare/HEAD/screenshots/2.png",
+    "https://raw.githubusercontent.com/hieunc229/mailflare/HEAD/screenshots/3.png",
+    "https://raw.githubusercontent.com/hieunc229/mailflare/HEAD/screenshots/4.png"
+   ]
+  },
+  {
+   "repo": "anomalyco/hex",
+   "url": "https://github.com/anomalyco/hex",
+   "group": "刚冒出来",
+   "why_today": "7 天 +3,823 星，上榜第 2 天",
+   "stars_today": 410,
+   "stars_7d": 3823,
+   "stars_total": 4579,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "自媒体",
+    "做产品"
+   ],
+   "brief": "本地语音听写，按键说话就粘贴",
+   "what": "按住快捷键说话，松开后在本机转写并粘贴；首次运行下载语音模型，之后不联网。支持 macOS、Windows、Linux。",
+   "business": "把听写做成英文图文起稿流程，卖给海外创作者",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "口述英文图文初稿，再交给 AI 润色，省掉打字。"
+    },
+    {
+     "area": "做产品",
+     "how": "做成面向创作者的听写加起稿套件。"
+    }
+   ],
+   "setup": "低：下载安装包即可",
+   "safety": "黄",
+   "safety_note": "要麦克风和粘贴权限（推断），首次运行下载模型，安装可用 `curl` 脚本。防范：从 Releases 下载安装，不直接运行管道脚本。",
+   "risk_brief": "要麦克风权限，有安装脚本",
+   "id": "G03"
+  }
+ ],
+ "skills": [
+  {
+   "name": "hyperresearch",
+   "url": "https://github.com/jordan-gibbs/hyperresearch",
+   "repo": "jordan-gibbs/hyperresearch",
+   "hot": "新晋热门",
+   "stars_total": 4369,
+   "installs": null,
+   "popularity_note": "总星 4,369，7 天 +190，11-04 在 Python 日榜",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "会写项目文件和钩子，还要联网抓资料。SKILL.md 要求安装后写入 `.claude/`、`.agents/` 和 Stop 钩子，Codex 要开写入和联网。防范：先在空项目试，读生成的钩子再启用，不用 `--dangerously-bypass-hook-trust`。",
+   "risk_brief": "写钩子，需联网和写入",
+   "brief": "把 Claude Code 变成深度调研助手",
+   "what": "一个问题进去，16 步流程抓资料、核对引用，输出带引用的报告，并把资料存进本地可搜索库。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "出行业资料报告，再写成有引用的长文。"
+    },
+    {
+     "area": "供需",
+     "how": "调研某个海外市场的买家和价格，当名单或周报素材。"
+    }
+   ],
+   "install": "`pip install hyperresearch`，再 `hyperresearch install .`",
+   "id": "S01",
+   "images": [
+    "https://github.com/user-attachments/assets/320680fc-bc56-4eac-9ec2-7ec46d4bde98"
+   ]
+  },
+  {
+   "name": "notebooklm-py",
+   "url": "https://github.com/teng-lin/notebooklm-py",
+   "repo": "teng-lin/notebooklm-py",
+   "hot": "长期热门",
+   "stars_total": 20088,
+   "installs": null,
+   "popularity_note": "总星 20,088，11-03 仍有提交",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "要 Google 账号凭证，内容发到 Google。SKILL.md 读写 `~/.notebooklm/` 下的主令牌和登录状态，页面称主令牌是整个账号的凭证。防范：用专门的小号，不提交或打印令牌文件。",
+   "risk_brief": "要 Google 账号主令牌",
+   "brief": "用命令行和技能操作 Google 笔记本",
+   "what": "非官方 Python 接口：建笔记本、加资料、对话、生成并下载音频等产物，用的是没有文档的 Google 接口，可能随时失效。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "把资料丢进去，生成要点和音频草稿做图文选题。"
+    },
+    {
+     "area": "外贸",
+     "how": "把产品手册和竞品资料放一起，问答生成英文介绍。"
+    }
+   ],
+   "install": "`npx skills add teng-lin/notebooklm-py`",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/teng-lin/notebooklm-py/main/docs/demo.png"
+   ]
+  },
+  {
+   "name": "wondelai/skills",
+   "url": "https://github.com/wondelai/skills",
+   "repo": "wondelai/skills",
+   "hot": "新晋热门",
+   "stars_total": 2576,
+   "installs": null,
+   "popularity_note": "总星 2,576，11-02 有更新，是商业与营销框架合集",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "营销、报价、开发信框架技能合集",
+   "what": "把经典商业书整理成技能：开发信流程（predictable-revenue）、报价与优惠设计（hundred-million-offers）、落地页转化审计（cro-methodology）等。我读了其中三个 SKILL.md，只有文字，无脚本；`references/` 里的文件没读。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "用开发信框架设计跟进邮件顺序。"
+    },
+    {
+     "area": "做产品",
+     "how": "给产品定价和写优惠，再审计落地页。"
+    }
+   ],
+   "install": "`npx skills add wondelai/skills/predictable-revenue --global`",
+   "id": "S03"
+  },
+  {
+   "name": "alirezarezvani/claude-skills（marketing-skill）",
+   "url": "https://github.com/alirezarezvani/claude-skills",
+   "repo": "alirezarezvani/claude-skills",
+   "hot": "长期热门",
+   "stars_total": 29242,
+   "installs": null,
+   "popularity_note": "总星 29,242，11-03 有提交，含 50 个营销技能",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "大型技能合集，含 SEO 和内容营销",
+   "what": "合集含内容、SEO 与 AEO、增长、LinkedIn 等营销技能，带只用标准库的 Python 脚本。我读了 `marketing-demand-acquisition`：文字加一个计算获客成本的脚本，需手动运行。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "用 SEO 与 AEO 技能做站点审计清单。"
+    },
+    {
+     "area": "自媒体",
+     "how": "用内容技能起草 LinkedIn 英文图文。"
+    }
+   ],
+   "install": "`/plugin marketplace add alirezarezvani/claude-skills`",
+   "id": "S04"
+  }
+ ],
+ "pick": "B01"
+}
