@@ -1,0 +1,32 @@
+{
+ "id": "2026-11-05-S02",
+ "date": "2026-11-05",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-11-05T08:55:13+00:00",
+ "item": {
+  "name": "web-design-guidelines",
+  "url": "https://skills.sh/vercel-labs/agent-skills/web-design-guidelines",
+  "repo": "vercel-labs/agent-skills",
+  "hot": "长期热门",
+  "stars_total": 33500,
+  "installs": 825600,
+  "popularity_note": "skills.sh 总榜 825.6K 次安装，仓库 33.5k 星（2026-11-05）",
+  "works_with": "两者",
+  "safety": "绿",
+  "safety_note": "",
+  "risk_brief": "",
+  "brief": "按 Vercel 规范审 UI 代码",
+  "what": "每次先拉最新网页界面规范，再读你指定的文件，按 `file:line` 列出可访问性和体验问题。无脚本，不写文件。",
+  "uses": [
+   {
+    "area": "做产品",
+    "how": "出小工具站前跑一遍，补掉可访问性和移动端问题"
+   }
+  ],
+  "install": "npx skills add https://github.com/vercel-labs/agent-skills --skill web-design-guidelines",
+  "id": "S02"
+ },
+ "deepdive": null
+}
