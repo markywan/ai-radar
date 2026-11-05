@@ -1,0 +1,50 @@
+{
+ "id": "2026-11-05-B02",
+ "date": "2026-11-05",
+ "type": "opportunities",
+ "library": "机会库",
+ "status": "观察",
+ "saved_at": "2026-11-05T08:43:47+00:00",
+ "item": {
+  "name": "社交媒体监听找客户名单订阅（traxy 类）",
+  "category": "数据与情报订阅",
+  "one_liner": "监听社媒上正在讨论某市场的人，整理成线索名单，卖给海外 B2B 小团队，月费 149 美元",
+  "track": "供需撮合",
+  "source": {
+   "title": "traxy.ai（TrustMRR 项目页）",
+   "url": "https://trustmrr.com/startup/traxy-ai"
+  },
+  "automation": {
+   "acquisition": "公开展示每天抓到的线索样例页，做 SEO 和冷邮件",
+   "production": "定时抓社媒帖子，大模型判断购买意向，自动出名单",
+   "payment_support": "订阅收款，名单自动发邮件",
+   "manual": "调整关键词和意向判断标准",
+   "weekly_hours": 4
+  },
+  "market": {
+   "demand": "销售团队要找正在问需求的人，比买静态名单更准。",
+   "revenue_evidence": "TrustMRR 页：traxy.ai **MRR 51,278 美元、242 个订阅**，累计 161,360 美元，Pro 档 149 美元/月；团队 2–5 人，不是一个人。",
+   "competition": "GojiberryAI（TrustMRR 榜单显示 MRR 424,368 美元）、PROSP（LinkedIn 外联，MRR 128,005 美元）。",
+   "evidence_links": [
+    {
+     "title": "traxy.ai（TrustMRR）",
+     "url": "https://trustmrr.com/startup/traxy-ai"
+    },
+    {
+     "title": "PROSP（TrustMRR）",
+     "url": "https://trustmrr.com/startup/prosp"
+    }
+   ]
+  },
+  "fit": {
+   "startup_cost_usd": 200,
+   "mvp_days": 21,
+   "services": "VPS、社媒数据接口、大模型接口、Stripe",
+   "match": "外贸找客户的经验可以直接搬，做成垂直行业版更容易有卖点。",
+   "biggest_risk": "抓社媒数据有平台条款和封号风险，做垂直行业版才能躲开大产品。"
+  },
+  "verdict": "放进观察",
+  "id": "B02"
+ },
+ "deepdive": "pending"
+}
