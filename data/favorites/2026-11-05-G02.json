@@ -1,0 +1,48 @@
+{
+ "id": "2026-11-05-G02",
+ "date": "2026-11-05",
+ "type": "tools",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-11-05T08:56:24+00:00",
+ "item": {
+  "repo": "Thysrael/Horizon",
+  "url": "https://github.com/Thysrael/Horizon",
+  "group": "大家都在用",
+  "why_today": "今日 +121 星，7 天 +1,448",
+  "stars_today": 121,
+  "stars_7d": 1448,
+  "stars_total": 12489,
+  "license": "MIT",
+  "license_tier": "能托管来卖",
+  "tags": [
+   "自媒体",
+   "数据与研究"
+  ],
+  "brief": "自己配信息源的 AI 新闻雷达",
+  "what": "从 HN、RSS、Reddit、Telegram 等抓内容，去重、打分，每天出中英文简报，可推飞书、邮件，可发到 GitHub Pages。",
+  "business": "做行业情报周报，卖给跨境卖家，按月订阅",
+  "uses": [
+   {
+    "area": "自媒体",
+    "how": "每天自动出英文行业简报，当图文选题来源"
+   },
+   {
+    "area": "供需",
+    "how": "盯某个行业的需求帖和新品，整理成情报"
+   }
+  ],
+  "setup": "低，要一个大模型接口密钥，可用 GitHub Actions 定时跑",
+  "safety": "绿",
+  "safety_note": "",
+  "risk_brief": "",
+  "id": "G02",
+  "images": [
+   "https://raw.githubusercontent.com/Thysrael/Horizon/HEAD/docs/assets/overview_en.png",
+   "https://raw.githubusercontent.com/Thysrael/Horizon/HEAD/docs/assets/one_news_en.png",
+   "https://raw.githubusercontent.com/Thysrael/Horizon/HEAD/docs/assets/terminal_log.png",
+   "https://raw.githubusercontent.com/Thysrael/Horizon/HEAD/docs/assets/feishu_en.png"
+  ]
+ },
+ "deepdive": "pending"
+}
