@@ -1,0 +1,378 @@
+{
+ "date": "2026-11-05",
+ "generated_at": "2026-11-05T05:30:00+08:00",
+ "headline": [
+  "今日机会：B01 Rank Prompt 这类 AI 搜索可见度（GEO）监测订阅，TrustMRR 页显示 **MRR 44,848 美元、219 个付费订阅**，一个创始人做起来。",
+  "GitHub 线索：`elmohq/elmo` 是 MIT 协议、能自托管的 GEO 监测平台，官方托管版 29 美元/月，正好是 B01 的开源底子。",
+  "今天最值得做的一件事：打开 Rank Prompt 和 RankAI 的定价页，记下各档价格和提示词数量。"
+ ],
+ "stats": {
+  "scanned": 370,
+  "selected": 10,
+  "chars": 2568,
+  "read_minutes": 6
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "打开 rankprompt.com 和 rankai.ai 的定价页，记下每档价格、能监测的提示词数和国家数，对照 elmo 自托管成本算毛利。"
+  },
+  {
+   "minutes": 30,
+   "text": "在 VPS 上用 `elmo init` 和 `elmo compose up -d` 跑一遍 elmo，给自己的一个站点测一轮 AI 搜索可见度。"
+  },
+  {
+   "minutes": 5,
+   "text": "看 TrustMRR 上 `traxy-ai` 的页面，记下 149 美元/月的定价和卖点。"
+  }
+ ],
+ "opportunities": [
+  {
+   "name": "AI 搜索可见度（GEO）监测订阅（Rank Prompt 类）",
+   "category": "单功能 AI 工具站",
+   "one_liner": "监测品牌在 ChatGPT、Google AI 概览里被不被引用，卖给海外中小站和代理商，按月订阅",
+   "track": "SEO与GEO",
+   "source": {
+    "title": "Rank Prompt（TrustMRR 项目页）",
+    "url": "https://trustmrr.com/startup/rank-prompt"
+   },
+   "automation": {
+    "acquisition": "做免费首份报告当钩子，批量生成「某行业 AI 可见度排行」页面做 SEO 引流",
+    "production": "定时任务调用搜索类 API 查提示词，大模型判断提及和情感，自动出报告",
+    "payment_support": "Stripe 或 Creem 订阅，常见问题写成文档，邮件自动回复",
+    "manual": "处理异常报告、每周看一次成本和退款",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "品牌想知道自己在 AI 回答里排第几；Otterly、Peec AI 等工具都在卖这个，代理商也要给客户出报告。",
+    "revenue_evidence": "TrustMRR 页：Rank Prompt **MRR 44,848 美元、219 个订阅**，近 30 天收入 55,084 美元，累计 331,548 美元，2025 年 5 月成立，Stripe 验证。",
+    "competition": "Otterly.AI（搜索摘要显示约 29–189 美元/月）、Peec AI（约 89 欧元/月起），都是已成型产品；价格以官网为准。",
+    "evidence_links": [
+     {
+      "title": "Rank Prompt（TrustMRR）",
+      "url": "https://trustmrr.com/startup/rank-prompt"
+     },
+     {
+      "title": "RankAI（TrustMRR，MRR 56,533）",
+      "url": "https://trustmrr.com/startup/rankai"
+     },
+     {
+      "title": "elmo 开源 GEO 平台",
+      "url": "https://github.com/elmohq/elmo"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 150,
+    "mvp_days": 14,
+    "services": "VPS、elmo 自托管、Cloro 和 OpenRouter 的接口、Stripe",
+    "match": "做过 SEO 和英文站，GEO 是搜索优化的下一步，客户、定价方式都熟。",
+    "biggest_risk": "搜索类接口按次收费，提示词多了成本涨；ChatGPT 页面抓取有平台政策风险；大厂产品多。"
+   },
+   "verdict": "值得验证",
+   "id": "B01"
+  },
+  {
+   "name": "社交媒体监听找客户名单订阅（traxy 类）",
+   "category": "数据与情报订阅",
+   "one_liner": "监听社媒上正在讨论某市场的人，整理成线索名单，卖给海外 B2B 小团队，月费 149 美元",
+   "track": "供需撮合",
+   "source": {
+    "title": "traxy.ai（TrustMRR 项目页）",
+    "url": "https://trustmrr.com/startup/traxy-ai"
+   },
+   "automation": {
+    "acquisition": "公开展示每天抓到的线索样例页，做 SEO 和冷邮件",
+    "production": "定时抓社媒帖子，大模型判断购买意向，自动出名单",
+    "payment_support": "订阅收款，名单自动发邮件",
+    "manual": "调整关键词和意向判断标准",
+    "weekly_hours": 4
+   },
+   "market": {
+    "demand": "销售团队要找正在问需求的人，比买静态名单更准。",
+    "revenue_evidence": "TrustMRR 页：traxy.ai **MRR 51,278 美元、242 个订阅**，累计 161,360 美元，Pro 档 149 美元/月；团队 2–5 人，不是一个人。",
+    "competition": "GojiberryAI（TrustMRR 榜单显示 MRR 424,368 美元）、PROSP（LinkedIn 外联，MRR 128,005 美元）。",
+    "evidence_links": [
+     {
+      "title": "traxy.ai（TrustMRR）",
+      "url": "https://trustmrr.com/startup/traxy-ai"
+     },
+     {
+      "title": "PROSP（TrustMRR）",
+      "url": "https://trustmrr.com/startup/prosp"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 200,
+    "mvp_days": 21,
+    "services": "VPS、社媒数据接口、大模型接口、Stripe",
+    "match": "外贸找客户的经验可以直接搬，做成垂直行业版更容易有卖点。",
+    "biggest_risk": "抓社媒数据有平台条款和封号风险，做垂直行业版才能躲开大产品。"
+   },
+   "verdict": "放进观察",
+   "id": "B02"
+  },
+  {
+   "name": "本地商家目录站模板（Directory Launch 类）",
+   "category": "目录站",
+   "one_liner": "把城市商家目录做成一次性买断的模板，卖给想做目录站的海外创业者，199–249 美元",
+   "track": "供需撮合",
+   "source": {
+    "title": "TrustMRR 近期上架",
+    "url": "https://trustmrr.com/?onSale=true"
+   },
+   "automation": {
+    "acquisition": "自己用模板做示范目录站，页面做 SEO",
+    "production": "用 CSV 批量导入加大模型写介绍，生成各城市页面",
+    "payment_support": "一次性收款，文档自助",
+    "manual": "更新模板、回答买家问题",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "想做本地目录站赚广告和线索费的个人，要现成的城市页和商家认领功能。",
+    "revenue_evidence": "TrustMRR 页：Directory Launch **累计收入仅 2,028 美元**，无 MRR；Basic 199 美元、Pro 249 美元，代做 1,599 美元起。收入偏小，只能当参考。",
+    "competition": "ShipOrSleep（免费目录，换反链），另有大量目录站模板。",
+    "evidence_links": [
+     {
+      "title": "Directory Launch（TrustMRR）",
+      "url": "https://trustmrr.com/startup/directory-launch"
+     },
+     {
+      "title": "TrustMRR 近期上架",
+      "url": "https://trustmrr.com/?onSale=true"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 100,
+    "mvp_days": 10,
+    "services": "域名、VPS、Stripe 或 Creem",
+    "match": "做过 SEO 的人会做城市页，自己的目录站也能直接吃搜索流量。",
+    "biggest_risk": "收入证据弱，竞品多，买模板的人未必真能做起目录站。"
+   },
+   "verdict": "只是灵感",
+   "id": "B03"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "elmohq/elmo",
+   "url": "https://github.com/elmohq/elmo",
+   "group": "刚冒出来",
+   "why_today": "开源 GEO 监测，近 7 天 +33 星",
+   "stars_today": null,
+   "stars_7d": 33,
+   "stars_total": 566,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "SEO",
+    "做产品"
+   ],
+   "brief": "开源 AI 搜索可见度监测平台",
+   "what": "追踪 ChatGPT、Claude、Perplexity、Gemini、Google AI 概览怎样提到和引用你的品牌，含份额、情感、引用分析。Docker 自托管，官方托管版 **29 美元/月**。",
+   "business": "做 GEO 监测托管版卖给海外中小站，按月订阅",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "给自己的站点和客户站点按周测 AI 搜索里的提及率"
+    },
+    {
+     "area": "做产品",
+     "how": "当作 B01 的底子，自己加报告页和白标后卖"
+    }
+   ],
+   "setup": "中，需要 Docker、Cloro 和 OpenRouter 两个接口密钥",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/elmohq/elmo/HEAD/apps/www/public/screenshots/overview.png",
+    "https://raw.githubusercontent.com/elmohq/elmo/HEAD/apps/www/public/screenshots/visibility.png",
+    "https://raw.githubusercontent.com/elmohq/elmo/HEAD/apps/www/public/screenshots/share-of-voice.png",
+    "https://raw.githubusercontent.com/elmohq/elmo/HEAD/apps/www/public/screenshots/citations.png"
+   ]
+  },
+  {
+   "repo": "Thysrael/Horizon",
+   "url": "https://github.com/Thysrael/Horizon",
+   "group": "大家都在用",
+   "why_today": "今日 +121 星，7 天 +1,448",
+   "stars_today": 121,
+   "stars_7d": 1448,
+   "stars_total": 12489,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "自媒体",
+    "数据与研究"
+   ],
+   "brief": "自己配信息源的 AI 新闻雷达",
+   "what": "从 HN、RSS、Reddit、Telegram 等抓内容，去重、打分，每天出中英文简报，可推飞书、邮件，可发到 GitHub Pages。",
+   "business": "做行业情报周报，卖给跨境卖家，按月订阅",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "每天自动出英文行业简报，当图文选题来源"
+    },
+    {
+     "area": "供需",
+     "how": "盯某个行业的需求帖和新品，整理成情报"
+    }
+   ],
+   "setup": "低，要一个大模型接口密钥，可用 GitHub Actions 定时跑",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/Thysrael/Horizon/HEAD/docs/assets/overview_en.png",
+    "https://raw.githubusercontent.com/Thysrael/Horizon/HEAD/docs/assets/one_news_en.png",
+    "https://raw.githubusercontent.com/Thysrael/Horizon/HEAD/docs/assets/terminal_log.png",
+    "https://raw.githubusercontent.com/Thysrael/Horizon/HEAD/docs/assets/feishu_en.png"
+   ]
+  },
+  {
+   "repo": "Usagi-org/ai-goofish-monitor",
+   "url": "https://github.com/Usagi-org/ai-goofish-monitor",
+   "group": "大家都在用",
+   "why_today": "今日 +984 星，7 天 +1,835",
+   "stars_today": 984,
+   "stars_7d": 1835,
+   "stars_total": 17144,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "供需",
+    "Agent 与自动化"
+   ],
+   "brief": "闲鱼商品定时监控与 AI 分析",
+   "what": "用 Playwright 加多模态模型监控闲鱼关键词，筛出低价或好货，推送到 Telegram、企业微信等，带后台界面。",
+   "business": "给二手倒卖者做选品提醒，按月收费（仅限国内场景）",
+   "uses": [
+    {
+     "area": "供需",
+     "how": "盯二手货源价差，找能转卖到海外的货，只做信息参考"
+    }
+   ],
+   "setup": "中，Docker 部署，要闲鱼登录凭证和带视觉的模型接口",
+   "safety": "黄",
+   "safety_note": "要保存闲鱼登录凭证，账号有被风控的风险。README 说默认后台密码是 admin/admin123。防范：用小号登录，改掉默认密码，凭证文件不入库，控制请求频率。",
+   "risk_brief": "要闲鱼登录凭证，账号可能被封",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/Usagi-org/ai-goofish-monitor/HEAD/static/img.png",
+    "https://raw.githubusercontent.com/Usagi-org/ai-goofish-monitor/HEAD/static/img_1.png",
+    "https://raw.githubusercontent.com/Usagi-org/ai-goofish-monitor/HEAD/static/img_2.png",
+    "https://raw.githubusercontent.com/Usagi-org/ai-goofish-monitor/HEAD/static/img_3.png"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "seo-autopilot",
+   "url": "https://github.com/Illyism/seo-skills/tree/main/seo/seo-autopilot",
+   "repo": "Illyism/seo-skills",
+   "hot": "新晋热门",
+   "stars_total": 703,
+   "installs": null,
+   "popularity_note": "仓库 703 星，今日仍有提交，属于 GEO 方向新项目，热度不高",
+   "works_with": "Claude Code / Codex",
+   "safety": "黄",
+   "safety_note": "它会改网站代码，可选模式能在构建通过后直接合并，还会读 linkdr.com 等远程指令文件。防范：只开提 PR 的模式，不接合并权限；远程指令固定版本后再用。",
+   "risk_brief": "能改站点代码，且读远程指令",
+   "brief": "每天自动做站点 SEO 和 AI 答案追踪",
+   "what": "每天查站点健康、对照提交更新页面、盯竞品站点地图、查 ChatGPT 等对 25 个问题的回答，并起草对比页和外联稿，状态存在 `seo/` 目录。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "给自己的出海站每天跑一轮检查和选题"
+    },
+    {
+     "area": "宣传",
+     "how": "起草对比页和外联稿，人工审后再发"
+    }
+   ],
+   "install": "npx skills add Illyism/seo-skills --skill seo-autopilot",
+   "id": "S01"
+  },
+  {
+   "name": "web-design-guidelines",
+   "url": "https://skills.sh/vercel-labs/agent-skills/web-design-guidelines",
+   "repo": "vercel-labs/agent-skills",
+   "hot": "长期热门",
+   "stars_total": 33500,
+   "installs": 825600,
+   "popularity_note": "skills.sh 总榜 825.6K 次安装，仓库 33.5k 星（2026-11-05）",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "按 Vercel 规范审 UI 代码",
+   "what": "每次先拉最新网页界面规范，再读你指定的文件，按 `file:line` 列出可访问性和体验问题。无脚本，不写文件。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "出小工具站前跑一遍，补掉可访问性和移动端问题"
+    }
+   ],
+   "install": "npx skills add https://github.com/vercel-labs/agent-skills --skill web-design-guidelines",
+   "id": "S02"
+  },
+  {
+   "name": "ai-image-generation",
+   "url": "https://skills.sh/magentosh/superpowers/ai-image-generation",
+   "repo": "magentosh/superpowers",
+   "hot": "长期热门",
+   "stars_total": 4,
+   "installs": 846700,
+   "popularity_note": "skills.sh 846.7K 次安装，但仓库只有 4 星，安装数可信度低（2026-11-05）",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "要装 inference.sh 的命令行并登录账号，图片在第三方服务上生成。仓库只有 4 星，安装量与星数不匹配。防范：用单独账号，不放敏感图，先读来源仓库 inference-sh/skills。",
+   "risk_brief": "要登录第三方账号，仓库星数极低",
+   "brief": "用 50 多个模型生成图片",
+   "what": "通过 inference.sh 的 `belt` 命令调用 FLUX 等模型出图，Socket 审计给了警告。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "批量出英文图文的配图和封面"
+    }
+   ],
+   "install": "npx skills add https://github.com/magentosh/superpowers --skill ai-image-generation",
+   "id": "S03",
+   "images": [
+    "https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvqa60jjrqa47j3g5s6ce6v.jpeg"
+   ]
+  },
+  {
+   "name": "design-mobile-apps",
+   "url": "https://skills.sh/designed-by-ai/skills/design-mobile-apps",
+   "repo": "designed-by-ai/skills",
+   "hot": "长期热门",
+   "stars_total": 26,
+   "installs": 1200000,
+   "popularity_note": "skills.sh 1.2M 次安装，仓库 26 星，2026 年 9 月才出现（2026-11-05）",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "要 `SLEEK_API_KEY`，请求发到 sleek.design，Snyk 审计未通过。防范：用专用密钥，别发内部需求原文。",
+   "risk_brief": "要密钥，Snyk 审计未通过",
+   "brief": "用 Sleek 接口生成手机应用界面",
+   "what": "根据一段需求调用 sleek.design 的接口生成手机界面，取回 HTML 和渲染图。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给小工具和插件出界面草图"
+    }
+   ],
+   "install": "npx skills add https://github.com/designed-by-ai/skills --skill design-mobile-apps",
+   "id": "S04",
+   "images": [
+    "https://raw.githubusercontent.com/sleekdotdesign/agent-skills/main/assets/hero.png"
+   ]
+  }
+ ],
+ "pick": "B01"
+}
