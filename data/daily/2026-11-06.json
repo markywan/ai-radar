@@ -1,0 +1,432 @@
+{
+ "date": "2026-11-06",
+ "generated_at": "2026-11-06T05:30:00+08:00",
+ "headline": [
+  "今日机会：B01 Adspirer（给企业管 Google、Meta、LinkedIn 广告的 AI 助手），1 人团队，TrustMRR 页显示 **MRR $54,684、742 个订阅**（数据停在 6 月 29 日）。",
+  "GitHub 上 `milind-soni/OpenMausBot`（开源 Grok Bot 替代）7 天涨 4,432 星，Skills 里 `Nutlope/hallmark` 总星 48.8k，都值得看一眼。",
+  "今天最值得做的一件事：打开 Adspirer 定价页，记下 Plus、Pro、Max 三档卖给谁，再看它没覆盖的外贸广告场景。"
+ ],
+ "stats": {
+  "scanned": 330,
+  "selected": 11,
+  "chars": 3057,
+  "read_minutes": 7
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "打开 Adspirer 官网定价页（Plus $485/年、Pro $999/年、Max $2,000/年），记下每档限制和它支持的广告平台，找外贸客户用得上但它没做的一块。"
+  },
+  {
+   "minutes": 5,
+   "text": "在 TrustMRR 打开 Post Bridge 页，确认它支持哪些平台、有没有纯图文发布，再决定 B02 要不要进观察。"
+  },
+  {
+   "minutes": 30,
+   "text": "本机装 `npx skills add nutlope/hallmark -g`，让它做一个外贸询盘落地页，对比你现在的页面。"
+  }
+ ],
+ "opportunities": [
+  {
+   "name": "Adspirer（跨平台广告投放 AI 助手订阅）",
+   "category": "API 服务 / 产品化服务",
+   "one_liner": "对话式管理 Google、Meta、LinkedIn、TikTok 广告，卖给海外中小企业和代理，年付订阅",
+   "track": "海外宣传",
+   "source": {
+    "title": "TrustMRR：Adspirer 项目页",
+    "url": "https://trustmrr.com/startup/adspirer"
+   },
+   "automation": {
+    "acquisition": "SEO 页加 X 上的演示帖；对接 Claude、ChatGPT 等 AI 客户端的目录页带来自然流量（推断）",
+    "production": "广告平台 API 加大模型，投放分析和调整建议自动生成",
+    "payment_support": "Stripe 年付订阅，文档加常见问题机器人答疑",
+    "manual": "处理广告平台审核和 API 权限申请、封号投诉",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "中小企业和代理要同时管多个广告平台，又没人手天天调；它把 Google、Meta、LinkedIn、TikTok 放进一个对话入口。",
+    "revenue_evidence": "TrustMRR 页：**MRR $54,684、742 个活跃订阅**，近 30 天 $70,229，累计 $183,917，团队 1 人，2026 年 1 月成立。注意：页面提示 Stripe 密钥已过期，数字停在 2026-06-29。",
+    "competition": "Madgicx、Optmyzr（推断，未打开）做同类广告自动化，偏传统界面；Adspirer 的差别是对话和 AI 客户端入口。",
+    "evidence_links": [
+     {
+      "title": "TrustMRR：Adspirer 项目页",
+      "url": "https://trustmrr.com/startup/adspirer"
+     },
+     {
+      "title": "TrustMRR 一人团队增长榜",
+      "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 300,
+    "mvp_days": 30,
+    "services": "VPS、Google Ads 和 Meta Ads 开发者账号、Stripe、Claude API",
+    "match": "他做过外贸和投放，知道外贸客户的广告痛点，可以先只做 Google Ads 加一个外贸垂直场景。",
+    "biggest_risk": "广告平台 API 审核慢，政策变化会直接断功能；收入数据已停更，需要深挖时核实"
+   },
+   "verdict": "值得验证",
+   "id": "B01"
+  },
+  {
+   "name": "Post Bridge（多平台同步发布订阅）",
+   "category": "数字产品与模板 / 单功能工具站",
+   "one_liner": "一处写好内容同步发到多个社交平台，卖给创作者和营销人，月付 $39 和 $99",
+   "track": "图文自媒体",
+   "source": {
+    "title": "TrustMRR 一人团队增长榜",
+    "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+   },
+   "automation": {
+    "acquisition": "创始人在 X 上有 18.7 万粉丝带量；他自己可以靠 SEO 和图文教程",
+    "production": "发布走各平台 API，排期和格式转换全自动",
+    "payment_support": "Stripe 订阅，客服靠文档和机器人",
+    "manual": "平台 API 变更后的修补",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "创作者和小团队要同时发多个平台，不想逐个登录；订阅数 1,652 说明需求稳定。",
+    "revenue_evidence": "TrustMRR 页：**MRR $49,954、1,652 个活跃订阅**，近 30 天 $46,592，累计 $570,015，2024 年 9 月成立，加拿大。页面没写团队人数。",
+    "competition": "Postiz（TrustMRR 页 MRR $373,501，开源）、Buffer（推断，未打开）；Post Bridge 靠创始人个人品牌和价格取胜。",
+    "evidence_links": [
+     {
+      "title": "TrustMRR：Post Bridge 项目页",
+      "url": "https://trustmrr.com/startup/post-bridge"
+     },
+     {
+      "title": "TrustMRR 一人团队增长榜",
+      "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 100,
+    "mvp_days": 14,
+    "services": "VPS、开源 Postiz、Stripe",
+    "match": "做图文自媒体天天要发多个平台，可以先用开源 Postiz 搭起来自己用，再做给外贸人。",
+    "biggest_risk": "页面没说它是不是以短视频为主（他不做视频内容），平台 API 政策变动；创始人个人品牌是它的护城河，难复制"
+   },
+   "verdict": "放进观察",
+   "id": "B02"
+  },
+  {
+   "name": "Zescale（电商创业者 AI 工具订阅）",
+   "category": "单功能 AI 工具站",
+   "one_liner": "给想做电商和代发货的新手、品牌提供 AI 工具，月付 €39 起，另有 €1,297 教练套餐",
+   "track": "全球贸易",
+   "source": {
+    "title": "TrustMRR 在售项目",
+    "url": "https://trustmrr.com/?onSale=true"
+   },
+   "automation": {
+    "acquisition": "SEO 页和社媒教程；页面没写它的获客渠道，这里是推断",
+    "production": "AI 按额度生成选品、文案等内容（推断）",
+    "payment_support": "Stripe 订阅，按额度分档",
+    "manual": "教练套餐是人工服务，他要不做这块",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "页面写服务代发货创业者、电商代理和已有品牌，约 1 万用户。",
+    "revenue_evidence": "TrustMRR 页：**MRR $4,329、72 个活跃订阅**，近 30 天 $5,639，累计 $47,569，1 人团队，2025 年 12 月成立。页面没标出售价。",
+    "competition": "Dropship.io、Sell The Trend（推断，未打开）做选品工具，Zescale 的卖点要在深挖时核实。",
+    "evidence_links": [
+     {
+      "title": "TrustMRR：Zescale 项目页",
+      "url": "https://trustmrr.com/startup/simeo"
+     },
+     {
+      "title": "TrustMRR 在售项目",
+      "url": "https://trustmrr.com/?onSale=true"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 150,
+    "mvp_days": 21,
+    "services": "VPS、Claude API、Stripe",
+    "match": "和他的外贸经验最接近，规模小（MRR 约 $4k），一个人能验证。",
+    "biggest_risk": "产品具体做什么页面没写清，MRR 不大；代发货新手客户流失高"
+   },
+   "verdict": "只是灵感",
+   "id": "B03"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "milind-soni/OpenMausBot",
+   "url": "https://github.com/milind-soni/OpenMausBot",
+   "group": "大家都在用",
+   "why_today": "7 天 +4,432 星，周榜第 5 天",
+   "stars_today": null,
+   "stars_7d": 4432,
+   "stars_total": 13340,
+   "license": "Apache-2.0",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "开源 Grok Bot 替代，带机器人可用的虚拟机",
+   "what": "能选自己的模型，机器人可以在虚拟机里操作电脑；有 Docker、桌面和手机端。建仓 86 天，7 天内每天涨 400 到 1,000 星，没有单日暴涨。",
+   "business": "做成托管版卖给想要私有 AI 助手的外贸小团队，按席位月付",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "改成自己的品牌 AI 助手，接入客户的邮箱和表格，按月收费"
+    },
+    {
+     "area": "外贸",
+     "how": "让机器人在虚拟机里自动整理询盘和报价单"
+    }
+   ],
+   "setup": "中，需要 Docker 和模型 API Key",
+   "safety": "黄",
+   "safety_note": "机器人能在虚拟机里操作电脑，且要模型 Key。开放 issue 有 710 个，质量和安全问题可能多。防范：只在隔离的 VPS 里跑，Key 用限额的子 Key，不放主账号凭证。",
+   "risk_brief": "能操作电脑，issue 710 个",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/milind-soni/OpenMausBot/HEAD/docs/screenshots/model-picker.png",
+    "https://raw.githubusercontent.com/milind-soni/OpenMausBot/HEAD/docs/screenshots/computer-panel.png",
+    "https://raw.githubusercontent.com/milind-soni/OpenMausBot/HEAD/docs/screenshots/approval-card.png",
+    "https://raw.githubusercontent.com/milind-soni/OpenMausBot/HEAD/docs/screenshots/marketplace.png"
+   ]
+  },
+  {
+   "repo": "elie222/rakazo",
+   "url": "https://github.com/elie222/rakazo",
+   "group": "大家都在用",
+   "why_today": "7 天 +827 星，今日 +171",
+   "stars_today": 171,
+   "stars_7d": 827,
+   "stars_total": 7193,
+   "license": "Apache-2.0",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "开源 Grok Bot 替代，自选模型和沙箱",
+   "what": "可自选模型、自带沙箱，支持 Docker 自托管，有桌面端和 Expo 手机端。建仓 84 天，fork 比例 0.177，不像围观。官网 rakazo.com。",
+   "business": "按行业做预设好的托管版，卖给不会部署的小团队，按月收费",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "套上行业提示词和模板，做成垂直 AI 助手卖给小团队"
+    },
+    {
+     "area": "宣传",
+     "how": "定时在沙箱里整理竞品动态，生成给海外客户的周报"
+    }
+   ],
+   "setup": "中，需要 Docker 和模型 API Key",
+   "safety": "黄",
+   "safety_note": "是会执行代码的机器人，要模型 Key，沙箱配置错了会拿到宿主权限。防范：用专用 VPS 和限额 Key，不挂载主机目录。",
+   "risk_brief": "执行代码，沙箱配置要小心",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/elie222/rakazo/HEAD/docs/readme-hero.png"
+   ]
+  },
+  {
+   "repo": "KKKKhazix/agent-autoloop",
+   "url": "https://github.com/KKKKhazix/agent-autoloop",
+   "group": "刚冒出来",
+   "why_today": "建仓 3 天 3.2k 星",
+   "stars_today": null,
+   "stars_7d": 3238,
+   "stars_total": 3235,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "Agent 与自动化",
+    "做产品"
+   ],
+   "brief": "让命令行 Agent 后台接活，拿不准才发卡片问你",
+   "what": "Claude Code、Codex 在后台自己接活、跟进到底，平时不打扰，遇到拿不准的事发卡片等你拍板。基于事件驱动，Node.js 写的。",
+   "business": "做成现成的自动化服务，卖给不想自己搭 Agent 的跨境小卖家",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "让 Agent 夜里自己改站、跑测试，早上只看要你拍板的卡片"
+    },
+    {
+     "area": "SEO",
+     "how": "定时让 Agent 批量生成并检查 SEO 页面，异常才通知你"
+    }
+   ],
+   "setup": "中，需要 Node.js 和已装好的 Claude Code 或 Codex",
+   "safety": "黄",
+   "safety_note": "建仓才 3 天，且让 Agent 在后台长时间执行命令。防范：先在隔离环境试，限制可执行目录，不给生产凭证。",
+   "risk_brief": "建仓 3 天，Agent 后台执行",
+   "id": "G03"
+  },
+  {
+   "repo": "wquguru/cicada",
+   "url": "https://github.com/wquguru/cicada",
+   "group": "刚冒出来",
+   "why_today": "建仓 5 天 1.5k 星",
+   "stars_today": null,
+   "stars_7d": 1488,
+   "stars_total": 1487,
+   "license": "Apache-2.0",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "外贸",
+    "做产品"
+   ],
+   "brief": "任何会议直播的实时字幕、同传和会议纪要",
+   "what": "Mac、Windows、Linux、Android 都能用，免费开源，给任何通话和直播做实时字幕、同声传译和纪要。11-03 一天涨 807 星，占 7 天一半以上，我没核实有没有发布消息带动。",
+   "business": "做外贸电话和视频会议的同传加纪要服务，卖给不懂外语的小工厂，按月收费",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "和海外买家开视频会议时实时翻译并出纪要，会后自动跟进邮件"
+    },
+    {
+     "area": "做产品",
+     "how": "包装成面向工厂老板的会议翻译小程序"
+    }
+   ],
+   "setup": "中，需要语音识别和翻译模型 API",
+   "safety": "黄",
+   "safety_note": "建仓不到 30 天，并且要访问麦克风和系统音频。防范：先看源码里有没有把音频发到未知服务器，只用自己的 API Key。",
+   "risk_brief": "新仓库，需要麦克风权限",
+   "id": "G04",
+   "images": [
+    "https://raw.githubusercontent.com/wquguru/cicada/HEAD/docs/interpreting.png",
+    "https://raw.githubusercontent.com/wquguru/cicada/HEAD/docs/records.png",
+    "https://raw.githubusercontent.com/wquguru/cicada/HEAD/docs/onboarding.png",
+    "https://raw.githubusercontent.com/wquguru/cicada/HEAD/docs/demo.gif"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "hallmark",
+   "url": "https://github.com/Nutlope/hallmark",
+   "repo": "Nutlope/hallmark",
+   "hot": "新晋热门",
+   "stars_total": 48771,
+   "installs": null,
+   "popularity_note": "GitHub 总星 48,771，11-06 周榜 +6,994，近 7 天每天约 570 到 1,130 星",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "黄",
+   "safety_note": "附带 Node 脚本，可选装钩子到 Claude Code，浏览器检查要装 puppeteer。我只读了仓库页的说明，没读 SKILL.md 原文。防范：先看 `scripts/install-hook.mjs` 再决定要不要装，浏览器检查放在隔离环境。",
+   "risk_brief": "带脚本和可选钩子",
+   "brief": "让 AI 写的网页不像 AI 模板",
+   "what": "从 50 个主题里选风格，围绕访客任务做页面，再用浏览器检查和新上下文复核。有重设计和审计两种模式。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "给程序化 SEO 落地页换掉千篇一律的版式"
+    },
+    {
+     "area": "外贸",
+     "how": "做外贸询盘页、产品页，看起来像真公司"
+    }
+   ],
+   "install": "npx skills add nutlope/hallmark -g",
+   "id": "S01",
+   "images": [
+    "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/site/OG-hallmark.png",
+    "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/docs/screenshots/dusk.jpg",
+    "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/docs/screenshots/cobalt.jpg",
+    "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/docs/screenshots/studio.jpg"
+   ]
+  },
+  {
+   "name": "stack-diagram",
+   "url": "https://github.com/caru-ini/stack-diagram",
+   "repo": "caru-ini/stack-diagram",
+   "hot": "新晋热门",
+   "stars_total": 1867,
+   "installs": null,
+   "popularity_note": "GitHub 总星 1,867，2026-11-01 建仓，前 3 天每天涨 330 到 720 星",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "建仓不到 30 天；会联网下载 Logo，可选发布到公开图库（需二次确认），PNG 导出要装 Playwright。我只读了仓库页，没读 SKILL.md 原文。防范：别开发布功能，只在本地生成。",
+   "risk_brief": "新仓库，会联网取 Logo",
+   "brief": "一句话描述技术栈，生成带官方 Logo 的架构图",
+   "what": "输出独立 HTML、PNG、React 组件。适合给客户做方案图、写文档用的图。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给产品介绍页、给海外客户的方案书快速出架构图"
+    },
+    {
+     "area": "自媒体",
+     "how": "写英文技术图文时配上架构图"
+    }
+   ],
+   "install": "npx skills add caru-ini/stack-diagram",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/caru-ini/stack-diagram/HEAD/docs/hero.png",
+    "https://raw.githubusercontent.com/caru-ini/stack-diagram/HEAD/docs/tooling.png",
+    "https://raw.githubusercontent.com/caru-ini/stack-diagram/HEAD/docs/ai.png",
+    "https://raw.githubusercontent.com/caru-ini/stack-diagram/HEAD/docs/aws.png"
+   ]
+  },
+  {
+   "name": "research",
+   "url": "https://skills.sh/mattpocock/skills/research",
+   "repo": "mattpocock/skills",
+   "hot": "长期热门",
+   "stars_total": 308333,
+   "installs": 771200,
+   "popularity_note": "skills.sh 总榜第 38 名，771.2k 次安装；仓库 11-01 记录总星 308,333",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "开后台代理查资料，结论带出处写进一个文件",
+   "what": "用全新上下文的后台代理查官方文档和源码，把带出处的结论写进一个 Markdown 文件，你同时做别的事。我读的是 skills.sh 页的摘要，未执行脚本。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "查目标国进口规则、竞品价格，结果存成资料文件"
+    },
+    {
+     "area": "供需",
+     "how": "调研某个行业的买家名单来源和需求"
+    }
+   ],
+   "install": "npx skills add https://github.com/mattpocock/skills --skill research",
+   "id": "S03",
+   "images": [
+    "https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png"
+   ]
+  },
+  {
+   "name": "twitter-automation",
+   "url": "https://skills.sh/magentosh/superpowers/twitter-automation",
+   "repo": "magentosh/superpowers",
+   "hot": "长期热门",
+   "stars_total": 4,
+   "installs": 856400,
+   "popularity_note": "skills.sh 总榜第 31 名，856.4k 次安装，首次收录 2026-08-28；GitHub 只有 4 星，装机量与星数不匹配",
+   "works_with": "Claude Code / Codex / 两者",
+   "safety": "黄",
+   "safety_note": "需要登录第三方 inference.sh CLI（`belt login`）才能发帖，账号凭证交给它；skills.sh 的审计里 Socket 给了警告。防范：用专门的小号，不登录主账号，装之前先读它的脚本。",
+   "risk_brief": "要登录第三方 CLI，Socket 警告",
+   "brief": "通过 belt CLI 自动发 X 推文",
+   "what": "调用 inference.sh 的 `belt` 命令，示例是发一条推文。安装量很高但仓库只有 4 星，建议当线索看，别当质量背书。",
+   "uses": [
+    {
+     "area": "宣传",
+     "how": "定时发产品更新推文，做海外冷启动"
+    },
+    {
+     "area": "自媒体",
+     "how": "把写好的英文图文拆成推文串自动发"
+    }
+   ],
+   "install": "npx skills add https://github.com/magentosh/superpowers --skill twitter-automation",
+   "id": "S04",
+   "images": [
+    "https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvqa60jjrqa47j3g5s6ce6v.jpeg"
+   ]
+  }
+ ],
+ "pick": "B01"
+}
