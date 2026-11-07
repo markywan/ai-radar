@@ -1,0 +1,305 @@
+{
+ "date": "2026-11-07",
+ "generated_at": "2026-11-07T05:30:00+08:00",
+ "headline": [
+  "今日机会：邮箱、手机号验证 API（1Lookup 类），TrustMRR 页显示 **MRR $254,125**、729 个付费订阅，Verify Forge 这类小玩家只有 $197，说明差距在产品打包。",
+  "线索：开源冷邮件代理 Franco 要求先配邮箱验证服务（Reoon、ZeroBounce、Hunter），验证 API 是开发信工具的必需配件。",
+  "今天做一件事：打开 1Lookup 定价页，记下每个数据产品的单价和积分包，再对照 Verify Forge 的 $29、$49 档。"
+ ],
+ "stats": {
+  "scanned": 410,
+  "selected": 8,
+  "chars": 2315,
+  "read_minutes": 5
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "打开 1Lookup 和 Verify Forge 的定价页，记下积分单价、试用额度、卖给谁，写下三行差异。"
+  },
+  {
+   "minutes": 15,
+   "text": "读 Franco 的 README 里「邮箱验证」一节，列出它支持的三家验证服务和各自单价，作为 B01 的采购对照。"
+  },
+  {
+   "minutes": 5,
+   "text": "给 crawlseo 的 GitHub 点 Star 并看一眼 crawlseo.cloud 的定价页，确认托管版价位。"
+  }
+ ],
+ "opportunities": [
+  {
+   "name": "邮箱、手机号验证 API 服务（1Lookup 类）",
+   "category": "API 服务",
+   "one_liner": "把邮箱、手机号验证打包成一个 API，卖给海外营销和获客团队，按积分包和月订阅收费",
+   "track": "供需撮合",
+   "source": {
+    "title": "TrustMRR：1Lookup",
+    "url": "https://trustmrr.com/startup/1lookup"
+   },
+   "automation": {
+    "acquisition": "写「邮箱验证 vs 退信率」类 SEO 页面和对比页，在冷邮件、跨境电商社区发免费检测小工具引流",
+    "production": "对接第三方验证数据源，自己只写 API 和计费，核心验证逻辑尽量用现成服务和开源库",
+    "payment_support": "Stripe 或 Creem 订阅加积分充值，文档加 FAQ 机器人回答常见问题",
+    "manual": "挑数据供应商、处理被滥用的账号和退款",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "客户是呼叫中心、营销机构和电商（1Lookup 页面自述）；Franco 这类开源冷邮件代理在 README 里要求先配邮箱验证服务，没配就不发信",
+    "revenue_evidence": "TrustMRR 1Lookup 页：**MRR $254,125**、729 个活跃订阅、累计 $5,776,773、近 30 天 $511,702，Stripe 验证，2026-11-06 更新；同赛道 Verify Forge 累计仅 $197",
+    "competition": "1Lookup（34 个数据产品，7 天试用，对接 Twilio、HubSpot、Shopify）；Verify Forge（免费、$29、$49 三档，没有付费用户）",
+    "evidence_links": [
+     {
+      "title": "TrustMRR：1Lookup",
+      "url": "https://trustmrr.com/startup/1lookup"
+     },
+     {
+      "title": "TrustMRR：Verify Forge",
+      "url": "https://trustmrr.com/startup/verify-forge"
+     },
+     {
+      "title": "Franco README（要求邮箱验证 key）",
+      "url": "https://github.com/GortexAI/franco"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 150,
+    "mvp_days": 14,
+    "services": "VPS、Stripe 或 Creem、验证数据供应商 API、域名",
+    "match": "你做过外贸开发信，知道退信率对获客的伤害，可以从跨境卖家和开发信用户的痛点切入窄场景",
+    "biggest_risk": "头部已有大客户和多产品打包，通用验证是红海；Verify Forge 只有 $197，说明新入场很难拿到付费用户，要找窄场景。"
+   },
+   "verdict": "放进观察",
+   "id": "B01"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "GortexAI/franco",
+   "url": "https://github.com/GortexAI/franco",
+   "group": "刚冒出来",
+   "why_today": "建仓 23 天 720 星",
+   "stars_today": null,
+   "stars_total": 720,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "外贸",
+    "Agent 与自动化"
+   ],
+   "brief": "跑在自己电脑上的开发信代理，自动发信、读回复",
+   "what": "用你的 Claude Code 或 Codex 订阅写开发信，从你自己的邮箱发短序列并处理回复；可逐封审核或开自动驾驶。需要邮箱验证服务的 key 和发信地址。",
+   "business": "给外贸小团队代跑开发信，按月收服务费，不碰发信平台",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "导入客户名单，让它写并发英文开发信，回复分类后只看有意向的"
+    },
+    {
+     "area": "供需",
+     "how": "拿它做供需名单的首轮触达，验证需求再做目录或数据产品"
+    }
+   ],
+   "setup": "中，要 Python 3.11、Claude Code 登录、Gmail OAuth、邮箱验证 key",
+   "safety": "黄",
+   "safety_note": "要拿到邮箱 OAuth 和验证服务 key，建仓不到 30 天。发信会代表你对外发邮件，写坏了伤域名信誉。防范：用专门的新域名和新邮箱，先逐封审核再开自动驾驶，README 要求填的发信地址写你自己。",
+   "risk_brief": "拿邮箱凭证，会替你对外发信",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/GortexAI/franco/HEAD/docs/dashboard.gif"
+   ]
+  },
+  {
+   "repo": "crawlseo/crawlseo",
+   "url": "https://github.com/crawlseo/crawlseo",
+   "group": "大家都在用",
+   "why_today": "SEO 话题榜 679 星，MIT",
+   "stars_today": null,
+   "stars_total": 679,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "SEO",
+    "做产品"
+   ],
+   "brief": "把 Search Console、爬虫、网页体验分合进一个开源面板",
+   "what": "给创始人用的 SEO 监控：GSC 关键词和页面表现、最多 2000 页的站点爬取、Core Web Vitals，带 9 个只读 MCP 工具。Docker Compose 部署，关键词和外链数据可自带 DataForSEO key。",
+   "business": "做成多站点托管版卖给站长和小外贸站，按站点数月费",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "接入自己的多个站，每周看掉词和爬取问题，发现问题让 Claude Code 去修"
+    },
+    {
+     "area": "做产品",
+     "how": "改成给客户站点出周报的服务，卖给没有 SEO 专员的小店"
+    }
+   ],
+   "setup": "中，要 Docker、Google OAuth 凭证和 Search Console 权限",
+   "safety": "黄",
+   "safety_note": "要拿到 Google Search Console 的 OAuth 授权，数据含站点流量。防范：只授权只读范围，部署后关掉注册，放在 HTTPS 反代后面，换掉默认数据库密码。",
+   "risk_brief": "要 Google OAuth，含站点流量数据",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/dashboard.png",
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/keywords.png",
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/audit.png",
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/mcp.png"
+   ]
+  },
+  {
+   "repo": "marclou/mailcheap",
+   "url": "https://github.com/marclou/mailcheap",
+   "group": "刚冒出来",
+   "why_today": "建仓 28 天 1.6k 星",
+   "stars_today": null,
+   "stars_total": 1649,
+   "license": "AGPL-3.0",
+   "license_tier": "托管要公开改动",
+   "tags": [
+    "自媒体",
+    "宣传"
+   ],
+   "brief": "按发信量收费而不是按订阅人数收费的开源 Newsletter",
+   "what": "写作、发送、每个刊物自带网站、自有域名发信、导入其他平台，支持 MCP 和 REST API。需要 Amazon SES、MongoDB 和 Upstash QStash，自己部署约一小时。",
+   "business": "给休眠订阅多的英文 Newsletter 作者做迁移服务，按月收托管费",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "自己的英文图文 Newsletter 用 SES 发信，成本按发出封数算"
+    },
+    {
+     "area": "宣传",
+     "how": "给产品做海外用户邮件列表，用 API 接收表单订阅"
+    }
+   ],
+   "setup": "中，要 Node 22、MongoDB、SES 和 QStash",
+   "safety": "黄",
+   "safety_note": "建仓不到 30 天，要 SES 发信凭证和一批数据库密钥，仓库关了 issue。防范：给 SES 单独建受限 IAM 用户，先用小列表测试，密钥不要提交进仓库。",
+   "risk_brief": "建仓不到 30 天，要 SES 凭证",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/marclou/mailcheap/HEAD/docs/screenshots/overview.webp",
+    "https://raw.githubusercontent.com/marclou/mailcheap/HEAD/docs/screenshots/editor.webp",
+    "https://raw.githubusercontent.com/marclou/mailcheap/HEAD/docs/screenshots/website.webp"
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "name": "agent-browser",
+   "url": "https://github.com/vercel-labs/agent-browser",
+   "repo": "vercel-labs/agent-browser",
+   "hot": "长期热门",
+   "stars_total": 46300,
+   "installs": 1400000,
+   "popularity_note": "skills.sh 总榜第 4（140 万安装），GitHub 46.3k 星（2026-11-07）",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "会让代理用浏览器登录网站并保存登录状态，SKILL.md 授权代理执行任意 agent-browser 子命令，真正指令在运行时从 CLI 取。防范：用独立浏览器 profile，不登录主账号，先在测试站试用。",
+   "risk_brief": "浏览器自动化，会登录和存状态",
+   "brief": "让代理用命令行控制浏览器，读网页、点按钮",
+   "what": "Rust 命令行加后台进程，通过 CDP 控制 Chrome，页面快照带元素编号，代理一条命令走一步。SKILL.md 只是入口，具体说明由 `agent-browser skills get core` 提供。",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "自动查海外买家官网、产品页，整理成名单给开发信用"
+    },
+    {
+     "area": "SEO",
+     "how": "批量检查页面渲染后的标题和链接，替代手点"
+    }
+   ],
+   "install": "npm i -g agent-browser && agent-browser install",
+   "id": "S01"
+  },
+  {
+   "name": "design-taste-frontend",
+   "url": "https://github.com/Leonxlnx/taste-skill",
+   "repo": "leonxlnx/taste-skill",
+   "hot": "新晋热门",
+   "stars_total": 111200,
+   "installs": 742400,
+   "popularity_note": "GitHub 111.2k 星，skills.sh 总榜 74.2 万安装（2026-11-07）",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "SKILL.md 让代理运行多个 Node 脚本，拷贝资源、写 `.taste-skill/` 历史文件，并联网取图片、图标。防范：在独立目录里用，先看 scripts 目录，不放任何密钥。",
+   "risk_brief": "跑本地脚本并联网取素材",
+   "brief": "让代理做出有设计感的公司网站和落地页",
+   "what": "2.5.0 版给代理一套版式、配色和字体规则，加一个无头浏览器检查器，查布局、对比度、性能。需要 Node 22 和 Chrome。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "做单功能工具站的落地页，不用再找设计师"
+    },
+    {
+     "area": "SEO",
+     "how": "给程序化 SEO 站套统一模板，页面更像正规产品站"
+    }
+   ],
+   "install": "npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\"",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/leonxlnx/taste-skill/HEAD/examples/v2/coffee-storefront.webp",
+    "https://raw.githubusercontent.com/leonxlnx/taste-skill/HEAD/examples/v2/night-dates.webp",
+    "https://raw.githubusercontent.com/leonxlnx/taste-skill/HEAD/examples/v2/coffee-roast.webp",
+    "https://raw.githubusercontent.com/leonxlnx/taste-skill/HEAD/examples/v2/coffee-questions.webp"
+   ]
+  },
+  {
+   "name": "google-ads-api-quickstart（google/skills）",
+   "url": "https://github.com/google/skills",
+   "repo": "google/skills",
+   "hot": "新晋热门",
+   "stars_total": 22800,
+   "installs": null,
+   "popularity_note": "GitHub 日榜今日 +534 星，总 22.8k 星，榜上第 2 天（2026-11-07）",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "要开发者令牌、OAuth 密钥和刷新令牌，凭证会明文写进本地文件，登录命令还申请了更宽的 cloud-platform 范围。防范：只用 adwords 范围，凭证文件放项目外并加入 gitignore，用测试账号先跑。",
+   "risk_brief": "要广告账号凭证，明文存本地",
+   "brief": "Google 官方技能包，含 Google Ads API 上手指南",
+   "what": "13 类 Google 技能，多数是 Google Cloud，ads 目录下有 Google Ads API 快速上手、账户诊断、MCP 设置。该条指引代理取凭证、跑第一个读取广告系列的脚本。",
+   "uses": [
+    {
+     "area": "宣传",
+     "how": "给海外产品接 Google Ads 读取数据，自动出投放周报"
+    },
+    {
+     "area": "做产品",
+     "how": "做广告账户诊断小工具，卖给没有投放专员的小店"
+    }
+   ],
+   "install": "npx skills add google/skills",
+   "id": "S03"
+  },
+  {
+   "name": "remotion-best-practices",
+   "url": "https://github.com/remotion-dev/skills",
+   "repo": "remotion-dev/skills",
+   "hot": "长期热门",
+   "stars_total": 6500,
+   "installs": 763900,
+   "popularity_note": "skills.sh 总榜 76.4 万安装，GitHub 6.5k 星（2026-11-07）",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "用 React 写代码生成视频的最佳实践入口",
+   "what": "SKILL.md 是路由页，按任务指向创建项目、字幕、地图、渲染等参考文件，会让代理运行 `npx remotion studio` 预览，渲染只在你明确要求时才跑。未见联网或密钥要求。",
+   "uses": [
+    {
+     "area": "宣传",
+     "how": "给自己的出海产品做 30 秒英文演示片，改文案就能重渲染"
+    },
+    {
+     "area": "自媒体",
+     "how": "把图文要点做成带字幕的短动画，当配图素材用"
+    }
+   ],
+   "install": "npx skills add remotion-dev/skills",
+   "id": "S04"
+  }
+ ],
+ "pick": "B01"
+}
