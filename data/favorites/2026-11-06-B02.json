@@ -1,0 +1,50 @@
+{
+ "id": "2026-11-06-B02",
+ "date": "2026-11-06",
+ "type": "opportunities",
+ "library": "机会库",
+ "status": "观察",
+ "saved_at": "2026-11-08T13:01:10+00:00",
+ "item": {
+  "name": "Post Bridge（多平台同步发布订阅）",
+  "category": "数字产品与模板 / 单功能工具站",
+  "one_liner": "一处写好内容同步发到多个社交平台，卖给创作者和营销人，月付 $39 和 $99",
+  "track": "图文自媒体",
+  "source": {
+   "title": "TrustMRR 一人团队增长榜",
+   "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+  },
+  "automation": {
+   "acquisition": "创始人在 X 上有 18.7 万粉丝带量；他自己可以靠 SEO 和图文教程",
+   "production": "发布走各平台 API，排期和格式转换全自动",
+   "payment_support": "Stripe 订阅，客服靠文档和机器人",
+   "manual": "平台 API 变更后的修补",
+   "weekly_hours": 3
+  },
+  "market": {
+   "demand": "创作者和小团队要同时发多个平台，不想逐个登录；订阅数 1,652 说明需求稳定。",
+   "revenue_evidence": "TrustMRR 页：**MRR $49,954、1,652 个活跃订阅**，近 30 天 $46,592，累计 $570,015，2024 年 9 月成立，加拿大。页面没写团队人数。",
+   "competition": "Postiz（TrustMRR 页 MRR $373,501，开源）、Buffer（推断，未打开）；Post Bridge 靠创始人个人品牌和价格取胜。",
+   "evidence_links": [
+    {
+     "title": "TrustMRR：Post Bridge 项目页",
+     "url": "https://trustmrr.com/startup/post-bridge"
+    },
+    {
+     "title": "TrustMRR 一人团队增长榜",
+     "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+    }
+   ]
+  },
+  "fit": {
+   "startup_cost_usd": 100,
+   "mvp_days": 14,
+   "services": "VPS、开源 Postiz、Stripe",
+   "match": "做图文自媒体天天要发多个平台，可以先用开源 Postiz 搭起来自己用，再做给外贸人。",
+   "biggest_risk": "页面没说它是不是以短视频为主（他不做视频内容），平台 API 政策变动；创始人个人品牌是它的护城河，难复制"
+  },
+  "verdict": "放进观察",
+  "id": "B02"
+ },
+ "deepdive": "pending"
+}
