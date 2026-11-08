@@ -1,0 +1,39 @@
+{
+ "id": "2026-11-06-S04",
+ "date": "2026-11-06",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-11-08T13:02:06+00:00",
+ "item": {
+  "name": "twitter-automation",
+  "url": "https://skills.sh/magentosh/superpowers/twitter-automation",
+  "repo": "magentosh/superpowers",
+  "hot": "长期热门",
+  "stars_total": 4,
+  "installs": 856400,
+  "popularity_note": "skills.sh 总榜第 31 名，856.4k 次安装，首次收录 2026-08-28；GitHub 只有 4 星，装机量与星数不匹配",
+  "works_with": "Claude Code / Codex / 两者",
+  "safety": "黄",
+  "safety_note": "需要登录第三方 inference.sh CLI（`belt login`）才能发帖，账号凭证交给它；skills.sh 的审计里 Socket 给了警告。防范：用专门的小号，不登录主账号，装之前先读它的脚本。",
+  "risk_brief": "要登录第三方 CLI，Socket 警告",
+  "brief": "通过 belt CLI 自动发 X 推文",
+  "what": "调用 inference.sh 的 `belt` 命令，示例是发一条推文。安装量很高但仓库只有 4 星，建议当线索看，别当质量背书。",
+  "uses": [
+   {
+    "area": "宣传",
+    "how": "定时发产品更新推文，做海外冷启动"
+   },
+   {
+    "area": "自媒体",
+    "how": "把写好的英文图文拆成推文串自动发"
+   }
+  ],
+  "install": "npx skills add https://github.com/magentosh/superpowers --skill twitter-automation",
+  "id": "S04",
+  "images": [
+   "https://cloud.inference.sh/app/files/u/4mg21r6ta37mpaz6ktzwtt8krr/01kgvqa60jjrqa47j3g5s6ce6v.jpeg"
+  ]
+ },
+ "deepdive": "pending"
+}
