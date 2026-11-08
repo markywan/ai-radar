@@ -1,0 +1,42 @@
+{
+ "id": "2026-11-06-S01",
+ "date": "2026-11-06",
+ "type": "skills",
+ "library": "工具库",
+ "status": "待试",
+ "saved_at": "2026-11-08T13:01:47+00:00",
+ "item": {
+  "name": "hallmark",
+  "url": "https://github.com/Nutlope/hallmark",
+  "repo": "Nutlope/hallmark",
+  "hot": "新晋热门",
+  "stars_total": 48771,
+  "installs": null,
+  "popularity_note": "GitHub 总星 48,771，11-06 周榜 +6,994，近 7 天每天约 570 到 1,130 星",
+  "works_with": "Claude Code / Codex / 两者",
+  "safety": "黄",
+  "safety_note": "附带 Node 脚本，可选装钩子到 Claude Code，浏览器检查要装 puppeteer。我只读了仓库页的说明，没读 SKILL.md 原文。防范：先看 `scripts/install-hook.mjs` 再决定要不要装，浏览器检查放在隔离环境。",
+  "risk_brief": "带脚本和可选钩子",
+  "brief": "让 AI 写的网页不像 AI 模板",
+  "what": "从 50 个主题里选风格，围绕访客任务做页面，再用浏览器检查和新上下文复核。有重设计和审计两种模式。",
+  "uses": [
+   {
+    "area": "SEO",
+    "how": "给程序化 SEO 落地页换掉千篇一律的版式"
+   },
+   {
+    "area": "外贸",
+    "how": "做外贸询盘页、产品页，看起来像真公司"
+   }
+  ],
+  "install": "npx skills add nutlope/hallmark -g",
+  "id": "S01",
+  "images": [
+   "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/site/OG-hallmark.png",
+   "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/docs/screenshots/dusk.jpg",
+   "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/docs/screenshots/cobalt.jpg",
+   "https://raw.githubusercontent.com/Nutlope/hallmark/HEAD/docs/screenshots/studio.jpg"
+  ]
+ },
+ "deepdive": null
+}
