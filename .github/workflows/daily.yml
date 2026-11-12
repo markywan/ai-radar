@@ -27,6 +27,7 @@ jobs:
     outputs:
       date: ${{ steps.day.outputs.date }}
       made: ${{ steps.day.outputs.skip != 'true' }}
+      hint: ${{ steps.claude_err.outputs.hint }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -110,6 +111,7 @@ jobs:
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch,Bash(python3 scripts/validate.py:*)"
 
       - name: 查 Claude 出错原因
+        id: claude_err
         if: failure() && steps.claude.outcome == 'failure'
         run: python3 scripts/claude_error.py "${{ steps.claude.outputs.execution_file }}"
 
@@ -210,6 +212,7 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
           WORKER_URL: ${{ vars.WORKER_URL }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          HINT: ${{ needs.generate.outputs.hint }}
           OK: ${{ needs.generate.result == 'success' && needs.publish.result == 'success' }}
           DAY: ${{ needs.generate.outputs.date }}
           EVENT: ${{ github.event_name }}
@@ -226,5 +229,5 @@ jobs:
           elif [ "$EVENT" = "schedule" ] && [ "$(TZ=Asia/Shanghai date +%H)" -lt 6 ]; then
             echo "这次没做成，6 点前后还会再试一次，先不发失败通知"
           else
-            python3 scripts/notify_feishu.py error "今天的日报没有生成成功，点下面的按钮看运行记录。"
+            python3 scripts/notify_feishu.py error "今天的日报没有生成成功。${HINT:-点下面的按钮看运行记录。}"
           fi
