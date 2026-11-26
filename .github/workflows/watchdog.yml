@@ -1,0 +1,39 @@
+name: 停更提醒
+
+# 和「每日日报」分开跑、不用 Claude：最新一期日报是前天或更早的，就往飞书发一条单独的提醒。
+# 原因：2026-11-08 到 11-25 令牌被吊销，日报停了 18 天，每天的失败通知只说「没生成成功」，很容易被当成偶发。
+on:
+  schedule:
+    - cron: "30 1 * * *"   # 北京时间 9:30，日报最晚的一次定时（6:23）就算晚到 3 小时也跑完了
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - id: gap
+        name: 算最新一期日报是几天前的
+        run: |
+          today=$(TZ=Asia/Shanghai date +%F)
+          last=$(ls data/daily/*.json 2>/dev/null | sed 's#.*/##; s#\.json##' | sort | tail -1)
+          days=$(( ( $(date -d "$today" +%s) - $(date -d "${last:-1970-01-01}" +%s) ) / 86400 ))
+          echo "today=$today last=$last days=$days"
+          { echo "last=$last"; echo "days=$days"; } >> "$GITHUB_OUTPUT"
+          echo "最新一期是 $last，距今天 $days 天。" >> "$GITHUB_STEP_SUMMARY"
+      - name: 推送飞书
+        if: steps.gap.outputs.days >= 2
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/workflows/daily.yml
+          LAST: ${{ steps.gap.outputs.last }}
+          DAYS: ${{ steps.gap.outputs.days }}
+        run: |
+          if [ -z "$FEISHU_WEBHOOK" ]; then echo "没配置飞书机器人，跳过"; exit 0; fi
+          python3 scripts/notify_feishu.py stale "$LAST" "$DAYS"
