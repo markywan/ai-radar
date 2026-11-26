@@ -1,0 +1,124 @@
+name: 周六周报
+
+# 2026-11-26 起每周六一份：这周验证的项目过没过、池子的变化、下周只做哪个实验、工具链缺哪一环、各主线和信源的出货。
+# 先用脚本算信源转化（scripts/metrics.py），再让 Claude 按 prompts/weekly.md 写 data/weekly/<日期>.md，发布网站后推飞书。
+on:
+  schedule:
+    - cron: "0 0 * * 6"   # 北京时间周六 8:00（GitHub 定时常晚到两三个小时）
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: radar-weekly
+  cancel-in-progress: false
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    outputs:
+      date: ${{ steps.day.outputs.date }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - id: day
+        run: echo "date=$(TZ=Asia/Shanghai date +%F)" >> "$GITHUB_OUTPUT"
+      - name: 算信源转化
+        run: python3 scripts/metrics.py --days 30 >> "$GITHUB_STEP_SUMMARY"
+      - name: 准备 Claude 令牌
+        env:
+          T_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          HAS_API_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+        run: |
+          if [ -n "$T_CLAUDE" ]; then
+            t=$(printf '%s' "$T_CLAUDE" | tr -d '[:space:]')
+            echo "::add-mask::$t"
+            echo "CLAUDE_TOKEN=$t" >> "$GITHUB_ENV"
+            [ "$HAS_API_KEY" = "true" ] && echo "BACKUP_KEY=true" >> "$GITHUB_ENV"
+          fi
+          true
+      - name: Claude 写周报
+        id: claude
+        continue-on-error: true
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ env.CLAUDE_TOKEN }}
+          anthropic_api_key: ${{ env.CLAUDE_TOKEN == '' && secrets.ANTHROPIC_API_KEY || '' }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            今天是 ${{ steps.day.outputs.date }}（北京时间，周六）。请按 prompts/weekly.md 写这周的周报，写到 data/weekly/${{ steps.day.outputs.date }}.md。
+          claude_args: >-
+            --model ${{ vars.DAILY_MODEL || 'sonnet' }}
+            --max-turns 40
+            --allowedTools "Read,Write,Edit,Glob,Grep"
+      - name: Claude 写周报（主令牌失败，改用备用密钥）
+        id: claude2
+        if: steps.claude.outcome == 'failure' && env.BACKUP_KEY == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            今天是 ${{ steps.day.outputs.date }}（北京时间，周六）。请按 prompts/weekly.md 写这周的周报，写到 data/weekly/${{ steps.day.outputs.date }}.md。
+          claude_args: >-
+            --model ${{ vars.DAILY_MODEL || 'sonnet' }}
+            --max-turns 40
+            --allowedTools "Read,Write,Edit,Glob,Grep"
+      - name: 查 Claude 出错原因
+        if: steps.claude.outcome == 'failure'
+        run: python3 scripts/claude_error.py "${{ steps.claude.outputs.execution_file }}" || true
+      - name: 提交
+        run: |
+          f="data/weekly/${{ steps.day.outputs.date }}.md"
+          test -s "$f" || { echo "::error::周报没写出来"; exit 1; }
+          git config user.name "ai-radar-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$f" data/metrics.json
+          git commit -m "周报 ${{ steps.day.outputs.date }}" || exit 0
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
+
+  publish:
+    needs: write
+    uses: ./.github/workflows/publish.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+  notify:
+    needs: [write, publish]
+    if: always() && needs.write.result != 'skipped'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - name: 推送飞书
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          FEISHU_SECRET: ${{ secrets.FEISHU_SECRET }}
+          ACTION_KEY: ${{ secrets.ACTION_KEY }}
+          SITE_URL: ${{ vars.SITE_URL }}
+          WORKER_URL: ${{ vars.WORKER_URL }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          OK: ${{ needs.write.result == 'success' && needs.publish.result == 'success' }}
+          DAY: ${{ needs.write.outputs.date }}
+        run: |
+          if [ -z "$FEISHU_WEBHOOK" ]; then echo "没配置飞书机器人，跳过推送"; exit 0; fi
+          if [ "$OK" = "true" ]; then
+            python3 scripts/notify_feishu.py weekly "$DAY"
+          else
+            python3 scripts/notify_feishu.py error "这周的周报没写出来，点下面的按钮看运行记录。"
+          fi

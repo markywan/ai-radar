@@ -3,6 +3,8 @@
 // 飞书卡片和网站上的「收藏」「收藏并深挖」按钮都打到这里：
 //   GET  /act?op=fav|deep&id=2026-10-15-B01&k=口令   打开一个确认页，页面自动提交（防止链接预览误触发）
 //   POST /act?op=fav|deep&id=...&k=...               真正触发 GitHub 上的「收藏与深挖」任务
+//   GET/POST /act?op=status&id=<机会池编号>&s=start|watch|drop|launch|paid|pause&k=口令
+//        改机会池里一个项目的状态（2026-11-26 起，飞书卡片和网站上的「开始验证」「继续观察」「淘汰」按钮）
 //
 // 需要在 Worker 的 Settings → Variables and Secrets 里配置两个密钥：
 //   GITHUB_TOKEN  细粒度令牌，只授权雷达仓库，Contents: Read and write
@@ -16,6 +18,9 @@
 const DEFAULT_REPO = "markywan/ai-radar";
 const DEFAULT_SITE = "https://markywan.github.io/ai-radar/";
 const ID = /^\d{4}-\d{2}-\d{2}-[NGSBP]\d{2}$/;
+// 机会池编号：种子 seed-xxx，或日报里进池子的 2026-11-26-B01
+const POOL_ID = /^(seed-[a-z0-9-]{2,40}|\d{4}-\d{2}-\d{2}-B\d{2})$/;
+const STATUS = { start: "验证中", watch: "待研究", drop: "淘汰", launch: "已启动", paid: "已变现", pause: "暂停" };
 const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
@@ -61,7 +66,7 @@ main{max-width:420px}h1{font-size:22px;margin:0 0 8px}p{color:var(--muted);margi
   );
 }
 
-async function dispatch(env, op, id) {
+async function dispatch(env, op, id, status) {
   const r = await fetch(`https://api.github.com/repos/${env.GITHUB_REPO || DEFAULT_REPO}/dispatches`, {
     method: "POST",
     headers: {
@@ -70,7 +75,11 @@ async function dispatch(env, op, id) {
       "X-GitHub-Api-Version": "2022-11-28",
       "User-Agent": "ai-radar-worker",
     },
-    body: JSON.stringify({ event_type: op === "deep" ? "deepdive" : "favorite", client_payload: { id } }),
+    body: JSON.stringify(
+      op === "status"
+        ? { event_type: "pool_status", client_payload: { id, status } }
+        : { event_type: op === "deep" ? "deepdive" : "favorite", client_payload: { id } },
+    ),
   });
   return r.status === 204;
 }
@@ -106,13 +115,18 @@ export default {
     if (!env.ACTION_KEY || !same(key, env.ACTION_KEY)) {
       return isPost ? json({ ok: false, message: "口令不对。" }, 403) : page("口令不对", "请从飞书卡片里的按钮进入。", env.SITE_URL, false);
     }
-    if (!["fav", "deep"].includes(op) || !ID.test(id)) {
+    const status = op === "status" ? STATUS[url.searchParams.get("s") || ""] : null;
+    const valid = op === "status" ? POOL_ID.test(id) && !!status : ["fav", "deep"].includes(op) && ID.test(id);
+    if (!valid) {
       return isPost ? json({ ok: false, message: "参数不对。" }, 400) : page("参数不对", "这个按钮的链接不完整。", env.SITE_URL, false);
     }
-    if (!isPost) return page("正在提交…", id, env.SITE_URL, true);
+    if (!isPost) return page("正在提交…", status ? `${id} → ${status}` : id, env.SITE_URL, true);
 
-    const ok = await dispatch(env, op, id).catch(() => false);
+    const ok = await dispatch(env, op, id, status).catch(() => false);
     if (!ok) return json({ ok: false, message: "GitHub 没有接受请求，检查 Worker 里的 GITHUB_TOKEN 和 GITHUB_REPO。" }, 502);
+    if (op === "status") {
+      return json({ ok: true, title: `已改成「${status}」`, message: `${id} 的状态一两分钟后在网站「池子」页更新。` });
+    }
     return json(
       op === "deep"
         ? { ok: true, title: "已收藏，开始深挖", message: `${id} 已进收藏夹。Claude 正在研究，写好后飞书会通知你。` }
