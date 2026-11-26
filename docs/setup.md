@@ -86,7 +86,7 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 ## 出问题时
 
 - **飞书没收到**：看 Actions 里那次运行哪一步红了；失败时机器人会推一张带运行记录链接的卡片。什么卡片都收不到，多半是 `FEISHU_WEBHOOK` 或 `FEISHU_SECRET` 填错。
-- **AI 那一步红了**：日志里「查 Claude 出错原因」一步打印了原因，常见是令牌过期或额度用完。
+- **AI 那一步红了**：日志里「查 Claude 出错原因」一步打印了原因，常见是令牌过期或额度用完。飞书失败通知会直接写明是令牌失效还是额度用完。令牌失效（日志写 `OAuth token revoked`）就在本机重新运行 `claude setup-token`，把新令牌替换进 Secrets 的 `CLAUDE_CODE_OAUTH_TOKEN`。
 - **卡片上写「深挖报告没写出来」**：深挖那一步失败或超时，日报照常发。原因在那次运行的「查深挖出错原因」一步；点卡片上的「收藏并深挖」能补一份。
 - **点收藏提示「口令不对」**：Worker 里的 `ACTION_KEY` 和 GitHub 里的不一致。
 - **提示「GitHub 没有接受请求」**：Worker 的 `GITHUB_TOKEN` 没有 Contents 写权限，或生成时没选中 `ai-radar`。
