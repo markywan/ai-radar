@@ -2,13 +2,18 @@ name: 每日日报
 
 on:
   # 目标：北京时间 7 点前日报已经做好、飞书准时推送。
-  # GitHub 的定时任务经常晚到一两个小时，所以排三次（北京时间 4:23、5:23、6:23），
-  # 当天已经有日报的就直接跳过；做好后飞书推送等到 7 点再发。
-  # 2026-11-01 起日报只有 GitHub 工具、Skills 和一人公司出海机会候选三栏，写好后再深挖第一个候选（今日机会）。
+  # GitHub 的定时任务常晚到很久：10-31 到 11-02 的五次定时都晚了 2 小时 47 分到 3 小时 17 分（11-02 那次 4:23 的定时 7:39 才开始），
+  # 而且 2026-11-01 起写完日报还要深挖今日机会（10–40 分钟），所以从北京时间 1:23 起每小时排一次，到 6:23 共六次。
+  # 当天已经有日报的就直接跳过；做好后飞书推送等到 7 点再发（最早 1:30 左右做好，要等 5 个半小时，在 Actions 单个任务 6 小时的上限以内）。
+  # 2026-11-26 起日报的目标是把机会池往前推一步：今天只做一件事、今日机会 0–1 个（75 分以上且池子里没有在验证的才深挖）、GitHub 3–5 个、Skills 2–4 个。
+  # 主令牌（CLAUDE_CODE_OAUTH_TOKEN）失败时，配了 ANTHROPIC_API_KEY 就自动用它重写一次（11-08 到 11-25 令牌被吊销，日报停了 18 天）。
   schedule:
-    - cron: "23 20 * * *"
-    - cron: "23 21 * * *"
-    - cron: "23 22 * * *"
+    - cron: "23 17 * * *"   # 北京时间 1:23
+    - cron: "23 18 * * *"   # 2:23
+    - cron: "23 19 * * *"   # 3:23
+    - cron: "23 20 * * *"   # 4:23
+    - cron: "23 21 * * *"   # 5:23
+    - cron: "23 22 * * *"   # 6:23
   workflow_dispatch:
 
 permissions:
@@ -27,6 +32,8 @@ jobs:
     outputs:
       date: ${{ steps.day.outputs.date }}
       made: ${{ steps.day.outputs.skip != 'true' }}
+      hint: ${{ steps.claude_err.outputs.hint }}
+      fallback: ${{ steps.claude2.outcome == 'success' }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -49,7 +56,9 @@ jobs:
         if: steps.day.outputs.skip != 'true'
         env:
           HAS_CLAUDE: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' || secrets.ANTHROPIC_API_KEY != '' }}
+          HAS_API_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
           OR_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          HAS_SAM: ${{ secrets.SAM_GOV_API_KEY != '' }}
           HAS_X: ${{ secrets.TWITTERAPI_IO_KEY != '' }}
           HAS_TRUSTMRR: ${{ secrets.TRUSTMRR_API_KEY != '' }}
           HAS_FEISHU: ${{ secrets.FEISHU_WEBHOOK != '' }}
@@ -69,6 +78,9 @@ jobs:
             if [ "$HAS_CLAUDE" = "true" ]; then echo "- ✅ Claude 令牌"
             elif [ -n "$OR_KEY" ]; then echo "- ✅ Claude 经 OpenRouter 调用（按量计费）"
             else echo "- ⚠️ 缺少 CLAUDE_CODE_OAUTH_TOKEN（或 ANTHROPIC_API_KEY、OPENROUTER_API_KEY）：日报写不出来"; fi
+            if [ -n "$T_CLAUDE" ] && [ "$HAS_API_KEY" = "true" ]; then echo "- ✅ 备用密钥 ANTHROPIC_API_KEY：主令牌失效时自动改用它"
+            elif [ -n "$T_CLAUDE" ]; then echo "- ⚠️ 没有备用密钥 ANTHROPIC_API_KEY：主令牌失效时日报会停（11-08 到 11-25 就这样停了 18 天）"; fi
+            ok "$HAS_SAM" "SAM.gov 密钥" "缺少 SAM_GOV_API_KEY（可选）：全球贸易那天不抓美国政府招标"
             ok "$HAS_X" "X 抓取密钥" "缺少 TWITTERAPI_IO_KEY：今天不抓 X，其他来源照常"
             ok "$HAS_TRUSTMRR" "TrustMRR 密钥" "缺少 TRUSTMRR_API_KEY（可选）：机会候选的收入证据由模型自己打开页面找"
             ok "$HAS_FEISHU" "飞书机器人" "缺少 FEISHU_WEBHOOK：不推送飞书"
@@ -76,6 +88,8 @@ jobs:
             w="${WORKER_URL:-$(python3 -c 'import json;print(json.load(open("config/site.json")).get("worker_url",""))')}"
             [ -n "$w" ] && echo "- ✅ 收藏接口 $w" || echo "- ⚠️ 收藏接口没配：仓库变量 WORKER_URL 和 config/site.json 的 worker_url 都空着，网站和飞书上的收藏按钮不可用（配法见 docs/setup.md 第 7、8 步）"
           } >> "$GITHUB_STEP_SUMMARY"
+          # 主令牌和备用密钥都有时，先用主令牌（订阅额度），失败了才用备用密钥（按量付费）
+          [ -n "$T_CLAUDE" ] && [ "$HAS_API_KEY" = "true" ] && echo "BACKUP_KEY=true" >> "$GITHUB_ENV"
           if [ "$HAS_CLAUDE" != "true" ] && [ -n "$OR_KEY" ]; then
             # 没有 Claude 令牌时改走 OpenRouter 的 Anthropic 兼容接口（OpenRouter 官方的 Claude Code 接法）
             { echo "ANTHROPIC_BASE_URL=https://openrouter.ai/api"; echo "ANTHROPIC_AUTH_TOKEN=$OR_KEY"; } >> "$GITHUB_ENV"
@@ -86,19 +100,24 @@ jobs:
 
       - name: 抓取原始素材
         if: steps.day.outputs.skip != 'true'
-        run: python3 scripts/fetch.py --date "${{ steps.day.outputs.date }}"
+        run: |
+          python3 scripts/pool.py seed   # 种子（config/opportunity_seeds.json）里还没进池子的放进去
+          python3 scripts/fetch.py --date "${{ steps.day.outputs.date }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TWITTERAPI_IO_KEY: ${{ secrets.TWITTERAPI_IO_KEY }}
           TRUSTMRR_API_KEY: ${{ secrets.TRUSTMRR_API_KEY }}
+          SAM_GOV_API_KEY: ${{ secrets.SAM_GOV_API_KEY }}
 
+      # 有主令牌时只用主令牌；没有主令牌才用 ANTHROPIC_API_KEY 或 OpenRouter。失败了不马上停，下一步看能不能用备用密钥
       - name: Claude 写日报
         id: claude
         if: steps.day.outputs.skip != 'true'
+        continue-on-error: true
         uses: anthropics/claude-code-action@v1
         with:
           claude_code_oauth_token: ${{ env.CLAUDE_TOKEN }}
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY || (env.ANTHROPIC_BASE_URL != '' && secrets.OPENROUTER_API_KEY) || '' }}
+          anthropic_api_key: ${{ env.CLAUDE_TOKEN == '' && (secrets.ANTHROPIC_API_KEY || (env.ANTHROPIC_BASE_URL != '' && secrets.OPENROUTER_API_KEY)) || '' }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             今天是 ${{ steps.day.outputs.date }}（北京时间）。请严格按 prompts/daily.md 写今天的日报。
@@ -110,8 +129,33 @@ jobs:
             --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch,Bash(python3 scripts/validate.py:*)"
 
       - name: 查 Claude 出错原因
-        if: failure() && steps.claude.outcome == 'failure'
+        id: claude_err
+        if: steps.claude.outcome == 'failure'
         run: python3 scripts/claude_error.py "${{ steps.claude.outputs.execution_file }}"
+
+      - name: Claude 写日报（主令牌失败，改用备用密钥）
+        id: claude2
+        if: steps.claude.outcome == 'failure' && env.BACKUP_KEY == 'true'
+        continue-on-error: true
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            今天是 ${{ steps.day.outputs.date }}（北京时间）。请严格按 prompts/daily.md 写今天的日报。
+            原始素材：data/raw/${{ steps.day.outputs.date }}.json
+            输出文件：data/daily/${{ steps.day.outputs.date }}.json
+          claude_args: >-
+            --model ${{ vars.DAILY_MODEL || 'sonnet' }}
+            --max-turns 120
+            --allowedTools "Read,Write,Edit,Glob,Grep,WebFetch,WebSearch,Bash(python3 scripts/validate.py:*)"
+
+      - name: 日报没写出来就停
+        if: steps.claude.outcome == 'failure' && steps.claude2.outcome != 'success'
+        run: |
+          [ "${{ steps.claude2.outcome }}" = "failure" ] && python3 scripts/claude_error.py "${{ steps.claude2.outputs.execution_file }}" || true
+          echo "::error::Claude 没写出日报（主令牌${{ env.BACKUP_KEY == 'true' && '和备用密钥都' || '' }}失败了）"
+          exit 1
 
       - name: 从 README 配图
         if: steps.day.outputs.skip != 'true'
@@ -121,12 +165,16 @@ jobs:
         if: steps.day.outputs.skip != 'true'
         run: python3 scripts/validate.py "data/daily/${{ steps.day.outputs.date }}.json"
 
+      - name: 今日机会进池子
+        if: steps.day.outputs.skip != 'true'
+        run: python3 scripts/pool.py add-daily "${{ steps.day.outputs.date }}"
+
       - name: 提交
         if: steps.day.outputs.skip != 'true'
         run: |
           git config user.name "ai-radar-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/daily
+          git add data/daily data/opportunities
           [ -d data/trending ] && git add data/trending
           git commit -m "日报 ${{ steps.day.outputs.date }}" || exit 0
           for i in 1 2 3 4; do
@@ -135,7 +183,7 @@ jobs:
           done
           exit 1
 
-      # 今日机会：日报里第一个候选（validate.py 记在 pick 字段），用更强的模型按 prompts/deepdive.md 深挖。
+      # 今日机会：75 分以上的那个（validate.py 记在 pick 字段），池子里没有在验证的项目时，用更强的模型按 prompts/deepdive.md 做验证设计。
       # 日报已经先提交了；深挖失败或超时不影响日报发布和推送，飞书卡片上会写「深挖没写出来」。
       - name: 找今日机会
         id: pick
@@ -149,8 +197,9 @@ jobs:
         timeout-minutes: 40
         uses: anthropics/claude-code-action@v1
         with:
-          claude_code_oauth_token: ${{ env.CLAUDE_TOKEN }}
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY || (env.ANTHROPIC_BASE_URL != '' && secrets.OPENROUTER_API_KEY) || '' }}
+          # 今天主令牌已经失败、靠备用密钥写的日报，深挖也直接用备用密钥
+          claude_code_oauth_token: ${{ steps.claude2.outcome != 'success' && env.CLAUDE_TOKEN || '' }}
+          anthropic_api_key: ${{ (steps.claude2.outcome == 'success' || env.CLAUDE_TOKEN == '') && (secrets.ANTHROPIC_API_KEY || (env.ANTHROPIC_BASE_URL != '' && secrets.OPENROUTER_API_KEY)) || '' }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
             今天是 ${{ steps.day.outputs.date }}（北京时间）。请按 prompts/deepdive.md 深挖今天日报的今日机会 ${{ steps.pick.outputs.pick }}。
@@ -173,8 +222,10 @@ jobs:
             echo "::warning::今天的深挖没写出来，日报照常发布"
             echo "今日机会 ${{ steps.pick.outputs.id }} 的深挖没写出来，日报照常发布。" >> "$GITHUB_STEP_SUMMARY"
           fi
-          # 只提交这一个文件；重跑时删掉的旧深挖（today_pick.py 删的）也一起提交
-          git add -A -- "$f" 2>/dev/null || true
+          # 深挖末尾的「池子卡片」写回机会池（下一步、到期日、过关指标；深挖说不做的直接淘汰）
+          [ -s "$f" ] && python3 scripts/pool.py card "${{ steps.pick.outputs.id }}" || true
+          # 只提交这一个文件和池子；重跑时删掉的旧深挖（today_pick.py 删的）也一起提交
+          git add -A -- "$f" data/opportunities 2>/dev/null || true
           if git diff --cached --quiet; then exit 0; fi
           if [ -s "$f" ]; then msg="深挖 ${{ steps.pick.outputs.id }}"; else msg="删掉 ${{ steps.pick.outputs.id }} 的旧深挖（第一个候选换了）"; fi
           git commit -m "$msg"
@@ -210,6 +261,8 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
           WORKER_URL: ${{ vars.WORKER_URL }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          HINT: ${{ needs.generate.outputs.hint }}
+          FALLBACK: ${{ needs.generate.outputs.fallback }}
           OK: ${{ needs.generate.result == 'success' && needs.publish.result == 'success' }}
           DAY: ${{ needs.generate.outputs.date }}
           EVENT: ${{ github.event_name }}
@@ -226,5 +279,5 @@ jobs:
           elif [ "$EVENT" = "schedule" ] && [ "$(TZ=Asia/Shanghai date +%H)" -lt 6 ]; then
             echo "这次没做成，6 点前后还会再试一次，先不发失败通知"
           else
-            python3 scripts/notify_feishu.py error "今天的日报没有生成成功，点下面的按钮看运行记录。"
+            python3 scripts/notify_feishu.py error "今天的日报没有生成成功。${HINT:-点下面的按钮看运行记录。}"
           fi

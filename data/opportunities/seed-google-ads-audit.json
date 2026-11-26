@@ -1,0 +1,38 @@
+{
+ "id": "seed-google-ads-audit",
+ "name": "外贸 B2B Google Ads 体检 Skill 包",
+ "track": "海外宣传",
+ "status": "待验证",
+ "hypothesis": {
+  "customer": "自己投 Google Ads 的外贸 B2B 工厂和小代理",
+  "pain": "广告费花了没询盘，不知道哪里浪费",
+  "deliverable": "跑在 Claude Code 里的 Google Ads 体检 Skill 包和英文审计模板（用官方 MCP，不碰客户凭证）",
+  "price": "一次性 $49",
+  "channel": "外贸群、Google Ads 外贸讨论区、X"
+ },
+ "score": null,
+ "origin": {
+  "kind": "种子",
+  "ref": "2026-11-06 深挖",
+  "note": ""
+ },
+ "deepdive": "2026-11-06-B01",
+ "next_action": "",
+ "due_at": null,
+ "experiment_metric": "",
+ "stop_condition": "",
+ "result": "",
+ "links": {
+  "tools": [],
+  "skills": []
+ },
+ "created_at": "2026-11-26T06:49:22+00:00",
+ "last_reviewed_at": "2026-11-26",
+ "history": [
+  {
+   "at": "2026-11-26T06:49:22+00:00",
+   "status": "待验证",
+   "note": "种子：2026-11-06 深挖"
+  }
+ ]
+}

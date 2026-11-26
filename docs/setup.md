@@ -7,12 +7,13 @@
 | 名字 | 填在哪 | 从哪来 | 必填 |
 |---|---|---|---|
 | `CLAUDE_CODE_OAUTH_TOKEN` | GitHub 仓库 Secrets | 第 3 步，`claude setup-token` | 和下面两行三选一 |
-| `ANTHROPIC_API_KEY` | GitHub 仓库 Secrets | 第 3 步，Anthropic 控制台 | 三选一 |
+| `ANTHROPIC_API_KEY` | GitHub 仓库 Secrets | 第 3 步，Anthropic 控制台 | 三选一；和上一行都填时它是备用，建议填 |
 | `OPENROUTER_API_KEY` | GitHub 仓库 Secrets | 第 3 步，OpenRouter 后台 | 三选一，前两个都没有时才用 |
 | `FEISHU_WEBHOOK` | GitHub 仓库 Secrets | 第 4 步，飞书自定义机器人 | 不填就不推送 |
 | `FEISHU_SECRET` | GitHub 仓库 Secrets | 第 4 步，签名校验密钥 | 建议 |
 | `TWITTERAPI_IO_KEY` | GitHub 仓库 Secrets | 第 5 步，twitterapi.io 后台 | 不填就不抓 X |
 | `TRUSTMRR_API_KEY` | GitHub 仓库 Secrets | 第 5 步，trustmrr.com 免费申请 | 可选 |
+| `SAM_GOV_API_KEY` | GitHub 仓库 Secrets | 第 5 步，sam.gov 免费注册后申请 | 可选 |
 | `ACTION_KEY` | GitHub 仓库 Secrets **和** Cloudflare Worker | 第 6 步，自己生成 | 要收藏按钮时必填 |
 | `GITHUB_TOKEN` | Cloudflare Worker | 第 7 步 | 要收藏按钮时必填 |
 | Worker 地址 | `config/site.json` 的 `worker_url`，或仓库变量 `WORKER_URL` | 第 8 步 | 要收藏按钮时必填 |
@@ -31,7 +32,7 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 
 ## 第 3 步：让 AI 能在云端干活
 
-三选一（都填了时优先用订阅，其次 Anthropic API，最后 OpenRouter）：
+三选一（都填了时优先用订阅，其次 Anthropic API，最后 OpenRouter）。**建议订阅令牌和 `ANTHROPIC_API_KEY` 都填**：平时只用订阅，令牌失效时日报、深挖、周报自动改用 API Key 按量付费，不会停（2026-11-08 到 11-25 令牌被吊销，日报停了 18 天）。用备用密钥写的那天，飞书卡片最上面会提醒去换令牌。
 
 - **用 Claude 订阅（Pro 或 Max）**：在自己电脑上装好 Claude Code，终端运行 `claude setup-token`，按提示在浏览器登录，得到一串以 `sk-ant-oat` 开头的令牌，存为 `CLAUDE_CODE_OAUTH_TOKEN`。写日报、每天深挖今日机会和收藏后的深挖都会占用订阅额度。从终端复制时被折成两行也没关系，工作流会去掉空白。
 - **用 Anthropic API 按量付费**：console.anthropic.com → API Keys → Create Key，存为 `ANTHROPIC_API_KEY`。
@@ -52,6 +53,7 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 ## 第 5 步：抓取用的 API
 
 - **X（twitterapi.io）**：注册后后台首页有 API Key，充几美元，存为 `TWITTERAPI_IO_KEY`。只抓实践者账号和机会、Skills 相关的搜索，每天上限 600 条推文，实际约 250 条，约 1 美元/月；想更省调小 `config/sources.json` 的 `x.max_tweets`。
+- **SAM.gov（可选）**：sam.gov 注册账号 → 头像 → Account Details → API Key，存为 `SAM_GOV_API_KEY`。周一（全球贸易）抓美国政府采购的新招标；没有就跳过，欧盟 TED 招标和 Apify Store 不要密钥。
 - **TrustMRR（可选）**：trustmrr.com 免费申请 API Key，存为 `TRUSTMRR_API_KEY`。有它时机会候选的收入证据由脚本抓；没有时 AI 自己去页面找。
 - TikHub（抖音、小红书等平台）2026-11-01 起不用了，以前填过的 `TIKHUB_API_KEY` 可以删掉。
 
@@ -66,7 +68,7 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 **再建 Worker**：
 
 1. 登录 Cloudflare，**Workers & Pages → Create → Create Worker**，名字填 `ai-radar-act`，Deploy。
-2. **Edit code**，把仓库里 `worker/worker.js` 的全部内容粘进去替换，Deploy。（用命令行部署的话用 `worker/wrangler.toml`。）
+2. **Edit code**，把仓库里 `worker/worker.js` 的全部内容粘进去替换，Deploy。（用命令行部署的话用 `worker/wrangler.toml`。）**`worker.js` 改过之后都要重新粘一次**：2026-11-26 加了机会池状态按钮（`op=status`），不更新的话「开始验证」「淘汰」这些按钮会提示参数不对。
 3. Worker → **Settings → Variables and Secrets → Add**，加两项 Secret：`GITHUB_TOKEN`（刚才的令牌）、`ACTION_KEY`（第 6 步那串）。
 4. 记下 Worker 地址，形如 `https://ai-radar-act.xxx.workers.dev`。
 
@@ -78,15 +80,17 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 
 ## 第 9 步：跑第一期
 
-1. Actions → **每日日报** → Run workflow。之后每天北京时间 4:23 起自动运行（5:23、6:23 补跑），7 点推送飞书。第一步会检查密钥，缺什么写在那次运行的摘要页；没有 AI 密钥会直接停下。
+1. Actions → **每日日报** → Run workflow。之后每天北京时间 1:23 起自动运行（到 6:23 每小时补跑一次；GitHub 的定时任务常晚到三个小时），7 点推送飞书。第一步会检查密钥，缺什么写在那次运行的摘要页；没有 AI 密钥会直接停下。
 2. 飞书收到卡片后点 **打开今日日报**：这一下会把口令存进手机浏览器，之后网站上的收藏按钮就能用。换手机或浏览器时从飞书卡片再进一次。
-3. 日报写好后会接着深挖今日机会（约 10–30 分钟），飞书卡片和网站上能看到深挖结论。
+3. 今日机会打了 75 分以上、机会池里又没有在验证的项目时，日报写好后会接着做验证设计（深挖，约 10–30 分钟），飞书卡片和网站上能看到结论。网站「池子」页能看到 13 个种子和它们的状态。
 4. 点任一机会候选的 **收藏并深挖** 试一下：确认页显示「已收藏，开始深挖」，写完后飞书再推一张卡片，报告在网站的「收藏」页。
 
 ## 出问题时
 
 - **飞书没收到**：看 Actions 里那次运行哪一步红了；失败时机器人会推一张带运行记录链接的卡片。什么卡片都收不到，多半是 `FEISHU_WEBHOOK` 或 `FEISHU_SECRET` 填错。
-- **AI 那一步红了**：日志里「查 Claude 出错原因」一步打印了原因，常见是令牌过期或额度用完。
+- **飞书收到「已经 N 天没有新日报了」**：「停更提醒」每天 9:30 查一次，最新一期是前天或更早的就推。按卡片上说的换令牌，再手动跑一次「每日日报」。
+- **卡片最上面写「主令牌失败了，今天用备用密钥写的」**：日报照常出了，但订阅令牌已经不能用，按下一条换令牌。
+- **AI 那一步红了**：日志里「查 Claude 出错原因」一步打印了原因，常见是令牌过期或额度用完。飞书失败通知会直接写明是令牌失效还是额度用完。令牌失效（日志写 `OAuth token revoked`）就在本机重新运行 `claude setup-token`，把新令牌替换进 Secrets 的 `CLAUDE_CODE_OAUTH_TOKEN`。
 - **卡片上写「深挖报告没写出来」**：深挖那一步失败或超时，日报照常发。原因在那次运行的「查深挖出错原因」一步；点卡片上的「收藏并深挖」能补一份。
 - **点收藏提示「口令不对」**：Worker 里的 `ACTION_KEY` 和 GitHub 里的不一致。
 - **提示「GitHub 没有接受请求」**：Worker 的 `GITHUB_TOKEN` 没有 Contents 写权限，或生成时没选中 `ai-radar`。

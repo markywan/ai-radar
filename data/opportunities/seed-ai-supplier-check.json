@@ -1,0 +1,38 @@
+{
+ "id": "seed-ai-supplier-check",
+ "name": "「ChatGPT 推荐供应商时有没有你」工厂体检报告",
+ "track": "海外宣传",
+ "status": "待验证",
+ "hypothesis": {
+  "customer": "有英文官网的中国外贸工厂和外贸 SOHO",
+  "pain": "不知道海外买家问 ChatGPT、Perplexity 时会不会推荐自己",
+  "deliverable": "一份体检报告：问了哪些问题、谁被推荐、怎么改官网",
+  "price": "$29 一份，回头客 $19/月每周监测",
+  "channel": "外贸群、LinkedIn、阿里国际站卖家圈"
+ },
+ "score": null,
+ "origin": {
+  "kind": "种子",
+  "ref": "10-26 研究报告、2026-11-05 深挖",
+  "note": ""
+ },
+ "deepdive": "2026-11-05-B01",
+ "next_action": "",
+ "due_at": null,
+ "experiment_metric": "",
+ "stop_condition": "",
+ "result": "",
+ "links": {
+  "tools": [],
+  "skills": []
+ },
+ "created_at": "2026-11-26T06:49:22+00:00",
+ "last_reviewed_at": "2026-11-26",
+ "history": [
+  {
+   "at": "2026-11-26T06:49:22+00:00",
+   "status": "待验证",
+   "note": "种子：10-26 研究报告、2026-11-05 深挖"
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "id": "seed-inquiry-filter",
+ "name": "外贸独立站询盘表单 + AI 筛垃圾询盘",
+ "track": "全球贸易",
+ "status": "待验证",
+ "hypothesis": {
+  "customer": "用 WordPress 做英文站的 B2B 外贸工厂",
+  "pain": "询盘里一半是垃圾和推销，真询盘被淹没",
+  "deliverable": "WordPress 询盘表单插件，AI 给询盘打分并推送 WhatsApp 或邮件提醒",
+  "price": "免费版加 $9/月专业版",
+  "channel": "wordpress.org 插件目录"
+ },
+ "score": null,
+ "origin": {
+  "kind": "种子",
+  "ref": "2026-11-02 深挖",
+  "note": ""
+ },
+ "deepdive": "2026-11-02-B01",
+ "next_action": "",
+ "due_at": null,
+ "experiment_metric": "",
+ "stop_condition": "",
+ "result": "",
+ "links": {
+  "tools": [],
+  "skills": []
+ },
+ "created_at": "2026-11-26T06:49:22+00:00",
+ "last_reviewed_at": "2026-11-26",
+ "history": [
+  {
+   "at": "2026-11-26T06:49:22+00:00",
+   "status": "待验证",
+   "note": "种子：2026-11-02 深挖"
+  }
+ ]
+}
