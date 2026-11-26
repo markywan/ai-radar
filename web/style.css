@@ -404,7 +404,8 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
   .toc { gap: 6px; }
   .toc a { padding: 7px 8px; }
   .toc b { font-size: 19px; }
-  .tabs button { padding: 6px 9px; }
+  .tabs button { padding: 6px 8px; }
+  .tabs { gap: 0; }
 }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
@@ -417,3 +418,47 @@ code { font-family: var(--mono); font-size: .86em; background: var(--sunk); bord
 .deep-d summary { list-style: none; display: inline-flex; }
 .deep-d summary::-webkit-details-marker { display: none; }
 .deep-d[open] summary { margin-bottom: 10px; }
+
+/* ---------- 2026-11-26 起的新版：今天只做一件事、今日机会打分、机会池 ---------- */
+[data-k="pool"] { --c: var(--f); --c-soft: var(--f-soft); --c-band: var(--f-band); }
+.one-thing, .pool-line { background: var(--surface); border-radius: 16px; box-shadow: 0 0 0 1px var(--card-line), var(--shadow); padding: 14px 16px; display: grid; gap: 8px; min-width: 0; }
+.one-thing { box-shadow: inset 4px 0 0 var(--c), 0 0 0 1px var(--card-line), var(--shadow); }
+.one-thing p { margin: 0; font-size: 16.5px; line-height: 1.65; color: var(--ink); overflow-wrap: anywhere; }
+.one-thing .why { font-size: 14px; color: var(--muted); }
+.ot-h { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--muted); }
+.ot-h .min { font-size: 12.5px; font-weight: 650; color: var(--c); background: var(--c-soft); border-radius: 7px; padding: 1px 8px; }
+.pool-line { margin-top: 10px; --c: var(--f); --c-soft: var(--f-soft); }
+.pool-line p { margin: 0; font-size: 14.5px; color: var(--ink-2); overflow-wrap: anywhere; }
+.pool-line .v { font-size: 13.5px; color: var(--muted); }
+.pool-line .over, .pool-it.over .late { color: var(--bad); font-weight: 650; }
+.pool-line .linkbtn { justify-self: start; }
+.btn.danger { color: var(--bad); }
+.hyp { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; margin: 0; padding: 10px 12px; border-radius: 12px; background: var(--c-soft); font-size: 14px; }
+.hyp dt { color: var(--c); font-weight: 650; font-size: 12.5px; line-height: 1.9; white-space: nowrap; }
+.hyp dd { margin: 0; color: var(--ink); min-width: 0; overflow-wrap: anywhere; }
+.score { padding: 0 14px 12px 17px; display: grid; gap: 6px; }
+.score-h b { font-size: 22px; font-weight: 750; color: var(--c); font-variant-numeric: tabular-nums; }
+.score-h small { color: var(--muted); margin-left: 4px; }
+.sbar { display: grid; grid-template-columns: 7.5em minmax(0, 1fr) 3.2em; gap: 8px; align-items: center; font-size: 13px; color: var(--ink-2); }
+.sbar i { display: block; height: 7px; border-radius: 4px; background: linear-gradient(90deg, var(--c) var(--w), var(--line) var(--w)); }
+.sbar em { font-style: normal; text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.opp .ev.pad { padding: 0 14px 10px 17px; }
+.ev small { display: block; color: var(--muted); font-size: 12.5px; }
+.opp.none { gap: 10px; }
+.leads { border-radius: 12px; background: var(--sunk); }
+.leads summary { list-style: none; display: flex; justify-content: space-between; gap: 10px; padding: 10px 14px; font-size: 14.5px; font-weight: 650; cursor: pointer; }
+.leads summary::-webkit-details-marker { display: none; }
+.leads summary small { font-weight: 400; color: var(--muted); }
+.leads ul { margin: 0; padding: 0 14px 12px 30px; display: grid; gap: 6px; font-size: 14px; }
+.leads li span { display: block; color: var(--muted); font-size: 13px; }
+.pst { font-size: 12px; font-weight: 650; border-radius: 999px; padding: 0 8px; color: var(--f); background: var(--f-soft); }
+.pst[data-s="验证中"] { color: var(--on-c); background: var(--b); }
+.pst[data-s="淘汰"], .pst[data-s="暂停"] { color: var(--muted); background: var(--sunk); }
+.m .stage { color: var(--c); font-weight: 650; }
+.pool-it .row-h .sc { font-size: 12.5px; font-weight: 650; color: var(--c); margin-left: 8px; }
+.pool-b { padding: 0 16px 14px; display: grid; gap: 10px; min-width: 0; }
+.pool-b .facts { margin: 0; }
+.hist { font-size: 13px; color: var(--muted); }
+.hist summary { cursor: pointer; }
+.hist ul { margin: 6px 0 0; padding-left: 18px; }
+.tb .row-h .brief { white-space: normal; }

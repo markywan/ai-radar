@@ -9,9 +9,12 @@ import argparse
 import json
 import os
 import shutil
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "scripts"))
+import pool  # noqa: E402
 TITLE = "AI 机会雷达"
 
 
@@ -21,13 +24,20 @@ def load():
     dates = [{
         "date": d,
         "headline": (doc.get("headline") or [""])[0],
+        "track": doc.get("track"),
+        "score": ((doc.get("opportunities") or [{}])[0].get("score") or {}).get("total") if doc.get("format") == 3 else None,
         "counts": {k: len(doc.get(k) or []) for k in ("news", "tools", "skills", "opportunities", "trends")},
     } for d, doc in daily.items()]
     favs = [json.loads(p.read_text("utf-8")) for p in (ROOT / "data/favorites").glob("*.json")]
     favs.sort(key=lambda f: f.get("saved_at", ""), reverse=True)
     deep = {p.stem: p.read_text("utf-8") for p in (ROOT / "data/deepdive").glob("*.md")}
-    index = {"dates": dates, "favorites": favs, "deepdives": sorted(deep)}
-    return index, daily, deep
+    weekly = {p.stem: p.read_text("utf-8") for p in (ROOT / "data/weekly").glob("*.md")}
+    # 机会池：网站「池子」页和今日页的池子状态行用；history 只留最近 5 条
+    items = pool.load_all()
+    pool_items = [{**{k: x.get(k) for k in x if k != "history"}, "history": (x.get("history") or [])[-5:]} for x in items]
+    index = {"dates": dates, "favorites": favs, "deepdives": sorted(deep), "weeklies": sorted(weekly, reverse=True),
+             "pool": {"items": pool_items, "summary": pool.summary(items)}}
+    return index, daily, deep, weekly
 
 
 def full_page(head_extra, body_extra):
@@ -49,11 +59,12 @@ def full_page(head_extra, body_extra):
 
 
 def build_pages(out):
-    index, daily, deep = load()
+    index, daily, deep, weekly = load()
     if out.exists():
         shutil.rmtree(out)
     (out / "data/daily").mkdir(parents=True)
     (out / "data/deepdive").mkdir(parents=True)
+    (out / "data/weekly").mkdir(parents=True)
     for name in ("style.css", "app.js"):
         shutil.copy(ROOT / "web" / name, out / name)
     (out / "index.html").write_text(full_page('<link rel="stylesheet" href="style.css">',
@@ -69,6 +80,8 @@ def build_pages(out):
         (out / "data/daily" / f"{d}.json").write_text(json.dumps(doc, ensure_ascii=False), "utf-8")
     for k, md in deep.items():
         (out / "data/deepdive" / f"{k}.md").write_text(md, "utf-8")
+    for k, md in weekly.items():
+        (out / "data/weekly" / f"{k}.md").write_text(md, "utf-8")
     (out / ".nojekyll").write_text("", "utf-8")
     print(f"网站已生成：{out}（{len(daily)} 期日报，{len(index['favorites'])} 条收藏）")
 
@@ -106,14 +119,14 @@ def inline_image(url, cache={}):
 
 
 def build_single(path, preview, inline_images=False):
-    index, daily, deep = load()
+    index, daily, deep, weekly = load()
     if inline_images:
         for doc in daily.values():
             for key in ("tools", "skills"):
                 for it in doc.get(key) or []:
                     if it.get("images"):
                         it["images"] = [d for d in (inline_image(u) for u in it["images"]) if d]
-    data = {"index": index, "daily": daily, "deepdive": deep, "config": {}, "preview": preview}
+    data = {"index": index, "daily": daily, "deepdive": deep, "weekly": weekly, "config": {}, "preview": preview}
     blob = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
     css = (ROOT / "web/style.css").read_text("utf-8")
     js = (ROOT / "web/app.js").read_text("utf-8")

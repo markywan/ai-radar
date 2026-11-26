@@ -5,7 +5,7 @@
   var EMBED = window.__RADAR__ || null;
   var app = document.getElementById("app");
   var toastEl = document.getElementById("toast");
-  var state = { index: null, config: {}, daily: {}, tab: "today", date: null, focus: null, gallery: {} };
+  var state = { index: null, config: {}, daily: {}, tab: "today", date: null, focus: null, week: null, gallery: {} };
   /* 栏目顺序。2026-11-01 起日报只有三样：今日机会（第一个候选和它的深挖报告）和其他候选、Skills、GitHub 工具；
      日报里有 pick 字段的按新版排。老日报还有玩法风向、跟进和 AI 资讯，照原来的样子排 */
   var SEC_NEW = [
@@ -15,6 +15,19 @@
     { key: "skills", title: "Skills", short: "Skills" },
     { key: "tools", title: "GitHub 工具", short: "GitHub" }
   ];
+  /* 2026-11-26 起（format 3）：今天只做一件事和池子状态、今日机会（0–1 个）、GitHub、Skills */
+  var SEC_V3 = [
+    { key: "todo", title: "今天只做一件事", short: "一件事" },
+    { key: "pick", title: "今日机会", short: "今日机会" },
+    { key: "tools", title: "GitHub", short: "GitHub" },
+    { key: "skills", title: "Skills", short: "Skills" }
+  ];
+  var SCORE = [["demand", "需求和付费证据", 25], ["channel", "获客渠道", 25], ["fit", "经验匹配", 20],
+    ["automation", "自动化", 15], ["first_sale", "7 天首单路径", 10], ["payment", "收款合规", 5]];
+  var GATES = [["mvp_days", "MVP", " 天内"], ["startup_cost_usd", "起步", " 美元"], ["weekly_hours", "稳定后每周", " 小时"],
+    ["light_ops", "不重销售、不定制", ""], ["channel_reach", "够得着的渠道", ""], ["payment", "大陆个人收款", ""], ["direct_demand", "直接需求证据", ""]];
+  var POOL_ORDER = ["验证中", "待验证", "待研究", "已启动", "已变现", "暂停", "淘汰"];
+  var STATUS_CODE = { "验证中": "start", "待研究": "watch", "淘汰": "drop", "已启动": "launch", "已变现": "paid", "暂停": "pause" };
   var SEC_OLD = [
     { key: "actions", title: "今天做什么", short: "做什么" },
     { key: "trends", title: "玩法风向", short: "玩法" },
@@ -209,15 +222,16 @@
     return '<div class="acts">' + (extra || "") + fav + deep + "</div>";
   }
   function doAction(btn) {
-    var op = btn.getAttribute("data-op"), fid = btn.getAttribute("data-id");
+    var op = btn.getAttribute("data-op"), fid = btn.getAttribute("data-id"), st = btn.getAttribute("data-s") || "";
     var key = store("radar-key");
     if (EMBED && EMBED.preview) { toast("这是预览版，网站部署后按钮才能用"); return; }
     if (!worker()) { toast("收藏还没开通：Cloudflare Worker 还没部署，步骤见仓库 docs/setup.md 第 7、8 步"); return; }
     if (!key) { toast("浏览器里还没有口令：从飞书卡片的「打开今日日报」进一次网站"); return; }
     btn.disabled = true;
-    fetch(worker() + "/act?op=" + op + "&id=" + encodeURIComponent(fid) + "&k=" + encodeURIComponent(key), { method: "POST" })
+    fetch(worker() + "/act?op=" + op + "&id=" + encodeURIComponent(fid) + (st ? "&s=" + st : "") + "&k=" + encodeURIComponent(key), { method: "POST" })
       .then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.ok) throw new Error(j.message || "失败"); return j; }); })
-      .then(function () {
+      .then(function (j) {
+        if (op === "status") { toast(j.title + "，一两分钟后网站更新"); btn.textContent = "✓ " + btn.textContent; return; }
         var s = savedSet(); s[fid] = op === "deep" ? "deep" : (s[fid] || "fav"); store("radar-saved", JSON.stringify(s));
         toast(op === "deep" ? "已收藏，Claude 开始深挖，完成后飞书通知你" : "已收藏，几分钟后出现在收藏页");
         var box = btn.parentNode, fav = box && box.querySelector('[data-op="fav"]');
@@ -314,7 +328,10 @@
       if (it.stars_today != null && !/今日/.test(it.why_today || "")) meta.push('<span class="up">今日 +' + num(it.stars_today) + "</span>");
       if (it.stars_7d != null && !/7 ?天 ?\+/.test(it.why_today || "")) meta.push("<span>7 天 +" + num(it.stars_7d) + "</span>");
       if (it.license_tier) meta.push("<span>" + esc(it.license_tier) + "</span>");  /* 一眼看出能不能做托管版来卖 */
+      if (it.stage) meta.push('<span class="stage">' + esc(it.stage) + "</span>");
     } else {
+      if (d.format === 3 && it.id === "S01") meta.push('<span class="hot">本周装这个</span>');
+      if (it.stage) meta.push('<span class="stage">' + esc(it.stage) + "</span>");
       var nm = splitName(it.name); name = nm[0]; sub = it.brief ? "" : nm[1];
       if (it.hot === "新晋热门") meta.push('<span class="hot">新晋热门</span>');
       if (it.stars_total != null) meta.push("<span>★ " + wan(it.stars_total) + "</span>");
@@ -334,10 +351,13 @@
       : (it.use_for_me || it.how_i_use ? '<div><p class="label">对我有用</p><p>' + rich(it.use_for_me || it.how_i_use) + "</p></div>" : "");
     /* 2026-10-30 起工具按能做什么生意挑：生意放在展开后第一行，需求证据是 issue 原标题和点赞数 */
     var biz = it.business ? '<p class="forme"><b>生意</b>' + rich(it.business) + "</p>" : "";
+    if (it.why_now) biz += '<p class="forme"><b>为什么是这周</b>' + rich(it.why_now) + "</p>";
     var demand = (it.demand || []).length ? '<div><p class="label">需求证据</p><ul class="ev">' + it.demand.map(function (e) {
       return '<li><span class="pf">' + (e.reactions != null ? num(e.reactions) + " 赞" : "issue") + '</span><span class="et">' + link(e.title || e.url, e.url) + "</span></li>";
     }).join("") + "</ul></div>" : "";
     var facts = [];
+    if (it.pairs_with && it.pairs_with !== "无") facts.push(["搭配", rich(it.pairs_with)]);
+    if (it.business_evidence) facts.push(["生意证据", rich(it.business_evidence)]);
     if (it.setup) facts.push(["上手", rich(it.setup)]);
     if (it.install) facts.push(["安装", rich(it.install)]);
     if (it.popularity_note) facts.push(["热度", rich(it.popularity_note)]);
@@ -449,28 +469,158 @@
     return true;
   }
   function secCount(d, key) {
-    if (key === "pick") return pickOf(d) ? 1 : 0;
+    if (key === "pick") return d.format === 3 ? (d.opportunities || []).length : pickOf(d) ? 1 : 0;
+    if (key === "todo") return d.today ? 1 : 0;
     if (key === "opportunities" && d.pick) return cands(d).length;
     return (d[key] || []).length;
   }
+  /* ---------- 2026-11-26 起的新版（format 3） ---------- */
+  function poolItems() { return ((state.index && state.index.pool) || {}).items || []; }
+  function poolSummary() { return ((state.index && state.index.pool) || {}).summary || null; }
+  function poolById(id) { var l = poolItems(); for (var i = 0; i < l.length; i++) if (l[i].id === id) return l[i]; return null; }
+  function statusBtns(pid, list) {
+    if (!pid) return "";
+    return list.map(function (x) {
+      return '<button class="btn' + (x[2] ? " " + x[2] : "") + '" data-op="status" data-id="' + esc(pid) + '" data-s="' + STATUS_CODE[x[0]] + '">' + esc(x[1]) + "</button>";
+    }).join("");
+  }
+  function btnsFor(it) {
+    var s = it.status;
+    if (s === "验证中") return statusBtns(it.id, [["已启动", "已启动", "primary"], ["暂停", "暂停"], ["淘汰", "淘汰", "danger"]]);
+    if (s === "已启动") return statusBtns(it.id, [["已变现", "有收入了", "primary"], ["暂停", "暂停"], ["淘汰", "淘汰", "danger"]]);
+    if (s === "淘汰" || s === "已变现") return "";
+    return statusBtns(it.id, [["验证中", "开始验证", "primary"], ["待研究", "继续观察"], ["淘汰", "淘汰", "danger"]]);
+  }
+  function statusChip(s) { return '<span class="pst" data-s="' + esc(s) + '">' + esc(s) + "</span>"; }
+  function renderTodo(d) {
+    var t = d.today || {}, isLatest = d.date === latest(), sum = poolSummary(), ref = poolById(t.ref);
+    var html = '<div class="one-thing"><div class="ot-h"><span class="min">' + esc(t.minutes || "") + ' 分钟</span>' +
+      (ref ? '<span class="ref">推进：' + esc(ref.name) + "</span>" : t.ref ? '<span class="ref">推进：' + esc(t.ref) + "</span>" : "") + "</div>" +
+      "<p>" + rich(t.text) + "</p>" + (t.why ? '<p class="why">' + rich(t.why) + "</p>" : "");
+    if (isLatest && ref && ["待验证", "待研究", "暂停"].indexOf(ref.status) >= 0) html += '<div class="acts">' + statusBtns(ref.id, [["验证中", "开始验证", "primary"]]) + "</div>";
+    html += "</div>";
+    if (isLatest && sum) {
+      var v = (sum.validating || [])[0];
+      html += '<div class="pool-line"><p>' + esc(sum.line) + "</p>";
+      if (v) html += '<p class="v">' + (v.experiment_metric ? "过关指标：" + rich(v.experiment_metric) : "") + (v.due_at ? "　到期 " + esc(v.due_at) : "") + "</p>" +
+        '<div class="acts">' + btnsFor({ id: v.id, status: "验证中" }) + "</div>";
+      (sum.overdue || []).forEach(function (o) { html += '<p class="over">「' + esc(o.name) + "」" + esc(o.due_at) + " 到期了，看指标过没过</p>"; });
+      html += '<button class="linkbtn" data-tab="pool">看整个池子 →</button></div>';
+    }
+    return html;
+  }
+  function scoreBars(sc) {
+    return '<div class="score"><div class="score-h"><b>' + num(sc.total) + '</b><small>/ 100 分</small></div>' + SCORE.map(function (r) {
+      var v = sc[r[0]] || 0;
+      return '<div class="sbar"><span>' + r[1] + '</span><i style="--w:' + Math.round(v / r[2] * 100) + '%"></i><em>' + v + "/" + r[2] + "</em></div>";
+    }).join("") + "</div>";
+  }
+  function oppCardV3(d, b) {
+    var h = b.hypothesis || {}, g = b.gates || {}, sc = b.score || {}, nm = splitName(b.name);
+    var fid = d.date + "-" + b.id, pid = b.pool_id || fid, deep = hasDeep(fid), pit = poolById(pid), isLatest = d.date === latest();
+    var dl = function (rows) { return '<dl class="facts">' + rows.filter(function (r) { return r[1]; }).map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + rich(r[1]) + "</dd>"; }).join("") + "</dl>"; };
+    var ev = (b.evidence || []).map(function (e) {
+      return '<li><span class="pf">' + esc(e.type || "") + '</span><span class="et">' + link(e.title || e.url, e.url) + (e.note ? "<small>" + rich(e.note) + "</small>" : "") + "</span></li>";
+    }).join("");
+    var gates = GATES.map(function (x) { var v = g[x[0]]; return [x[1], v == null ? "" : (typeof v === "number" ? num(v) + x[2] : String(v))]; });
+    var notes = b.score_notes || {};
+    var lead = deep ? '<div class="deep-lead" hidden><b>深挖结论</b><p id="lead-' + esc(fid) + '"></p></div>' : "";
+    var note = !deep && d.pick === b.id && isLatest ? '<p class="note">深挖报告还没出来：日报写好后还要十来分钟，过一会儿刷新。</p>' : "";
+    var report = deep ? '<details data-deep="' + esc(fid) + '"><summary>验证设计（深挖报告）</summary><div class="deep" id="deep-' + esc(fid) + '"><p class="empty">加载中……</p></div></details>' : "";
+    var stNow = pit ? '<span class="pst" data-s="' + esc(pit.status) + '">池子：' + esc(pit.status) + "</span>" : "";
+    var actions = isLatest && pit ? btnsFor(pit) : (isLatest ? statusBtns(pid, [["验证中", "开始验证", "primary"], ["待研究", "继续观察"], ["淘汰", "淘汰", "danger"]]) : "");
+    return '<article class="opp v3" id="opp-' + esc(fid) + '"><div class="top">' + verdictPill(b.verdict) + trackTag(b) + (b.category ? "<span>" + esc(b.category) + "</span>" : "") + stNow + "</div>" +
+      "<h3>" + esc(nm[0]) + (nm[1] ? '<span class="sub">' + esc(nm[1]) + "</span>" : "") + "</h3>" +
+      '<p class="one">' + rich(b.one_liner) + "</p>" + lead + note +
+      '<dl class="hyp"><dt>卖给谁</dt><dd>' + rich(h.customer) + "</dd><dt>什么痛</dt><dd>" + rich(h.pain) + "</dd><dt>交付</dt><dd>" + rich(h.deliverable) +
+      "</dd><dt>价格</dt><dd>" + rich(h.price) + "</dd><dt>第一批客户</dt><dd>" + rich(h.channel) + "</dd></dl>" +
+      '<div class="metrics"><div><b>' + num(g.mvp_days) + ' 天</b><small>做出 MVP</small></div><div><b>$' + num(g.startup_cost_usd) + '</b><small>起步资金</small></div><div><b>' + num(g.weekly_hours) + " 小时</b><small>稳定后每周</small></div></div>" +
+      (b.biggest_risk ? '<p class="match"><b>最大风险</b>' + rich(b.biggest_risk) + "</p>" : "") +
+      '<div class="fold-g">' + report +
+      "<details><summary>证据<small>" + (b.evidence || []).length + " 条链接</small></summary>" + (ev ? '<ul class="ev pad">' + ev + "</ul>" : "") + dl([["竞争", b.competition]]) + "</details>" +
+      "<details><summary>打分<small>" + num(sc.total) + " 分</small></summary>" + scoreBars(sc) +
+        (Object.keys(notes).length ? dl(SCORE.map(function (r) { return [r[1], notes[r[0]]]; })) : "") + "</details>" +
+      "<details><summary>7 条门槛</summary>" + dl(gates) + "</details>" +
+      "<details><summary>第一批 10 个客户</summary>" + dl([["从哪来", b.first_10_customers]]) + "</details></div>" +
+      (b.source && b.source.url ? '<p class="src">最先看到：' + link(b.source.title || b.source.url, b.source.url) + "</p>" : "") +
+      '<div class="acts">' + actions + (deep ? "" : "") + "</div></article>";
+  }
+  function leadsHtml(d, open) {
+    var ls = d.leads || [];
+    if (!ls.length) return "";
+    return '<details class="leads"' + (open ? " open" : "") + "><summary>" + (open ? "查过的线索" : "还看过这些线索") + "<small>" + ls.length + " 条</small></summary><ul>" + ls.map(function (l) {
+      return "<li>" + link(l.name, l.url) + "<span>" + rich(l.why_not) + "</span></li>";
+    }).join("") + "</ul></details>";
+  }
+  function renderPickV3(d) {
+    var list = d.opportunities || [];
+    if (!list.length) {
+      var why = d.track === "复盘" ? "周六复盘，今天不出新机会，推进池子里的项目。" : "今天" + (d.track ? "「" + esc(d.track) + "」这条线" : "") + "没有过门槛、够 60 分的机会，不凑数。";
+      return '<div class="opps"><article class="opp none"><p class="one">' + why + "</p>" + leadsHtml(d, true) + "</article></div>";
+    }
+    return '<div class="opps">' + list.map(function (b) { return oppCardV3(d, b); }).join("") + leadsHtml(d, false) + "</div>";
+  }
+  function renderTrending(d) {
+    var tb = d.trending_brief || [];
+    if (!tb.length) return "";
+    return '<p class="grp-l">日榜速览</p><ul class="list tb">' + tb.map(function (x) {
+      return '<li class="row"><div class="row-h" style="cursor:default"><span class="t">' + link(x.repo, x.url) + '</span><span class="brief">' + esc(x.line) + "</span></div></li>";
+    }).join("") + "</ul>";
+  }
+
+  /* ---------- 机会池 ---------- */
+  function renderPool() {
+    var items = poolItems(), sum = poolSummary();
+    var head = '<div class="page-h"><h1>机会池</h1><p>' + (sum ? esc(sum.line) : "") + "。一次只验证一个，开始验证新的会把旧的改成暂停。仓库公开，这里只放状态和数字。</p></div>";
+    if (!items.length) { app.innerHTML = head + '<p class="empty">池子还是空的。</p>'; return; }
+    var groups = {};
+    items.forEach(function (x) { (groups[x.status] = groups[x.status] || []).push(x); });
+    var today = new Date(Date.now() + 8 * 3600e3).toISOString().slice(0, 10);
+    app.innerHTML = head + POOL_ORDER.filter(function (s) { return groups[s]; }).map(function (s) {
+      var list = groups[s].slice().sort(function (a, b) { return ((b.score || {}).total || 0) - ((a.score || {}).total || 0); });
+      var body = list.map(function (x) {
+        var h = x.hypothesis || {}, sc = (x.score || {}).total, over = x.due_at && x.due_at < today && ["验证中", "待验证", "已启动"].indexOf(x.status) >= 0;
+        var facts = [["卖给谁", h.customer], ["交付", h.deliverable], ["价格", h.price], ["第一批客户", h.channel], ["下一步", x.next_action],
+          ["过关指标", x.experiment_metric], ["停止条件", x.stop_condition], ["结果", x.result]].filter(function (r) { return r[1]; });
+        var origin = x.origin || {}, src = origin.kind === "种子" ? "种子 · " + (origin.ref || "") : (origin.ref ? origin.kind + " · " + origin.ref : "");
+        var hist = (x.history || []).slice().reverse().map(function (e) { return "<li>" + esc(String(e.at || "").slice(0, 10)) + " " + esc(e.status) + "：" + esc(e.note || "") + "</li>"; }).join("");
+        return '<li class="row pool-it' + (over ? " over" : "") + '" id="pool-' + esc(x.id) + '"><div class="row-h" style="cursor:default">' +
+          '<span class="t">' + esc(x.name) + (sc != null ? '<span class="sc">' + num(sc) + " 分</span>" : "") + "</span>" +
+          '<span class="brief">' + esc(plain(h.pain || "")) + "</span>" +
+          '<span class="m">' + (x.track ? "<span>" + esc(x.track) + "</span>" : "") + (src ? "<span>" + esc(src) + "</span>" : "") +
+          (x.due_at ? '<span class="' + (over ? "late" : "") + '">到期 ' + esc(x.due_at) + "</span>" : "") + "</span></div>" +
+          '<div class="pool-b">' + (facts.length ? '<dl class="facts">' + facts.map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + rich(r[1]) + "</dd>"; }).join("") + "</dl>" : "") +
+          (x.deepdive && hasDeep(x.deepdive) ? '<details class="deep-d" data-deep="' + esc(x.deepdive) + '"><summary class="btn">深挖报告</summary><div class="deep" id="deep-' + esc(x.deepdive) + '"><p class="empty">加载中……</p></div></details>' : "") +
+          (hist ? '<details class="hist"><summary>变化记录</summary><ul>' + hist + "</ul></details>" : "") +
+          '<div class="acts">' + btnsFor(x) + "</div></div></li>";
+      }).join("");
+      return '<section class="sec" data-k="pool" data-s="' + esc(s) + '">' + secHead({ title: s }, list.length) + '<ul class="list">' + body + "</ul></section>";
+    }).join("");
+    Array.prototype.forEach.call(app.querySelectorAll("details[data-deep]"), function (el) {
+      el.addEventListener("toggle", function () { if (el.open) loadDeep(el.getAttribute("data-deep")); });
+    });
+    if (state.focus) { var t = document.getElementById("pool-" + state.focus); if (t) { var dd = t.querySelector("details[data-deep]"); if (dd) dd.open = true; setTimeout(function () { t.scrollIntoView(); }, 0); } state.focus = null; }
+  }
+
   function renderToday(d) {
     state.gallery = {};
-    var isNew = !!d.pick, leadKeys = isNew ? LEAD_NEW : LEAD_OLD;
+    var v3 = d.format === 3, isNew = v3 || !!d.pick, leadKeys = v3 ? ["pick", "pick"] : isNew ? LEAD_NEW : LEAD_OLD;
     var isLatest = d.date === latest(), no = issueNo(d.date), st = d.stats || {};
     var lead = (d.headline || []).map(function (h, i) {
       return '<li data-k="' + (leadKeys[i] || "actions") + '"><span class="n">' + (i + 1) + "</span><p>" + rich(h) + "</p></li>";
     }).join("");
     /* 没接平台数据的旧日报不显示「玩法风向」；没有跟进的那天不显示「跟进」 */
-    var secs = (isNew ? SEC_NEW : SEC_OLD).filter(function (s) { return hasSec(d, s.key); });
-    var tocSecs = secs.filter(function (s) { return s.key !== "actions"; });  /* 今天做什么就在刊头下面，不用导航 */
+    var secs = (v3 ? SEC_V3 : isNew ? SEC_NEW : SEC_OLD).filter(function (s) { return v3 || hasSec(d, s.key); });
+    var tocSecs = secs.filter(function (s) { return s.key !== "actions" && s.key !== "todo"; });  /* 今天做什么就在刊头下面，不用导航 */
     var toc = tocSecs.map(function (s) {
       return '<a href="#sec-' + s.key + '" data-k="' + s.key + '"><b>' + secCount(d, s.key) + "</b><small>" + s.short + "</small></a>";
     }).join("");
     var back = isLatest ? unreadPast() : [];
     var backlog = back.length ? '<div class="backlog"><span>还有 ' + back.length + " 期没看</span>" + back.slice(0, 6).map(function (x) { return '<button data-date="' + esc(x.date) + '">' + shortDate(x.date) + "</button>"; }).join("") + "</div>" : "";
-    var fns = { actions: renderActions, pick: renderPick, trends: renderTrends, opportunities: isNew ? renderCands : renderOpps,
-      followups: renderFollowups, news: renderNews, tools: renderItems("tools"), skills: renderItems("skills") };
-    var noTool = { actions: 1, pick: 1, opportunities: 1, followups: 1 };
+    var fns = { actions: renderActions, pick: v3 ? renderPickV3 : renderPick, trends: renderTrends, opportunities: isNew ? renderCands : renderOpps,
+      followups: renderFollowups, news: renderNews, tools: v3 ? function (x) { return renderItems("tools")(x) + renderTrending(x); } : renderItems("tools"),
+      skills: renderItems("skills"), todo: renderTodo };
+    var noTool = { actions: 1, pick: 1, opportunities: 1, followups: 1, todo: 1 };
     var body = secs.map(function (s) {
       var n = secCount(d, s.key);
       var tool = !noTool[s.key] && n ? expandTool(s.key) : "";
@@ -481,7 +631,8 @@
     app.innerHTML = '<div class="mast">' +
       '<div class="kicker"><span>' + (no ? "第 " + no + " 期 · " : "") + "扫描 " + num(st.scanned) + " 条，入选 " + num(st.selected) + " 条" + mins + '</span><span class="rs" id="read-' + esc(d.date) + '">' + readStateHtml(d.date) + "</span></div>" +
       "<h1>" + longDate(d.date) + "</h1>" +
-      '<p class="lead-l">' + (isLatest ? "今天先看这三件" : "这一期的三件事") + '</p><ol class="lead">' + lead + "</ol>" + backlog +
+      (v3 ? (d.track ? '<p class="lead-l">今天的主线：' + esc(d.track) + "</p>" : "") + '<ol class="lead">' + lead + "</ol>"
+          : '<p class="lead-l">' + (isLatest ? "今天先看这三件" : "这一期的三件事") + '</p><ol class="lead">' + lead + "</ol>") + backlog +
       '<nav class="toc" aria-label="栏目" style="--cols:' + tocSecs.length + '">' + toc + "</nav></div>" + body + todo +
       '<div class="foot" id="foot"><span>生成于 ' + esc((d.generated_at || "").replace("T", " ").slice(0, 16)) + "。</span><span>看到这里，这一期就算看过了。</span></div>";
     watchFoot(d.date);
@@ -489,7 +640,7 @@
     Array.prototype.forEach.call(app.querySelectorAll("details[data-deep]"), function (el) {
       el.addEventListener("toggle", function () { if (el.open) loadDeep(el.getAttribute("data-deep")); });
     });
-    var p = pickOf(d);
+    var p = v3 ? (d.opportunities || [])[0] : pickOf(d);
     if (p && hasDeep(d.date + "-" + p.id)) loadDeep(d.date + "-" + p.id);
     if (state.focus) {
       var card = document.getElementById("opp-" + state.focus), det = card && card.querySelector("details[data-deep]");
@@ -503,6 +654,7 @@
   function dayItem(x) {
     var c = x.counts || {}, r = isRead(x.date);
     var parts = [["机会", c.opportunities || 0], ["Skills", c.skills || 0], ["工具", c.tools || 0]];
+    if (x.track) parts.unshift([x.track, x.score != null ? x.score + " 分" : ""]);
     if (c.news) parts.push(["资讯", c.news]);  /* 老日报才有 */
     if (c.trends) parts.push(["风向", c.trends]);
     return '<li class="row day ' + (r ? "read" : "unread") + '"><button class="row-h" data-date="' + esc(x.date) + '">' +
@@ -510,14 +662,35 @@
       '<span class="brief">' + esc(plain(x.headline)) + "</span>" +
       '<span class="m">' + parts.map(function (q) { return "<span>" + q[0] + " " + q[1] + "</span>"; }).join("") + "</span></button></li>";
   }
+  function weekliesHtml() {
+    var ws = (state.index && state.index.weeklies) || [];
+    if (!ws.length) return "";
+    return '<section class="sec" data-k="pool">' + secHead({ title: "周报" }, ws.length) + '<ul class="list">' + ws.map(function (w) {
+      return '<li class="row fav" id="week-' + esc(w) + '"><details class="deep-d" data-week="' + esc(w) + '"' + (state.week === w ? " open" : "") + '><summary class="btn">' + shortDate(w) + " 周报</summary>" +
+        '<div class="deep" id="weekly-' + esc(w) + '"><p class="empty">加载中……</p></div></details></li>';
+    }).join("") + "</ul></section>";
+  }
+  var weekReq = {};
+  function loadWeek(w) {
+    if (!weekReq[w]) weekReq[w] = EMBED ? Promise.resolve((EMBED.weekly || {})[w] || null) : getText("data/weekly/" + w + ".md").catch(function () { return null; });
+    weekReq[w].then(function (md) { var box = document.getElementById("weekly-" + w); if (box) box.innerHTML = md ? markdown(md) : '<p class="empty">没有找到这份周报。</p>'; });
+  }
+  function bindWeeks() {
+    Array.prototype.forEach.call(app.querySelectorAll("details[data-week]"), function (el) {
+      var load = function () { if (el.open) loadWeek(el.getAttribute("data-week")); };
+      el.addEventListener("toggle", load); load();
+    });
+    if (state.week) { var t = document.getElementById("week-" + state.week); if (t) setTimeout(function () { t.scrollIntoView(); }, 0); state.week = null; }
+  }
   function renderHistory() {
     var past = dates().slice(1);
-    var head = '<div class="page-h"><h1>历史日报</h1><p>新的一期出来后，前一天的会移到这里。</p></div>';
-    if (!past.length) { app.innerHTML = head + '<p class="empty">还没有往期。明天新的一期出来后，今天这期会出现在这里；没看过的会标红。</p>'; return; }
+    var head = '<div class="page-h"><h1>历史日报</h1><p>新的一期出来后，前一天的会移到这里。每周六的周报在最上面。</p></div>' + weekliesHtml();
+    if (!past.length) { app.innerHTML = head + '<p class="empty">还没有往期。明天新的一期出来后，今天这期会出现在这里；没看过的会标红。</p>'; bindWeeks(); return; }
     var un = past.filter(function (x) { return !isRead(x.date); }), rd = past.filter(function (x) { return isRead(x.date); });
     app.innerHTML = head +
       (un.length ? '<section class="sec" data-k="unread">' + secHead({ title: "没看的" }, un.length) + '<ul class="list">' + un.map(dayItem).join("") + "</ul></section>" : "") +
       (rd.length ? '<section class="sec" data-k="done">' + secHead({ title: "看过的" }, rd.length) + '<ul class="list">' + rd.map(dayItem).join("") + "</ul></section>" : "");
+    bindWeeks();
   }
 
   /* ---------- 收藏 ---------- */
@@ -561,6 +734,8 @@
         : getText("data/deepdive/" + id + ".md").catch(function () { return null; });
     }
     deepReq[id].then(function (md) {
+      /* 末尾的「池子卡片」是给脚本读的 JSON，内容已经显示在池子页，这里不显示 */
+      if (md) md = md.replace(/\n#{2,3}\s*池子卡片[\s\S]*$/, "\n");
       var box = document.getElementById("deep-" + id);
       if (box) box.innerHTML = md ? markdown(md) : '<p class="empty">没有找到深挖内容。</p>';
       var lead = document.getElementById("lead-" + id), p = plain(firstPara(md)).replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
@@ -577,7 +752,7 @@
   }
   function setTab(tab) {
     state.tab = tab;
-    ["today", "history", "fav"].forEach(function (t) {
+    ["today", "pool", "history", "fav"].forEach(function (t) {
       var b = document.getElementById("tab-" + t);
       if (t === tab && !(t === "today" && state.date && state.date !== latest())) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
     });
@@ -587,6 +762,7 @@
     updateBadges();
     if (state.tab === "history") return renderHistory();
     if (state.tab === "fav") return renderFav();
+    if (state.tab === "pool") return renderPool();
     var date = state.date || latest();
     if (!date) { app.innerHTML = '<p class="empty">还没有日报。第一期会在明早 7 点前生成。</p>'; return; }
     loadDaily(date).then(renderToday).catch(function () { app.innerHTML = '<p class="empty">这一期没加载出来，刷新试试。</p>'; });
@@ -659,6 +835,7 @@
       if (qs.get("tab")) state.tab = qs.get("tab");
       if (qs.get("date")) state.date = qs.get("date");
       if (qs.get("id")) state.focus = qs.get("id");
+      if (qs.get("week")) state.week = qs.get("week");
     } catch (e) { /* 预览环境里拿不到地址参数 */ }
     var ready = EMBED ? Promise.resolve([EMBED.index, EMBED.config || {}])
       : Promise.all([getJSON("data/index.json"), getJSON("config.json").catch(function () { return {}; })]);
