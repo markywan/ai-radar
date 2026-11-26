@@ -1,0 +1,423 @@
+{
+ "date": "2026-11-26",
+ "generated_at": "2026-11-26T05:30:00+08:00",
+ "headline": [
+  "今日机会：B01 AI SEO 博客自动驾驶（SEOBOT 类），TrustMRR 显示 **MRR $30,327**、455 个订阅、月费 $49，同类 ChatSEO 也有 $38,282。",
+  "GitHub 线索：开源获客平台 `ethanplusai/sellbird` 7 天涨 633 星，AGPL，可拿来做外贸开发信托管版。",
+  "今天最值得做的一件事：打开 SEOBOT 和 ChatSEO 的定价页，记下各档价格和每月文章数。"
+ ],
+ "stats": {
+  "scanned": 215,
+  "selected": 11,
+  "chars": 2578,
+  "read_minutes": 6
+ },
+ "actions": [
+  {
+   "minutes": 15,
+   "text": "打开 SEOBOT、ChatSEO 定价页，记下各档价格、每月文章数、是否自动发布，看哪个细分行业（外贸、跨境）没人专做"
+  },
+  {
+   "minutes": 15,
+   "text": "打开 Deeplead.io 官网，看它的获客流程和 $37 档限额，对照 `sellbird` 能不能自己搭一个外贸版"
+  },
+  {
+   "minutes": 5,
+   "text": "给 `every-app/open-seo` 的 README 里托管版价格截个图，和 Semrush 月费对比"
+  }
+ ],
+ "opportunities": [
+  {
+   "name": "AI SEO 博客自动驾驶（SEOBOT 类）",
+   "category": "单功能 AI 工具站",
+   "one_liner": "给海外中小站长自动做关键词、写文章、内链并发布，月费订阅",
+   "track": "SEO与GEO",
+   "source": {
+    "title": "TrustMRR：SEOBOT",
+    "url": "https://trustmrr.com/startup/seobot"
+   },
+   "automation": {
+    "acquisition": "程序化 SEO 落地页加 X 上晒数据，免费试用拉新",
+    "production": "Claude/Codex 定时任务出关键词、文章、内链并推到客户 CMS",
+    "payment_support": "Stripe 或 Creem 订阅，常见问题用 AI 文档回答",
+    "manual": "每周抽查文章质量、处理封号和退款",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "海外中小站长和 SaaS 创始人要持续出内容拿自然流量，同类产品 ChatSEO 三个月也做到 800 多订阅",
+    "revenue_evidence": "SEOBOT：**MRR $30,327**，455 个活跃订阅，累计收入 $1,945,856，月费 $49（TrustMRR 页）；ChatSEO：MRR $38,282，809 个订阅，2025-11 成立（TrustMRR 页）",
+    "competition": "SEOBOT（$49/月全栈 SEO 代理）、ChatSEO（免费起步、主打 Google 与 ChatGPT 双可见度）；两者都面向通用站长，没有专做外贸独立站或 B2B 行业的",
+    "evidence_links": [
+     {
+      "title": "TrustMRR：SEOBOT",
+      "url": "https://trustmrr.com/startup/seobot"
+     },
+     {
+      "title": "TrustMRR：ChatSEO",
+      "url": "https://trustmrr.com/startup/chatseo"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 150,
+    "mvp_days": 14,
+    "services": "Claude API、DataForSEO 或类似关键词接口、VPS、Stripe 或 Creem",
+    "match": "他做过 SEO 和外贸，可以只做外贸独立站和 B2B 行业这一块，和通用产品错开",
+    "biggest_risk": "Google 对批量 AI 内容的政策收紧，客户站被降权会退订；通用产品价格战"
+   },
+   "verdict": "值得验证",
+   "id": "B01"
+  },
+  {
+   "name": "外贸开发信获客订阅（Deeplead.io 类）",
+   "category": "产品化服务",
+   "one_liner": "输入公司网站，自动找海外买家、写个性化开发信并多渠道触达，月费 $37",
+   "track": "全球贸易",
+   "source": {
+    "title": "TrustMRR：Deeplead.io",
+    "url": "https://trustmrr.com/startup/deeplead-io"
+   },
+   "automation": {
+    "acquisition": "X 上晒获客案例，Product Hunt 上线",
+    "production": "脚本抓名单、核验邮箱、AI 写信、定时发送",
+    "payment_support": "Stripe 订阅，三天试用",
+    "manual": "每周看退信率和投诉，调整提示词",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "出口商和 B2B 小团队要稳定的新客户来源，开源项目 `sellbird`、`OpenOutreach` 在 GitHub 上 7 天分别涨 633、63 星",
+    "revenue_evidence": "Deeplead.io：**MRR $34,273**，874 个活跃订阅，累计收入 $107,275，近 30 天 $42,154，2026-02 成立，$37/月（TrustMRR 页）",
+    "competition": "AiSDR（TrustMRR 榜 MRR $170,785，重型销售 AI）、PROSP（LinkedIn 外联，MRR $128,005）；Deeplead 靠低价占小客户",
+    "evidence_links": [
+     {
+      "title": "TrustMRR：Deeplead.io",
+      "url": "https://trustmrr.com/startup/deeplead-io"
+     },
+     {
+      "title": "TrustMRR 一人团队增长榜",
+      "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 200,
+    "mvp_days": 21,
+    "services": "开源 `sellbird` 或 `OpenOutreach`、邮箱验证 API、发信域名与 VPS、Stripe",
+    "match": "他自己做过外贸开发信，知道怎么写、怎么防进垃圾箱，可以做外贸垂直版",
+    "biggest_risk": "发信域名被封、GDPR 和 CAN-SPAM 合规；`sellbird` 是 AGPL，托管要公开改动"
+   },
+   "verdict": "值得验证",
+   "id": "B02"
+  },
+  {
+   "name": "Reddit 获客自动化订阅（Bazzly 类）",
+   "category": "数据与情报订阅",
+   "one_liner": "帮海外独立开发者在 Reddit 相关讨论里自动获客，$199/月",
+   "track": "海外宣传",
+   "source": {
+    "title": "TrustMRR：Bazzly",
+    "url": "https://trustmrr.com/startup/bazzly"
+   },
+   "automation": {
+    "acquisition": "在 X 上晒带来的客户数",
+    "production": "脚本找高意向帖、AI 写回复",
+    "payment_support": "Stripe 订阅",
+    "manual": "要有人维护账号和规避封号",
+    "weekly_hours": 3
+   },
+   "market": {
+    "demand": "独立开发者想从 Reddit 要客户，付费做工具的人不少",
+    "revenue_evidence": "Bazzly：**MRR $44,760**，227 个订阅，累计收入 $131,142，近 30 天 $57,950，2025-06 成立，$199/月（TrustMRR 页）",
+    "competition": "RedShip（$29/月，只起草不发帖）、ReplyGuy（$39 起）、F5Bot（免费提醒）；Bazzly 靠代发帖卖高价",
+    "evidence_links": [
+     {
+      "title": "TrustMRR：Bazzly",
+      "url": "https://trustmrr.com/startup/bazzly"
+     },
+     {
+      "title": "RedShip：Bazzly 替代品对比（竞品自己写的，价格仅参考）",
+      "url": "https://redship.io/best-bazzly-alternatives"
+     }
+    ]
+   },
+   "fit": {
+    "startup_cost_usd": 100,
+    "mvp_days": 10,
+    "services": "Reddit 接口、Claude API、VPS",
+    "match": "和他做海外宣传的方向沾边，但他没做过 Reddit 运营，偏弱",
+    "biggest_risk": "Reddit 封号和平台政策，代发帖模式随时被封；起草模式便宜但竞争激烈"
+   },
+   "verdict": "放进观察",
+   "id": "B03"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "every-app/open-seo",
+   "url": "https://github.com/every-app/open-seo",
+   "group": "大家都在用",
+   "why_today": "7 天 +530 星，总 2.9 万",
+   "stars_today": null,
+   "stars_7d": 530,
+   "stars_total": 28921,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "SEO"
+   ],
+   "brief": "Semrush、Ahrefs 的开源替代",
+   "what": "关键词研究、排名跟踪、竞品、外链、站点审计和 AI 可见度，带 MCP 和 Agent Skills，数据来自 DataForSEO，你自己付接口钱。官方托管版 $10/月。",
+   "business": "给外贸小站做关键词月报，按月收费",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "用 Claude Code 调它的 MCP 批量做关键词表和竞品页"
+    },
+    {
+     "area": "外贸",
+     "how": "查海外买家搜什么词，选独立站要写的页面"
+    }
+   ],
+   "demand": [],
+   "setup": "中，需要 DataForSEO 密钥，Docker 或 Cloudflare 部署",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G01",
+   "images": [
+    "https://github.com/user-attachments/assets/8ebdc439-3e72-41ab-8bde-8cda771ef2e8"
+   ]
+  },
+  {
+   "repo": "ethanplusai/sellbird",
+   "url": "https://github.com/ethanplusai/sellbird",
+   "group": "大家都在用",
+   "why_today": "7 天 +633 星，总 7.4k",
+   "stars_today": null,
+   "stars_7d": 633,
+   "stars_total": 7373,
+   "license": "AGPL-3.0",
+   "license_tier": "托管要公开改动",
+   "tags": [
+    "外贸",
+    "Agent 与自动化"
+   ],
+   "brief": "开源获客与开发信平台",
+   "what": "用 Claude 或 ChatGPT 订阅找公司和决策人、验证邮箱、写个性化开发信、发出并处理回复。",
+   "business": "做外贸垂直获客托管版，$37–99 月费，要公开改动",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "给自己的出口品类自动找海外买家并发信"
+    },
+    {
+     "area": "供需",
+     "how": "把名单整理成行业买家目录卖给供应商"
+    }
+   ],
+   "demand": [],
+   "setup": "中，需要发信域名、邮箱账号和 Claude 或 ChatGPT 订阅",
+   "safety": "黄",
+   "safety_note": "要用邮箱账号凭证并自动发信，滥发会让域名被封。依据：AGPL，托管版要公开改动。\n防范：用单独的发信子域名，每日限量，开启退订链接，先小批量试发。",
+   "risk_brief": "要邮箱凭证，自动发信有封域名风险",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/ethanplusai/sellbird/HEAD/docs/screenshots/in-claude-light.png",
+    "https://raw.githubusercontent.com/ethanplusai/sellbird/HEAD/docs/screenshots/in-codex-light.png",
+    "https://raw.githubusercontent.com/ethanplusai/sellbird/HEAD/docs/screenshots/today-light.png",
+    "https://raw.githubusercontent.com/ethanplusai/sellbird/HEAD/docs/screenshots/outbound-light.png"
+   ]
+  },
+  {
+   "repo": "context-dot-dev/enrichable",
+   "url": "https://github.com/context-dot-dev/enrichable",
+   "group": "刚冒出来",
+   "why_today": "建仓 27 天 309 星",
+   "stars_today": null,
+   "stars_7d": 125,
+   "stars_total": 309,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "供需",
+    "数据与研究"
+   ],
+   "brief": "AI 表格：按提示生成并补全名单",
+   "what": "开源 AI 电子表格，按一句话生成线索名单，逐行联网研究，并查工作邮箱，数据由 Context.dev 提供。",
+   "business": "做行业买家名单订阅，卖给跨境卖家，按月收费",
+   "uses": [
+    {
+     "area": "供需",
+     "how": "按行业生成海外采购商名单并补全联系方式"
+    },
+    {
+     "area": "外贸",
+     "how": "给每个客户自动补公司背景再写开发信"
+    }
+   ],
+   "demand": [],
+   "setup": "中，需要 Context.dev 接口密钥",
+   "safety": "黄",
+   "safety_note": "建仓不到 30 天，且要接口密钥。依据：仓库近两天仍有提交，代码量未审。\n防范：用单独限额的密钥，先不接主邮箱。",
+   "risk_brief": "建仓不到 30 天，要接口密钥",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/context-dot-dev/enrichable/HEAD/.github/assets/banner.png"
+   ]
+  },
+  {
+   "repo": "microsoft/markitdown",
+   "url": "https://github.com/microsoft/markitdown",
+   "group": "大家都在用",
+   "why_today": "今日 +207 星，7 天 +1,481",
+   "stars_today": 207,
+   "stars_7d": 1481,
+   "stars_total": 198502,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "做产品",
+    "数据与研究"
+   ],
+   "brief": "把文档和表格转成 Markdown",
+   "what": "微软出品，把 Word、PDF、Excel、PPT 等转成 Markdown，给大模型用。",
+   "business": "做供应商资料转换接口，卖给外贸 AI 工具开发者，按量收费",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "把供应商 PDF 报价单转成文字再让 AI 整理"
+    },
+    {
+     "area": "做产品",
+     "how": "给上传文件的小工具做前置转换"
+    }
+   ],
+   "demand": [],
+   "setup": "低，`pip install markitdown`",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G04"
+  }
+ ],
+ "skills": [
+  {
+   "name": "seo-skills",
+   "url": "https://github.com/Illyism/seo-skills",
+   "repo": "Illyism/seo-skills",
+   "hot": "新晋热门",
+   "stars_total": 2143,
+   "installs": null,
+   "popularity_note": "7 天 +752 星，总 2.1k 星（2026-11-26）",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "30 个 SEO 技能，其中带脚本，并预配 3 个 MCP 服务，部分要 Ahrefs、DataForSEO 密钥。依据：页面未说明各脚本做什么。\n防范：只装需要的单个技能（`--skill`），先读脚本，密钥单独限额。",
+   "risk_brief": "带脚本和 MCP，要接口密钥",
+   "brief": "30 个 SEO 与 GEO 技能包",
+   "what": "技术 SEO 审查、Ahrefs 与 DataForSEO 查词、内链、外链、GEO、去 AI 味文案等 30 个技能。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "让 Claude 审查客户站并出修复清单"
+    },
+    {
+     "area": "外贸",
+     "how": "给独立站批量做内链和落地页"
+    }
+   ],
+   "install": "npx skills add Illyism/seo-skills",
+   "id": "S01",
+   "images": [
+    "https://raw.githubusercontent.com/Illyism/seo-skills/HEAD/assets/seo-skills-hero.jpg",
+    "https://raw.githubusercontent.com/Illyism/seo-skills/HEAD/assets/seo-skills-output-engine.webp"
+   ]
+  },
+  {
+   "name": "geo-optimizer-skill",
+   "url": "https://github.com/Auriti-Labs/geo-optimizer-skill",
+   "repo": "Auriti-Labs/geo-optimizer-skill",
+   "hot": "长期热门",
+   "stars_total": 1392,
+   "installs": null,
+   "popularity_note": "总 1.4k 星，107 次发版，今天仍在更新（2026-11-26）",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "检查网站对 AI 搜索是否友好",
+   "what": "给网站打 0–100 分，看爬虫权限、结构化数据、内容和发现，出修复建议，可采样 AI 引用。引用采样要自备接口密钥。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "给客户站做 GEO 体检报告"
+    },
+    {
+     "area": "宣传",
+     "how": "查自己的站被 ChatGPT 引用的情况"
+    }
+   ],
+   "install": "`uvx --from geo-optimizer-skill geo audit --url https://yoursite.com`",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/Auriti-Labs/geo-optimizer-skill/HEAD/assets/html-report.png",
+    "https://raw.githubusercontent.com/Auriti-Labs/geo-optimizer-skill/HEAD/assets/citations.gif",
+    "https://raw.githubusercontent.com/Auriti-Labs/geo-optimizer-skill/HEAD/assets/authority.gif"
+   ]
+  },
+  {
+   "name": "agent-browser",
+   "url": "https://skills.sh/vercel-labs/agent-browser/agent-browser",
+   "repo": "vercel-labs/agent-browser",
+   "hot": "长期热门",
+   "stars_total": null,
+   "installs": 1700000,
+   "popularity_note": "skills.sh 总榜第 3，170 万安装（2026-11-26）",
+   "works_with": "两者",
+   "safety": "黄",
+   "safety_note": "能执行 shell、登录网站并保存会话。依据：SKILL.md 只是入口，真实说明运行时再拉取，无法事先审完。\n防范：用单独浏览器配置，不登录主账号，限制可访问域名。",
+   "risk_brief": "控制浏览器，说明运行时才拉取",
+   "brief": "让 AI 驱动 Chrome 的命令行工具",
+   "what": "用无障碍树快照操作页面：点击、填表、截图、抓取、登录，适合自动化测试和采集。",
+   "uses": [
+    {
+     "area": "供需",
+     "how": "定时抓目录和价格页做名单"
+    },
+    {
+     "area": "做产品",
+     "how": "给小工具做自动化测试"
+    }
+   ],
+   "install": "`npm i -g agent-browser && agent-browser install`",
+   "id": "S03"
+  },
+  {
+   "name": "frontend-design",
+   "url": "https://skills.sh/anthropics/skills/frontend-design",
+   "repo": "anthropics/skills",
+   "hot": "长期热门",
+   "stars_total": null,
+   "installs": 1200000,
+   "popularity_note": "skills.sh 总榜第 11，120 万安装（2026-11-26）",
+   "works_with": "两者",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "brief": "让 AI 做出不像模板的界面",
+   "what": "官方技能：先定受众和风格，再出配色、字体、布局并自检，避开常见 AI 味设计。纯文字说明，无脚本。",
+   "uses": [
+    {
+     "area": "做产品",
+     "how": "给小工具和落地页出像样的界面"
+    },
+    {
+     "area": "SEO",
+     "how": "批量页面模板的设计规范"
+    }
+   ],
+   "install": "`npx skills add anthropics/skills --skill frontend-design`",
+   "id": "S04"
+  }
+ ],
+ "pick": "B01"
+}
