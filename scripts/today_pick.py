@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""找今日机会：日报 pick 字段记的那个候选（第一个，validate.py 写的），给 daily.yml 的深挖步骤用。
+"""找今日机会：日报 pick 字段记的那个候选（validate.py 只在 75 分以上时写），给 daily.yml 的深挖步骤用。
+2026-11-26 起机会池里有「验证中」的项目时不深挖新的（一次只验证一个），今日机会只进池子排队。
 
   python3 scripts/today_pick.py 2026-11-02
 
@@ -41,6 +42,12 @@ def main(date):
     pick = doc.get("pick")
     if not pick:
         print("今天没有机会候选，不深挖", file=sys.stderr)
+        return 0
+    sys.path.insert(0, str(ROOT / "scripts"))
+    import pool  # noqa: PLC0415
+    busy = [x for x in pool.load_all() if x.get("status") == "验证中"]
+    if busy:
+        print(f"池子里「{busy[0]['name']}」正在验证，今天的 {pick} 只进池子排队，不深挖", file=sys.stderr)
         return 0
     fid = f"{date}-{pick}"
     md = ROOT / "data/deepdive" / f"{fid}.md"

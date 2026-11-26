@@ -1,5 +1,5 @@
 {
-  "_说明": "日报的抓取来源。2026-11-01 起日报只做三样：GitHub 热门仓库、Skills、一人公司出海机会（几个候选，再每天深挖一个）；AI 资讯（厂商官网、媒体、政策页、Hugging Face、X 新闻号和 AI 热议）和 TikHub 平台搜索都停了（仓库主人定）。改这里就能增删信源，不用改代码。抓不到的来源会记进 errors，不会让整个任务失败。kind 的含义：机会＝一人公司项目线索，社区＝只用来发现线索。RSS 只留最近 48 小时的条目；keep_latest 是低频源（如月刊）不管多久以前都保留的最新几条。Reddit 2026-11-13 停 RSS，r/SideProject、r/microsaas 两个源 10-30 去掉了。",
+  "_说明": "日报的抓取来源。2026-11-01 起日报只做三样：GitHub 热门仓库、Skills、一人公司出海机会（几个候选，再每天深挖一个）；AI 资讯（厂商官网、媒体、政策页、Hugging Face、X 新闻号和 AI 热议）和 TikHub 平台搜索都停了（仓库主人定）。改这里就能增删信源，不用改代码。抓不到的来源会记进 errors，不会让整个任务失败。kind 的含义：机会＝一人公司项目线索，社区＝只用来发现线索。RSS 只留最近 48 小时的条目；keep_latest 是低频源（如月刊）不管多久以前都保留的最新几条。Reddit 2026-11-13 停 RSS，r/SideProject、r/microsaas 两个源 10-30 去掉了。 2026-11-26 起：Show HN、Product Hunt、V2EX、X 只当线索，不能单独当需求或付费证据；TrustMRR 每天最多出 1 个候选，也不能单独过门槛。每天按星期轮一条主线，track_sources 是每条线要看的页面和脚本替它抓的数据。",
   "feeds": [
     {"name": "Product Hunt", "url": "https://www.producthunt.com/feed", "kind": "机会"},
     {"name": "V2EX 分享创造", "url": "https://www.v2ex.com/feed/create.xml", "kind": "机会"},
@@ -15,11 +15,89 @@
     ]
   },
   "trustmrr": {
-    "_说明": "TrustMRR 公开 API（https://trustmrr.com/docs/api），要在网站上免费申请一个密钥，填到仓库 secrets 的 TRUSTMRR_API_KEY。没配就跳过，由写日报的模型自己打开页面。",
+    "_说明": "TrustMRR 公开 API（https://trustmrr.com/docs/api），要在网站上免费申请一个密钥，填到仓库 secrets 的 TRUSTMRR_API_KEY。没配就跳过，由写日报的模型自己打开页面。 2026-11-26 起每天最多 1 个候选来自 TrustMRR，而且它只算付费基准，不能单独过门槛。",
     "queries": [
       {"name": "一人团队增长最快", "params": {"teamSize": "1", "sort": "growth-desc", "limit": "10"}},
       {"name": "最近挂牌出售", "params": {"onSale": "true", "sort": "listed-desc", "limit": "10"}}
     ]
+  },
+  "track_sources": {
+    "_说明": "每条主线那天要打开看的页面（pages，写日报的模型用 WebFetch 打开，打不开就用 WebSearch 找同一类页面），和脚本替它抓的数据：ted（欧盟招标，匿名）、sam（美国政府采购，要 SAM_GOV_API_KEY）、apify（Apify Store 里按这些词搜最受欢迎的数据 Actor）。改这里不用改代码。",
+    "全球贸易": {
+      "pages": [
+      {"name": "欧盟 TED 招标搜索", "url": "https://ted.europa.eu/en/"},
+      {"name": "美国 SAM.gov 采购机会", "url": "https://sam.gov/search/?index=opp"},
+      {"name": "联合国采购 UNGM 公告", "url": "https://www.ungm.org/Public/Notice"},
+      {"name": "美国联邦公报的关税变化", "url": "https://www.federalregister.gov/documents/search?conditions%5Bterm%5D=tariff"},
+      {"name": "Apify Store 外贸类", "url": "https://apify.com/store/categories/ecommerce"}
+      ],
+      "ted": true, "sam": true, "apify": ["alibaba", "made-in-china", "trade show exhibitors", "customs import data"]
+    },
+    "SEO与GEO": {
+      "pages": [
+      {"name": "Chrome 应用商店 SEO 扩展", "url": "https://chromewebstore.google.com/search/seo"},
+      {"name": "WordPress SEO 插件", "url": "https://wordpress.org/plugins/tags/seo/"},
+      {"name": "Indie Hackers 产品收入榜", "url": "https://www.indiehackers.com/products?sorting=highest-revenue"},
+      {"name": "TrustMRR SEO 类", "url": "https://trustmrr.com/?category=seo"}
+      ],
+      "apify": ["seo", "serp", "ai search visibility"]
+    },
+    "供需撮合": {
+      "pages": [
+      {"name": "Apify Store 获客类", "url": "https://apify.com/store/categories/lead-generation"},
+      {"name": "Fiverr 获客服务", "url": "https://www.fiverr.com/search/gigs?query=b2b%20lead%20generation"},
+      {"name": "Upwork 获客类需求", "url": "https://www.upwork.com/freelance-jobs/lead-generation/"}
+      ],
+      "apify": ["lead generation", "b2b directory", "google maps", "email finder"]
+    },
+    "海外宣传": {
+      "pages": [
+      {"name": "Qwoted 价格（记者找信源）", "url": "https://www.qwoted.com/pricing/"},
+      {"name": "Featured（专家问答换外链）", "url": "https://featured.com/"},
+      {"name": "Otterly AI 搜索可见度价格", "url": "https://otterly.ai/pricing"},
+      {"name": "G2 新闻稿分发类评价", "url": "https://www.g2.com/categories/press-release-distribution"}
+      ],
+      "apify": ["press release", "journalist", "media contacts"]
+    },
+    "图文自媒体": {
+      "pages": [
+      {"name": "Substack 付费榜", "url": "https://substack.com/leaderboard"},
+      {"name": "beehiiv 案例", "url": "https://www.beehiiv.com/case-studies"},
+      {"name": "G2 LinkedIn 工具评价", "url": "https://www.g2.com/search?query=linkedin%20post"}
+      ],
+      "apify": ["linkedin posts", "newsletter", "substack"]
+    },
+    "复盘": {
+      "pages": []
+    },
+    "对标": {
+      "pages": [
+      {"name": "TrustMRR 一人团队增长榜", "url": "https://trustmrr.com/?teamSize=1&sort=growth-desc"},
+      {"name": "Microns 在售小项目", "url": "https://www.microns.io/"},
+      {"name": "Flippa 在售 SaaS", "url": "https://flippa.com/search?filter%5Bproperty_type%5D=saas"}
+      ]
+    }
+  },
+  "ted": {
+    "_说明": "欧盟 TED 公开招标 v3 搜索接口，匿名可用（https://docs.ted.europa.eu/api/latest/search.html）。query 是 TED 专家检索语法，{since} 换成 window_days 天前（YYYYMMDD），{kw} 换成关键词；keywords 先放几个中国出口常见品类，定下种子「某品类海外招标中文周报」做哪个品类后换成那个品类的词。",
+    "url": "https://api.ted.europa.eu/v3/notices/search",
+    "query": "FT~(\"{kw}\") AND PD>={since}",
+    "fields": ["publication-number", "notice-title", "buyer-country", "publication-date", "deadline-receipt-tender-date-lot"],
+    "keywords": ["LED lighting", "solar panels", "medical consumables", "packaging", "furniture"],
+    "window_days": 7,
+    "per_keyword": 5
+  },
+  "sam_gov": {
+    "_说明": "美国联邦采购 SAM.gov 公开接口（https://open.gsa.gov/api/get-opportunities-public-api/），要在 SAM.gov 免费注册后拿 API Key，存为仓库 Secrets 的 SAM_GOV_API_KEY；没有就跳过。",
+    "url": "https://api.sam.gov/opportunities/v2/search",
+    "keywords": ["LED", "solar", "medical supplies", "packaging", "furniture"],
+    "window_days": 7,
+    "per_keyword": 5
+  },
+  "apify": {
+    "_说明": "Apify Store 公开接口，不要密钥。看别人在 Apify 上卖什么数据 Actor、多少人用、怎么收费，是「外贸数据 API 挂 Apify Store」这类机会的需求和付费证据。",
+    "url": "https://api.apify.com/v2/store",
+    "per_query": 8
   },
   "github": {
     "_说明": "trending_pages 里的中文区日榜（spoken_language_code=zh）放最后，上面也有的仓库标 zh_list，用来对照海外在火、中文圈还没写的。new_repo_limit 是新项目雷达一次取多少个（最近 new_repo_days 天新建、50 星以上、没归档，按星数排）。",

@@ -1,0 +1,38 @@
+{
+ "id": "seed-linkedin-post-pack",
+ "name": "外贸业务员「产品资料 → 英文 LinkedIn 帖子包」",
+ "track": "图文自媒体",
+ "status": "待验证",
+ "hypothesis": {
+  "customer": "外贸 B2B 业务员和工厂老板",
+  "pain": "知道要发 LinkedIn，但不会写英文帖子",
+  "deliverable": "上传产品资料，出 30 篇英文帖子和 PDF 轮播",
+  "price": "一次性 $19–39 一包",
+  "channel": "外贸群、小红书和 LinkedIn 上的外贸圈"
+ },
+ "score": null,
+ "origin": {
+  "kind": "种子",
+  "ref": "2026-11-04 深挖",
+  "note": ""
+ },
+ "deepdive": "2026-11-04-B01",
+ "next_action": "",
+ "due_at": null,
+ "experiment_metric": "",
+ "stop_condition": "",
+ "result": "",
+ "links": {
+  "tools": [],
+  "skills": []
+ },
+ "created_at": "2026-11-26T06:49:22+00:00",
+ "last_reviewed_at": "2026-11-26",
+ "history": [
+  {
+   "at": "2026-11-26T06:49:22+00:00",
+   "status": "待验证",
+   "note": "种子：2026-11-04 深挖"
+  }
+ ]
+}

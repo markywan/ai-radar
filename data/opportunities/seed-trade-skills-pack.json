@@ -1,0 +1,38 @@
+{
+ "id": "seed-trade-skills-pack",
+ "name": "英文外贸 Skills 包",
+ "track": "全球贸易",
+ "status": "待研究",
+ "hypothesis": {
+  "customer": "用 Claude Code、Codex 的外贸 SOHO 和小团队",
+  "pain": "开发信、报价单、询盘回复每次都要重写提示词",
+  "deliverable": "一套外贸场景的 Skills（开发信、报价、询盘分级、展会跟进）",
+  "price": "一次性 $29–49",
+  "channel": "skills.sh、GitHub、X 和外贸群"
+ },
+ "score": null,
+ "origin": {
+  "kind": "种子",
+  "ref": "10-26 研究报告",
+  "note": ""
+ },
+ "deepdive": null,
+ "next_action": "",
+ "due_at": null,
+ "experiment_metric": "",
+ "stop_condition": "",
+ "result": "",
+ "links": {
+  "tools": [],
+  "skills": []
+ },
+ "created_at": "2026-11-26T06:49:22+00:00",
+ "last_reviewed_at": "2026-11-26",
+ "history": [
+  {
+   "at": "2026-11-26T06:49:22+00:00",
+   "status": "待研究",
+   "note": "种子：10-26 研究报告"
+  }
+ ]
+}

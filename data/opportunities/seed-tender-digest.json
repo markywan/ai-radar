@@ -1,0 +1,38 @@
+{
+ "id": "seed-tender-digest",
+ "name": "某品类海外招标中文周报",
+ "track": "全球贸易",
+ "status": "待研究",
+ "hypothesis": {
+  "customer": "做某个品类（如医疗耗材、太阳能配件）的中国出口工厂外贸经理",
+  "pain": "TED、SAM.gov、UNGM 上的公开招标看不懂、找不到、错过截止日",
+  "deliverable": "每周一份按品类筛好的中文招标摘要，附原文链接和截止日",
+  "price": "$29/月或 ¥199/月",
+  "channel": "外贸群、LinkedIn 上该品类的外贸经理、阿里国际站卖家论坛"
+ },
+ "score": null,
+ "origin": {
+  "kind": "种子",
+  "ref": "10-26 研究报告",
+  "note": ""
+ },
+ "deepdive": null,
+ "next_action": "",
+ "due_at": null,
+ "experiment_metric": "",
+ "stop_condition": "",
+ "result": "",
+ "links": {
+  "tools": [],
+  "skills": []
+ },
+ "created_at": "2026-11-26T06:49:22+00:00",
+ "last_reviewed_at": "2026-11-26",
+ "history": [
+  {
+   "at": "2026-11-26T06:49:22+00:00",
+   "status": "待研究",
+   "note": "种子：10-26 研究报告"
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "id": "seed-apify-trade-actor",
+ "name": "外贸数据 API 挂 Apify Store",
+ "track": "供需撮合",
+ "status": "待研究",
+ "hypothesis": {
+  "customer": "要批量拿外贸公开数据（展会名录、B2B 目录、海关公开统计）的海外开发者和获客团队",
+  "pain": "自己写爬虫维护成本高",
+  "deliverable": "Apify 上按次计费的 Actor",
+  "price": "按结果计费，每千条 $1–5",
+  "channel": "Apify Store 自带流量和搜索"
+ },
+ "score": null,
+ "origin": {
+  "kind": "种子",
+  "ref": "10-26 研究报告",
+  "note": ""
+ },
+ "deepdive": null,
+ "next_action": "",
+ "due_at": null,
+ "experiment_metric": "",
+ "stop_condition": "",
+ "result": "",
+ "links": {
+  "tools": [],
+  "skills": []
+ },
+ "created_at": "2026-11-26T06:49:22+00:00",
+ "last_reviewed_at": "2026-11-26",
+ "history": [
+  {
+   "at": "2026-11-26T06:49:22+00:00",
+   "status": "待研究",
+   "note": "种子：10-26 研究报告"
+  }
+ ]
+}

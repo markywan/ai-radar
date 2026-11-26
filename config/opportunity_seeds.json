@@ -1,0 +1,31 @@
+{
+  "_说明": "机会池的种子：2026-11-26 综合策划定下的 12 个，加上当天深挖出来的 1 个。来源是 10-26 研究报告（https://claude.ai/artifact/1qL9xH7AM2fjMSv1fx5NXf）和 11-02 到 11-26 的深挖报告里「收窄到外贸版」的那个切口。深挖过、深挖里已经给出 7 天试法的种子直接是「待验证」，其余「待研究」。scripts/pool.py seed 只把池子里还没有的放进去（按 id 和名字查重），已经进池子的改这里不会覆盖。hypothesis 是一句话的窄假设：卖给谁、解决什么痛、交付什么、卖多少钱、从哪找到第一批客户；验证时再改池子里的那份。仓库公开，这里不写客户名字和报价单。",
+  "seeds": [
+    {"id": "seed-tender-digest", "name": "某品类海外招标中文周报", "track": "全球贸易", "from": "10-26 研究报告",
+     "hypothesis": {"customer": "做某个品类（如医疗耗材、太阳能配件）的中国出口工厂外贸经理", "pain": "TED、SAM.gov、UNGM 上的公开招标看不懂、找不到、错过截止日", "deliverable": "每周一份按品类筛好的中文招标摘要，附原文链接和截止日", "price": "$29/月或 ¥199/月", "channel": "外贸群、LinkedIn 上该品类的外贸经理、阿里国际站卖家论坛"}},
+    {"id": "seed-apify-trade-actor", "name": "外贸数据 API 挂 Apify Store", "track": "供需撮合", "from": "10-26 研究报告",
+     "hypothesis": {"customer": "要批量拿外贸公开数据（展会名录、B2B 目录、海关公开统计）的海外开发者和获客团队", "pain": "自己写爬虫维护成本高", "deliverable": "Apify 上按次计费的 Actor", "price": "按结果计费，每千条 $1–5", "channel": "Apify Store 自带流量和搜索"}},
+    {"id": "seed-landed-cost", "name": "关税到岸成本计算器 + 程序化页面", "track": "全球贸易", "from": "10-26 研究报告",
+     "hypothesis": {"customer": "从中国进货的美国小卖家和采购", "pain": "美国关税频繁变，算不清某个 HS 编码的到岸成本", "deliverable": "免费计算器加按 HS 编码生成的程序化页面，靠广告和联盟收入，付费版导出报价", "price": "免费加 $9/月导出", "channel": "Google 搜索「HS code + tariff」长尾词"}},
+    {"id": "seed-vertical-directory", "name": "垂直目录站 + 程序化页面", "track": "SEO与GEO", "from": "10-26 研究报告",
+     "hypothesis": {"customer": "找某类中国供应商或某类工具的海外买家", "pain": "通用 B2B 平台信息杂，不好比", "deliverable": "一个品类的目录站，按地区、认证、起订量生成页面，收上架费或推荐费", "price": "上架 $49/年或按线索收费", "channel": "Google 长尾搜索和 AI 搜索引用"}},
+    {"id": "seed-trade-skills-pack", "name": "英文外贸 Skills 包", "track": "全球贸易", "from": "10-26 研究报告",
+     "hypothesis": {"customer": "用 Claude Code、Codex 的外贸 SOHO 和小团队", "pain": "开发信、报价单、询盘回复每次都要重写提示词", "deliverable": "一套外贸场景的 Skills（开发信、报价、询盘分级、展会跟进）", "price": "一次性 $29–49", "channel": "skills.sh、GitHub、X 和外贸群"}},
+    {"id": "seed-ai-supplier-check", "name": "「ChatGPT 推荐供应商时有没有你」工厂体检报告", "track": "海外宣传", "from": "10-26 研究报告、2026-11-05 深挖", "deepdive": "2026-11-05-B01", "status": "待验证",
+     "hypothesis": {"customer": "有英文官网的中国外贸工厂和外贸 SOHO", "pain": "不知道海外买家问 ChatGPT、Perplexity 时会不会推荐自己", "deliverable": "一份体检报告：问了哪些问题、谁被推荐、怎么改官网", "price": "$29 一份，回头客 $19/月每周监测", "channel": "外贸群、LinkedIn、阿里国际站卖家圈"}},
+    {"id": "seed-inquiry-filter", "name": "外贸独立站询盘表单 + AI 筛垃圾询盘", "track": "全球贸易", "from": "2026-11-02 深挖", "deepdive": "2026-11-02-B01", "status": "待验证",
+     "hypothesis": {"customer": "用 WordPress 做英文站的 B2B 外贸工厂", "pain": "询盘里一半是垃圾和推销，真询盘被淹没", "deliverable": "WordPress 询盘表单插件，AI 给询盘打分并推送 WhatsApp 或邮件提醒", "price": "免费版加 $9/月专业版", "channel": "wordpress.org 插件目录"}},
+    {"id": "seed-linkedin-post-pack", "name": "外贸业务员「产品资料 → 英文 LinkedIn 帖子包」", "track": "图文自媒体", "from": "2026-11-04 深挖", "deepdive": "2026-11-04-B01", "status": "待验证",
+     "hypothesis": {"customer": "外贸 B2B 业务员和工厂老板", "pain": "知道要发 LinkedIn，但不会写英文帖子", "deliverable": "上传产品资料，出 30 篇英文帖子和 PDF 轮播", "price": "一次性 $19–39 一包", "channel": "外贸群、小红书和 LinkedIn 上的外贸圈"}},
+    {"id": "seed-buying-leads-daily", "name": "外贸工厂「海外求购帖日报」", "track": "供需撮合", "from": "2026-11-05 深挖", "deepdive": "2026-11-05-B02", "status": "待验证",
+     "hypothesis": {"customer": "做某个品类的中国外贸工厂和 SOHO", "pain": "海外买家在 X、论坛发的求购帖看不到", "deliverable": "按品类的每日求购帖链接日报（只用官方接口，不补邮箱）", "price": "$19/月一个品类", "channel": "外贸群和品类社群"}},
+    {"id": "seed-google-ads-audit", "name": "外贸 B2B Google Ads 体检 Skill 包", "track": "海外宣传", "from": "2026-11-06 深挖", "deepdive": "2026-11-06-B01", "status": "待验证",
+     "hypothesis": {"customer": "自己投 Google Ads 的外贸 B2B 工厂和小代理", "pain": "广告费花了没询盘，不知道哪里浪费", "deliverable": "跑在 Claude Code 里的 Google Ads 体检 Skill 包和英文审计模板（用官方 MCP，不碰客户凭证）", "price": "一次性 $49", "channel": "外贸群、Google Ads 外贸讨论区、X"}},
+    {"id": "seed-cold-list-cleaner", "name": "外贸开发信名单清洗工具", "track": "供需撮合", "from": "2026-11-07 深挖", "deepdive": "2026-11-07-B01", "status": "待验证",
+     "hypothesis": {"customer": "自己发开发信的外贸业务员", "pain": "名单脏，退信率高被封域名", "deliverable": "本地运行的名单清洗工具（用户自带验证服务 key），输出能直接导入群发工具的 CSV", "price": "一次性 $19–29", "channel": "外贸群、开发信教程博主"}},
+    {"id": "seed-pay-per-lead-pilot", "name": "按合格询盘收费的外贸获客试点", "track": "全球贸易", "from": "10-26 研究报告",
+     "hypothesis": {"customer": "一个品类里愿意试的 2–3 家出口工厂", "pain": "付了平台年费也没有合格询盘", "deliverable": "用 SEO 页面和合规开发信拿询盘，按合格询盘收费", "price": "每个合格询盘 $20–50", "channel": "他自己的外贸人脉"}},
+    {"id": "seed-factory-blog-writer", "name": "外贸工厂英文站产品文章（用工厂自己的资料写）", "track": "SEO与GEO", "from": "2026-11-26 深挖", "deepdive": "2026-11-26-B01", "status": "待验证",
+     "hypothesis": {"customer": "已经有 WordPress 英文站的外贸工厂和贸易商", "pain": "官网多年不更新，没有自然流量", "deliverable": "每月 4–8 篇基于工厂产品目录、规格书、认证写的英文文章，进 WordPress 草稿由客户点发布", "price": "$49/月", "channel": "外贸群、建站服务商合作"}}
+  ]
+}

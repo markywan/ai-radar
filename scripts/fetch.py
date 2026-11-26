@@ -9,6 +9,11 @@ AI 资讯（厂商官网、媒体、政策页、Hugging Face、X 新闻号）和
   GITHUB_TOKEN       可选，提高 GitHub 搜索 API 的额度（Actions 里自动有）
   TWITTERAPI_IO_KEY  可选，有它才抓 X（实践者账号和机会、Skills 相关的搜索）
   TRUSTMRR_API_KEY   可选，有它才抓 TrustMRR 的收入榜（机会候选的收入证据）
+  SAM_GOV_API_KEY    可选，有它才抓美国政府采购 SAM.gov 的新招标（全球贸易那天用）
+
+2026-11-26 起每天轮一条主线（config/tracks.json 的 rotation，周一全球贸易……周六复盘、周日对标），
+raw.today_track 是今天这条，raw.track_pages 是这条线要打开看的页面，raw.track_data 是脚本替这条线抓好的
+（欧盟 TED 招标、SAM.gov 招标、Apify Store 的数据 Actor 排行）；raw.pool 是机会池现状（scripts/pool.py）。
 
 抓完会把前 7 天日报里出现过的仓库、Skills、机会标上 seen_before（哪天、哪条、当时的数字），
 前 7 天的条目清单放在 recent，深挖过的条目放在 deepdived。
@@ -605,6 +610,108 @@ def deepdived():
     return out
 
 
+WEEKDAYS = "一二三四五六日"
+
+
+def today_track(date):
+    """按星期轮主线：周一全球贸易、周二 SEO与GEO、周三供需撮合、周四海外宣传、周五图文自媒体、周六复盘、周日对标。"""
+    conf = json.loads((ROOT / "config/tracks.json").read_text("utf-8"))
+    wd = dt.date.fromisoformat(date).isoweekday()
+    name = (conf.get("rotation") or {}).get(str(wd))
+    track = next((t for t in conf["tracks"] if t["name"] == name), None)
+    return {"weekday": "星期" + WEEKDAYS[wd - 1], "name": name,
+            "title": (track or {}).get("title") or (conf.get("rotation_notes") or {}).get(name, ""),
+            "watch": (track or {}).get("watch", ""), "keywords": (track or {}).get("keywords", [])}
+
+
+def fetch_ted(cfg, date):
+    """欧盟公开招标 TED（匿名可用的 v3 搜索接口），按关键词取最近 window_days 天的新公告。"""
+    since = (dt.date.fromisoformat(date) - dt.timedelta(days=cfg.get("window_days", 7))).strftime("%Y%m%d")
+    out = []
+    for kw in cfg["keywords"]:
+        body = {"query": cfg["query"].replace("{since}", since).replace("{kw}", kw), "fields": cfg["fields"],
+                "limit": cfg.get("per_keyword", 5), "page": 1, "scope": "ACTIVE", "paginationMode": "PAGE_NUMBER"}
+        req = urllib.request.Request(cfg["url"], data=json.dumps(body).encode(), method="POST",
+                                     headers={"User-Agent": UA, "Content-Type": "application/json", "Accept": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+                data = json.loads(r.read().decode("utf-8", errors="replace"))
+        except urllib.error.HTTPError as e:
+            errors.append(f"TED 招标「{kw}」: HTTP {e.code} {e.read().decode('utf-8', errors='replace')[:200]}")
+            continue
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"TED 招标「{kw}」: {e}")
+            continue
+        for n in data.get("notices") or []:
+            title = n.get("notice-title") or {}
+            if isinstance(title, dict):
+                title = title.get("eng") or title.get("ENG") or next(iter(title.values()), "")
+            pub = n.get("publication-number")
+            out.append({"keyword": kw, "id": pub, "title": strip_tags(str(title), 200),
+                        "country": n.get("buyer-country"), "published": n.get("publication-date"),
+                        "deadline": n.get("deadline-receipt-tender-date-lot"),
+                        "url": f"https://ted.europa.eu/en/notice/-/detail/{pub}" if pub else None})
+    return out
+
+
+def fetch_sam(cfg, key, date):
+    """美国联邦采购 SAM.gov（要免费申请的 API Key），按关键词取最近 window_days 天的新机会。"""
+    d1 = dt.date.fromisoformat(date)
+    d0 = d1 - dt.timedelta(days=cfg.get("window_days", 7))
+    out = []
+    for kw in cfg["keywords"]:
+        q = {"api_key": key, "postedFrom": d0.strftime("%m/%d/%Y"), "postedTo": d1.strftime("%m/%d/%Y"),
+             "limit": cfg.get("per_keyword", 5), "title": kw}
+        try:
+            data = get_json(cfg["url"] + "?" + urllib.parse.urlencode(q), {"Accept": "application/json"})
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"SAM.gov 招标「{kw}」: {str(e).replace(key, '***')}")
+            continue
+        for o in data.get("opportunitiesData") or []:
+            out.append({"keyword": kw, "title": o.get("title"), "agency": o.get("fullParentPathName"),
+                        "type": o.get("type"), "published": o.get("postedDate"), "deadline": o.get("responseDeadLine"),
+                        "naics": o.get("naicsCode"), "set_aside": o.get("typeOfSetAsideDescription"), "url": o.get("uiLink")})
+    return out
+
+
+def fetch_apify(cfg, queries):
+    """Apify Store 公开接口：按关键词取最受欢迎的数据 Actor，看别人在卖什么数据、多少人在用、怎么收费。"""
+    out, seen = [], set()
+    for q in queries:
+        url = cfg["url"] + "?" + urllib.parse.urlencode({"search": q, "limit": cfg.get("per_query", 8), "sortBy": "popularity"})
+        try:
+            items = (get_json(url, {"Accept": "application/json"}).get("data") or {}).get("items") or []
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"Apify Store「{q}」: {e}")
+            continue
+        for a in items:
+            slug = f"{a.get('username')}/{a.get('name')}"
+            if slug in seen:
+                continue
+            seen.add(slug)
+            st, pr = a.get("stats") or {}, a.get("currentPricingInfo") or {}
+            out.append({"query": q, "title": a.get("title"), "url": f"https://apify.com/{slug}",
+                        "description": (a.get("description") or "")[:200], "users_total": st.get("totalUsers"),
+                        "users_30d": st.get("totalUsers30Days"), "runs_total": st.get("totalRuns"),
+                        "pricing": pr.get("pricingModel"), "price_usd": pr.get("pricePerUnitUsd") or pr.get("pricePerResultUsd")})
+    return out
+
+
+def pool_summary():
+    """机会池现状（验证中、排队、到期没推进的），写日报时决定「今天只做一件事」、给候选查重用。"""
+    try:
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import pool  # noqa: PLC0415
+        s = pool.summary()
+        s["items"] = [{k: x.get(k) for k in ("id", "name", "track", "status", "hypothesis")}
+                      for x in pool.load_all() if x.get("status") != "淘汰"]
+        s["dropped"] = [x.get("name") for x in pool.load_all() if x.get("status") == "淘汰"]
+        return s
+    except Exception as e:  # noqa: BLE001
+        errors.append(f"机会池: {e}")
+        return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", default=dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d"))
@@ -686,6 +793,23 @@ def main():
         errors.append("没有配置 TRUSTMRR_API_KEY，收入证据请打开 config/sources.json 里 evidence_pages 的页面找")
     raw["evidence_pages"] = (cfg.get("evidence_pages") or {}).get("pages", [])
 
+    # 今天轮到的主线，和替这条线抓好的数据
+    raw["today_track"] = tr = today_track(args.date)
+    ts = (cfg.get("track_sources") or {}).get(tr["name"] or "") or {}
+    raw["track_pages"] = ts.get("pages", [])
+    raw["track_data"] = {}
+    if ts.get("ted") and cfg.get("ted"):
+        raw["track_data"]["ted"] = fetch_ted(cfg["ted"], args.date)
+    sam = "".join(os.environ.get("SAM_GOV_API_KEY", "").split())
+    if ts.get("sam") and cfg.get("sam_gov"):
+        if sam:
+            raw["track_data"]["sam_gov"] = fetch_sam(cfg["sam_gov"], sam, args.date)
+        else:
+            errors.append("没有配置 SAM_GOV_API_KEY，今天不抓美国政府招标（要看就用 WebFetch 打开 track_pages 里的 SAM.gov）")
+    if ts.get("apify") and cfg.get("apify"):
+        raw["track_data"]["apify"] = fetch_apify(cfg["apify"], ts["apify"])
+    raw["pool"] = pool_summary()
+
     try:
         hn_front, raw["hn_show"] = fetch_hn(cfg["hackernews"])  # 首页只用来标 also_on，不放进素材
     except Exception as e:  # noqa: BLE001
@@ -706,6 +830,8 @@ def main():
     raw["deepdived"] = deepdived()
     raw["errors"] = errors
     raw["counts"] = {k: len(v) for k, v in raw.items() if isinstance(v, list)}
+    for k, v in (raw.get("track_data") or {}).items():
+        raw["counts"][k] = len(v)
     if raw["issue_demand"]:
         raw["counts"]["issue_demand"] = (sum(map(len, raw["issue_demand"]["searches"].values()))
                                          + sum(len(f["issues"]) for f in raw["issue_demand"]["favorites"]))

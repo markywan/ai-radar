@@ -1,0 +1,38 @@
+{
+ "id": "seed-landed-cost",
+ "name": "关税到岸成本计算器 + 程序化页面",
+ "track": "全球贸易",
+ "status": "待研究",
+ "hypothesis": {
+  "customer": "从中国进货的美国小卖家和采购",
+  "pain": "美国关税频繁变，算不清某个 HS 编码的到岸成本",
+  "deliverable": "免费计算器加按 HS 编码生成的程序化页面，靠广告和联盟收入，付费版导出报价",
+  "price": "免费加 $9/月导出",
+  "channel": "Google 搜索「HS code + tariff」长尾词"
+ },
+ "score": null,
+ "origin": {
+  "kind": "种子",
+  "ref": "10-26 研究报告",
+  "note": ""
+ },
+ "deepdive": null,
+ "next_action": "",
+ "due_at": null,
+ "experiment_metric": "",
+ "stop_condition": "",
+ "result": "",
+ "links": {
+  "tools": [],
+  "skills": []
+ },
+ "created_at": "2026-11-26T06:49:22+00:00",
+ "last_reviewed_at": "2026-11-26",
+ "history": [
+  {
+   "at": "2026-11-26T06:49:22+00:00",
+   "status": "待研究",
+   "note": "种子：10-26 研究报告"
+  }
+ ]
+}
