@@ -6,6 +6,8 @@ on:
   # 而且 2026-11-01 起写完日报还要深挖今日机会（10–40 分钟），所以从北京时间 1:23 起每小时排一次，到 6:23 共六次。
   # 当天已经有日报的就直接跳过；做好后飞书推送等到 7 点再发（最早 1:30 左右做好，要等 5 个半小时，在 Actions 单个任务 6 小时的上限以内）。
   # 2026-11-26 起日报的目标是把机会池往前推一步：今天只做一件事、今日机会 0–1 个（75 分以上且池子里没有在验证的才深挖）、GitHub 3–5 个、Skills 2–4 个。
+  # 2026-11-27：GitHub 定时晚得越来越多（11-23 到 11-26 晚 6 到 8 小时，11-27 的 1:23 到北京时间 8:30 一次都没开始），
+  # 所以改由 Cloudflare Worker 的定时器（准点）在北京时间 1:23、3:23、5:23 发 repository_dispatch「daily_tick」来启动，下面的 GitHub 定时留着兜底。
   # 主令牌（CLAUDE_CODE_OAUTH_TOKEN）失败时，配了 ANTHROPIC_API_KEY 就自动用它重写一次（11-08 到 11-25 令牌被吊销，日报停了 18 天）。
   schedule:
     - cron: "23 17 * * *"   # 北京时间 1:23
@@ -14,6 +16,8 @@ on:
     - cron: "23 20 * * *"   # 4:23
     - cron: "23 21 * * *"   # 5:23
     - cron: "23 22 * * *"   # 6:23
+  repository_dispatch:
+    types: [daily_tick]   # Cloudflare Worker 定时器发来的，和 GitHub 定时一样对待
   workflow_dispatch:
 
 permissions:
@@ -43,7 +47,7 @@ jobs:
           d=$(TZ=Asia/Shanghai date +%F)
           echo "date=$d" >> "$GITHUB_OUTPUT"
           # 定时任务排了好几次，今天已经做好的就跳过；手动运行总是重新生成
-          if [ "${{ github.event_name }}" = "schedule" ] && [ -f "data/daily/$d.json" ]; then
+          if [ "${{ github.event_name }}" != "workflow_dispatch" ] && [ -f "data/daily/$d.json" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
             echo "今天（$d）的日报已经有了，这次定时任务跳过。" >> "$GITHUB_STEP_SUMMARY"
           fi
@@ -265,7 +269,7 @@ jobs:
           FALLBACK: ${{ needs.generate.outputs.fallback }}
           OK: ${{ needs.generate.result == 'success' && needs.publish.result == 'success' }}
           DAY: ${{ needs.generate.outputs.date }}
-          EVENT: ${{ github.event_name }}
+          EVENT: ${{ github.event_name == 'workflow_dispatch' && 'manual' || 'schedule' }}
         run: |
           if [ -z "$FEISHU_WEBHOOK" ]; then echo "没配置飞书机器人，跳过推送"; exit 0; fi
           now=$(date +%s); seven=$(TZ=Asia/Shanghai date -d "07:00" +%s)
