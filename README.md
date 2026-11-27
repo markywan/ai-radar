@@ -16,7 +16,7 @@
 ## 怎么运转
 
 ```
-每天 01:23 起 ─ daily.yml（到 6:23 每小时补跑一次，7 点推飞书）
+每天 01:23 起 ─ daily.yml（Worker 定时器 1:23、3:23、5:23 准点启动，GitHub 定时兜底，7 点推飞书）
    ├ pool.py seed 补种子 → fetch.py 抓素材（今天这条主线的页面和数据：TED 招标、SAM.gov、Apify Store；GitHub 榜单、话题、issue 需求榜；Skills；线索；机会池现状）
    ├ Claude（Sonnet）按 prompts/daily.md 写日报（主令牌失败时自动改用备用 ANTHROPIC_API_KEY）
    ├ enrich.py 配图 → validate.py 校验门槛和分数 → pool.py add-daily 今日机会进池子 → 提交

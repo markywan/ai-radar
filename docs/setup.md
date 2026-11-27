@@ -68,7 +68,7 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 **再建 Worker**：
 
 1. 登录 Cloudflare，**Workers & Pages → Create → Create Worker**，名字填 `ai-radar-act`，Deploy。
-2. **Edit code**，把仓库里 `worker/worker.js` 的全部内容粘进去替换，Deploy。（用命令行部署的话用 `worker/wrangler.toml`。）**`worker.js` 改过之后都要重新粘一次**：2026-11-26 加了机会池状态按钮（`op=status`），不更新的话「开始验证」「淘汰」这些按钮会提示参数不对。
+2. **Edit code**，把仓库里 `worker/worker.js` 的全部内容粘进去替换，Deploy。（用命令行部署的话在 `worker/` 里跑 `npx wrangler deploy --keep-vars`。**2026-11-27 起日报的准点启动靠 `wrangler.toml` 里的定时器，网页粘贴不会带上，所以要用 wrangler 部署**，或者在 Worker 的 Settings → Triggers → Cron Triggers 里手动加 `23 17 * * *`、`23 19 * * *`、`23 21 * * *`。）**`worker.js` 改过之后都要重新粘一次**：2026-11-26 加了机会池状态按钮（`op=status`），不更新的话「开始验证」「淘汰」这些按钮会提示参数不对。
 3. Worker → **Settings → Variables and Secrets → Add**，加两项 Secret：`GITHUB_TOKEN`（刚才的令牌）、`ACTION_KEY`（第 6 步那串）。
 4. 记下 Worker 地址，形如 `https://ai-radar-act.xxx.workers.dev`。
 
@@ -80,7 +80,7 @@ GitHub 密钥的填写页：仓库 → Settings → Secrets and variables → Ac
 
 ## 第 9 步：跑第一期
 
-1. Actions → **每日日报** → Run workflow。之后每天北京时间 1:23 起自动运行（到 6:23 每小时补跑一次；GitHub 的定时任务常晚到三个小时），7 点推送飞书。第一步会检查密钥，缺什么写在那次运行的摘要页；没有 AI 密钥会直接停下。
+1. Actions → **每日日报** → Run workflow。之后每天北京时间 1:23 起自动运行（Worker 定时器 1:23、3:23、5:23 准点启动；GitHub 自己的定时到 6:23 每小时一次兜底，它常晚到 6 到 8 小时），7 点推送飞书。第一步会检查密钥，缺什么写在那次运行的摘要页；没有 AI 密钥会直接停下。
 2. 飞书收到卡片后点 **打开今日日报**：这一下会把口令存进手机浏览器，之后网站上的收藏按钮就能用。换手机或浏览器时从飞书卡片再进一次。
 3. 今日机会打了 75 分以上、机会池里又没有在验证的项目时，日报写好后会接着做验证设计（深挖，约 10–30 分钟），飞书卡片和网站上能看到结论。网站「池子」页能看到 13 个种子和它们的状态。
 4. 点任一机会候选的 **收藏并深挖** 试一下：确认页显示「已收藏，开始深挖」，写完后飞书再推一张卡片，报告在网站的「收藏」页。

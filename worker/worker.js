@@ -11,6 +11,10 @@
 //   ACTION_KEY    和 GitHub 仓库 secrets 里的 ACTION_KEY 一样
 // 仓库和网站地址已有默认值，换仓库时再配置 GITHUB_REPO、SITE_URL 覆盖。
 //
+// 定时器（2026-11-27 起）：wrangler.toml 里的 [triggers] crons 在北京时间 1:23、3:23、5:23 各发一次
+// repository_dispatch「daily_tick」，启动「每日日报」（GitHub 自己的定时常晚 6 到 8 小时）。当天日报已经有了，GitHub 那边会直接跳过。
+// 用的还是上面的 GITHUB_TOKEN，不用加新密钥。
+//
 // 可选：绑定一个 KV 命名空间，变量名 RADAR_KV，已读状态就能在手机和电脑之间同步：
 //   GET  /state?k=口令                  返回 {read: {日期: {v, t}}}
 //   POST /read?date=2026-10-15&v=1&k=口令  标记已读（v=0 为未读）
@@ -100,6 +104,22 @@ async function readState(request, env, url) {
 }
 
 export default {
+  async scheduled(event, env, ctx) {
+    const send = fetch(`https://api.github.com/repos/${env.GITHUB_REPO || DEFAULT_REPO}/dispatches`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+        Accept: "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "ai-radar-worker",
+      },
+      body: JSON.stringify({ event_type: "daily_tick", client_payload: { cron: event.cron } }),
+    }).then((r) => {
+      if (r.status !== 204) throw new Error(`GitHub 返回 ${r.status}`);
+    });
+    ctx.waitUntil(send);
+  },
+
   async fetch(request, rawEnv) {
     const env = { ...rawEnv, SITE_URL: rawEnv.SITE_URL || DEFAULT_SITE };
     const url = new URL(request.url);

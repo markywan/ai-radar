@@ -2,3 +2,7 @@
 name = "ai-radar-act"
 main = "worker.js"
 compatibility_date = "2026-09-01"
+
+# 北京时间 1:23、3:23、5:23 启动每日日报（Cloudflare 的 cron 用 UTC）。只能用 wrangler 部署，网页粘贴 worker.js 不会带上这个。
+[triggers]
+crons = ["23 17 * * *", "23 19 * * *", "23 21 * * *"]
