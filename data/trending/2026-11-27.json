@@ -1,0 +1,562 @@
+[
+{
+"repo": "elementalsouls/Claude-BugHunter",
+"stars_total": 24562,
+"stars_today": 1597,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "obra/superpowers",
+"stars_total": 327483,
+"stars_today": 854,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "HKUDS/CLI-Anything",
+"stars_total": 66356,
+"stars_today": 746,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "jingyaogong/minimind",
+"stars_total": 71626,
+"stars_today": 702,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "cursor/plugins",
+"stars_total": 19785,
+"stars_today": 270,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "firecrawl/firecrawl",
+"stars_total": 210937,
+"stars_today": 1046,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "nginx/nginx",
+"stars_total": 33521,
+"stars_today": 150,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "openvinotoolkit/openvino",
+"stars_total": 12820,
+"stars_today": 176,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "cathrynlavery/diagram-design",
+"stars_total": 73836,
+"stars_today": 955,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "mvanhorn/last30days-skill",
+"stars_total": 75747,
+"stars_today": 759,
+"stars_week": 5090,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "google-labs-code/stitch-skills",
+"stars_total": 13287,
+"stars_today": 309,
+"stars_week": 2619,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "mjmirza/app-store-compliance",
+"stars_total": 7029,
+"stars_today": 562,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "Tracer-Cloud/opensre",
+"stars_total": 15821,
+"stars_today": 327,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "toeverything/AFFiNE",
+"stars_total": 78969,
+"stars_today": 525,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "XiaoYouChR/Ghost-Downloader-3",
+"stars_total": 19103,
+"stars_today": 889,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "zhouxiaoka/autoclip",
+"stars_total": 16927,
+"stars_today": 774,
+"stars_week": null,
+"on_page": "trending?since=daily"
+},
+{
+"repo": "Imbad0202/academic-research-skills",
+"stars_total": 58699,
+"stars_today": 120,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "wshobson/agents",
+"stars_total": 42930,
+"stars_today": 38,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "apache/airflow",
+"stars_total": 47696,
+"stars_today": 24,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "microsoft/markitdown",
+"stars_total": 198613,
+"stars_today": 164,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "SWE-agent/mini-swe-agent",
+"stars_total": 10123,
+"stars_today": 43,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "pytorch/torchtitan",
+"stars_total": 5989,
+"stars_today": 11,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "awslabs/cli-agent-orchestrator",
+"stars_total": 1693,
+"stars_today": 12,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "vllm-project/vllm-ascend",
+"stars_total": 3155,
+"stars_today": 4,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "FlashML-org/FreeVideo",
+"stars_total": 5069,
+"stars_today": 102,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "superdesigndev/treg",
+"stars_total": 9569,
+"stars_today": 501,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "p-e-w/heretic",
+"stars_total": 43331,
+"stars_today": 134,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "samuelgursky/davinci-resolve-mcp",
+"stars_total": 4428,
+"stars_today": 17,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "github/spec-kit",
+"stars_total": 151642,
+"stars_today": 119,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "phone-harness/phone-harness",
+"stars_total": 5925,
+"stars_today": 100,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "odoo/odoo",
+"stars_total": 56130,
+"stars_today": 26,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "agentscope-ai/agentscope",
+"stars_total": 36768,
+"stars_today": 56,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "google-research/paper-orchestra",
+"stars_total": 6511,
+"stars_today": 113,
+"stars_week": null,
+"on_page": "trending/python?since=daily"
+},
+{
+"repo": "bendlang/bend",
+"stars_total": 25936,
+"stars_today": 40,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "appwrite/appwrite",
+"stars_total": 58665,
+"stars_today": 38,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "mastra-ai/mastra",
+"stars_total": 29842,
+"stars_today": 20,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "tianma-if/edgeever",
+"stars_total": 3610,
+"stars_today": 31,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "twentyhq/twenty",
+"stars_total": 61515,
+"stars_today": 45,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "hieunc229/mailflare",
+"stars_total": 7751,
+"stars_today": 84,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "colbymchenry/codegraph",
+"stars_total": 78785,
+"stars_today": 99,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "visgl/deck.gl",
+"stars_total": 14830,
+"stars_today": 6,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "Fission-AI/OpenSpec",
+"stars_total": 75818,
+"stars_today": 90,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "solidjs/solid",
+"stars_total": 36975,
+"stars_today": 12,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "croffasia/itsaplan",
+"stars_total": 2684,
+"stars_today": 34,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "anomalyco/opencode",
+"stars_total": 229410,
+"stars_today": 249,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "earendil-works/pi",
+"stars_total": 124073,
+"stars_today": 213,
+"stars_week": null,
+"on_page": "trending/typescript?since=daily"
+},
+{
+"repo": "aoaostar/legado",
+"stars_total": 7991,
+"stars_today": 41,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "higress-group/higress",
+"stars_total": 9863,
+"stars_today": 14,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "ruanyf/weekly",
+"stars_total": 108790,
+"stars_today": 56,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "krahets/hello-algo",
+"stars_total": 132759,
+"stars_today": 46,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "sngyai/Sequoia-X",
+"stars_total": 8885,
+"stars_today": 14,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "521xueweihan/HelloGitHub",
+"stars_total": 191442,
+"stars_today": 195,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "wanglin2/mind-map",
+"stars_total": 13088,
+"stars_today": 13,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "YunaiV/ruoyi-vue-pro",
+"stars_total": 40654,
+"stars_today": 31,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "d2l-ai/d2l-zh",
+"stars_total": 82755,
+"stars_today": 28,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "XIU2/CloudflareSpeedTest",
+"stars_total": 30281,
+"stars_today": 34,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "fanmingming/live",
+"stars_total": 28985,
+"stars_today": 10,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "hiroi-sora/Umi-OCR",
+"stars_total": 49019,
+"stars_today": 29,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "zhayujie/CowAgent",
+"stars_total": 48092,
+"stars_today": 27,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "rebase-network/who-is-hiring",
+"stars_total": 1910,
+"stars_today": 7,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "jeecgboot/JeecgBoot",
+"stars_total": 48637,
+"stars_today": 12,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "xushengfeng/eSearch",
+"stars_total": 7504,
+"stars_today": 12,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "pymumu/smartdns",
+"stars_total": 11464,
+"stars_today": 5,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "jaywcjlove/linux-command",
+"stars_total": 37338,
+"stars_today": 14,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "JoeanAmier/TikTokDownloader",
+"stars_total": 17723,
+"stars_today": 32,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "xifangczy/cat-catch",
+"stars_total": 23225,
+"stars_today": 29,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "xfangfang/wiliwili",
+"stars_total": 5764,
+"stars_today": 9,
+"stars_week": null,
+"on_page": "trending?since=daily&spoken_language_code=zh"
+},
+{
+"repo": "backnotprop/plannotator",
+"stars_total": 15257,
+"stars_today": null,
+"stars_week": 1631,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "GoogleChrome/modern-web-guidance-src",
+"stars_total": 11254,
+"stars_today": null,
+"stars_week": 2209,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "n8n-io/nod",
+"stars_total": 3999,
+"stars_today": null,
+"stars_week": 1165,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "alibaba/open-code-review",
+"stars_total": 56641,
+"stars_today": null,
+"stars_week": 2284,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "ChromeDevTools/chrome-devtools-mcp",
+"stars_total": 59501,
+"stars_today": null,
+"stars_week": 1175,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "tradermonty/claude-trading-skills",
+"stars_total": 8598,
+"stars_today": null,
+"stars_week": 1381,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "ag-ui-protocol/ag-ui",
+"stars_total": 21840,
+"stars_today": null,
+"stars_week": 1269,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "meta/astryx",
+"stars_total": 33347,
+"stars_today": null,
+"stars_week": 2519,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "pookjw/HermesEnabler",
+"stars_total": 2544,
+"stars_today": null,
+"stars_week": 325,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "we-promise/sure",
+"stars_total": 18092,
+"stars_today": null,
+"stars_week": 1430,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "obsidianmd/obsidian-skills",
+"stars_total": 54007,
+"stars_today": null,
+"stars_week": 704,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "dream-num/univer",
+"stars_total": 31969,
+"stars_today": null,
+"stars_week": 1825,
+"on_page": "trending?since=weekly"
+},
+{
+"repo": "kajisho5/ffmpeg-skill",
+"stars_total": 11527,
+"stars_today": null,
+"stars_week": 3229,
+"on_page": "trending?since=weekly"
+}
+]

@@ -1,0 +1,231 @@
+{
+ "date": "2026-11-27",
+ "generated_at": "2026-11-27T03:30:00+08:00",
+ "track": "图文自媒体",
+ "headline": [
+  "今天（周五，图文自媒体）没有合格的新机会，LinkedIn 帖子抓取这一块已被 Apify 上的现成 Actor 占满。",
+  "今天推进池子里排队的「产品资料 → 英文 LinkedIn 帖子包」：先看它的深挖报告第 1 天怎么做。"
+ ],
+ "today": {
+  "text": "打开 seed-linkedin-post-pack 的深挖报告（2026-11-04-B01），按「7 天实验」第 1 天，列出 10 个能触达的外贸业务员（群友或 LinkedIn 好友），写好要发给他们的一句话问法，做完点「开始验证」。",
+  "minutes": 30,
+  "ref": "seed-linkedin-post-pack",
+  "why": "它是池子里唯一和今天主线（图文自媒体）对得上的排队项目，今天没有 75 分的新机会。"
+ },
+ "stats": {
+  "scanned": 490,
+  "selected": 5,
+  "chars": 1164,
+  "read_minutes": 3
+ },
+ "opportunities": [],
+ "leads": [
+  {
+   "name": "LinkedIn 帖子抓取做成 Apify Actor",
+   "url": "https://apify.com/apimaestro/linkedin-profile-posts",
+   "why_not": "同类 Actor 近 30 天 1852 用户，按 $1.2/千条已有人压价，渠道分和需求分都被现成产品占掉，估计不到 60 分"
+  },
+  {
+   "name": "AEO/GEO 品牌可见度监控托管版",
+   "url": "https://github.com/elmohq/elmo",
+   "why_not": "官方云版 $29/月已在卖，自托管要 Cloro 和 OpenRouter 两个 key，没有新窄切口，卡在直接需求证据"
+  },
+  {
+   "name": "自托管邮件通讯代发服务",
+   "url": "https://github.com/knadh/listmonk",
+   "why_not": "listmonk 是 AGPL，托管要公开改动，没找到 issue 里有人要托管版，过不了直接需求门槛"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "knadh/listmonk",
+   "url": "https://github.com/knadh/listmonk",
+   "from": "主线话题",
+   "stage": "发布",
+   "pairs_with": "无",
+   "why_today": "24477 星，近 7 天 +87",
+   "stars_today": null,
+   "stars_7d": 87,
+   "stars_total": 24477,
+   "license": "AGPL-3.0",
+   "license_tier": "托管要公开改动",
+   "tags": [
+    "自媒体"
+   ],
+   "brief": "自托管邮件通讯，单文件加 PostgreSQL",
+   "what": "单个二进制加 PostgreSQL 的邮件列表和通讯管理器，支持订阅管理、模板、发送统计。自己的 SMTP 或 SES 发信，不按订阅人数付月费。",
+   "business": "给自己的英文 Newsletter 省下 beehiiv 月费",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "自己的英文 Newsletter 用自托管发信，名单留在手里"
+    },
+    {
+     "area": "宣传",
+     "how": "给海外客户群发产品更新邮件"
+    }
+   ],
+   "demand": [],
+   "setup": "Docker Compose 一条命令起，要配 SMTP",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "G01",
+   "images": [
+    "https://github.com/user-attachments/assets/689b5fbb-dd25-4956-a36f-e3226a65f9c4"
+   ]
+  },
+  {
+   "repo": "elmohq/elmo",
+   "url": "https://github.com/elmohq/elmo",
+   "from": "主线话题",
+   "stage": "监控",
+   "pairs_with": "无",
+   "why_today": "733 星，近 7 天 +30",
+   "stars_today": null,
+   "stars_7d": 30,
+   "stars_total": 733,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "SEO"
+   ],
+   "brief": "监控品牌在 ChatGPT 等回答里的出现",
+   "what": "开源的 AI 回答引擎可见度监控：看品牌被提到的次数、竞品份额、情感和引用来源。能自托管，也有 $29/月的云版。",
+   "business": "给外贸工厂的 AI 可见度体检提供底层数据",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "给工厂官网跑「ChatGPT 推荐谁」的体检，对应池子里 seed-ai-supplier-check"
+    }
+   ],
+   "demand": [],
+   "setup": "Docker Compose，推荐配 Cloro 和 OpenRouter 的 key",
+   "safety": "黄",
+   "safety_note": "要填 Cloro、OpenRouter 的 API key，会抓取各 AI 产品的消费端页面。防范：用单独的小额度 key，不和主账号共用。",
+   "risk_brief": "要多个 API key",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/elmohq/elmo/HEAD/apps/www/public/screenshots/overview.png",
+    "https://raw.githubusercontent.com/elmohq/elmo/HEAD/apps/www/public/screenshots/visibility.png",
+    "https://raw.githubusercontent.com/elmohq/elmo/HEAD/apps/www/public/screenshots/share-of-voice.png",
+    "https://raw.githubusercontent.com/elmohq/elmo/HEAD/apps/www/public/screenshots/citations.png"
+   ]
+  },
+  {
+   "repo": "eracle/OpenOutreach",
+   "url": "https://github.com/eracle/OpenOutreach",
+   "from": "主线话题",
+   "stage": "找客户",
+   "pairs_with": "无",
+   "why_today": "3850 星，近 7 天 +50",
+   "stars_today": null,
+   "stars_7d": 50,
+   "stars_total": 3850,
+   "license": "Apache-2.0",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "外贸"
+   ],
+   "brief": "描述产品，自动找人并写开发信",
+   "what": "自托管命令行获客：描述产品和目标市场，经持牌数据源找人，大模型判断匹配并写原因，再用自己的邮箱发信。页面称不做浏览器抓取。",
+   "business": "外贸开发信流程的底座，先自用验证",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "给一个品类跑一批目标买家名单和开发信草稿"
+    }
+   ],
+   "demand": [],
+   "setup": "`uv tool install openoutreach`，向导里填大模型 key、找邮箱 key、邮箱应用密码",
+   "safety": "黄",
+   "safety_note": "要邮箱应用密码和多个 key，会代你发信。防范：用副域名邮箱，先只生成草稿不发，注意发信合规。",
+   "risk_brief": "要邮箱密码，会发信",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/eracle/OpenOutreach/HEAD/docs/demo.gif"
+   ]
+  }
+ ],
+ "trending_brief": [
+  {
+   "repo": "elementalsouls/Claude-BugHunter",
+   "url": "https://github.com/elementalsouls/Claude-BugHunter",
+   "line": "漏洞挖掘 Skill 包，日增 1597 星"
+  },
+  {
+   "repo": "firecrawl/firecrawl",
+   "url": "https://github.com/firecrawl/firecrawl",
+   "line": "给 AI 代理用的抓取搜索基础设施，日增 1046 星"
+  },
+  {
+   "repo": "cathrynlavery/diagram-design",
+   "url": "https://github.com/cathrynlavery/diagram-design",
+   "line": "代码代理出编辑级图表的 Skill，日增 955 星"
+  }
+ ],
+ "skills": [
+  {
+   "name": "marketingskills（social、copywriting、cold-email）",
+   "url": "https://github.com/coreyhaines31/marketingskills",
+   "repo": "coreyhaines31/marketingskills",
+   "hot": "长期热门",
+   "stars_total": 62851,
+   "installs": null,
+   "popularity_note": "62.9k 星，营销类 Skill 里最全",
+   "works_with": "两者",
+   "brief": "营销全套：文案、社媒、邮件、开发信",
+   "what": "按场景拆成多个 Skill：写落地页文案、LinkedIn 和 X 的内容策划与发帖日历、邮件序列、B2B 开发信。发布前要你确认，不自动发。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "用 `social` 把产品资料排成一周英文 LinkedIn 帖子日历"
+    },
+    {
+     "area": "外贸",
+     "how": "用 `cold-email` 起草开发信序列"
+    }
+   ],
+   "stage": "写内容",
+   "install": "`npx skills add coreyhaines31/marketingskills --skill social copywriting cold-email -a claude-code`",
+   "why_now": "对得上池子里 seed-linkedin-post-pack 的第 1 天：先用它手工做 5 条帖子，看效果再谈卖。",
+   "safety": "绿",
+   "safety_note": "",
+   "risk_brief": "",
+   "id": "S01"
+  },
+  {
+   "name": "last30days",
+   "url": "https://github.com/mvanhorn/last30days-skill",
+   "repo": "mvanhorn/last30days-skill",
+   "hot": "长期热门",
+   "stars_total": 75747,
+   "installs": null,
+   "popularity_note": "75.7k 星，你已收藏，今天日榜 +759",
+   "works_with": "两者",
+   "brief": "一个话题跨 Reddit、HN、X 的近 30 天简报",
+   "what": "并行搜 Reddit、HN、YouTube、X 等，按互动排序后合成一份简报，能用来找选题和需求原话。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "写英文 Newsletter 前先跑一遍选题近况"
+    },
+    {
+     "area": "做产品",
+     "how": "找某个品类的真实抱怨作为需求证据"
+    }
+   ],
+   "stage": "找客户",
+   "install": "`/plugin marketplace add mvanhorn/last30days-skill` 后 `/plugin install last30days`",
+   "why_now": "",
+   "safety": "黄",
+   "safety_note": "带 Python 脚本和 shell 脚本，会把研究结果写进 `~/Documents/Last30Days/`；X 来源可读浏览器 cookie，部分来源要 API key。防范：不填 X 的 cookie，用 preflight 先看计划，只给免 key 的来源。",
+   "risk_brief": "能读浏览器 cookie，带脚本",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/mvanhorn/last30days-skill/HEAD/media/pr-assets/last30days-ad.gif"
+   ]
+  }
+ ],
+ "format": 3
+}
