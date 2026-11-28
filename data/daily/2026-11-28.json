@@ -1,0 +1,239 @@
+{
+ "date": "2026-11-28",
+ "generated_at": "2026-11-28T03:30:00+08:00",
+ "track": "复盘",
+ "headline": [
+  "今天周六复盘，不出新机会；池子里没有在验证的项目，排队待验证的有 7 个。",
+  "建议先点开始验证「ChatGPT 推荐供应商」体检报告，它的深挖第 1 天只要 30 分钟。"
+ ],
+ "today": {
+  "text": "打开 seed-ai-supplier-check 的深挖报告（2026-11-05-B01），按「7 天实验」第 1 天，挑一个你熟的品类，用 ChatGPT 和 Perplexity 各问 5 个海外买家会问的采购问题，记下谁被推荐；做完点「开始验证」。",
+  "minutes": 30,
+  "ref": "seed-ai-supplier-check",
+  "why": "今天复盘不出新机会，池子里没有验证中的项目，这个是排队项目里获客渠道最清楚的（外贸群、LinkedIn）。"
+ },
+ "stats": {
+  "scanned": 330,
+  "selected": 5,
+  "chars": 1055,
+  "read_minutes": 3
+ },
+ "opportunities": [],
+ "leads": [
+  {
+   "name": "外贸线索表自动补全（AI 表格）",
+   "url": "https://github.com/context-dot-dev/enrichable",
+   "why_not": "前天已写过；开源 AI 表格自带找邮箱，没有 issue 要托管版，卡在直接需求门槛"
+  },
+  {
+   "name": "WhatsApp 群发网关托管版",
+   "url": "https://github.com/rmyndharis/OpenWA",
+   "why_not": "近 7 天 +306 星，但 WhatsApp 对非官方接口封号，合规和收款分都过不了，估计不到 60 分"
+  },
+  {
+   "name": "SEO 站点监控托管版",
+   "url": "https://github.com/crawlseo/crawlseo",
+   "why_not": "同类 open-seo 已 2.9 万星，没找到 issue 里有人要托管版，卡在直接需求证据"
+  }
+ ],
+ "tools": [
+  {
+   "repo": "warmbly/warmbly",
+   "url": "https://github.com/warmbly/warmbly",
+   "from": "主线话题",
+   "stage": "找客户",
+   "pairs_with": "无",
+   "why_today": "1115 星，近 7 天 +22",
+   "stars_today": null,
+   "stars_7d": 22,
+   "stars_total": 1115,
+   "license": "Apache-2.0",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "外贸",
+    "宣传"
+   ],
+   "brief": "开源开发信群发加邮箱预热",
+   "what": "开源的 B2B 开发信和邮箱预热服务，多邮箱轮发、预热、跟进序列。自己部署，邮箱账号留在自己手里。",
+   "business": "给自己的外贸开发信省工具月费",
+   "uses": [
+    {
+     "area": "外贸",
+     "how": "多个发信邮箱预热后轮发开发信，降低进垃圾箱概率"
+    },
+    {
+     "area": "宣传",
+     "how": "给海外名单发产品更新和样品邮件"
+    }
+   ],
+   "demand": [],
+   "setup": "自托管，要配发信域名和邮箱账号，细节未核实",
+   "safety": "黄",
+   "safety_note": "要你的邮箱凭证，预热和群发可能违反邮箱服务商条款。防范：用专门的发信域名和小号，不接主域名邮箱，每天限量。",
+   "risk_brief": "要邮箱凭证，预热易被封",
+   "id": "G01",
+   "images": [
+    "https://raw.githubusercontent.com/warmbly/warmbly/HEAD/docs/assets/dashboard-campaigns.png",
+    "https://raw.githubusercontent.com/warmbly/warmbly/HEAD/docs/assets/dashboard-inbox.png",
+    "https://github.com/user-attachments/assets/c9bd34f7-c384-4f10-91e4-215fcea09986"
+   ]
+  },
+  {
+   "repo": "limelit-co/open",
+   "url": "https://github.com/limelit-co/open",
+   "from": "主线话题",
+   "stage": "监控",
+   "pairs_with": "无",
+   "why_today": "455 星，近 7 天 +6",
+   "stars_today": null,
+   "stars_7d": 6,
+   "stars_total": 455,
+   "license": "Apache-2.0",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "SEO"
+   ],
+   "brief": "自托管 AI 可见度监控，单个 Go 程序",
+   "what": "自托管，追踪 ChatGPT、Claude、Perplexity、Gemini 对品牌的提及和引用。一个 Go 二进制加 SQLite，用自己的模型 key。",
+   "business": "给工厂做「AI 搜索有没有推荐你」体检的取数工具",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "批量问采购类问题，记录哪些工厂被推荐"
+    },
+    {
+     "area": "宣传",
+     "how": "体检报告的数据来源，配合池子里的体检种子"
+    }
+   ],
+   "demand": [],
+   "setup": "下载二进制，填各模型 API key",
+   "safety": "黄",
+   "safety_note": "要多个模型 API key，会产生调用费用。防范：给 key 设额度上限，用单独的 key。",
+   "risk_brief": "要多个 API key，有调用费",
+   "id": "G02",
+   "images": [
+    "https://raw.githubusercontent.com/limelit-co/open/HEAD/docs/screenshots/race.png",
+    "https://raw.githubusercontent.com/limelit-co/open/HEAD/docs/screenshots/by-engine.png",
+    "https://raw.githubusercontent.com/limelit-co/open/HEAD/docs/screenshots/share-of-voice.png",
+    "https://raw.githubusercontent.com/limelit-co/open/HEAD/docs/screenshots/grid.png"
+   ]
+  },
+  {
+   "repo": "crawlseo/crawlseo",
+   "url": "https://github.com/crawlseo/crawlseo",
+   "from": "主线话题",
+   "stage": "监控",
+   "pairs_with": "无",
+   "why_today": "729 星，近 7 天 +11",
+   "stars_today": null,
+   "stars_7d": 11,
+   "stars_total": 729,
+   "license": "MIT",
+   "license_tier": "能托管来卖",
+   "tags": [
+    "SEO"
+   ],
+   "brief": "开源 SEO 监控：搜索控制台加爬虫",
+   "what": "把 Google Search Console 数据、站点爬虫和 Core Web Vitals 放进一个看板，自托管。",
+   "business": "监控自己英文站的收录和速度",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "每周看外贸站收录、404 和页面速度"
+    }
+   ],
+   "demand": [],
+   "setup": "自托管，要授权 Search Console",
+   "safety": "黄",
+   "safety_note": "要授权 Google Search Console 读取。防范：只给只读权限，用单独账号。",
+   "risk_brief": "要授权搜索控制台",
+   "id": "G03",
+   "images": [
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/dashboard.png",
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/keywords.png",
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/audit.png",
+    "https://raw.githubusercontent.com/crawlseo/crawlseo/HEAD/docs/screenshots/mcp.png"
+   ]
+  }
+ ],
+ "trending_brief": [
+  {
+   "repo": "obra/superpowers",
+   "url": "https://github.com/obra/superpowers",
+   "line": "Agent 技能开发方法框架，日增 922 星，累计 32.8 万"
+  },
+  {
+   "repo": "firecrawl/firecrawl",
+   "url": "https://github.com/firecrawl/firecrawl",
+   "line": "给 agent 用的搜索抓取接口，日增 822 星"
+  },
+  {
+   "repo": "HKUDS/CLI-Anything",
+   "url": "https://github.com/HKUDS/CLI-Anything",
+   "line": "把各类软件变成 agent 能用的命令行，日增 666 星"
+  }
+ ],
+ "skills": [
+  {
+   "name": "seo-skills（SE Ranking）",
+   "url": "https://github.com/seranking/seo-skills",
+   "repo": "seranking/seo-skills",
+   "hot": "新晋热门",
+   "stars_total": 218,
+   "installs": null,
+   "popularity_note": "近 7 天 +5 星，32 个技能",
+   "works_with": "两者",
+   "brief": "32 个 SEO 技能，含 AI 搜索可见度",
+   "what": "基于 SE Ranking MCP 的 SEO 技能包：内容简报、技术审计、AI 搜索声量、反链缺口、关键词聚类。",
+   "uses": [
+    {
+     "area": "SEO",
+     "how": "给外贸站出内容简报和 AI 搜索声量对比"
+    }
+   ],
+   "stage": "监控",
+   "install": "/plugin marketplace add seranking/seo-skills 然后 /plugin install seo-skills@seranking",
+   "why_now": "和待验证的「AI 推荐供应商体检」直接对得上，可以当取数和出报告的底子。",
+   "safety": "黄",
+   "safety_note": "数据来自 SE Ranking 的 MCP，要该服务账号和 key（可能付费）。防范：只走插件安装，不跑 install.sh 里的可选扩展，key 单独申请。",
+   "risk_brief": "要第三方服务 key",
+   "id": "S01"
+  },
+  {
+   "name": "huashu-design",
+   "url": "https://github.com/alchaincyf/huashu-design",
+   "repo": "alchaincyf/huashu-design",
+   "hot": "长期热门",
+   "stars_total": 31135,
+   "installs": null,
+   "popularity_note": "3.1 万星，11-23 仍在更新",
+   "works_with": "两者",
+   "brief": "一句话出原型、图文、小红书图和演示稿",
+   "what": "用 HTML 做高保真原型、幻灯片、信息图和图文，先出三个方向让你选。自带脚本，生成图和导出文件。",
+   "uses": [
+    {
+     "area": "自媒体",
+     "how": "产出英文 LinkedIn 图文和信息图"
+    },
+    {
+     "area": "做产品",
+     "how": "做落地页和体检报告的版式"
+    }
+   ],
+   "stage": "写内容",
+   "install": "git clone https://github.com/alchaincyf/huashu-design ~/.claude/skills/huashu-design",
+   "safety": "黄",
+   "safety_note": "附带多个 Python 和 shell 脚本，会读写本地文件、拉图片、可能调用图片接口。防范：先在空目录里试，不放敏感文件，看过 scripts 再给 key。",
+   "risk_brief": "带脚本，会读写本地文件",
+   "id": "S02",
+   "images": [
+    "https://raw.githubusercontent.com/alchaincyf/alchaincyf/main/assets/book-agent-skills-jd-c.jpg",
+    "https://img.youtube.com/vi/m-_BlUdcIvw/maxresdefault.jpg",
+    "https://raw.githubusercontent.com/alchaincyf/huashu-design/HEAD/assets/style-specimens/sheet-east.jpg",
+    "https://raw.githubusercontent.com/alchaincyf/huashu-design/HEAD/assets/style-specimens/sheet-app.jpg"
+   ]
+  }
+ ],
+ "format": 3
+}
